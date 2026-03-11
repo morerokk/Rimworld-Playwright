@@ -13,5 +13,6 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_StartWithHonor;
         public static ScenPartDef Playwright_StartWithNonMinifiedThing;
         public static ScenPartDef Playwright_FactionNaturalGoodwill;
+        public static ScenPartDef Playwright_FactionForcedGoodwill;
     }
 }

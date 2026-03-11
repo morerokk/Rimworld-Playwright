@@ -30,7 +30,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void GenerateIntoMap(Map map)
         {
-            // Very similar to ScatterThings, but does not minify
+            // Very similar to ScatterThings, but does not spawn stuff minified
+            // Also only on starting map, but that's probably handled by the GameInitData check anyway
             if (Find.GameInitData == null)
             {
                 return;
@@ -47,7 +48,9 @@ namespace Rokk.Playwright.ScenParts
                 quality = this.quality,
                 clusterSize = ((this.thingDef.category == ThingCategory.Building) ? 1 : 4),
                 allowRoofed = false,
-                minify = false
+                minify = false,
+                isJunk = false,
+                onlyOnStartingMap = true
             }.Generate(map, default(GenStepParams));
         }
 

@@ -58,11 +58,14 @@
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Designer\PlaywrightDesigner.cs" />
-    <Compile Include="Patches\GameComponentUtility_StartedNewGamePatches.cs" />
+    <Compile Include="Patches\FactionPatches.cs" />
+    <Compile Include="Patches\GamePatches.cs" />
+    <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />
     <Compile Include="Patches\OptionListingUtilityPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
+    <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
     <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />

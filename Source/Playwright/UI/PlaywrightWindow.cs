@@ -23,7 +23,7 @@ namespace Rokk.Playwright.UI
         private float OptionHeight => 50f;
         private float OptionContentMargin => 5f;
 
-        public override Vector2 InitialSize => new Vector2(1000, 700);
+        public override Vector2 InitialSize => new Vector2(1200, 800);
 
         public PlaywrightWindow() : base()
         {

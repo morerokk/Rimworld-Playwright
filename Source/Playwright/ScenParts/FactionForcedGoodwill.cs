@@ -9,20 +9,18 @@ using Verse;
 
 namespace Rokk.Playwright.ScenParts
 {
-    public class FactionNaturalGoodwill : ScenPart
+    public class FactionForcedGoodwill : ScenPart
     {
         public FactionDef FactionToAffect;
 
-        public int NaturalGoodwill = 0;
+        public int ForcedGoodwill = 0;
 
         private string FactionToAffectLabelText => FactionToAffect != null ? FactionToAffect.LabelCap.ToString() : "-";
 
         public static List<FactionDef> GetAllowedFactions()
         {
-            // Hidden factions not selectable. You probably don't want natural goodwill with hidden factions,
-            // that's more of a Forced Goodwill thing.
             return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer && !def.hidden)
+                .Where(def => !def.isPlayer)
                 .ToList();
         }
 
@@ -32,7 +30,7 @@ namespace Rokk.Playwright.ScenParts
             var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 5);
 
             // Faction selector
-            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.FactionNaturalGoodwill.Faction".Translate());
+            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.FactionForcedGoodwill.Faction".Translate());
             if (Widgets.ButtonText(helper.NextRect(), FactionToAffectLabelText))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();
@@ -44,18 +42,17 @@ namespace Rokk.Playwright.ScenParts
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
 
-            // Natural goodwill slider
-            NaturalGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), NaturalGoodwill, -100, 100, true, "Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill".Translate(), null, null, 1f));
-            Widgets.Label(helper.NextRect(), NaturalGoodwill.ToString());
+            // Goodwill slider
+            ForcedGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), ForcedGoodwill, -100, 100, true, "Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill".Translate(), null, null, 1f));
+            Widgets.Label(helper.NextRect(), ForcedGoodwill.ToString());
 
             if(Widgets.ButtonText(helper.NextRect(), "?"))
             {
-                Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.FactionNaturalGoodwill.Help".Translate()));
+                Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.FactionForcedGoodwill.Help".Translate()));
             }
         }
 
         // Modify faction starting goodwill on world gen
-        // This cannot affect natural goodwill, that's handled in patches
         public override void PostWorldGenerate()
         {
             List<Faction> factions = Find.FactionManager.AllFactions
@@ -65,7 +62,7 @@ namespace Rokk.Playwright.ScenParts
             foreach (var faction in factions)
             {
                 int currentPlayerGoodwill = faction.GoodwillWith(Faction.OfPlayer);
-                int differenceToReachTarget = Mathf.FloorToInt(NaturalGoodwill) - currentPlayerGoodwill;
+                int differenceToReachTarget = Mathf.FloorToInt(ForcedGoodwill) - currentPlayerGoodwill;
                 faction.TryAffectGoodwillWith(Faction.OfPlayer, differenceToReachTarget, false, false);
             }
         }
@@ -75,13 +72,13 @@ namespace Rokk.Playwright.ScenParts
             base.ExposeData();
 
             Scribe_Defs.Look<FactionDef>(ref FactionToAffect, nameof(FactionToAffect));
-            Scribe_Values.Look<int>(ref NaturalGoodwill, nameof(NaturalGoodwill), 0, false);
+            Scribe_Values.Look<int>(ref ForcedGoodwill, nameof(ForcedGoodwill), 0, false);
             
         }
 
         public override string Summary(Scenario scen)
         {
-            return "Playwright.ScenParts.FactionNaturalGoodwill.Summary".Translate(FactionToAffect.label, NaturalGoodwill);
+            return "Playwright.ScenParts.FactionForcedGoodwill.Summary".Translate(FactionToAffect.label, ForcedGoodwill);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Rokk.Playwright.Patches
     public class OptionListingUtility_DrawOptionListingPatches
     {
         [HarmonyPrefix]
-        public static void Prefix(ref List<ListableOption> optList)
+        static void Prefix(ref List<ListableOption> optList)
         {
             // Add Playwright option to main menu
 

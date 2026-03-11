@@ -33,7 +33,7 @@ namespace Rokk.Playwright.ScenParts
 
             helper.Skip(1);
 
-            // TODO: tweak for VFE Empire
+            // TODO: tweak help text for VFE Empire
             if(Widgets.ButtonText(helper.NextRect(), "?"))
             {
                 Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.StartWithHonor.Help".Translate()));
@@ -93,13 +93,6 @@ namespace Rokk.Playwright.ScenParts
             }
 
             return "Playwright.ScenParts.StartWithHonor.Summary".Translate(StartingHonor, FactionToStartWithHonorFor.Name);
-        }
-
-        // Make the randomize button work
-        public override void Randomize()
-        {
-            this.StartingHonor = Rand.RangeInclusive(1, 65);
-            this.ApplyTitles = Rand.Bool;
         }
     }
 }

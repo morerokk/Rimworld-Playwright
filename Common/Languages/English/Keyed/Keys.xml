@@ -67,7 +67,7 @@ for colonization of the planet.</Playwright.Components.Origins.Empire.Descriptio
 - Every colonist starts with a Novice title with the Empire.
 - Every colonist starts with a Level 1 Psylink.
 - You are Allied with the Empire by default.
-- You are Enemies with Deserters by default.
+- You are Enemies with Deserters by default (VFE Deserters only).
 - Start with some basic supplies.
 - Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Empire.Summary>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
@@ -149,6 +149,21 @@ Honor and Titles are awarded after the game begins. They will not be visible in 
  <Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>Goodwill</Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>
  <Playwright.ScenParts.FactionNaturalGoodwill.Help>Change a faction's natural goodwill to a specified amount.
 
-This affects the starting goodwill, and what value they will trend towards if left alone.</Playwright.ScenParts.FactionNaturalGoodwill.Help>
+This affects the starting goodwill, and what value they will trend towards if left alone.
+
+Ally: 75 or higher
+Neutral: Between -74 and 74 (inclusive)
+Hostile: -75 or lower</Playwright.ScenParts.FactionNaturalGoodwill.Help>
+
+ <Playwright.ScenParts.FactionForcedGoodwill>Set faction forced goodwill</Playwright.ScenParts.FactionForcedGoodwill>
+ <Playwright.ScenParts.FactionForcedGoodwill.Faction>Faction</Playwright.ScenParts.FactionForcedGoodwill.Faction>
+ <Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill>Goodwill</Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill>
+ <Playwright.ScenParts.FactionForcedGoodwill.Help>Permanently forces a faction's goodwill to a specified amount.
+
+This affects the starting goodwill and their current goodwill, forever. They cannot be swayed, no matter what happens.
+
+Ally: 75 or higher
+Neutral: Between -74 and 74 (inclusive)
+Hostile: -75 or lower</Playwright.ScenParts.FactionForcedGoodwill.Help>
 
 </LanguageData>

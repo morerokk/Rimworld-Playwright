@@ -22,5 +22,10 @@ namespace Rokk.Playwright.UI
         {
             Widgets.Label(inRect, Text);
         }
+
+        public override void Notify_ClickOutsideWindow()
+        {
+            this.Close(true);
+        }
     }
 }

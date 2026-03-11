@@ -75,5 +75,31 @@ namespace Rokk.Playwright.ScenParts
             }
             pawn.royalty.SetFavor(faction, honorToApply, true);
         }
+
+        // Boilerplate seemingly needed by scenarios to save/load them and stuff?
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<int>(ref StartingHonor, nameof(StartingHonor), 7, false);
+            Scribe_Values.Look<bool>(ref ApplyTitles, nameof(ApplyTitles), true, false);
+        }
+
+        // Scenario summary description
+        public override string Summary(Scenario scen)
+        {
+            if (this.ApplyTitles)
+            {
+                return "Playwright.ScenParts.StartWithHonor.Summary.WithTitles".Translate(StartingHonor, FactionToStartWithHonorFor.Name);
+            }
+
+            return "Playwright.ScenParts.StartWithHonor.Summary".Translate(StartingHonor, FactionToStartWithHonorFor.Name);
+        }
+
+        // Make the randomize button work
+        public override void Randomize()
+        {
+            this.StartingHonor = Rand.RangeInclusive(1, 65);
+            this.ApplyTitles = Rand.Bool;
+        }
     }
 }

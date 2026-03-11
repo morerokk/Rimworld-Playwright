@@ -11,5 +11,6 @@ namespace Rokk.Playwright.DefOfs
     public static class ScenPartDefOf
     {
         public static ScenPartDef Playwright_StartWithHonor;
+        public static ScenPartDef Playwright_StartWithNonMinifiedThing;
     }
 }

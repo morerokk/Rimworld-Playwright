@@ -5,7 +5,16 @@
     <label>start with honor</label>
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>
     <category>PlayerPawnModifier</category>
-    <selectionWeight>0.0</selectionWeight>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>800</summaryPriority>
+  </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_StartWithNonMinifiedThing</defName>
+    <label>start with non-minified thing</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.StartWithNonMinifiedThing</scenPartClass>
+    <category>StartingItem</category>
+    <selectionWeight>0.1</selectionWeight>
     <summaryPriority>800</summaryPriority>
   </ScenPartDef>
 </Defs>

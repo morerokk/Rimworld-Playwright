@@ -115,7 +115,7 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
  <Playwright.ScenParts.StartWithHonor>Start with Honor</Playwright.ScenParts.StartWithHonor>
  <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
  <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
- <Playwright.ScenParts.StartWithHonor.Help>"Apply Titles" will automatically consume Honor to award the proper titles. If disabled, the bestowing ceremonies still have to happen.
+ <Playwright.ScenParts.StartWithHonor.Help>"Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
  
 Required starting Honor for titles:
 Freeholder: 1
@@ -127,5 +127,7 @@ Baron/Baroness: 45
 Archon: 65
 
 Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.</Playwright.ScenParts.StartWithHonor.Help>
+ <Playwright.ScenParts.StartWithHonor.Summary>Start with {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
+ <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Start with {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
 
 </LanguageData>

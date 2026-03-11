@@ -1,0 +1,26 @@
+﻿using HarmonyLib;
+using RimWorld;
+using Rokk.Playwright.ScenParts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Verse;
+
+namespace Rokk.Playwright.Components.Origins
+{
+    public class TribalOrigin : OriginComponent
+    {
+        public override string Id => "Origins.Tribal";
+        public override int StartingColonistsSelectable => 5;
+        public override int StartingColonistsTotal => 11;
+        public override PlayerPawnsArriveMethod ArrivalMethod => PlayerPawnsArriveMethod.Standing;
+
+        public override void MutateScenario(List<ScenPart> scenarioParts)
+        {
+            // TODO: Add parts for spawning with supplies, starting weapons and stuff for 5 people
+        }
+    }
+}

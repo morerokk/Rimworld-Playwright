@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6164AFC-A6F3-49AD-B309-997E47BB6F7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rokk.Playwright</RootNamespace>
+    <AssemblyName>Playwright</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Factions\FactionComponent.cs" />
+    <Compile Include="Components\Factions\EmpireFaction.cs" />
+    <Compile Include="Components\Factions\InsectoidHiveFaction.cs" />
+    <Compile Include="Components\Factions\MechanoidHiveFaction.cs" />
+    <Compile Include="Components\Origins\CorporateOrigin.cs" />
+    <Compile Include="Components\Origins\TribalOrigin.cs" />
+    <Compile Include="Components\Origins\RichExplorerOrigin.cs" />
+    <Compile Include="Components\Origins\CrashlandedOrigin.cs" />
+    <Compile Include="Components\Origins\EmpireOrigin.cs" />
+    <Compile Include="Components\Origins\OriginComponent.cs" />
+    <Compile Include="Components\PlaywrightComponent.cs" />
+    <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\ScenPartDefOf.cs" />
+    <Compile Include="Designer\PlaywrightDesigner.cs" />
+    <Compile Include="Patches\GameComponentUtility_StartedNewGamePatches.cs" />
+    <Compile Include="Patches\OptionListingUtilityPatches.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Composer\PlaywrightBuilder.cs" />
+    <Compile Include="Composer\PlaywrightStructure.cs" />
+    <Compile Include="ScenParts\StartWithHonor.cs" />
+    <Compile Include="ScenParts\StartWithShuttle.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="UI\PlaywrightDrawHelper.cs" />
+    <Compile Include="UI\PlaywrightWindow.cs" />
+    <Compile Include="UI\InfoPopupWindow.cs" />
+    <Compile Include="UI\ScenPartDrawHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.6.4633</Version>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.4.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)\..\1.6\Assemblies"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ScenPartDef>
+    <defName>Playwright_StartWithHonor</defName>
+    <label>start with honor</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>800</summaryPriority>
+  </ScenPartDef>
+</Defs>

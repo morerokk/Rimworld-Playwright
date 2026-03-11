@@ -26,8 +26,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 5);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 5);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 6);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 6);
 
             // Faction selector
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.FactionForcedGoodwill.Faction".Translate());
@@ -41,6 +41,8 @@ namespace Rokk.Playwright.ScenParts
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
+
+            helper.Skip(1);
 
             // Goodwill slider
             ForcedGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), ForcedGoodwill, -100, 100, true, "Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill".Translate(), null, null, 1f));

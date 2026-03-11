@@ -28,8 +28,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 5);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 5);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 6);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 6);
 
             // Faction selector
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.FactionNaturalGoodwill.Faction".Translate());
@@ -44,8 +44,10 @@ namespace Rokk.Playwright.ScenParts
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
 
+            helper.Skip(1);
+
             // Natural goodwill slider
-            NaturalGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), NaturalGoodwill, -100, 100, true, "Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill".Translate(), null, null, 1f));
+            NaturalGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), NaturalGoodwill, -200, 200, true, "Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill".Translate(), null, null, 1f));
             Widgets.Label(helper.NextRect(), NaturalGoodwill.ToString());
 
             if(Widgets.ButtonText(helper.NextRect(), "?"))

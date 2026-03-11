@@ -45,7 +45,7 @@ namespace Rokk.Playwright.ScenParts
             helper.Skip(1);
 
             // Goodwill slider
-            ForcedGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), ForcedGoodwill, -100, 100, true, "Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill".Translate(), null, null, 1f));
+            ForcedGoodwill = Mathf.FloorToInt(Widgets.HorizontalSlider(helper.NextRect(), ForcedGoodwill, -200, 200, true, "Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill".Translate(), null, null, 1f));
             Widgets.Label(helper.NextRect(), ForcedGoodwill.ToString());
 
             if(Widgets.ButtonText(helper.NextRect(), "?"))

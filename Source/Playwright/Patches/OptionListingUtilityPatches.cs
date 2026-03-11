@@ -17,7 +17,12 @@ namespace Rokk.Playwright.Patches
         {
             // Add Playwright option to main menu
 
-            if (Current.ProgramState != ProgramState.Entry)
+            if (Current.ProgramState != ProgramState.Entry || Core.Settings == null)
+            {
+                return;
+            }
+
+            if (!Core.Settings.EnablePlaywrightButton)
             {
                 return;
             }

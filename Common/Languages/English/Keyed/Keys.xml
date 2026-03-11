@@ -7,6 +7,10 @@
  
  <Playwright.>text</Playwright.>
  
+ <!-- Settings -->
+ <Playwright.Settings.EnablePlaywrightButton>Enable Playwright button in main menu</Playwright.Settings.EnablePlaywrightButton>
+ 
+ <!-- Main Menu -->
  <Playwright.OpenPlaywrightButton>Playwright</Playwright.OpenPlaywrightButton>
  
  <!-- Playwright window and tabs -->

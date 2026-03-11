@@ -24,11 +24,11 @@ namespace Rokk.Playwright
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
 
-            listingStandard.Label("Playwright.ModTitle".Translate());
+            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButton".Translate(), ref Settings.EnablePlaywrightButton);
 
             listingStandard.Gap();
 
-            if (listingStandard.ButtonText("Playwright.Reset".Translate()))
+            if (listingStandard.ButtonText("Playwright.Reset".Translate(), null, 0.25f))
             {
                 Settings.ResetToDefaults();
             }

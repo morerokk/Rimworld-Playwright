@@ -46,5 +46,13 @@ namespace Rokk.Playwright.UI
         {
             NextRow += rows;
         }
+
+        /// <summary>
+        /// ID's that still mystify me, but IntRange asks for them so ok?
+        /// </summary>
+        public static class Ids
+        {
+            public const int NaturalGoodwill = 800122;
+        }
     }
 }

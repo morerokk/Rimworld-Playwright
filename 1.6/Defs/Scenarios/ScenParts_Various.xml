@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ScenPartDef>
+    <defName>Playwright_FactionNaturalGoodwill</defName>
+    <label>set faction natural goodwill</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.FactionNaturalGoodwill</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>800</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
     <defName>Playwright_StartWithHonor</defName>
     <label>start with honor</label>
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>800</summaryPriority>
+    <summaryPriority>810</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -15,6 +24,6 @@
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithNonMinifiedThing</scenPartClass>
     <category>StartingItem</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>800</summaryPriority>
+    <summaryPriority>820</summaryPriority>
   </ScenPartDef>
 </Defs>

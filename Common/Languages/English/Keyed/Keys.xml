@@ -61,7 +61,8 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
  <Playwright.Components.Origins.RichExplorer.SuggestedIdeo>(None)</Playwright.Components.Origins.RichExplorer.SuggestedIdeo>
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
- <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
+ <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation
+for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
  <Playwright.Components.Origins.Empire.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Novice title with the Empire.
 - Every colonist starts with a Level 1 Psylink.
@@ -72,7 +73,9 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
  
  <Playwright.Components.Origins.Corporate>Corporate</Playwright.Components.Origins.Corporate>
- <Playwright.Components.Origins.Corporate.Description>5 corporate goons sent down by a subsidiary of The Corporation to analyze the planet hands-on. The Subdirector of the subsidiary might be interested in mountains of paperwork to assess whether it's worth it to send a freighter to this planet.</Playwright.Components.Origins.Corporate.Description>
+ <Playwright.Components.Origins.Corporate.Description>5 corporate goons sent down by a subsidiary of The Corporation
+to analyze the planet hands-on. The Subdirector of the subsidiary might be interested in mountains of paperwork,
+assessing whether it's worthwhile to send a freighter to this planet.</Playwright.Components.Origins.Corporate.Description>
  <Playwright.Components.Origins.Corporate.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Full-Time Employee title with The Corporation.
 - You are Allied with The Corporation by default.
@@ -80,6 +83,15 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
 - Start with some basic supplies.
 - Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Corporate.Summary>
  <Playwright.Components.Origins.Corporate.SuggestedIdeo>Corporate</Playwright.Components.Origins.Corporate.SuggestedIdeo>
+ 
+ <Playwright.Tabs.Boons.Welcome>Choose your Boons. This will determine extra stuff you start out with (if any).</Playwright.Tabs.Boons.Welcome>
+ <!-- Boons -->
+ <Playwright.Components.Boon>Boon</Playwright.Components.Boon>
+ <Playwright.Components.Boons>Boons</Playwright.Components.Boons>
+ 
+ <Playwright.Components.Boons.Shuttle>Shuttle</Playwright.Components.Boons.Shuttle>
+ <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.Description>
+ <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle</Playwright.Components.Boons.Shuttle.Summary>
  
  <!-- Win conditions -->
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>
@@ -115,7 +127,9 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
  <Playwright.ScenParts.StartWithHonor>Start with Honor</Playwright.ScenParts.StartWithHonor>
  <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
  <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
- <Playwright.ScenParts.StartWithHonor.Help>"Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
+ <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the Empire.
+ 
+"Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
  
 Required starting Honor for titles:
 Freeholder: 1
@@ -129,5 +143,12 @@ Archon: 65
 Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.</Playwright.ScenParts.StartWithHonor.Help>
  <Playwright.ScenParts.StartWithHonor.Summary>Start with {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
  <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Start with {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
+ 
+ <Playwright.ScenParts.FactionNaturalGoodwill>Set faction natural goodwill</Playwright.ScenParts.FactionNaturalGoodwill>
+ <Playwright.ScenParts.FactionNaturalGoodwill.Faction>Faction</Playwright.ScenParts.FactionNaturalGoodwill.Faction>
+ <Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>Goodwill</Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>
+ <Playwright.ScenParts.FactionNaturalGoodwill.Help>Change a faction's natural goodwill to a specified amount.
+
+This affects the starting goodwill, and what value they will trend towards if left alone.</Playwright.ScenParts.FactionNaturalGoodwill.Help>
 
 </LanguageData>

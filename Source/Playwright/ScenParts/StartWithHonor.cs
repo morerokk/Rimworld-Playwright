@@ -12,7 +12,7 @@ namespace Rokk.Playwright.ScenParts
     public class StartWithHonor : ScenPart
     {
         public int StartingHonor = 7;
-        public string StartingHonorBuffer = "7";
+        private string StartingHonorBuffer = "7";
         public bool ApplyTitles = true;
 
         public Faction FactionToStartWithHonorFor => Faction.OfEmpire;

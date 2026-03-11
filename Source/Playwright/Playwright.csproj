@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
+    <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />
     <Compile Include="Settings.cs" />

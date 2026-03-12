@@ -129,6 +129,7 @@ assessing whether it's worthwhile to send a freighter to this planet.</Playwrigh
  
  <!-- Scenarios and parts -->
  <Playwright.ScenParts.StartWithHonor>Start with Honor</Playwright.ScenParts.StartWithHonor>
+ <Playwright.ScenParts.StartWithHonor.Faction>Faction</Playwright.ScenParts.StartWithHonor.Faction>
  <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
  <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
  <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the Empire.

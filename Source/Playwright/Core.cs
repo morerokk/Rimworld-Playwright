@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Rokk.Playwright.Composer;
 using System;
+using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -16,7 +17,7 @@ namespace Rokk.Playwright
             Settings = GetSettings<Settings>();
             Builder = new PlaywrightBuilder();
             Harmony harmony = new Harmony("rokk.playwright");
-            harmony.PatchAll();
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

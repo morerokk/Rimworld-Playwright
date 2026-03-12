@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Addons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,14 +46,18 @@ namespace Rokk.Playwright.Components.Origins
             origins.Add(new TribalOrigin());
             origins.Add(new RichExplorerOrigin());
 
-            if (EmpireOrigin.IsAvailable)
+            var empire = new EmpireOrigin();
+            if (empire.IsAvailable)
             {
-                origins.Add(new EmpireOrigin());
+                origins.Add(empire);
             }
 
-            if (CorporateOrigin.IsAvailable)
+            foreach (OriginComponent origin in ComponentRegistration.Origins)
             {
-                origins.Add(new CorporateOrigin());
+                if (origin.IsAvailable)
+                {
+                    origins.Add(origin);
+                }
             }
 
             return origins;

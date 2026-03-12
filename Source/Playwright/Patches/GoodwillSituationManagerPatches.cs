@@ -21,7 +21,6 @@ namespace Rokk.Playwright.Patches
         static void Postfix(Faction other, ref int __result)
         {
             // If cached, write the value right away.
-            // NOTE: Cache intentionally omits factions that are unaffected by the scenario parts!
             // I have no goddamn clue if some major event like sealing the void affects permanent goodwill or something
             // The old defs made this so much easier :(
             if (NaturalGoodwillCache.ContainsKey(other))

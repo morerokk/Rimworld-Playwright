@@ -15,12 +15,36 @@ namespace Rokk.Playwright.ScenParts
         private string StartingHonorBuffer = "7";
         public bool ApplyTitles = true;
 
-        public Faction FactionToStartWithHonorFor => Faction.OfEmpire;
+        public FactionDef FactionToStartWithHonorFor = FactionDefOf.Empire;
+
+        private string FactionToAffectLabelText => FactionToStartWithHonorFor != null ? FactionToStartWithHonorFor.LabelCap.ToString() : "-";
+
+        public static List<FactionDef> GetAllowedFactions()
+        {
+            return DefDatabase<FactionDef>.AllDefsListForReading
+                .Where(def => !def.isPlayer && !def.hidden && def.HasRoyalTitles)
+                .ToList();
+        }
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 4);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 4);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 6);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 6);
+
+            // Faction selector
+            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.Faction".Translate());
+            if (Widgets.ButtonText(helper.NextRect(), FactionToAffectLabelText))
+            {
+                var floatMenuOptions = new List<FloatMenuOption>();
+                List<FactionDef> allowedFactions = GetAllowedFactions();
+                foreach (FactionDef factionDef in allowedFactions)
+                {
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToStartWithHonorFor = factionDef));
+                }
+                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+            }
+
+            helper.Skip(1);
 
             Widgets.IntEntry(helper.NextRect(), ref StartingHonor, ref StartingHonorBuffer);
             if (StartingHonor < 0)
@@ -31,9 +55,6 @@ namespace Rokk.Playwright.ScenParts
 
             Widgets.CheckboxLabeled(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.ApplyTitles".Translate(), ref ApplyTitles);
 
-            helper.Skip(1);
-
-            // TODO: tweak help text for VFE Empire
             if(Widgets.ButtonText(helper.NextRect(), "?"))
             {
                 Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.StartWithHonor.Help".Translate()));
@@ -44,23 +65,33 @@ namespace Rokk.Playwright.ScenParts
         {
             base.PostGameStart();
 
+            if (FactionToStartWithHonorFor == null)
+            {
+                Log.Error($"[Playwright] {nameof(StartWithHonor)}: Selected faction is null, cannot award honor");
+                return;
+            }
+
+            List<Faction> factions = GetApplicableFactions();
+
             foreach (var map in Current.Game.Maps)
             {
                 foreach (var pawn in map.mapPawns.FreeColonists)
                 {
-                    ApplyToPawn(pawn);
+                    foreach (var faction in factions)
+                    {
+                        ApplyToPawn(pawn, faction);
+                    }
                 }
             }
         }
 
-        private void ApplyToPawn(Pawn pawn)
+        private void ApplyToPawn(Pawn pawn, Faction faction)
         {
             int honorToApply = StartingHonor;
-            var faction = FactionToStartWithHonorFor;
             if (ApplyTitles)
             {
                 // Automatically award the pawn each title from lowest to highest, spending honor to get there
-                var awardableTitles = faction.def.RoyalTitlesAwardableInSeniorityOrderForReading;
+                var awardableTitles = FactionToStartWithHonorFor.RoyalTitlesAwardableInSeniorityOrderForReading;
                 foreach (RoyalTitleDef titleDef in awardableTitles)
                 {
                     if (titleDef.favorCost > honorToApply)
@@ -76,12 +107,31 @@ namespace Rokk.Playwright.ScenParts
             pawn.royalty.SetFavor(faction, honorToApply, true);
         }
 
+        private List<Faction> GetApplicableFactions()
+        {
+            List<Faction> factions = new List<Faction>();
+            foreach (Faction faction in Find.FactionManager.AllFactionsListForReading)
+            {
+                if (faction.def == FactionToStartWithHonorFor)
+                {
+                    factions.Add(faction);
+                }
+            }
+
+            if (factions.Count == 0)
+            {
+                Log.Error($"[Playwright] {nameof(StartWithHonor)}: Failed to find selected faction to award honor for. Faction was {FactionToStartWithHonorFor.LabelCap}");
+            }
+            return factions;
+        }
+
         // Boilerplate seemingly needed by scenarios to save/load them and stuff?
         public override void ExposeData()
         {
-            base.ExposeData();
+            Scribe_Defs.Look<FactionDef>(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));
             Scribe_Values.Look<int>(ref StartingHonor, nameof(StartingHonor), 7, false);
             Scribe_Values.Look<bool>(ref ApplyTitles, nameof(ApplyTitles), true, false);
+            base.ExposeData();
         }
 
         // Scenario summary description
@@ -89,10 +139,10 @@ namespace Rokk.Playwright.ScenParts
         {
             if (this.ApplyTitles)
             {
-                return "Playwright.ScenParts.StartWithHonor.Summary.WithTitles".Translate(StartingHonor, FactionToStartWithHonorFor.Name);
+                return "Playwright.ScenParts.StartWithHonor.Summary.WithTitles".Translate(StartingHonor, FactionToStartWithHonorFor.LabelCap.ToString());
             }
 
-            return "Playwright.ScenParts.StartWithHonor.Summary".Translate(StartingHonor, FactionToStartWithHonorFor.Name);
+            return "Playwright.ScenParts.StartWithHonor.Summary".Translate(StartingHonor, FactionToStartWithHonorFor.LabelCap.ToString());
         }
     }
 }

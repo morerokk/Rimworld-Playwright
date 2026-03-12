@@ -71,11 +71,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override void ExposeData()
         {
-            base.ExposeData();
-
             Scribe_Defs.Look<FactionDef>(ref FactionToAffect, nameof(FactionToAffect));
             Scribe_Values.Look<int>(ref ForcedGoodwill, nameof(ForcedGoodwill), 0, false);
-            
+
+            base.ExposeData();
         }
 
         public override string Summary(Scenario scen)

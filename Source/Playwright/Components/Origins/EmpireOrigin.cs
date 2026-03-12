@@ -14,7 +14,7 @@ namespace Rokk.Playwright.Components.Origins
     public class EmpireOrigin : OriginComponent
     {
         public override string Id => "Origins.Empire";
-        public static bool IsAvailable => ModsConfig.RoyaltyActive;
+        public override bool IsAvailable => ModsConfig.RoyaltyActive;
         public int StartWithHonor { get; set; } = 7;
 
         public override void MutateScenario(List<ScenPart> scenarioParts)
@@ -22,6 +22,7 @@ namespace Rokk.Playwright.Components.Origins
             ScenPartDef startWithHonorDef = Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_StartWithHonor;
             StartWithHonor part = (StartWithHonor)ScenarioMaker.MakeScenPart(startWithHonorDef);
             part.StartingHonor = StartWithHonor;
+            part.FactionToStartWithHonorFor = FactionDefOf.Empire;
             scenarioParts.Add(part);
         }
     }

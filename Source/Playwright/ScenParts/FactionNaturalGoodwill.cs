@@ -60,7 +60,7 @@ namespace Rokk.Playwright.ScenParts
         // This cannot affect natural goodwill, that's handled in patches
         public override void PostWorldGenerate()
         {
-            List<Faction> factions = Find.FactionManager.AllFactions
+            List<Faction> factions = Find.FactionManager.AllFactionsListForReading
                 .Where(f => f.def == FactionToAffect)
                 .ToList();
 

@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Composer
     /// </summary>
     public class PlaywrightBuilder
     {
-        public Scenario MakeScenario(PlaywrightStructure screenplay)
+        public Scenario MakeScenario(PlaywrightStructure playwright)
         {
             Scenario scenario = GenerateDefaultScenario();
 
@@ -24,7 +24,7 @@ namespace Rokk.Playwright.Composer
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
-            screenplay.Origin.MutateScenario(parts);
+            playwright.Origin.MutateScenario(parts);
 
             return scenario;
         }

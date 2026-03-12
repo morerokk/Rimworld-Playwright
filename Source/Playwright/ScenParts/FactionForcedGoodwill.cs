@@ -55,9 +55,10 @@ namespace Rokk.Playwright.ScenParts
         }
 
         // Modify faction starting goodwill on world gen
+        // TODO: Is this still necessary with all the other patches we had to do? Most likely, TryAffectGoodwillWith fails anyway
         public override void PostWorldGenerate()
         {
-            List<Faction> factions = Find.FactionManager.AllFactions
+            List<Faction> factions = Find.FactionManager.AllFactionsListForReading
                 .Where(f => f.def == FactionToAffect)
                 .ToList();
 

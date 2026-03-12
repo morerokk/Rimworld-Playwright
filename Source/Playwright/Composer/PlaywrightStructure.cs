@@ -1,4 +1,5 @@
 ﻿using Rokk.Playwright.Components;
+using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Origins;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,11 @@ namespace Rokk.Playwright.Composer
         /// Only one such premise can exist.
         /// </summary>
         public OriginComponent Origin { get; set; }
+
+        /// <summary>
+        /// Extra bonuses (if any) that the player starts with.
+        /// For example, starting with a pre-placed Odyssey shuttle or some extra goodies.
+        /// </summary>
+        public List<BoonComponent> Boons { get; set; } = new List<BoonComponent>();
     }
 }

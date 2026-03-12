@@ -46,7 +46,6 @@
     <Compile Include="Components\Boons\BoonComponent.cs" />
     <Compile Include="Components\Boons\ShuttleBoon.cs" />
     <Compile Include="Components\Factions\FactionComponent.cs" />
-    <Compile Include="Components\Factions\EmpireFaction.cs" />
     <Compile Include="Components\Factions\InsectoidHiveFaction.cs" />
     <Compile Include="Components\Factions\MechanoidHiveFaction.cs" />
     <Compile Include="Components\Origins\TribalOrigin.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
-    <Compile Include="Designer\PlaywrightDesigner.cs" />
     <Compile Include="Patches\FactionPatches.cs" />
     <Compile Include="Patches\GamePatches.cs" />
     <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />

@@ -9,6 +9,7 @@ namespace Rokk.Playwright.UI
     public abstract class Dialog_PlaywrightFileList : Dialog_FileList
     {
         protected static string DocumentElementName => "SavedPlaywright";
+        protected static string Extension => ".pwt";
 
         protected override void ReloadFiles()
         {

@@ -181,14 +181,16 @@ namespace Rokk.Playwright.UI
             Rect saveRect = new Rect(leftX, buttonY, ButtonWidth, ButtonHeight);
             if (Widgets.ButtonText(saveRect, "Save".Translate()))
             {
-                // TODO: Save dialog
                 Find.WindowStack.Add(new Dialog_PlaywrightList_Save(this.PlaywrightStructure));
             }
 
             Rect loadRect = new Rect(saveRect.xMax + ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
             if (Widgets.ButtonText(loadRect, "Load".Translate()))
             {
-                // TODO: Load dialog
+                Find.WindowStack.Add(new Dialog_PlaywrightList_Load((PlaywrightStructure loadedStructure) =>
+                {
+                    this.PlaywrightStructure = loadedStructure;
+                }));
             }
 
             Rect generateRect = new Rect(contentRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);

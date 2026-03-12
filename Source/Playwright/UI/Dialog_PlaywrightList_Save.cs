@@ -18,7 +18,7 @@ namespace Rokk.Playwright.UI
         {
             this.Playwright = playwright;
             this.interactButLabel = "OverwriteButton".Translate();
-            this.typingName = "TODOName.pwt";
+            this.typingName = this.Playwright.Origin.NameTranslated + Extension;
         }
 
         protected override void DoFileInteraction(string fileName)
@@ -43,7 +43,7 @@ namespace Rokk.Playwright.UI
             SafeSaver.Save(savePath, DocumentElementName, () =>
             {
                 ScribeMetaHeaderUtility.WriteMetaHeader();
-                Scribe_Deep.Look(ref Playwright, "playwright");
+                Scribe_Deep.Look(ref Playwright, nameof(Playwright));
             });
         }
     }

@@ -12,7 +12,7 @@ namespace Rokk.Playwright.UI
 {
     public class PlaywrightWindow : Window
     {
-        private PlaywrightStructure PlaywrightStructure = new PlaywrightStructure();
+        private PlaywrightStructure PlaywrightStructure = PlaywrightStructure.CreateDefault();
         private Tabs ActiveTab = Tabs.Intro;
 
         private int PanelOutlineWidth => 1;

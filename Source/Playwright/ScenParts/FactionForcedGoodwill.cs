@@ -55,7 +55,7 @@ namespace Rokk.Playwright.ScenParts
         }
 
         // Modify faction starting goodwill on world gen
-        // TODO: Is this still necessary with all the other patches we had to do? Most likely, TryAffectGoodwillWith fails anyway
+        // This is still necessary even though we patch goodwill methods, because now the pre-landing faction screen displays the correct information
         public override void PostWorldGenerate()
         {
             List<Faction> factions = Find.FactionManager.AllFactionsListForReading

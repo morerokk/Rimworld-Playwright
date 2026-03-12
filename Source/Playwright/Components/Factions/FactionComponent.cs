@@ -9,7 +9,19 @@ namespace Rokk.Playwright.Components.Factions
     public abstract class FactionComponent : PlaywrightComponent
     {
         /// <summary>
-        /// What natural or forced goodwill the faction should have.
+        /// What dispositions this faction is allowed to have.
+        /// </summary>
+        public virtual HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
+        {
+            FactionDisposition.Neutral,
+            FactionDisposition.InitiallyHostile,
+            FactionDisposition.AlwaysHostile,
+            FactionDisposition.InitiallyAllied,
+            FactionDisposition.AlwaysAllied
+        };
+
+        /// <summary>
+        /// What natural or forced goodwill the faction will have.
         /// </summary>
         public enum FactionDisposition
         {

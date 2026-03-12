@@ -12,6 +12,7 @@ using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
     [HarmonyPatch(typeof(GoodwillSituationManager), nameof(GoodwillSituationManager.GetNaturalGoodwill))]
     public class GoodwillSituationManager_GetNaturalGoodwillPatches
     {

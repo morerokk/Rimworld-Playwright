@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Rokk.Playwright.Compat.MortsCorporationFaction.DefOfs
 {
-    // Use this to provide any DefOfs that the mod maker did not need to include
+    // Use this to provide any DefOfs that the mod doesn't include in the C# code
+    // (or if you don't want to have a reference to the mod's assemblies)
     [DefOf]
     public static class FactionDefOf
     {

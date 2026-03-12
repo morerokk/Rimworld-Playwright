@@ -12,7 +12,7 @@ namespace Rokk.Playwright.Components.Boons
     public class ShuttleBoon : BoonComponent
     {
         public override string Id => "Boons.Shuttle";
-        public static bool IsAvailable => ModsConfig.OdysseyActive;
+        public override bool IsAvailable => ModsConfig.OdysseyActive;
 
         public override void MutateScenario(List<ScenPart> scenarioParts)
         {

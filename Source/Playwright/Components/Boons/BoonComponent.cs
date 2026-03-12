@@ -14,9 +14,10 @@ namespace Rokk.Playwright.Components.Boons
         {
             var list = new List<BoonComponent>();
 
-            if (ShuttleBoon.IsAvailable)
+            BoonComponent shuttleBoon = new ShuttleBoon();
+            if (shuttleBoon.IsAvailable)
             {
-                list.Add(new ShuttleBoon());
+                list.Add(shuttleBoon);
             }
 
             return list;

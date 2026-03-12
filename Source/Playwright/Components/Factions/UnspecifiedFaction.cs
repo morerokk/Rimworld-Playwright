@@ -1,0 +1,26 @@
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Rokk.Playwright.Composer;
+
+namespace Rokk.Playwright.Components.Factions
+{
+    /// <summary>
+    /// This is a placeholder that represents other factions that this mod did not account for.
+    /// If you leave this OUT of the <see cref="PlaywrightStructure.OtherFactions"/> list for instance,
+    /// all factions that aren't allies or enemies will be wiped off the map.
+    /// </summary>
+    public class UnspecifiedFaction : FactionComponent
+    {
+        public override string Id => "Factions.Unspecified";
+
+        public override void MutateScenario(List<ScenPart> scenarioParts)
+        {
+            // TODO: Add scenpart that wipes neutrals off the map after load
+            // probably not here, but in the builder, as this faction is a placeholder
+        }
+    }
+}

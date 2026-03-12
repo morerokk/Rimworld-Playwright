@@ -46,7 +46,7 @@ namespace Rokk.Playwright.Components.Origins
             origins.Add(new TribalOrigin());
             origins.Add(new RichExplorerOrigin());
 
-            var empire = new EmpireOrigin();
+            OriginComponent empire = new EmpireOrigin();
             if (empire.IsAvailable)
             {
                 origins.Add(empire);

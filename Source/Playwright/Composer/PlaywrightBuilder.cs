@@ -25,6 +25,10 @@ namespace Rokk.Playwright.Composer
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
             playwright.Origin.MutateScenario(parts);
+            foreach (var boon in playwright.Boons)
+            {
+                boon.MutateScenario(parts);
+            }
 
             return scenario;
         }

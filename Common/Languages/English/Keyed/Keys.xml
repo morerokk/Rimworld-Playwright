@@ -76,18 +76,7 @@ for colonization of the planet.</Playwright.Components.Origins.Empire.Descriptio
 - Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Empire.Summary>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
  
- <Playwright.Components.Origins.Corporate>Corporate</Playwright.Components.Origins.Corporate>
- <Playwright.Components.Origins.Corporate.Description>5 corporate goons sent down by a subsidiary of The Corporation
-to analyze the planet hands-on. The Subdirector of the subsidiary might be interested in mountains of paperwork,
-assessing whether it's worthwhile to send a freighter to this planet.</Playwright.Components.Origins.Corporate.Description>
- <Playwright.Components.Origins.Corporate.Summary>- Choose 5 colonists (out of 10)
-- Every colonist starts with a Full-Time Employee title with The Corporation.
-- You are Allied with The Corporation by default.
-- You are Enemies with The Cyberpunks by default.
-- Start with some basic supplies.
-- Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Corporate.Summary>
- <Playwright.Components.Origins.Corporate.SuggestedIdeo>Corporate</Playwright.Components.Origins.Corporate.SuggestedIdeo>
- 
+
  <Playwright.Tabs.Boons.Welcome>Choose your Boons. This will determine extra stuff you start out with (if any).</Playwright.Tabs.Boons.Welcome>
  <!-- Boons -->
  <Playwright.Components.Boon>Boon</Playwright.Components.Boon>
@@ -97,6 +86,7 @@ assessing whether it's worthwhile to send a freighter to this planet.</Playwrigh
  <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.Description>
  <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle</Playwright.Components.Boons.Shuttle.Summary>
  
+
  <!-- Win conditions -->
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>
  <Playwright.Components.WinConditions>Win Conditions</Playwright.Components.WinConditions>
@@ -118,13 +108,6 @@ assessing whether it's worthwhile to send a freighter to this planet.</Playwrigh
  
  <Playwright.Components.WinConditions.RoyalTitle>Royal Council</Playwright.Components.WinConditions.RoyalTitle>
  <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>
- 
- <Playwright.Components.WinConditions.Paperwork>Paperwork</Playwright.Components.WinConditions.Paperwork>
- <Playwright.Components.WinConditions.Paperwork.Description>Fill out a certain amount of paperwork, and sell it to The Corporation across your entire playthrough. You win when the total amount of completed paperwork sold to The Corporation equals or exceeds the goal.</Playwright.Components.WinConditions.Paperwork.Description>
- 
- <Playwright.Components.WinConditions.CorporateTitle>Corporate Boardroom</Playwright.Components.WinConditions.CorporateTitle>
- <Playwright.Components.WinConditions.CorporateTitle.Description>Have a certain number of colonists with the chosen Corporate title. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title equals or exceeds the goal.</Playwright.Components.WinConditions.CorporateTitle.Description>
-
 
  
  <!-- Scenarios and parts -->

@@ -13,6 +13,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction
 {
     // Core class of a compatibility mod layer.
     // As long as the Playwright base mod loads before this compatibility mod in LoadFolders.xml, this will work.
+    // For external addons, just ensure your mod has a loadAfter in the About.xml to ensure it loads after Playwright
     public class Core : Mod
     {
         public Core(ModContentPack content) : base(content)

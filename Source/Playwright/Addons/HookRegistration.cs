@@ -1,0 +1,59 @@
+﻿using RimWorld;
+using Rokk.Playwright.Composer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Rokk.Playwright.Addons
+{
+    /// <summary>
+    /// Class for registering simple hooks that will run at specified times during Playwright or scenario building.
+    /// For example, you can run your own code right before/after the scenario is mutated by its parts.
+    /// This should be used for things that don't fit in a single component, like things that require knowledge of multiple components at once.
+    /// If you prefer to use Harmony instead that's fine, but if you *can* use these methods you probably should.
+    /// </summary>
+    public static class HookRegistration
+    {
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+
+        /// <summary>
+        /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
+        /// Useful for doing some preparation that requires knowledge of the entire playwright and scenario.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPreMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPreMutatedHooks.Add(hook);
+        }
+
+        /// <summary>
+        /// Register something that should happen after the <see cref="PlaywrightBuilder"/> has finished building the structure into a scenario.
+        /// Useful for doing some fix-ups that requires knowledge of the entire playwright and scenario.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPostMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPostMutatedHooks.Add(hook);
+        }
+
+        // Internal-only functions to call registered hooks, these shouldn't be accidentally used from outside the assembly
+        internal static void CallScenarioPreMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPreMutatedHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+
+        internal static void CallScenarioPostMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPostMutatedHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+    }
+}

@@ -23,12 +23,27 @@ namespace Rokk.Playwright.Addons
         public static IEnumerable<FactionComponent> Factions => RegisteredFactions.AsReadOnly();
 
         /// <summary>
-        /// Register a new origin to be usable in Playwright.
+        /// Register a new Origin to be usable in Playwright.
         /// </summary>
-        /// <param name="origin">The origin to register.</param>
         public static void RegisterOrigin(OriginComponent origin)
         {
             RegisteredOrigins.Add(origin);
+        }
+
+        /// <summary>
+        /// Register a new Boon to be usable in Playwright.
+        /// </summary>
+        public static void RegisterBoon(BoonComponent boon)
+        {
+            RegisteredBoons.Add(boon);
+        }
+
+        /// <summary>
+        /// Register a new Faction to be usable in Playwright.
+        /// </summary>
+        public static void RegisterFaction(FactionComponent faction)
+        {
+            RegisteredFactions.Add(faction);
         }
     }
 }

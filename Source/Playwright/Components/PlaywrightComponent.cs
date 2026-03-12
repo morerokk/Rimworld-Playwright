@@ -56,6 +56,6 @@ namespace Rokk.Playwright.Components
             }
         }
 
-        public abstract void MutateScenario(List<ScenPart> scenarioParts);
+        public abstract void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts);
     }
 }

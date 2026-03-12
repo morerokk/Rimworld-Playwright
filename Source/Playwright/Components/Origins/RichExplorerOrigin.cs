@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Components.Origins
         public override string Id => "Origins.RichExplorer";
         public override int StartingColonistsSelectable => 1;
 
-        public override void MutateScenario(List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             // TODO: Add parts for spawning with supplies, starting weapons and stuff for 1 person
         }

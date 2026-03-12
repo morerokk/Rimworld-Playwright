@@ -1,4 +1,5 @@
-﻿using Rokk.Playwright.Components.Origins;
+﻿using RimWorld;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Composer;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
+using Verse.Sound;
 
 namespace Rokk.Playwright.UI
 {
@@ -69,11 +72,12 @@ namespace Rokk.Playwright.UI
                 var buttonRect = new Rect(tabPanelRect);
                 buttonRect.height = OptionHeight;
                 buttonRect.y = currentY;
+                Widgets.DrawOptionBackground(buttonRect, ActiveTab == value);
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     ActiveTab = value;
+                    ButtonSound();
                 }
-                Widgets.DrawOptionBackground(buttonRect, ActiveTab == value);
                 buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.LabelFit(buttonRect, ("Playwright.Tabs." + value.ToString()).Translate());
                 currentY += OptionHeight + Margin;
@@ -100,13 +104,14 @@ namespace Rokk.Playwright.UI
             var origins = OriginComponent.GetAvailableOrigins();
             foreach (OriginComponent origin in origins)
             {
+                Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     this.PlaywrightStructure.Origin = origin;
+                    ButtonSound();
                 }
-                Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
-                Widgets.LabelFit(buttonRect, origin.NameTranslated);
+                Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
                 buttonRect.y += OptionHeight + Margin;
             }
             
@@ -119,17 +124,26 @@ namespace Rokk.Playwright.UI
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
             originRect.width *= 0.75f;
-            originRect.x += buttonRect.width;
+            originRect.width -= Margin;
+            originRect.x += buttonRect.width + Margin;
             Widgets.DrawBoxSolidWithOutline(originRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
 
             Rect originContentRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
-            Rect currentOriginContentRect = PlaywrightDrawHelper.NextLabel(originContentRect, selectedOrigin.Name);
-            currentOriginContentRect.y += Margin;
-            currentOriginContentRect = PlaywrightDrawHelper.NextLabel(currentOriginContentRect, selectedOrigin.Description);
-            currentOriginContentRect.y += Margin;
-            currentOriginContentRect = PlaywrightDrawHelper.NextLabel(currentOriginContentRect, selectedOrigin.Summary);
+            Listing_Standard originContentListing = new Listing_Standard();
+            originContentListing.Begin(originContentRect);
 
-            currentOriginContentRect.y += Margin * 2f;
+            originContentListing.Label(selectedOrigin.NameTranslated);
+            originContentListing.Gap();
+            originContentListing.Label(selectedOrigin.DescriptionTranslated);
+            originContentListing.Gap();
+            originContentListing.Label(selectedOrigin.SummaryTranslated);
+            originContentListing.Gap();
+            originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
+            
+            originContentListing.Gap();
+            selectedOrigin.DrawAdditionalContent(originContentListing);
+
+            originContentListing.End();
             // TODO: Draw funny preview image
 
         }
@@ -139,6 +153,11 @@ namespace Rokk.Playwright.UI
             Rect currentRect = new Rect(contentRect);
             currentRect = PlaywrightDrawHelper.NextLabel(currentRect, "Playwright.Tabs.Boons.Welcome");
             currentRect.y += Margin * 1.5f;
+        }
+
+        private void ButtonSound()
+        {
+            SoundDefOf.Click.PlayOneShotOnCamera();
         }
 
         private enum Tabs

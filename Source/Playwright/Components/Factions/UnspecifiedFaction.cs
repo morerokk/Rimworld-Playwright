@@ -17,10 +17,11 @@ namespace Rokk.Playwright.Components.Factions
     {
         public override string Id => "Factions.Unspecified";
 
-        public override void MutateScenario(List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
         {
             // TODO: Add scenpart that wipes neutrals off the map after load
-            // probably not here, but in the builder, as this faction is a placeholder
+            // probably not here, but in the builder, as this faction is a placeholder,
+            // and you need knowledge of every faction component to know what to add/remove
         }
     }
 }

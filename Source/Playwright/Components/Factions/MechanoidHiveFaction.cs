@@ -11,12 +11,14 @@ namespace Rokk.Playwright.Components.Factions
     {
         public override string Id => "Factions.MechanoidHive";
 
+        public override FactionDef FactionDef => FactionDefOf.Mechanoid;
+
         public override HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
         {
             FactionDisposition.AlwaysHostile
         };
 
-        public override void MutateScenario(List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
         {
             
         }

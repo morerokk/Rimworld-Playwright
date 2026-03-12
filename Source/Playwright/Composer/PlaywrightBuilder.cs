@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +20,31 @@ namespace Rokk.Playwright.Composer
     {
         public Scenario MakeScenario(PlaywrightStructure playwright)
         {
-            Scenario scenario = GenerateDefaultScenario();
+            if (playwright == null)
+            {
+                throw new ArgumentNullException(nameof(playwright), "playwright cannot be null");
+            }
+
+            if (playwright.Origin == null)
+            {
+                throw new PlaywrightBuilderException("Playwright Origin was null", playwright);
+            }
+
+            Scenario scenario = GenerateDefaultScenario(playwright.Origin.StartingColonistsSelectable, playwright.Origin.StartingColonistsTotal, playwright.Origin.ArrivalMethod);
 
             // This is ugly but the game accesses this directly too, it just has an internal access modifier on it so we have to use reflection
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
-            playwright.Origin.MutateScenario(parts);
+            HookRegistration.CallScenarioPreMutated(playwright, scenario, parts);
+
+            playwright.Origin.MutateScenario(scenario, parts);
             foreach (var boon in playwright.Boons)
             {
-                boon.MutateScenario(parts);
+                boon.MutateScenario(scenario, parts);
             }
+
+            HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
 
             return scenario;
         }

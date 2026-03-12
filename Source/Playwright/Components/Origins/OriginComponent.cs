@@ -39,6 +39,31 @@ namespace Rokk.Playwright.Components.Origins
             }
         }
 
+        public virtual string SuggestedIdeo
+        {
+            get
+            {
+                return "Playwright.Components." + this.Id + ".SuggestedIdeo";
+            }
+        }
+
+        public virtual string SuggestedIdeoTranslated
+        {
+            get
+            {
+                return ("Playwright.Components." + this.Id + ".SuggestedIdeo").Translate();
+            }
+        }
+
+        /// <summary>
+        /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.
+        /// </summary>
+        /// <param name="listing">The <see cref="Listing_Standard"/> that the UI is drawing in.</param>
+        public virtual void DrawAdditionalContent(Listing_Standard listing)
+        {
+
+        }
+
         public static List<OriginComponent> GetAvailableOrigins()
         { 
             var origins = new List<OriginComponent>();

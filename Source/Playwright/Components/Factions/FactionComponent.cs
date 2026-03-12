@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Rokk.Playwright.Components.Factions
 {
     public abstract class FactionComponent : PlaywrightComponent
     {
+        /// <summary>
+        /// This faction's def. Can be null if this doesn't apply, but this should be rare.
+        /// </summary>
+        public virtual FactionDef FactionDef => null;
+
         /// <summary>
         /// What dispositions this faction is allowed to have.
         /// </summary>

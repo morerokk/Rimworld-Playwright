@@ -14,7 +14,7 @@ namespace Rokk.Playwright.Components.Boons
         public override string Id => "Boons.Shuttle";
         public override bool IsAvailable => ModsConfig.OdysseyActive;
 
-        public override void MutateScenario(List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             ScenPartDef startWithNonMinifiedThingDef = Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_StartWithNonMinifiedThing;
             StartWithNonMinifiedThing part = (StartWithNonMinifiedThing)ScenarioMaker.MakeScenPart(startWithNonMinifiedThingDef);

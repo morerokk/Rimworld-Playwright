@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
         public override string Id => "Origins.Corporate";
         public int StartWithHonor { get; set; } = 7;
 
-        public override void MutateScenario(List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             ScenPartDef startWithHonorDef = Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_StartWithHonor;
             StartWithHonor part = (StartWithHonor)ScenarioMaker.MakeScenPart(startWithHonorDef);

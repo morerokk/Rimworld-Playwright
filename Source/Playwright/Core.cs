@@ -22,11 +22,7 @@ namespace Rokk.Playwright
             Settings = GetSettings<Settings>();
             Builder = new PlaywrightBuilder();
             Harmony = new Harmony("rokk.playwright");
-            Harmony.PatchAllUncategorized(Assembly.GetExecutingAssembly());
-            // TODO: Should we split up or categorize harmony patches,
-            // so that potentially invasive or destructive ones don't even run if the scenario part isn't loaded?
-            // I'm concerned about the invasive stuff we're doing to factions
-            
+            Harmony.PatchAllUncategorized(Assembly.GetExecutingAssembly());            
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

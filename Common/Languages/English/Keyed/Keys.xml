@@ -65,8 +65,7 @@ When you're done, click "Save Scenario" to save your Playwright as a new scenari
  <Playwright.Components.Origins.RichExplorer.SuggestedIdeo>(None)</Playwright.Components.Origins.RichExplorer.SuggestedIdeo>
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
- <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation
-for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
+ <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
  <Playwright.Components.Origins.Empire.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Novice title with the Empire.
 - Every colonist starts with a Level 1 Psylink.

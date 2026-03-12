@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
 using Verse.Sound;
 
 namespace Rokk.Playwright.UI
@@ -38,13 +37,15 @@ namespace Rokk.Playwright.UI
         public override void DoWindowContents(Rect inRect)
         {
             Rect tabPanelRect = new Rect(inRect);
-            tabPanelRect.width /= 4;
+            tabPanelRect.width *= 0.25f;
+            tabPanelRect.height *= 0.9f;
 
             DrawTabPanel(tabPanelRect);
 
             Rect tabContentRect = new Rect(inRect);
             tabContentRect.width -= tabPanelRect.width + Margin;
             tabContentRect.x += tabPanelRect.width + Margin;
+            tabContentRect.height *= 0.9f;
 
             // Content panel background
             Widgets.DrawBoxSolidWithOutline(tabContentRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
@@ -62,6 +63,12 @@ namespace Rokk.Playwright.UI
                     DrawBoons(tabContentRect);
                     break;
             }
+
+            Rect buttonBarRect = new Rect(inRect);
+            buttonBarRect.height *= 0.1f;
+            buttonBarRect.height -= Margin;
+            buttonBarRect.y += tabContentRect.height + Margin;
+            DrawButtonBar(buttonBarRect);
         }
 
         private void DrawTabPanel(Rect tabPanelRect)
@@ -79,14 +86,21 @@ namespace Rokk.Playwright.UI
                     ButtonSound();
                 }
                 buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
-                Widgets.LabelFit(buttonRect, ("Playwright.Tabs." + value.ToString()).Translate());
-                currentY += OptionHeight + Margin;
+                Widgets.Label(buttonRect, ("Playwright.Tabs." + value.ToString()).Translate());
+                currentY += OptionHeight + (Margin * 0.75f);
             }
         }
 
         private void DrawIntro(Rect contentRect)
         {
-            PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Intro.Welcome");
+            Listing_Standard listing = new Listing_Standard();
+            listing.Begin(contentRect);
+            listing.Label("Playwright.Tabs.Intro.Welcome".Translate());
+            listing.Gap();
+            listing.Label("Playwright.Tabs.Intro.Welcome.1".Translate());
+            listing.Gap();
+            listing.Label("Playwright.Tabs.Intro.Welcome.2".Translate());
+            listing.End();
         }
 
         private void DrawOrigin(Rect contentRect)
@@ -153,6 +167,35 @@ namespace Rokk.Playwright.UI
             Rect currentRect = new Rect(contentRect);
             currentRect = PlaywrightDrawHelper.NextLabel(currentRect, "Playwright.Tabs.Boons.Welcome");
             currentRect.y += Margin * 1.5f;
+        }
+
+        private void DrawButtonBar(Rect contentRect)
+        {
+            const float ButtonHeight = 38f;
+            const float ButtonWidth = 140f;
+            const float ButtonMargin = 8f;
+
+            float buttonY = contentRect.yMax - ButtonHeight - ButtonMargin;
+            float leftX = contentRect.x;
+
+            Rect saveRect = new Rect(leftX, buttonY, ButtonWidth, ButtonHeight);
+            if (Widgets.ButtonText(saveRect, "Save".Translate()))
+            {
+                // TODO: Save dialog
+                Find.WindowStack.Add(new Dialog_PlaywrightList_Save(this.PlaywrightStructure));
+            }
+
+            Rect loadRect = new Rect(saveRect.xMax + ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
+            if (Widgets.ButtonText(loadRect, "Load".Translate()))
+            {
+                // TODO: Load dialog
+            }
+
+            Rect generateRect = new Rect(contentRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
+            if (Widgets.ButtonText(generateRect, "Playwright.CreateScenario".Translate()))
+            {
+                // TODO: Compile scenario and offer to save
+            }
         }
 
         private void ButtonSound()

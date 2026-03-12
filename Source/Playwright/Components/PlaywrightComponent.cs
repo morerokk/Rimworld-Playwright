@@ -12,7 +12,7 @@ namespace Rokk.Playwright.Components
     /// The base class for any Playwright component.
     /// When extending this, ensure the constructor is safe, as a new instance must be created for <see cref="IsAvailable"/> to be callable.
     /// </summary>
-    public abstract class PlaywrightComponent
+    public abstract class PlaywrightComponent : IExposable
     {
         /// <summary>
         /// The ID for this component. Must be unique and should be prefixed with the type of component it is.
@@ -57,5 +57,10 @@ namespace Rokk.Playwright.Components
         }
 
         public abstract void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts);
+
+        public virtual void ExposeData()
+        {
+
+        }
     }
 }

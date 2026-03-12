@@ -15,12 +15,13 @@
  
  <!-- Playwright window and tabs -->
  <Playwright.WindowTitle>Playwright</Playwright.WindowTitle>
+ <Playwright.CreateScenario>Create Scenario</Playwright.CreateScenario>
+ 
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
- <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!
+ <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
+ <Playwright.Tabs.Intro.Welcome.1>Use the tabs on the left to start composing your scenario.</Playwright.Tabs.Intro.Welcome.1>
+ <Playwright.Tabs.Intro.Welcome.2>When you're done, click "Save Scenario" to save your Playwright as a new scenario.</Playwright.Tabs.Intro.Welcome.2>
 
-Use the tabs on the left to start composing your scenario.
-
-When you're done, click "Save Scenario" to save your Playwright as a new scenario.</Playwright.Tabs.Intro.Welcome>
  <Playwright.Tabs.Origin>Origin</Playwright.Tabs.Origin>
  <Playwright.Tabs.Boons>Boons</Playwright.Tabs.Boons>
  <Playwright.Tabs.Allies>Allies</Playwright.Tabs.Allies>

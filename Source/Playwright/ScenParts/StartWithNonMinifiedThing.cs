@@ -57,7 +57,7 @@ namespace Rokk.Playwright.ScenParts
         // Default implementation skips minifiable stuff, for the sake of not having a HUGE list, only un-minifiable things are shown
         protected override IEnumerable<ThingDef> PossibleThingDefs()
         {
-            return DefDatabase<ThingDef>.AllDefs.Where((ThingDef d) => (d.category == ThingCategory.Item && d.scatterableOnMapGen && !d.destroyOnDrop) || (d.category == ThingCategory.Building && !d.Minifiable));
+            return DefDatabase<ThingDef>.AllDefs.Where((ThingDef d) => d.category == ThingCategory.Building && !d.Minifiable);
         }
     }
 }

@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MF_Corporation">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\2974334010\Assemblies\MF_Corporation.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2974334010\Assemblies\MF_Corporation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +50,7 @@
     <Compile Include="DefOfs\FactionDefOf.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Playwright\Playwright.csproj">
+    <ProjectReference Include="..\..\Playwright\Playwright.csproj">
       <Project>{f6164afc-a6f3-49ad-b309-997e47bb6f7d}</Project>
       <Name>Playwright</Name>
     </ProjectReference>

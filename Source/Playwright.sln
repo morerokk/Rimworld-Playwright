@@ -5,7 +5,9 @@ VisualStudioVersion = 18.3.11520.95
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright", "Playwright\Playwright.csproj", "{F6164AFC-A6F3-49AD-B309-997E47BB6F7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.MortsCorporationFaction", "Playwright.Compat.MortsCorporationFaction\Playwright.Compat.MortsCorporationFaction.csproj", "{F6164AFC-A6F3-49AD-B309-997E47BB6F7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.MortsCorporationFaction", "Compat\Playwright.Compat.MortsCorporationFaction\Playwright.Compat.MortsCorporationFaction.csproj", "{F6164AFC-A6F3-49AD-B309-997E47BB6F7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compat", "Compat", "{A66E855C-F7EE-495C-BE54-37C609F0FCA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6164AFC-A6F3-49AD-B309-997E47BB6F7E} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41782E2C-45E7-48ED-A26C-E141E03E24CE}

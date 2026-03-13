@@ -64,6 +64,7 @@
     <Compile Include="UI\Dialog_PlaywrightList_Save.cs" />
     <Compile Include="UI\Dialog_PlaywrightList_Load.cs" />
     <Compile Include="UI\Dialog_PlaywrightFileList.cs" />
+    <Compile Include="UI\ScenarioSavedPopupWindow.cs" />
     <Compile Include="UI\PlaywrightDrawHelper.cs" />
     <Compile Include="UI\PlaywrightWindow.cs" />
     <Compile Include="UI\InfoPopupWindow.cs" />

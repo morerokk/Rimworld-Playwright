@@ -196,7 +196,32 @@ namespace Rokk.Playwright.UI
             Rect generateRect = new Rect(contentRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
             if (Widgets.ButtonText(generateRect, "Playwright.CreateScenario".Translate()))
             {
-                // TODO: Compile scenario and offer to save
+                this.CompileScenario();
+            }
+        }
+
+        private void CompileScenario()
+        {
+            PlaywrightBuilder builder = new PlaywrightBuilder();
+            try
+            {
+                Scenario scenario = builder.MakeScenario(this.PlaywrightStructure);
+                Find.WindowStack.Add(new Dialog_ScenarioList_Save(scenario, () =>
+                {
+                    Find.WindowStack.Add(new ScenarioSavedPopupWindow((bool shouldGoToNewGame) =>
+                    {
+                        if (shouldGoToNewGame)
+                        {
+                            this.Close();
+                        }
+                    }));
+                }));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[Playwright] Error generating scenario: " + ex.Message);
+                Log.Error(ex.StackTrace);
+                Find.WindowStack.Add(new InfoPopupWindow("Playwright.ErrorSavingScenario".Translate()));
             }
         }
 

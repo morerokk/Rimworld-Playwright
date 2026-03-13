@@ -19,6 +19,9 @@ namespace Rokk.Playwright.Addons
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
 
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+
         /// <summary>
         /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
         /// Useful for doing some preparation that requires knowledge of the entire playwright and scenario.
@@ -51,6 +54,40 @@ namespace Rokk.Playwright.Addons
         internal static void CallScenarioPostMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
         {
             foreach (var hook in ScenarioPostMutatedHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+
+        /// <summary>
+        /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts adding faction-related parts.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPreFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPreFactionHooks.Add(hook);
+        }
+
+        /// <summary>
+        /// Register something that should happen after the <see cref="PlaywrightBuilder"/> has added faction-related parts.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPostFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPostFactionHooks.Add(hook);
+        }
+
+        internal static void CallScenarioPreFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPreFactionHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+
+        internal static void CallScenarioPostFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPostFactionHooks)
             {
                 hook(playwright, scenario, scenParts);
             }

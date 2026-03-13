@@ -17,6 +17,7 @@ namespace Rokk.Playwright.Components.Origins
         public override int StartingColonistsSelectable => 5;
         public override int StartingColonistsTotal => 11;
         public override PlayerPawnsArriveMethod ArrivalMethod => PlayerPawnsArriveMethod.Standing;
+        public override FactionDef PlayerFaction => FactionDefOf.PlayerTribe;
 
         public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
         {

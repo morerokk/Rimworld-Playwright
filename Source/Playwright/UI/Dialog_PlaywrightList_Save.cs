@@ -18,13 +18,18 @@ namespace Rokk.Playwright.UI
         {
             this.Playwright = playwright;
             this.interactButLabel = "OverwriteButton".Translate();
-            this.typingName = this.Playwright.Origin.NameTranslated + Extension;
+            this.typingName = this.Playwright.Origin.NameTranslated + PlaywrightUtils.PlaywrightExtension;
         }
 
         protected override void DoFileInteraction(string fileName)
         {
             fileName = GenFile.SanitizedFileName(fileName);
             string savePath = PlaywrightUtils.PlaywrightFolderPath + "/" + fileName;
+            if (!savePath.EndsWith(PlaywrightUtils.PlaywrightExtension))
+            {
+                savePath += PlaywrightUtils.PlaywrightExtension;
+            }
+
             LongEventHandler.QueueLongEvent(() =>
             {
                 SaveFile(savePath);

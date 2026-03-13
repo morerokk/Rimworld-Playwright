@@ -23,6 +23,10 @@ namespace Rokk.Playwright.Components.Origins
         /// How your colonists arrive on the planet
         /// </summary>
         public virtual PlayerPawnsArriveMethod ArrivalMethod => PlayerPawnsArriveMethod.DropPods;
+        /// <summary>
+        /// What the starting faction of the player is when they start the scenario (new arrivals, new tribe etc)
+        /// </summary>
+        public virtual FactionDef PlayerFaction => FactionDefOf.PlayerColony;
 
         public virtual string Summary
         {

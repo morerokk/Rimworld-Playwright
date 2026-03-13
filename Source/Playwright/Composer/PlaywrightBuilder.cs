@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Exceptions;
 using System;
@@ -30,7 +31,7 @@ namespace Rokk.Playwright.Composer
                 throw new PlaywrightBuilderException("Playwright Origin was null", playwright);
             }
 
-            Scenario scenario = GenerateDefaultScenario(playwright.Origin.StartingColonistsSelectable, playwright.Origin.StartingColonistsTotal, playwright.Origin.ArrivalMethod);
+            Scenario scenario = this.GenerateDefaultScenario(playwright);
 
             // This is ugly but the game accesses this directly too, it just has an internal access modifier on it so we have to use reflection
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
@@ -38,25 +39,40 @@ namespace Rokk.Playwright.Composer
 
             HookRegistration.CallScenarioPreMutated(playwright, scenario, parts);
 
+            // Origin
             playwright.Origin.MutateScenario(scenario, parts);
-            foreach (var boon in playwright.Boons)
+
+            // Boons
+            foreach (BoonComponent boon in playwright.Boons)
             {
                 boon.MutateScenario(scenario, parts);
             }
+
+            // Factions
+            HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
+            this.ProcessFactions(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
 
             HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
 
             return scenario;
         }
 
-        private Scenario GenerateDefaultScenario(int selectablePawns = 3, int totalPawns = 8, PlayerPawnsArriveMethod arrivalMethod = PlayerPawnsArriveMethod.DropPods)
+        private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        {
+
+        }
+
+        private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
         {
             // The below is mostly taken from ScenarioMaker.GenerateNewRandomScenario(),
             // except without the random parts (obviously)
             // I'd like to make this more compatible with stuff, but if I call the original method I unavoidably get all the other random dogshit with it.
+            // TODO: Maybe just copy naked brutality as a starting point
             Scenario scenario = new Scenario();
             scenario.Category = ScenarioCategory.CustomLocal;
-            scenario.description = null;
+            scenario.name = "Playwright.ScenarioNamePrefix".Translate() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
+            scenario.description = playwright.Origin.DescriptionTranslated;
             scenario.summary = null;
 
             // Why is this shit internal?
@@ -65,20 +81,23 @@ namespace Rokk.Playwright.Composer
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
             // Set player faction
-            var playerFaction = (ScenPart_PlayerFaction)ScenarioMaker.MakeScenPart(ScenPartDefOf.PlayerFaction);
-            FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
-            playerFactionInfo.SetValue(scenario, playerFaction);
+            var playerFactionPart = (ScenPart_PlayerFaction)ScenarioMaker.MakeScenPart(ScenPartDefOf.PlayerFaction);
+            FieldInfo playerFactionPartFactionInfo = AccessTools.Field(typeof(ScenPart_PlayerFaction), "factionDef");
+            playerFactionPartFactionInfo.SetValue(playerFactionPart, playwright.Origin.PlayerFaction);
 
+            FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
+            playerFactionInfo.SetValue(scenario, playerFactionPart);
+            
             // Selectable pawn count (3 out of 8, etc)
             var startingPawnsConfigurePart = (ScenPart_ConfigPage_ConfigureStartingPawns)ScenarioMaker.MakeScenPart(ScenPartDefOf.ConfigPage_ConfigureStartingPawns);
-            startingPawnsConfigurePart.pawnCount = selectablePawns;
-            startingPawnsConfigurePart.pawnChoiceCount = totalPawns;
+            startingPawnsConfigurePart.pawnCount = playwright.Origin.StartingColonistsSelectable;
+            startingPawnsConfigurePart.pawnChoiceCount = playwright.Origin.StartingColonistsTotal;
             parts.Add(startingPawnsConfigurePart);
 
             // Arrival method (Crashland in pods, be already standing as tribals, etc)
             var pawnArriveMethodPart = (ScenPart_PlayerPawnsArriveMethod)ScenarioMaker.MakeScenPart(ScenPartDefOf.PlayerPawnsArriveMethod);
             FieldInfo arrivalMethodInfo = AccessTools.Field(typeof(ScenPart_PlayerPawnsArriveMethod), "method");
-            arrivalMethodInfo.SetValue(pawnArriveMethodPart, arrivalMethod);
+            arrivalMethodInfo.SetValue(pawnArriveMethodPart, playwright.Origin.ArrivalMethod);
             parts.Add(pawnArriveMethodPart);
 
             // Set planet layers with a surface layer

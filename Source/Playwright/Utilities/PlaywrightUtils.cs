@@ -10,6 +10,7 @@ namespace Rokk.Playwright.Utilities
     public static class PlaywrightUtils
     {
         public static string PlaywrightFolderPath => FolderUnderSaveData("Playwrights");
+        public static string PlaywrightExtension => ".pwt";
 
         public static IEnumerable<FileInfo> AllPlaywrightFiles
         {
@@ -22,7 +23,7 @@ namespace Rokk.Playwright.Utilities
                 }
 
                 return directoryInfo.GetFiles()
-                    .Where(file => file.Extension == ".pwt")
+                    .Where(file => file.Extension == PlaywrightExtension)
                     .OrderByDescending(file => file.LastWriteTime);
             }
         }

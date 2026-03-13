@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Components
@@ -56,8 +57,25 @@ namespace Rokk.Playwright.Components
             }
         }
 
+        /// <summary>
+        /// Mutate the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part)
+        /// </summary>
         public abstract void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts);
 
+        /// <summary>
+        /// Render the UI for the settings in your component.
+        /// If your component doesn't have any extra settings, you don't have to override this.
+        /// </summary>
+        /// <param name="inRect">The <see cref="Rect"/> that your settings will be rendered inside of.</param>
+        public virtual void DoSettingsContents(Rect inRect)
+        {
+
+        }
+
+        /// <summary>
+        /// <see cref="IExposable"/>, needed to serialize the Playwright structure with Scribe.
+        /// If your component doesn't have any extra settings, you don't have to override this.
+        /// </summary>
         public virtual void ExposeData()
         {
 

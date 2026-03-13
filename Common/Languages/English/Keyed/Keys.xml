@@ -17,6 +17,10 @@
  <!-- Playwright window and tabs -->
  <Playwright.WindowTitle>Playwright</Playwright.WindowTitle>
  <Playwright.CreateScenario>Create Scenario</Playwright.CreateScenario>
+ <Playwright.ErrorSavingScenario>An error occurred while compiling your Playwright into a Scenario. Scenario has not been saved. Check the error logs for more details.</Playwright.ErrorSavingScenario>
+ <Playwright.ScenarioSaved>Your Scenario has been saved successfully.</Playwright.ScenarioSaved>
+ <Playwright.ScenarioSaved.1>Do you want to go to the New Colony screen now?</Playwright.ScenarioSaved.1>
+ <Playwright.ScenarioNamePrefix>(Playwright) </Playwright.ScenarioNamePrefix>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>

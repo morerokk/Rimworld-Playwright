@@ -12,7 +12,7 @@ using Verse;
 namespace Rokk.Playwright.Composer
 {
     /// <summary>
-    /// Holds the structure for the player's chosen screenplay.
+    /// Holds all of the player's choices.
     /// </summary>
     public class PlaywrightStructure : IExposable
     {
@@ -27,25 +27,11 @@ namespace Rokk.Playwright.Composer
         /// For example, starting with a pre-placed Odyssey shuttle or some extra goodies.
         /// </summary>
         public List<BoonComponent> Boons = new List<BoonComponent>();
+
         /// <summary>
-        /// Factions that the player starts allied with.
-        /// For example, starting out as being allied with the Empire.
+        /// Factions that are in the world, and whether the player is allies/enemies/neutral with them.
         /// </summary>
-        public List<FactionComponent> Allies = new List<FactionComponent>();
-        /// <summary>
-        /// Factions that the player starts as enemies with.
-        /// For example, starting out as enemies with Insectoids and Mechanoids.
-        /// Removing these would disable said factions and their incidents in the scenario editor.
-        /// Adding a faction would instead make that faction start as enemies.
-        /// </summary>
-        public List<FactionComponent> Enemies = new List<FactionComponent>();
-        /// <summary>
-        /// Other factions that the player starts out as neutral with.
-        /// For example, starting out as enemies with Insectoids and Mechanoids.
-        /// Removing these would disable said factions and their incidents in the scenario editor.
-        /// Adding a faction would instead make that faction start as enemies.
-        /// </summary>
-        public List<FactionComponent> OtherFactions = new List<FactionComponent>();
+        public List<FactionComponent> Factions = new List<FactionComponent>();
 
         public static PlaywrightStructure CreateDefault()
         {
@@ -53,21 +39,44 @@ namespace Rokk.Playwright.Composer
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
-                Allies = new List<FactionComponent>()
-                {
-                    new UnspecifiedFaction()
-                },
-                Enemies = new List<FactionComponent>()
+                Factions = new List<FactionComponent>()
                 {
                     new InsectoidHiveFaction(),
                     new MechanoidHiveFaction(),
                     new UnspecifiedFaction()
                 },
-                OtherFactions = new List<FactionComponent>()
-                {
-                    new UnspecifiedFaction()
-                }
             };
+        }
+
+        /// <summary>
+        /// Get a list of unavailable components, useful for validation after loading a saved Playwright.
+        /// </summary>
+        public List<PlaywrightComponent> GetUnavailableComponents()
+        {
+            List<PlaywrightComponent> unavailableComponents = new List<PlaywrightComponent>();
+            if (!Origin.IsAvailable)
+            {
+                unavailableComponents.Add(Origin);
+            }
+
+            unavailableComponents.AddRange(Boons.Where(b => !b.IsAvailable));
+            unavailableComponents.AddRange(Factions.Where(f => !f.IsAvailable));
+
+            return unavailableComponents;
+        }
+
+        /// <summary>
+        /// Clear out any currently unavailable components.
+        /// </summary>
+        public void ClearUnavailableComponents()
+        {
+            if (!Origin.IsAvailable)
+            {
+                Origin = null;
+            }
+
+            Boons.RemoveAll(b => !b.IsAvailable);
+            Factions.RemoveAll(f => !f.IsAvailable);
         }
 
         public void ExposeData()
@@ -75,9 +84,7 @@ namespace Rokk.Playwright.Composer
             Scribe_Deep.Look(ref Origin, nameof(Origin));
 
             Scribe_Collections.Look(ref Boons, nameof(Boons), LookMode.Deep);
-            Scribe_Collections.Look(ref Allies, nameof(Allies), LookMode.Deep);
-            Scribe_Collections.Look(ref Enemies, nameof(Enemies), LookMode.Deep);
-            Scribe_Collections.Look(ref OtherFactions, nameof(OtherFactions), LookMode.Deep);
+            Scribe_Collections.Look(ref Factions, nameof(Factions), LookMode.Deep);
         }
     }
 }

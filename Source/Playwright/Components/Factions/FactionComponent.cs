@@ -15,7 +15,8 @@ namespace Rokk.Playwright.Components.Factions
         public virtual FactionDef FactionDef => null;
 
         /// <summary>
-        /// What dispositions this faction is allowed to have.
+        /// What dispositions this faction is allowed to have during selection.
+        /// This should usually be "anything", but insectoids and mechanoids don't really work if they're not always hostile.
         /// </summary>
         public virtual HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
         {

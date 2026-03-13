@@ -62,6 +62,9 @@ namespace Rokk.Playwright.UI
                 case Tabs.Boons:
                     DrawBoons(tabContentRect);
                     break;
+                case Tabs.Factions:
+                    DrawFactions(tabContentRect);
+                    break;
             }
 
             Rect buttonBarRect = new Rect(inRect);
@@ -108,6 +111,7 @@ namespace Rokk.Playwright.UI
             Rect welcomeRect = new Rect(contentRect);
             Rect currentWelcomeRect = PlaywrightDrawHelper.NextLabel(welcomeRect, "Playwright.Tabs.Origin.Welcome");
             currentWelcomeRect.y += Margin * 1.5f;
+            currentWelcomeRect.height -= Margin * 1.5f;
 
             // TODO: Scrollable list probably
             // Left-side rect: render option for each origin
@@ -126,7 +130,7 @@ namespace Rokk.Playwright.UI
                 }
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
-                buttonRect.y += OptionHeight + Margin;
+                buttonRect.y += OptionHeight + Margin * 0.25f;
             }
             
             if (this.PlaywrightStructure.Origin == null)
@@ -137,6 +141,7 @@ namespace Rokk.Playwright.UI
 
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
+            originRect.height -= (currentWelcomeRect.y - welcomeRect.y);
             originRect.width *= 0.75f;
             originRect.width -= Margin;
             originRect.x += buttonRect.width + Margin;
@@ -158,15 +163,25 @@ namespace Rokk.Playwright.UI
             selectedOrigin.DrawAdditionalContent(originContentListing);
 
             originContentListing.End();
-            // TODO: Draw funny preview image
-
         }
 
         private void DrawBoons(Rect contentRect)
         {
-            Rect currentRect = new Rect(contentRect);
-            currentRect = PlaywrightDrawHelper.NextLabel(currentRect, "Playwright.Tabs.Boons.Welcome");
-            currentRect.y += Margin * 1.5f;
+            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Boons.Welcome");
+            nextRect.y += Margin;
+            nextRect.height -= Margin;
+            Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Listing_Standard boonsListing = new Listing_Standard();
+            boonsListing.Begin(nextRect);
+
+            // TODO: Draw some sort of nice UI here using either the nextRect Rect or the boonsListing Listing_Standard
+
+            boonsListing.End();
+        }
+
+        private void DrawFactions(Rect contentRect)
+        {
+
         }
 
         private void DrawButtonBar(Rect contentRect)
@@ -213,6 +228,7 @@ namespace Rokk.Playwright.UI
                         if (shouldGoToNewGame)
                         {
                             this.Close();
+                            // TODO: Auto-open new game window
                         }
                     }));
                 }));
@@ -235,9 +251,7 @@ namespace Rokk.Playwright.UI
             Intro,
             Origin,
             Boons,
-            Allies,
-            Enemies,
-            OtherFactions,
+            Factions,
             WinConditions,
             Special
         }

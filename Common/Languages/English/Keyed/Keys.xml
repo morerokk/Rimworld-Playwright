@@ -29,9 +29,7 @@
 
  <Playwright.Tabs.Origin>Origin</Playwright.Tabs.Origin>
  <Playwright.Tabs.Boons>Boons</Playwright.Tabs.Boons>
- <Playwright.Tabs.Allies>Allies</Playwright.Tabs.Allies>
- <Playwright.Tabs.Enemies>Enemies</Playwright.Tabs.Enemies>
- <Playwright.Tabs.OtherFactions>Others</Playwright.Tabs.OtherFactions>
+ <Playwright.Tabs.Factions>Factions</Playwright.Tabs.Factions>
  <Playwright.Tabs.WinConditions>Win Conditions</Playwright.Tabs.WinConditions>
  <Playwright.Tabs.Special>Special</Playwright.Tabs.Special>
 
@@ -134,8 +132,8 @@ Baron/Baroness: 45
 Archon: 65
 
 Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.</Playwright.ScenParts.StartWithHonor.Help>
- <Playwright.ScenParts.StartWithHonor.Summary>Start with {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
- <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Start with {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
+ <Playwright.ScenParts.StartWithHonor.Summary>Starting colonists have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
+ <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
  <Playwright.ScenParts.FactionNaturalGoodwill>Set faction natural goodwill</Playwright.ScenParts.FactionNaturalGoodwill>
  <Playwright.ScenParts.FactionNaturalGoodwill.Faction>Faction</Playwright.ScenParts.FactionNaturalGoodwill.Faction>
@@ -147,6 +145,7 @@ This affects the starting goodwill, and what value they will trend towards if le
 Ally: 75 or higher
 Neutral: Between -74 and 74 (inclusive)
 Hostile: -75 or lower</Playwright.ScenParts.FactionNaturalGoodwill.Help>
+ <Playwright.ScenParts.FactionNaturalGoodwill.Summary>Natural goodwill of faction {0} is set to {1}.</Playwright.ScenParts.FactionNaturalGoodwill.Summary>
 
  <Playwright.ScenParts.FactionForcedGoodwill>Set faction forced goodwill</Playwright.ScenParts.FactionForcedGoodwill>
  <Playwright.ScenParts.FactionForcedGoodwill.Faction>Faction</Playwright.ScenParts.FactionForcedGoodwill.Faction>
@@ -158,5 +157,6 @@ This affects the starting goodwill and their current goodwill, forever. They can
 Ally: 75 or higher
 Neutral: Between -74 and 74 (inclusive)
 Hostile: -75 or lower</Playwright.ScenParts.FactionForcedGoodwill.Help>
+ <Playwright.ScenParts.FactionForcedGoodwill.Summary>Goodwill of faction {0} is permanently locked to {1}.</Playwright.ScenParts.FactionForcedGoodwill.Summary>
 
 </LanguageData>

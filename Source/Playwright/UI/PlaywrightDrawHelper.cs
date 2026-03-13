@@ -31,7 +31,7 @@ namespace Rokk.Playwright.UI
             string translated = translationKey.Translate();
             Rect rect = RectForLabel(contentRect, translated);
             Widgets.Label(rect, translated);
-            return new Rect(contentRect.x, contentRect.y + rect.height, contentRect.width, contentRect.height);
+            return new Rect(contentRect.x, contentRect.y + rect.height, contentRect.width, contentRect.height - rect.height);
         }
     }
 }

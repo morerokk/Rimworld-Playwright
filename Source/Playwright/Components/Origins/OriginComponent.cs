@@ -61,6 +61,7 @@ namespace Rokk.Playwright.Components.Origins
 
         /// <summary>
         /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.
+        /// This is only used for content. For settings, use <see cref="PlaywrightComponent.DoSettingsContents"/>.
         /// </summary>
         /// <param name="listing">The <see cref="Listing_Standard"/> that the UI is drawing in.</param>
         public virtual void DrawAdditionalContent(Listing_Standard listing)

@@ -18,7 +18,7 @@
     <summaryPriority>810</summaryPriority>
   </ScenPartDef>
 
-  <ScenPartDef>
+  <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">
     <defName>Playwright_StartWithHonor</defName>
     <label>start with honor</label>
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>

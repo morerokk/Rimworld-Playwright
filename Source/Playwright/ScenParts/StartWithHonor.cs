@@ -125,7 +125,6 @@ namespace Rokk.Playwright.ScenParts
             return factions;
         }
 
-        // Boilerplate seemingly needed by scenarios to save/load them and stuff?
         public override void ExposeData()
         {
             Scribe_Defs.Look<FactionDef>(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));

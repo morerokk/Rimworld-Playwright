@@ -47,6 +47,7 @@
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Exceptions\PlaywrightBuilderException.cs" />
     <Compile Include="Patches\FactionPatches.cs" />

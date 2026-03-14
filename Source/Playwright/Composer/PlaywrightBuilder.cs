@@ -68,14 +68,13 @@ namespace Rokk.Playwright.Composer
             // The below is mostly taken from ScenarioMaker.GenerateNewRandomScenario(),
             // except without the random parts (obviously)
             // I'd like to make this more compatible with stuff, but if I call the original method I unavoidably get all the other random dogshit with it.
-            // TODO: Maybe just copy naked brutality as a starting point
             Scenario scenario = new Scenario();
             scenario.Category = ScenarioCategory.CustomLocal;
             scenario.name = "Playwright.ScenarioNamePrefix".Translate() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
             scenario.description = playwright.Origin.DescriptionTranslated;
             scenario.summary = null;
 
-            // Why is this shit internal?
+            // Why is so much Scenario shit internal?
             // Get part list
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;

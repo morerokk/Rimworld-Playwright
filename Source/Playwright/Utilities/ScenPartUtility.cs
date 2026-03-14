@@ -141,5 +141,24 @@ namespace Rokk.Playwright.Utilities
 
             return gameStartDialogPart;
         }
+
+        public static ScenPart_Naked MakeNakedPart(float chance = 1f, PawnGenerationContext context = PawnGenerationContext.PlayerStarter)
+        {
+            ScenPart_Naked startNakedPart = (ScenPart_Naked)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Naked);
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ScenPart_Naked), "chance");
+            chanceInfo.SetValue(startNakedPart, chance);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ScenPart_Naked), "context");
+            contextInfo.SetValue(startNakedPart, context);
+
+            return startNakedPart;
+        }
+
+        public static ScenPart_NoPossessions MakeNoPossessionsPart()
+        {
+            ScenPart_NoPossessions noPossessionsPart = (ScenPart_NoPossessions)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.NoPossessions);
+            return noPossessionsPart;
+        }
     }
 }

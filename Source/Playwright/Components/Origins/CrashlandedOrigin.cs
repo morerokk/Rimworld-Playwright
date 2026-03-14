@@ -19,6 +19,9 @@ namespace Rokk.Playwright.Components.Origins
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
+            // With this much hardcoding we're basically doing all the stuff the game normally would do in XML, but does it really matter?
+            // TODO: What if mods use xpath stuff to add new things to the default scenarios? Should we still load the default scenarios anyway where it applies?
+
             // Start with cryptosleep sickness
             scenarioParts.Add(ScenPartUtility.MakeForcedHediffPart(HediffDefOf.CryptosleepSickness, PawnGenerationContext.PlayerStarter, 0.5f, new FloatRange(1f, 1f)));
 

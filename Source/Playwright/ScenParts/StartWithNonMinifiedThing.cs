@@ -9,7 +9,7 @@ using Verse;
 
 namespace Rokk.Playwright.ScenParts
 {
-    public class StartWithNonMinifiedThing : ScenPart_ScatterThings
+    public class StartWithNonMinifiedThing : ScenPart_ScatterThingsNearPlayerStart
     {
         protected override bool NearPlayerStart => true;
 

@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Rokk.Playwright.DefOfs;
+using Rokk.Playwright.PatchCheckers;
 using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using Verse;
 
 namespace Rokk.Playwright.Patches
 {
-    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
+    [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(GoodwillSituationManager), nameof(GoodwillSituationManager.GetNaturalGoodwill))]
     public class GoodwillSituationManager_GetNaturalGoodwillPatches
     {

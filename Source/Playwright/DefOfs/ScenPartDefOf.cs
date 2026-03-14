@@ -19,7 +19,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_FactionStartingGoodwill;
         public static ScenPartDef Playwright_AdditionalUnwaveringChance;
 
-        // Built-in scenparts that the game does not expose
+        // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;
         public static ScenPartDef NoPossessions;
         public static ScenPartDef ForcedHediff;
@@ -28,6 +28,6 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ScatterThingsNearPlayerStart;
         public static ScenPartDef ScatterThingsAnywhere;
         public static ScenPartDef GameStartDialog;
-        public static ScenPartDef GameCondition;
+        public static ScenPartDef GameCondition_Planetkiller;
     }
 }

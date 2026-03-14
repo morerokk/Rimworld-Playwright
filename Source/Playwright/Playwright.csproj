@@ -59,6 +59,7 @@
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Exceptions\PlaywrightBuilderException.cs" />
+    <Compile Include="PatchCheckers\FactionPatchChecker.cs" />
     <Compile Include="Patches\FactionPatches.cs" />
     <Compile Include="Patches\GamePatches.cs" />
     <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />

@@ -105,6 +105,12 @@
  <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.Description>
  <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle</Playwright.Components.Boons.Shuttle.Summary>
  
+ <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
+ <!-- Factions -->
+ <Playwright.Tabs.Factions.Allies>Allies</Playwright.Tabs.Factions.Allies>
+ <Playwright.Tabs.Factions.Neutrals>Neutral</Playwright.Tabs.Factions.Neutrals>
+ <Playwright.Tabs.Factions.Enemies>Enemies</Playwright.Tabs.Factions.Enemies>
+
 
  <!-- Win conditions -->
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>
@@ -127,68 +133,5 @@
  
  <Playwright.Components.WinConditions.RoyalTitle>Royal Council</Playwright.Components.WinConditions.RoyalTitle>
  <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>
-
- 
- <!-- Scenarios and parts -->
- <Playwright.ScenParts.StartWithHonor>Start with Honor</Playwright.ScenParts.StartWithHonor>
- <Playwright.ScenParts.StartWithHonor.Faction>Faction</Playwright.ScenParts.StartWithHonor.Faction>
- <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
- <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
- <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the Empire.
- 
-"Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
- 
-Required starting Honor for titles:
-Freeholder: 1
-Novice: 7
-Acolyte: 13
-Knight/Dame: 21
-Praetor: 31
-Baron/Baroness: 45
-Archon: 65
-
-Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.
-
-This will not add Psylinks. For that, use the "Forced Health Condition" part.</Playwright.ScenParts.StartWithHonor.Help>
- <Playwright.ScenParts.StartWithHonor.Summary>Starting colonists have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
- <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
- 
- <Playwright.ScenParts.FactionGoodwill.Faction>Faction</Playwright.ScenParts.FactionGoodwill.Faction>
- <Playwright.ScenParts.FactionGoodwill.StartingGoodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.StartingGoodwill>
- 
- <Playwright.ScenParts.FactionNaturalGoodwill>Set faction natural goodwill</Playwright.ScenParts.FactionNaturalGoodwill>
- <Playwright.ScenParts.FactionNaturalGoodwill.Help>Change a faction's natural goodwill to a specified amount.
-
-This affects their starting goodwill, and what value they will trend towards if left alone.
-
-Ally: 75 or higher
-Neutral: Between -74 and 74 (inclusive)
-Hostile: -75 or lower</Playwright.ScenParts.FactionNaturalGoodwill.Help>
- <Playwright.ScenParts.FactionNaturalGoodwill.Summary>Natural goodwill of faction {0} is set to {1}.</Playwright.ScenParts.FactionNaturalGoodwill.Summary>
-
- <Playwright.ScenParts.FactionForcedGoodwill>Set faction forced goodwill</Playwright.ScenParts.FactionForcedGoodwill>
- <Playwright.ScenParts.FactionForcedGoodwill.Help>Permanently forces a faction's goodwill to a specified amount.
-
-This affects their starting goodwill and their current goodwill, forever. They cannot be swayed, no matter what happens.
-
-Ally: 75 or higher
-Neutral: Between -74 and 74 (inclusive)
-Hostile: -75 or lower</Playwright.ScenParts.FactionForcedGoodwill.Help>
- <Playwright.ScenParts.FactionForcedGoodwill.Summary>Goodwill of faction {0} starts at {1}.</Playwright.ScenParts.FactionForcedGoodwill.Summary>
- 
- <Playwright.ScenParts.FactionStartingGoodwill>Set faction starting goodwill</Playwright.ScenParts.FactionStartingGoodwill>
- <Playwright.ScenParts.FactionStartingGoodwill.Help>Start with a specified amount of goodwill with a faction.
-
-This affects their starting goodwill only. Their goodwill will slowly trend back towards their natural goodwill over time.
-
-Ally: 75 or higher
-Neutral: Between -74 and 74 (inclusive)
-Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
- <Playwright.ScenParts.FactionStartingGoodwill.Summary>Goodwill of faction {0} starts at {1}.</Playwright.ScenParts.FactionStartingGoodwill.Summary>
- 
- <Playwright.ScenParts.AdditionalUnwaveringChance>Unwavering additional chance</Playwright.ScenParts.AdditionalUnwaveringChance>
- <Playwright.ScenParts.AdditionalUnwaveringChance.Chance>Chance</Playwright.ScenParts.AdditionalUnwaveringChance.Chance>
- <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set at 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
- <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwavering.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
 
 </LanguageData>

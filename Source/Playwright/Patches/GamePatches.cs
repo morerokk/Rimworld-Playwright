@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.PatchCheckers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Rokk.Playwright.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            Core.CheckPatchFactionGoodwill();
+            FactionPatchChecker.CheckPatchFactionGoodwill();
         }
     }
 
@@ -25,7 +26,7 @@ namespace Rokk.Playwright.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            Core.CheckPatchFactionGoodwill();
+            FactionPatchChecker.CheckPatchFactionGoodwill();
         }
     }
 }

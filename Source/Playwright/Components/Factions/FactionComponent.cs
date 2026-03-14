@@ -29,6 +29,17 @@ namespace Rokk.Playwright.Components.Factions
         };
 
         /// <summary>
+        /// How many of this faction can be added within a single group (Allies, Enemies, Neutral).
+        /// This should usually be 1, but some factions are placeholders so they might be added multiple times.
+        /// </summary>
+        public virtual int MaxInGroup => 1;
+        /// <summary>
+        /// How many of this faction can be added in total, across all groups.
+        /// This should usually be 1, but some factions are placeholders so they might be added multiple times.
+        /// </summary>
+        public virtual int MaxTotal => 1;
+
+        /// <summary>
         /// What natural or forced goodwill the faction will have.
         /// </summary>
         public enum FactionDisposition

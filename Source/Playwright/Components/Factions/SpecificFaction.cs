@@ -28,6 +28,11 @@ namespace Rokk.Playwright.Components.Factions
 
         public override FactionDef FactionDef => Faction;
 
+        // Since this is a non-specific faction, you are allowed to add multiple.
+        // However, the same faction may still not be added twice.
+        public override int MaxInGroup => int.MaxValue;
+        public override int MaxTotal => int.MaxValue;
+
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
 

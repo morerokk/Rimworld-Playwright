@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.PatchCheckers;
 using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Rokk.Playwright.Patches
     // This method is called once, but when it's done, both factions have mutual relations with each other
     // (vanilla method adds the relation in this instance, and in the other instance)
     // Setup initial relations for forced/natural goodwill scenario parts
-    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
+    [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryMakeInitialRelationsWith))]
     public class Faction_TryMakeInitialRelationsWithPatches
     {
@@ -65,7 +66,7 @@ namespace Rokk.Playwright.Patches
     }
 
     // Since the relations have already been set up above, completely reject ALL attempts to change it if forced by the scenario
-    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
+    [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryAffectGoodwillWith))]
     public class Faction_TryAffectGoodwillWithPatches
     {
@@ -99,7 +100,7 @@ namespace Rokk.Playwright.Patches
         }
     }
 
-    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
+    [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.CanChangeGoodwillFor))]
     public class Faction_CanChangeGoodwillForPatches
     {

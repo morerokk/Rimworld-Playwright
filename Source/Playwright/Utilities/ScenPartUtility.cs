@@ -163,7 +163,7 @@ namespace Rokk.Playwright.Utilities
 
         public static ScenPart_GameCondition MakeGameConditionPart(GameConditionDef gameConditionDef, FloatRange durationRandomRange, bool gameConditionTargetsWorld = true)
         {
-            ScenPart_GameCondition gameConditionPart = (ScenPart_GameCondition)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.GameCondition);
+            ScenPart_GameCondition gameConditionPart = (ScenPart_GameCondition)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.GameCondition_Planetkiller);
 
             FieldInfo gameConditionInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "gameCondition");
             gameConditionInfo.SetValue(gameConditionPart, gameConditionDef);

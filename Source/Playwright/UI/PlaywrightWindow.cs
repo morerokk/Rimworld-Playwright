@@ -245,7 +245,45 @@ namespace Rokk.Playwright.UI
 
         private void DrawFactions(Rect contentRect)
         {
+            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Factions.Welcome");
+            nextRect.y += Margin;
+            nextRect.height -= Margin;
 
+            // Fuuck how do I RectDivider?
+            Rect alliesRect = new Rect(nextRect);
+            alliesRect.width /= 3;
+            Widgets.DrawLine(new Vector2(alliesRect.x + alliesRect.width, alliesRect.y), new Vector2(alliesRect.x + alliesRect.width, alliesRect.y + alliesRect.height), PanelOutlineColor, PanelOutlineWidth);
+
+            Rect neutralsRect = new Rect(nextRect);
+            neutralsRect.width /= 3;
+            neutralsRect.x += alliesRect.width;
+            Widgets.DrawLine(new Vector2(neutralsRect.x + neutralsRect.width, neutralsRect.y), new Vector2(neutralsRect.x + neutralsRect.width, neutralsRect.y + neutralsRect.height), PanelOutlineColor, PanelOutlineWidth);
+
+            Rect enemiesRect = new Rect(nextRect);
+            enemiesRect.width /= 3;
+            enemiesRect.x += alliesRect.width + neutralsRect.width;
+
+            alliesRect = PlaywrightDrawHelper.RectWithMargin(alliesRect, PanelContentMargin);
+            neutralsRect = PlaywrightDrawHelper.RectWithMargin(neutralsRect, PanelContentMargin);
+            enemiesRect = PlaywrightDrawHelper.RectWithMargin(enemiesRect, PanelContentMargin);
+
+            // Allies
+            Listing_Standard alliesListing = new Listing_Standard();
+            alliesListing.Begin(alliesRect);
+            alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
+            alliesListing.End();
+
+            // Neutrals
+            Listing_Standard neutralsListing = new Listing_Standard();
+            neutralsListing.Begin(neutralsRect);
+            neutralsListing.Label("Playwright.Tabs.Factions.Neutrals".Translate());
+            neutralsListing.End();
+
+            // Enemies
+            Listing_Standard enemiesListing = new Listing_Standard();
+            enemiesListing.Begin(enemiesRect);
+            enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
+            enemiesListing.End();
         }
 
         private void DrawButtonBar(Rect contentRect)

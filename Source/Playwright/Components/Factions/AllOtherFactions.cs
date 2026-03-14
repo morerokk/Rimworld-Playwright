@@ -17,6 +17,7 @@ namespace Rokk.Playwright.Components.Factions
     public class AllOtherFactions : FactionComponent
     {
         public override string Id => "Factions.AllOther";
+        public override int MaxTotal => int.MaxValue;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {

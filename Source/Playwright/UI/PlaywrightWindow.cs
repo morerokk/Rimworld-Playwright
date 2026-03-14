@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
+using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Composer;
 using System;
@@ -245,6 +246,11 @@ namespace Rokk.Playwright.UI
 
         private void DrawFactions(Rect contentRect)
         {
+            List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
+            List<FactionComponent> selectedAllies = PlaywrightStructure.AllyFactions;
+            List<FactionComponent> selectedNeutrals = PlaywrightStructure.NeutralFactions;
+            List<FactionComponent> selectedEnemies = PlaywrightStructure.EnemyFactions;
+
             Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Factions.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
@@ -271,6 +277,7 @@ namespace Rokk.Playwright.UI
             Listing_Standard alliesListing = new Listing_Standard();
             alliesListing.Begin(alliesRect);
             alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
+            
             alliesListing.End();
 
             // Neutrals
@@ -283,7 +290,58 @@ namespace Rokk.Playwright.UI
             Listing_Standard enemiesListing = new Listing_Standard();
             enemiesListing.Begin(enemiesRect);
             enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
+            if (enemiesListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
+            {
+                DoFactionFloatMenu(availableFactions, FactionRelationKind.Hostile);
+            }
+            DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
             enemiesListing.End();
+        }
+
+        private void DoFactionFloatMenu(List<FactionComponent> availableFactions, FactionRelationKind relationKind)
+        {
+            List<FactionComponent> selectedFactions;
+            switch (relationKind)
+            {
+                case FactionRelationKind.Ally:
+                    selectedFactions = PlaywrightStructure.AllyFactions;
+                    break;
+                case FactionRelationKind.Hostile:
+                    selectedFactions = PlaywrightStructure.EnemyFactions;
+                    break;
+                default:
+                    selectedFactions = PlaywrightStructure.NeutralFactions;
+                    break;
+            }
+            List<FactionComponent> allSelectedFactions = PlaywrightStructure.AllyFactions
+                .Union(PlaywrightStructure.NeutralFactions)
+                .Union(PlaywrightStructure.EnemyFactions)
+                .ToList();
+
+            List<FactionComponent> selectableFactions = availableFactions
+                .Where(f => f.IsRelationKindAllowed(relationKind))
+                .Where(f => selectedFactions.Count(ef => ef.Id == f.Id) < f.MaxInGroup)
+                .Where(f => allSelectedFactions.Count(ef => ef.Id == f.Id) < f.MaxTotal)
+                .ToList();
+
+            List<FloatMenuOption> floatMenuOptions = new List<FloatMenuOption>();
+            foreach (FactionComponent faction in selectableFactions)
+            {
+                floatMenuOptions.Add(new FloatMenuOption(faction.NameTranslated, () => selectedFactions.Add(faction)));
+            }
+            Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+        }
+
+        private void DrawSelectedFactions(Listing_Standard factionListing, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
+        {
+            foreach (FactionComponent faction in selectedFactions.ToList())
+            {
+                if (factionListing.ButtonTextLabeled(faction.NameTranslated, "-"))
+                {
+                    selectedFactions.Remove(faction);
+                    RemoveSound();
+                }
+            }
         }
 
         private void DrawButtonBar(Rect contentRect)

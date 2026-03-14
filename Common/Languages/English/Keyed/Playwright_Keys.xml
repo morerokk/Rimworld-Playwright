@@ -110,7 +110,12 @@
  <Playwright.Tabs.Factions.Allies>Allies</Playwright.Tabs.Factions.Allies>
  <Playwright.Tabs.Factions.Neutrals>Neutral</Playwright.Tabs.Factions.Neutrals>
  <Playwright.Tabs.Factions.Enemies>Enemies</Playwright.Tabs.Factions.Enemies>
-
+ <Playwright.Tabs.Factions.Add>Add Faction</Playwright.Tabs.Factions.Add>
+ 
+ <Playwright.Components.Factions.AllOther>(All others)</Playwright.Components.Factions.AllOther>
+ <Playwright.Components.Factions.Specific>Specific Faction</Playwright.Components.Factions.Specific>
+ <Playwright.Components.Factions.InsectoidHive>Insect Geneline</Playwright.Components.Factions.InsectoidHive>
+ <Playwright.Components.Factions.MechanoidHive>Mechanoid Hive</Playwright.Components.Factions.MechanoidHive>
 
  <!-- Win conditions -->
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>

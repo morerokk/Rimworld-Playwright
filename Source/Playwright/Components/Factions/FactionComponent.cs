@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Addons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,41 @@ namespace Rokk.Playwright.Components.Factions
             AlwaysHostile = 98,
             InitiallyAllied = 101,
             AlwaysAllied = 102
+        }
+
+        public bool IsRelationKindAllowed(FactionRelationKind relationKind)
+        {
+            if (relationKind == FactionRelationKind.Ally)
+            {
+                return AllowedDispositions.Contains(FactionDisposition.InitiallyAllied) || AllowedDispositions.Contains(FactionDisposition.AlwaysAllied);
+            }
+            else if (relationKind == FactionRelationKind.Hostile)
+            {
+                return AllowedDispositions.Contains(FactionDisposition.InitiallyHostile) || AllowedDispositions.Contains(FactionDisposition.AlwaysHostile);
+            }
+            else
+            {
+                return AllowedDispositions.Contains(FactionDisposition.Neutral);
+            }
+        }
+
+        public static List<FactionComponent> GetAvailableFactions()
+        {
+            var list = new List<FactionComponent>();
+            list.Add(new AllOtherFactions());
+            list.Add(new SpecificFaction());
+            list.Add(new InsectoidHiveFaction());
+            list.Add(new MechanoidHiveFaction());
+
+            foreach (var faction in ComponentRegistration.Factions)
+            {
+                if (faction.IsAvailable)
+                {
+                    list.Add(faction);
+                }
+            }
+
+            return list;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Rokk.Playwright.ScenParts
 
         public override void GenerateIntoMap(Map map)
         {
-            // Very similar to ScatterThings, but does not spawn stuff minified
+            // Very similar to ScatterThingsNearPlayerStart, but does not spawn stuff minified
             // Also only on starting map, but that's probably handled by the GameInitData check anyway
             if (Find.GameInitData == null)
             {

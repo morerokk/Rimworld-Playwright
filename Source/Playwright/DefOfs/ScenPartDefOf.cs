@@ -17,5 +17,9 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_FactionNaturalGoodwill;
         public static ScenPartDef Playwright_FactionForcedGoodwill;
         public static ScenPartDef Playwright_FactionStartingGoodwill;
+
+        // Built-in scenparts that the game does not expose
+        public static ScenPartDef Naked;
+        public static ScenPartDef NoPossessions;
     }
 }

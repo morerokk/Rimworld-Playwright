@@ -47,26 +47,37 @@
  <Playwright.Components.Origins.Crashlanded>Crashlanded</Playwright.Components.Origins.Crashlanded>
  <Playwright.Components.Origins.Crashlanded.Description>Survivors who crashlanded onto the planet. The default experience.</Playwright.Components.Origins.Crashlanded.Description>
  <Playwright.Components.Origins.Crashlanded.Summary>- Choose 3 colonists (out of 8)
-- Start with a rifle, handgun and a knife.
+- Start with a bolt-action rifle, revolver and a knife.
+- Start with 1 set of Flak armor.
 - Start with some basic supplies.
-- Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Crashlanded.Summary>
+- Start with 1 random pet.
+- Random steel is scattered around the map.</Playwright.Components.Origins.Crashlanded.Summary>
  <Playwright.Components.Origins.Crashlanded.SuggestedIdeo>(None)</Playwright.Components.Origins.Crashlanded.SuggestedIdeo>
  
  <Playwright.Components.Origins.Tribal>Tribal</Playwright.Components.Origins.Tribal>
  <Playwright.Components.Origins.Tribal.Description>The remnants of a destroyed tribe. The default tribal experience.</Playwright.Components.Origins.Tribal.Description>
  <Playwright.Components.Origins.Tribal.Summary>- Choose 5 colonists (out of 11)
-- Start with a club and a bow.
+- Start with 3 melee weapons and 2 bows.
 - Start with some basic supplies.
-- Random junk like wood is scattered around the map.</Playwright.Components.Origins.Tribal.Summary>
+- Start with 3 random pets.
+- Random wood is scattered around the map.</Playwright.Components.Origins.Tribal.Summary>
  <Playwright.Components.Origins.Tribal.SuggestedIdeo>Tribal</Playwright.Components.Origins.Tribal.SuggestedIdeo>
  
  <Playwright.Components.Origins.RichExplorer>Rich Explorer</Playwright.Components.Origins.RichExplorer>
  <Playwright.Components.Origins.RichExplorer.Description>A Rich Explorer looking to start anew. The default Rich Explorer experience.</Playwright.Components.Origins.RichExplorer.Description>
  <Playwright.Components.Origins.RichExplorer.Summary>- Choose 1 colonist (out of 8)
-- Start with a handgun and a knife.
-- Start with some basic supplies.
-- Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.RichExplorer.Summary>
+- Start with 2000 Silver and 30 Gold.
+- Start with a Charge Rifle.
+- Start with some basic supplies and Glitterworld Medicine.
+- Start with 1 random pet.</Playwright.Components.Origins.RichExplorer.Summary>
  <Playwright.Components.Origins.RichExplorer.SuggestedIdeo>(None)</Playwright.Components.Origins.RichExplorer.SuggestedIdeo>
+ 
+ <Playwright.Components.Origins.NakedBrutality>Naked Brutality</Playwright.Components.Origins.NakedBrutality>
+ <Playwright.Components.Origins.NakedBrutality.Description>A single unlucky traveler with nothing to their name. The default Naked Brutality experience. Starts out extremely unfair.</Playwright.Components.Origins.NakedBrutality.Description>
+ <Playwright.Components.Origins.NakedBrutality.Summary>- Choose 1 colonist (out of 8)
+- Start naked.
+- Start with no possessions.</Playwright.Components.Origins.NakedBrutality.Summary>
+ <Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>(None)</Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
  <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description>

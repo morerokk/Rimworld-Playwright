@@ -40,6 +40,7 @@
     <Compile Include="Components\Factions\InsectoidHiveFaction.cs" />
     <Compile Include="Components\Factions\MechanoidHiveFaction.cs" />
     <Compile Include="Components\Factions\UnspecifiedFaction.cs" />
+    <Compile Include="Components\Origins\NakedBrutalityOrigin.cs" />
     <Compile Include="Components\Origins\TribalOrigin.cs" />
     <Compile Include="Components\Origins\RichExplorerOrigin.cs" />
     <Compile Include="Components\Origins\CrashlandedOrigin.cs" />

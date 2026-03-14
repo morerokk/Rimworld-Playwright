@@ -75,6 +75,7 @@ namespace Rokk.Playwright.Components.Origins
             origins.Add(new CrashlandedOrigin());
             origins.Add(new TribalOrigin());
             origins.Add(new RichExplorerOrigin());
+            origins.Add(new NakedBrutalityOrigin());
 
             OriginComponent empire = new EmpireOrigin();
             if (empire.IsAvailable)

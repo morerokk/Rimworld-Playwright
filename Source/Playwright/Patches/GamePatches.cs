@@ -15,9 +15,6 @@ namespace Rokk.Playwright.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            // On game load, clear caches in case players reload a different save
-            GoodwillSituationManager_GetNaturalGoodwillPatches.ClearCaches();
-
             Core.CheckPatchFactionGoodwill();
         }
     }
@@ -28,8 +25,6 @@ namespace Rokk.Playwright.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            GoodwillSituationManager_GetNaturalGoodwillPatches.ClearCaches();
-
             Core.CheckPatchFactionGoodwill();
         }
     }

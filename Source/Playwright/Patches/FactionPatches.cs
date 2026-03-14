@@ -32,29 +32,18 @@ namespace Rokk.Playwright.Patches
                 return;
             }
 
-            // Try forced goodwill part, if that doesn't exist try a natural goodwill part
-            // If that still doesn't exist, this doesn't concern us
+            // If no natural/forced goodwill parts exist, this doesn't concern us
             int initialGoodwill = 0;
-            FactionForcedGoodwill forcedGoodwillPart = scenario.AllParts
-                .Where(part => part.def == Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_FactionForcedGoodwill)
-                .Cast<FactionForcedGoodwill>()
+            FactionGoodwill factionGoodwillPart = scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_FactionForcedGoodwill || part.def == DefOfs.ScenPartDefOf.Playwright_FactionNaturalGoodwill)
+                .Cast<FactionGoodwill>()
                 .FirstOrDefault(part => part.FactionToAffect == other.def || part.FactionToAffect == __instance.def);
-            if (forcedGoodwillPart != null)
+            if (factionGoodwillPart == null)
             {
-                initialGoodwill = forcedGoodwillPart.ForcedGoodwill;
+                return;
             }
-            else
-            {
-                FactionNaturalGoodwill naturalGoodwillPart = scenario.AllParts
-                .Where(part => part.def == Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_FactionNaturalGoodwill)
-                .Cast<FactionNaturalGoodwill>()
-                .FirstOrDefault(part => part.FactionToAffect == other.def || part.FactionToAffect == __instance.def);
-                if (naturalGoodwillPart == null)
-                {
-                    return;
-                }
-                initialGoodwill = naturalGoodwillPart.NaturalGoodwill;
-            }
+
+            initialGoodwill = Math.Clamp(factionGoodwillPart.Goodwill, -100, 100);
 
             FactionRelationKind relationKind = FactionRelationKind.Neutral;
             if (initialGoodwill <= -75)

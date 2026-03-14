@@ -137,9 +137,10 @@ This will not add Psylinks. For that, use the "Forced Health Condition" part.</P
  <Playwright.ScenParts.StartWithHonor.Summary>Starting colonists have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
  <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
+ <Playwright.ScenParts.FactionGoodwill.Faction>Faction</Playwright.ScenParts.FactionGoodwill.Faction>
+ <Playwright.ScenParts.FactionGoodwill.StartingGoodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.StartingGoodwill>
+ 
  <Playwright.ScenParts.FactionNaturalGoodwill>Set faction natural goodwill</Playwright.ScenParts.FactionNaturalGoodwill>
- <Playwright.ScenParts.FactionNaturalGoodwill.Faction>Faction</Playwright.ScenParts.FactionNaturalGoodwill.Faction>
- <Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>Goodwill</Playwright.ScenParts.FactionNaturalGoodwill.NaturalGoodwill>
  <Playwright.ScenParts.FactionNaturalGoodwill.Help>Change a faction's natural goodwill to a specified amount.
 
 This affects their starting goodwill, and what value they will trend towards if left alone.
@@ -150,8 +151,6 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionNaturalGoodwill.Help>
  <Playwright.ScenParts.FactionNaturalGoodwill.Summary>Natural goodwill of faction {0} is set to {1}.</Playwright.ScenParts.FactionNaturalGoodwill.Summary>
 
  <Playwright.ScenParts.FactionForcedGoodwill>Set faction forced goodwill</Playwright.ScenParts.FactionForcedGoodwill>
- <Playwright.ScenParts.FactionForcedGoodwill.Faction>Faction</Playwright.ScenParts.FactionForcedGoodwill.Faction>
- <Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill>Goodwill</Playwright.ScenParts.FactionForcedGoodwill.ForcedGoodwill>
  <Playwright.ScenParts.FactionForcedGoodwill.Help>Permanently forces a faction's goodwill to a specified amount.
 
 This affects their starting goodwill and their current goodwill, forever. They cannot be swayed, no matter what happens.
@@ -162,8 +161,6 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionForcedGoodwill.Help>
  <Playwright.ScenParts.FactionForcedGoodwill.Summary>Goodwill of faction {0} starts at {1}.</Playwright.ScenParts.FactionForcedGoodwill.Summary>
  
  <Playwright.ScenParts.FactionStartingGoodwill>Set faction starting goodwill</Playwright.ScenParts.FactionStartingGoodwill>
- <Playwright.ScenParts.FactionStartingGoodwill.Faction>Faction</Playwright.ScenParts.FactionStartingGoodwill.Faction>
- <Playwright.ScenParts.FactionStartingGoodwill.StartingGoodwill>Goodwill</Playwright.ScenParts.FactionStartingGoodwill.StartingGoodwill>
  <Playwright.ScenParts.FactionStartingGoodwill.Help>Start with a specified amount of goodwill with a faction.
 
 This affects their starting goodwill only. Their goodwill will slowly trend back towards their natural goodwill over time.

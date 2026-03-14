@@ -28,5 +28,6 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ScatterThingsNearPlayerStart;
         public static ScenPartDef ScatterThingsAnywhere;
         public static ScenPartDef GameStartDialog;
+        public static ScenPartDef GameCondition;
     }
 }

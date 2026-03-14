@@ -160,5 +160,21 @@ namespace Rokk.Playwright.Utilities
             ScenPart_NoPossessions noPossessionsPart = (ScenPart_NoPossessions)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.NoPossessions);
             return noPossessionsPart;
         }
+
+        public static ScenPart_GameCondition MakeGameConditionPart(GameConditionDef gameConditionDef, FloatRange durationRandomRange, bool gameConditionTargetsWorld = true)
+        {
+            ScenPart_GameCondition gameConditionPart = (ScenPart_GameCondition)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.GameCondition);
+
+            FieldInfo gameConditionInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "gameCondition");
+            gameConditionInfo.SetValue(gameConditionPart, gameConditionDef);
+
+            FieldInfo durationRandomRangeInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "durationRandomRange");
+            durationRandomRangeInfo.SetValue(gameConditionPart, durationRandomRange);
+
+            FieldInfo gameConditionTargetsWorldInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "gameConditionTargetsWorld");
+            gameConditionTargetsWorldInfo.SetValue(gameConditionPart, gameConditionTargetsWorld);
+
+            return gameConditionPart;
+        }
     }
 }

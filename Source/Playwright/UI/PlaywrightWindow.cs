@@ -172,7 +172,7 @@ namespace Rokk.Playwright.UI
             }
 
             originContentListing.Gap();
-            selectedOrigin.DrawAdditionalContent(originContentListing);
+            selectedOrigin.DoAdditionalContents(originContentListing, originContentRect);
 
             originContentListing.End();
         }

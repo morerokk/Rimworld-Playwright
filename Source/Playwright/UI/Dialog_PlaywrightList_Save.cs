@@ -18,7 +18,7 @@ namespace Rokk.Playwright.UI
         {
             this.Playwright = playwright;
             this.interactButLabel = "OverwriteButton".Translate();
-            this.typingName = this.Playwright.Origin.NameTranslated + PlaywrightUtils.PlaywrightExtension;
+            this.typingName = this.Playwright.Origin.NameTranslated;
         }
 
         protected override void DoFileInteraction(string fileName)

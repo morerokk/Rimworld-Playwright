@@ -21,5 +21,11 @@ namespace Rokk.Playwright.DefOfs
         // Built-in scenparts that the game does not expose
         public static ScenPartDef Naked;
         public static ScenPartDef NoPossessions;
+        public static ScenPartDef ForcedHediff;
+        public static ScenPartDef StartingThing_Defined;
+        public static ScenPartDef StartingAnimal;
+        public static ScenPartDef ScatterThingsNearPlayerStart;
+        public static ScenPartDef ScatterThingsAnywhere;
+        public static ScenPartDef GameStartDialog;
     }
 }

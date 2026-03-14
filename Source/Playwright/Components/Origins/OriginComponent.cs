@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Components.Origins
@@ -64,7 +65,8 @@ namespace Rokk.Playwright.Components.Origins
         /// This is only used for content. For settings, use <see cref="PlaywrightComponent.DoSettingsContents"/>.
         /// </summary>
         /// <param name="listing">The <see cref="Listing_Standard"/> that the UI is drawing in.</param>
-        public virtual void DrawAdditionalContent(Listing_Standard listing)
+        /// <param name="inRect">The whole <see cref="Rect"/> that the Origin UI is drawing in. Spans the whole origin box, not just the listing contents, be careful!</param>
+        public virtual void DoAdditionalContents(Listing_Standard listing, Rect inRect)
         {
 
         }

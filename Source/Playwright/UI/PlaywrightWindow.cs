@@ -319,7 +319,7 @@ namespace Rokk.Playwright.UI
                 .ToList();
 
             List<FactionComponent> selectableFactions = availableFactions
-                .Where(f => f.IsRelationKindAllowed(relationKind))
+                .Where(f => f.AllowedDispositions.Contains(relationKind))
                 .Where(f => selectedFactions.Count(ef => ef.Id == f.Id) < f.MaxInGroup)
                 .Where(f => allSelectedFactions.Count(ef => ef.Id == f.Id) < f.MaxTotal)
                 .ToList();
@@ -336,7 +336,7 @@ namespace Rokk.Playwright.UI
         {
             foreach (FactionComponent faction in selectedFactions.ToList())
             {
-                if (factionListing.ButtonTextLabeled(faction.NameTranslated, "-"))
+                if (factionListing.ButtonTextLabeledPct(faction.NameTranslated, "-", 0.8f))
                 {
                     selectedFactions.Remove(faction);
                     RemoveSound();

@@ -19,15 +19,14 @@ namespace Rokk.Playwright.Components.Factions
         /// What dispositions this faction is allowed to have during selection.
         /// This should usually be "anything", but insectoids and mechanoids don't really work if they're not always the default of hostile.
         /// </summary>
-        public virtual HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
+        public virtual HashSet<FactionRelationKind> AllowedDispositions => new HashSet<FactionRelationKind>()
         {
-            FactionDisposition.Default,
-            FactionDisposition.Neutral,
-            FactionDisposition.InitiallyHostile,
-            FactionDisposition.AlwaysHostile,
-            FactionDisposition.InitiallyAllied,
-            FactionDisposition.AlwaysAllied,
+            FactionRelationKind.Neutral,
+            FactionRelationKind.Hostile,
+            FactionRelationKind.Ally
         };
+
+        public virtual bool AllowForcedDisposition => true;
 
         /// <summary>
         /// How many of this faction can be added within a single group (Allies, Enemies, Neutral).
@@ -39,35 +38,6 @@ namespace Rokk.Playwright.Components.Factions
         /// This should usually be 1, but some factions are placeholders so they might be added multiple times.
         /// </summary>
         public virtual int MaxTotal => 1;
-
-        /// <summary>
-        /// What natural or forced goodwill the faction will have.
-        /// </summary>
-        public enum FactionDisposition
-        {
-            Default = 0,
-            Neutral = 100,
-            InitiallyHostile = 99,
-            AlwaysHostile = 98,
-            InitiallyAllied = 101,
-            AlwaysAllied = 102
-        }
-
-        public bool IsRelationKindAllowed(FactionRelationKind relationKind)
-        {
-            if (relationKind == FactionRelationKind.Ally)
-            {
-                return AllowedDispositions.Contains(FactionDisposition.InitiallyAllied) || AllowedDispositions.Contains(FactionDisposition.AlwaysAllied);
-            }
-            else if (relationKind == FactionRelationKind.Hostile)
-            {
-                return AllowedDispositions.Contains(FactionDisposition.InitiallyHostile) || AllowedDispositions.Contains(FactionDisposition.AlwaysHostile);
-            }
-            else
-            {
-                return AllowedDispositions.Contains(FactionDisposition.Neutral);
-            }
-        }
 
         public static List<FactionComponent> GetAvailableFactions()
         {

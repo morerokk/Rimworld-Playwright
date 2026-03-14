@@ -13,11 +13,12 @@ namespace Rokk.Playwright.Components.Factions
 
         public override FactionDef FactionDef => FactionDefOf.Insect;
 
-        public override HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
+        public override HashSet<FactionRelationKind> AllowedDispositions => new HashSet<FactionRelationKind>()
         {
-            FactionDisposition.Default,
-            FactionDisposition.AlwaysHostile
+            FactionRelationKind.Hostile
         };
+
+        public override bool AllowForcedDisposition => false;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {

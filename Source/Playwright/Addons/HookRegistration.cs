@@ -1,10 +1,12 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Composer;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Rokk.Playwright.Addons
 {
@@ -21,6 +23,9 @@ namespace Rokk.Playwright.Addons
 
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+
+        private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPreWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
+        private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPostWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
 
         /// <summary>
         /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
@@ -90,6 +95,41 @@ namespace Rokk.Playwright.Addons
             foreach (var hook in ScenarioPostFactionHooks)
             {
                 hook(playwright, scenario, scenParts);
+            }
+        }
+
+        /// <summary>
+        /// Register something that should happen before the <see cref="PlaywrightWindow"/> starts drawing the window contents.
+        /// This could be useful for mutating the Playwright structure to remove/resolve any incompatible selections, for example.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterPlaywrightWindowPreWindowContents(Action<PlaywrightWindow, PlaywrightStructure, Rect> hook)
+        {
+            PlaywrightWindowPreWindowContentsHooks.Add(hook);
+        }
+
+        /// <summary>
+        /// Register something that should happen after the <see cref="PlaywrightWindow"/> has finished drawing the window contents.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterPlaywrightWindowPostWindowContents(Action<PlaywrightWindow, PlaywrightStructure, Rect> hook)
+        {
+            PlaywrightWindowPostWindowContentsHooks.Add(hook);
+        }
+
+        internal static void CallPlaywrightWindowPreWindowContents(PlaywrightWindow window, PlaywrightStructure playwright, Rect inRect)
+        {
+            foreach (var hook in PlaywrightWindowPreWindowContentsHooks)
+            {
+                hook(window, playwright, inRect);
+            }
+        }
+
+        internal static void CallPlaywrightWindowPostWindowContents(PlaywrightWindow window, PlaywrightStructure playwright, Rect inRect)
+        {
+            foreach (var hook in PlaywrightWindowPostWindowContentsHooks)
+            {
+                hook(window, playwright, inRect);
             }
         }
     }

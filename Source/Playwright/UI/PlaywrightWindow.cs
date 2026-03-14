@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Addons;
+using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Composer;
 using System;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 using Verse.Sound;
 
 namespace Rokk.Playwright.UI
@@ -15,7 +18,7 @@ namespace Rokk.Playwright.UI
     public class PlaywrightWindow : Window
     {
         private PlaywrightStructure PlaywrightStructure = PlaywrightStructure.CreateDefault();
-        private Tabs ActiveTab = Tabs.Intro;
+        public Tabs ActiveTab { get; private set; } = Tabs.Intro;
 
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
@@ -32,10 +35,13 @@ namespace Rokk.Playwright.UI
             this.closeOnClickedOutside = false;
             this.resizeable = false;
             this.optionalTitle = "Playwright.WindowTitle".Translate();
+            this.doCloseX = true;
         }
 
         public override void DoWindowContents(Rect inRect)
         {
+            HookRegistration.CallPlaywrightWindowPreWindowContents(this, PlaywrightStructure, inRect);
+
             Rect tabPanelRect = new Rect(inRect);
             tabPanelRect.width *= 0.25f;
             tabPanelRect.height *= 0.9f;
@@ -72,6 +78,8 @@ namespace Rokk.Playwright.UI
             buttonBarRect.height -= Margin;
             buttonBarRect.y += tabContentRect.height + Margin;
             DrawButtonBar(buttonBarRect);
+
+            HookRegistration.CallPlaywrightWindowPostWindowContents(this, PlaywrightStructure, inRect);
         }
 
         private void DrawTabPanel(Rect tabPanelRect)
@@ -132,7 +140,7 @@ namespace Rokk.Playwright.UI
                 Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
                 buttonRect.y += OptionHeight + Margin * 0.25f;
             }
-            
+
             if (this.PlaywrightStructure.Origin == null)
             {
                 return;
@@ -158,7 +166,7 @@ namespace Rokk.Playwright.UI
             originContentListing.Label(selectedOrigin.SummaryTranslated);
             originContentListing.Gap();
             originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
-            
+
             originContentListing.Gap();
             selectedOrigin.DrawAdditionalContent(originContentListing);
 
@@ -167,16 +175,68 @@ namespace Rokk.Playwright.UI
 
         private void DrawBoons(Rect contentRect)
         {
+            List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
+            List<BoonComponent> selectedBoons = PlaywrightStructure.Boons;
+            List<BoonComponent> availableBoons = allBoons.Where(b => !selectedBoons.Any(sb => sb.Id == b.Id)).ToList();
+            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+
             Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Boons.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
             Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
-            Listing_Standard boonsListing = new Listing_Standard();
-            boonsListing.Begin(nextRect);
 
-            // TODO: Draw some sort of nice UI here using either the nextRect Rect or the boonsListing Listing_Standard
+            Rect availableBoonsRect = new Rect(nextRect);
+            availableBoonsRect.width *= 0.25f;
+            Rect selectedBoonsRect = new Rect(nextRect);
+            selectedBoonsRect.width *= 0.75f;
+            selectedBoonsRect.width -= Margin;
+            selectedBoonsRect.x += availableBoonsRect.width;
+            selectedBoonsRect.x += Margin;
 
-            boonsListing.End();
+            availableBoonsRect = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
+            selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
+
+            Listing_Standard availableBoonsListing = new Listing_Standard();
+            availableBoonsListing.Begin(availableBoonsRect);
+
+            foreach (BoonComponent boon in availableBoons)
+            {
+                Rect boonRect = availableBoonsListing.GetRect(OptionHeight);
+                Widgets.DrawOptionBackground(boonRect, false);
+                Widgets.Label(PlaywrightDrawHelper.RectWithMargin(boonRect, OptionContentMargin), boon.NameTranslated);
+                PlaywrightDrawHelper.DrawInTopRight(boonRect, plusTex, 2f, 0.4f);
+                if (Widgets.ButtonInvisible(boonRect))
+                {
+                    selectedBoons.Add(boon);
+                    this.AddSound();
+                }
+                if (Mouse.IsOver(boonRect))
+                {
+                    TooltipHandler.TipRegion(boonRect, boon.DescriptionTranslated);
+                }
+            }
+
+            availableBoonsListing.End();
+
+            Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Listing_Standard selectedBoonsListing = new Listing_Standard();
+            selectedBoonsListing.Begin(selectedBoonsRect);
+
+            foreach (BoonComponent boon in selectedBoons.ToList())
+            {
+                Rect boonContentRect = selectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
+                boonContentRect = PlaywrightDrawHelper.RectWithMargin(boonContentRect, 5f);
+                boon.DoBoonContents(boonContentRect);
+                Rect deleteButton = PlaywrightDrawHelper.DrawInTopRight(boonContentRect, deleteTex, 2f, 0.4f);
+                if (Widgets.ButtonInvisible(deleteButton))
+                {
+                    selectedBoons.Remove(boon);
+                    SoundDefOf.TabClose.PlayOneShotOnCamera();
+                }
+            }
+
+            selectedBoonsListing.End();
         }
 
         private void DrawFactions(Rect contentRect)
@@ -246,7 +306,17 @@ namespace Rokk.Playwright.UI
             SoundDefOf.Click.PlayOneShotOnCamera();
         }
 
-        private enum Tabs
+        private void AddSound()
+        {
+            SoundDefOf.TabOpen.PlayOneShotOnCamera();
+        }
+
+        private void RemoveSound()
+        {
+            SoundDefOf.TabClose.PlayOneShotOnCamera();
+        }
+
+        public enum Tabs
         {
             Intro,
             Origin,

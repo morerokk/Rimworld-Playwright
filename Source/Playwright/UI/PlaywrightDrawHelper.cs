@@ -33,5 +33,14 @@ namespace Rokk.Playwright.UI
             Widgets.Label(rect, translated);
             return new Rect(contentRect.x, contentRect.y + rect.height, contentRect.width, contentRect.height - rect.height);
         }
+
+        public static Rect DrawInTopRight(Rect contentRect, Texture2D tex, float margin = 0f, float scale = 1f)
+        {
+            Rect drawRect = new Rect(0, 0, tex.width * scale, tex.height * scale);
+            drawRect.x = (contentRect.x + contentRect.width) - drawRect.width - margin;
+            drawRect.y = contentRect.y + margin;
+            GUI.DrawTexture(drawRect, tex);
+            return drawRect;
+        }
     }
 }

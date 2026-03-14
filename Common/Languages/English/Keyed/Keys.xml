@@ -131,7 +131,9 @@ Praetor: 31
 Baron/Baroness: 45
 Archon: 65
 
-Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.</Playwright.ScenParts.StartWithHonor.Help>
+Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.
+
+This will not add Psylinks. For that, use the "Forced Health Condition" part.</Playwright.ScenParts.StartWithHonor.Help>
  <Playwright.ScenParts.StartWithHonor.Summary>Starting colonists have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
  <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  

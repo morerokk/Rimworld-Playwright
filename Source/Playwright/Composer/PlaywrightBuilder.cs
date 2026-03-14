@@ -72,7 +72,7 @@ namespace Rokk.Playwright.Composer
             scenario.Category = ScenarioCategory.CustomLocal;
             scenario.name = "Playwright.ScenarioNamePrefix".Translate() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
             scenario.description = playwright.Origin.DescriptionTranslated;
-            scenario.summary = null;
+            scenario.summary = playwright.Origin.DescriptionShortTranslated;
 
             // Why is so much Scenario shit internal?
             // Get part list

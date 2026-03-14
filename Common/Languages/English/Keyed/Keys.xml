@@ -46,6 +46,7 @@
  
  <Playwright.Components.Origins.Crashlanded>Crashlanded</Playwright.Components.Origins.Crashlanded>
  <Playwright.Components.Origins.Crashlanded.Description>Survivors who crashlanded onto the planet. The default experience.</Playwright.Components.Origins.Crashlanded.Description>
+ <Playwright.Components.Origins.Crashlanded.Description.Short>Survivors who crashlanded onto the planet.</Playwright.Components.Origins.Crashlanded.Description.Short>
  <Playwright.Components.Origins.Crashlanded.Summary>- Choose 3 colonists (out of 8)
 - Start with a bolt-action rifle, revolver and a knife.
 - Start with 1 set of Flak armor.
@@ -56,6 +57,7 @@
  
  <Playwright.Components.Origins.Tribal>Tribal</Playwright.Components.Origins.Tribal>
  <Playwright.Components.Origins.Tribal.Description>The remnants of a destroyed tribe. The default tribal experience.</Playwright.Components.Origins.Tribal.Description>
+ <Playwright.Components.Origins.Tribal.Description.Short>The remnants of a destroyed tribe.</Playwright.Components.Origins.Tribal.Description.Short>
  <Playwright.Components.Origins.Tribal.Summary>- Choose 5 colonists (out of 11)
 - Start with 3 melee weapons and 2 bows.
 - Start with some basic supplies.
@@ -65,6 +67,7 @@
  
  <Playwright.Components.Origins.RichExplorer>Rich Explorer</Playwright.Components.Origins.RichExplorer>
  <Playwright.Components.Origins.RichExplorer.Description>A Rich Explorer looking to start anew. The default Rich Explorer experience.</Playwright.Components.Origins.RichExplorer.Description>
+ <Playwright.Components.Origins.RichExplorer.Description.Short>A Rich Explorer looking to start anew.</Playwright.Components.Origins.RichExplorer.Description.Short>
  <Playwright.Components.Origins.RichExplorer.Summary>- Choose 1 colonist (out of 8)
 - Start with 2000 Silver and 30 Gold.
 - Start with a Charge Rifle.
@@ -74,6 +77,7 @@
  
  <Playwright.Components.Origins.NakedBrutality>Naked Brutality</Playwright.Components.Origins.NakedBrutality>
  <Playwright.Components.Origins.NakedBrutality.Description>A single unlucky traveler with nothing to their name. The default Naked Brutality experience. Starts out extremely unfair.</Playwright.Components.Origins.NakedBrutality.Description>
+ <Playwright.Components.Origins.NakedBrutality.Description.Short>An unlucky traveler with nothing to their name.</Playwright.Components.Origins.NakedBrutality.Description.Short>
  <Playwright.Components.Origins.NakedBrutality.Summary>- Choose 1 colonist (out of 8)
 - Start naked.
 - Start with no possessions.</Playwright.Components.Origins.NakedBrutality.Summary>
@@ -81,6 +85,7 @@
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
  <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
+ <Playwright.Components.Origins.Empire.Description.Short>Imperial Novices sent to lay the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description.Short>
  <Playwright.Components.Origins.Empire.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Novice title with the Empire.
 - Every colonist starts with a Level 1 Psylink.

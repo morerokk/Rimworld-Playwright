@@ -12,6 +12,7 @@
 
  <Playwright.Components.Origins.Corporate>Corporate</Playwright.Components.Origins.Corporate>
  <Playwright.Components.Origins.Corporate.Description>5 corporate goons sent down by a subsidiary of The Corporation to analyze the planet hands-on. The Subdirector of the subsidiary might be interested in mountains of paperwork, assessing whether it's worthwhile to send a freighter to this planet.</Playwright.Components.Origins.Corporate.Description>
+ <Playwright.Components.Origins.Corporate.Description.Short>Corporate goons sent down by The Corporation to analyze the planet hands-on.</Playwright.Components.Origins.Corporate.Description.Short>
  <Playwright.Components.Origins.Corporate.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Full-Time Employee title with The Corporation.
 - You are Allied with The Corporation by default.

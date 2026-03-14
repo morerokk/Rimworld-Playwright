@@ -29,6 +29,7 @@ namespace Rokk.Playwright.Components.Origins
         /// </summary>
         public virtual FactionDef PlayerFaction => FactionDefOf.PlayerColony;
 
+        // Summary is used for summarizing the starting conditions (start with X, you're enemies with Y, etc)
         public virtual string Summary
         {
             get
@@ -57,6 +58,23 @@ namespace Rokk.Playwright.Components.Origins
             get
             {
                 return ("Playwright.Components." + this.Id + ".SuggestedIdeo").Translate();
+            }
+        }
+
+        // DescriptionShort is used for the Scenario's tagline underneath the name.
+        public virtual string DescriptionShort
+        {
+            get
+            {
+                return "Playwright.Components." + this.Id + ".Description.Short";
+            }
+        }
+
+        public virtual string DescriptionShortTranslated
+        {
+            get
+            {
+                return ("Playwright.Components." + this.Id + ".Description.Short").Translate();
             }
         }
 

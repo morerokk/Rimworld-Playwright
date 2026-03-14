@@ -164,8 +164,12 @@ namespace Rokk.Playwright.UI
             originContentListing.Label(selectedOrigin.DescriptionTranslated);
             originContentListing.Gap();
             originContentListing.Label(selectedOrigin.SummaryTranslated);
-            originContentListing.Gap();
-            originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
+
+            if (ModsConfig.IdeologyActive)
+            {
+                originContentListing.Gap();
+                originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
+            }
 
             originContentListing.Gap();
             selectedOrigin.DrawAdditionalContent(originContentListing);
@@ -232,7 +236,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(deleteButton))
                 {
                     selectedBoons.Remove(boon);
-                    SoundDefOf.TabClose.PlayOneShotOnCamera();
+                    RemoveSound();
                 }
             }
 

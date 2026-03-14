@@ -16,15 +16,16 @@ namespace Rokk.Playwright.Components.Factions
 
         /// <summary>
         /// What dispositions this faction is allowed to have during selection.
-        /// This should usually be "anything", but insectoids and mechanoids don't really work if they're not always hostile.
+        /// This should usually be "anything", but insectoids and mechanoids don't really work if they're not always the default of hostile.
         /// </summary>
         public virtual HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
         {
+            FactionDisposition.Default,
             FactionDisposition.Neutral,
             FactionDisposition.InitiallyHostile,
             FactionDisposition.AlwaysHostile,
             FactionDisposition.InitiallyAllied,
-            FactionDisposition.AlwaysAllied
+            FactionDisposition.AlwaysAllied,
         };
 
         /// <summary>
@@ -32,11 +33,12 @@ namespace Rokk.Playwright.Components.Factions
         /// </summary>
         public enum FactionDisposition
         {
-            Neutral = 0,
-            InitiallyHostile = -1,
-            AlwaysHostile = -2,
-            InitiallyAllied = 1,
-            AlwaysAllied = 2
+            Default = 0,
+            Neutral = 100,
+            InitiallyHostile = 99,
+            AlwaysHostile = 98,
+            InitiallyAllied = 101,
+            AlwaysAllied = 102
         }
     }
 }

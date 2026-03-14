@@ -8,7 +8,7 @@
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>800</summaryPriority>
   </ScenPartDef>
-
+  
   <ScenPartDef>
     <defName>Playwright_FactionNaturalGoodwill</defName>
     <label>set faction natural goodwill</label>
@@ -16,6 +16,15 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>810</summaryPriority>
+  </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_FactionStartingGoodwill</defName>
+    <label>set faction starting goodwill</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.FactionStartingGoodwill</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>815</summaryPriority>
   </ScenPartDef>
 
   <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">

@@ -15,7 +15,7 @@ namespace Rokk.Playwright
         public static PlaywrightBuilder Builder;
 
         private static Harmony Harmony;
-        private static bool FactionGoodwillPatched = false;
+        internal static bool FactionGoodwillPatched { get; private set; } = false;
 
         public Core(ModContentPack content) : base(content)
         {
@@ -54,7 +54,7 @@ namespace Rokk.Playwright
         /// and too many uncertainties exist.
         /// For players that aren't using these scenario parts, they should not be getting in the way.
         /// </summary>
-        public static void CheckPatchFactionGoodwill()
+        internal static void CheckPatchFactionGoodwill()
         {
             // Unpatch the spooky faction patches first
             UnpatchFactionGoodwill();

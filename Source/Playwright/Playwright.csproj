@@ -58,6 +58,7 @@
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
+    <Compile Include="ScenParts\FactionStartingGoodwill.cs" />
     <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />

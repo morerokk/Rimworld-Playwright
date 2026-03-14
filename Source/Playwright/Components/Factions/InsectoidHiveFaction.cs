@@ -15,7 +15,7 @@ namespace Rokk.Playwright.Components.Factions
 
         public override HashSet<FactionDisposition> AllowedDispositions => new HashSet<FactionDisposition>()
         {
-            FactionDisposition.AlwaysHostile
+            FactionDisposition.Default
         };
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)

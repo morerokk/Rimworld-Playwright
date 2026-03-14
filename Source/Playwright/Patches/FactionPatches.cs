@@ -109,4 +109,38 @@ namespace Rokk.Playwright.Patches
             return false;
         }
     }
+
+    [HarmonyPatchCategory("Playwright.FactionGoodwill")]
+    [HarmonyPatch(typeof(Faction), nameof(Faction.CanChangeGoodwillFor))]
+    public class Faction_CanChangeGoodwillForPatches
+    {
+        [HarmonyPrefix]
+        static bool Prefix(Faction other, Faction __instance, ref bool __result)
+        {
+            if (!__instance.IsPlayer && !other.IsPlayer)
+            {
+                return true;
+            }
+
+            Scenario scenario = Find.Scenario;
+            if (scenario == null)
+            {
+                return true;
+            }
+
+            FactionForcedGoodwill forcedGoodwillPart = scenario.AllParts
+                .Where(part => part.def == Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_FactionForcedGoodwill)
+                .Cast<FactionForcedGoodwill>()
+                .FirstOrDefault(part => part.FactionToAffect == other.def || part.FactionToAffect == __instance.def);
+
+            if (forcedGoodwillPart == null)
+            {
+                return true;
+            }
+
+            // If we got this far, reject the goodwill change entirely.
+            __result = false;
+            return false;
+        }
+    }
 }

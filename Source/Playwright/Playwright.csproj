@@ -39,7 +39,8 @@
     <Compile Include="Components\Factions\FactionComponent.cs" />
     <Compile Include="Components\Factions\InsectoidHiveFaction.cs" />
     <Compile Include="Components\Factions\MechanoidHiveFaction.cs" />
-    <Compile Include="Components\Factions\UnspecifiedFaction.cs" />
+    <Compile Include="Components\Factions\SpecificFaction.cs" />
+    <Compile Include="Components\Factions\AllOtherFactions.cs" />
     <Compile Include="Components\Origins\NakedBrutalityOrigin.cs" />
     <Compile Include="Components\Origins\TribalOrigin.cs" />
     <Compile Include="Components\Origins\RichExplorerOrigin.cs" />
@@ -47,6 +48,10 @@
     <Compile Include="Components\Origins\EmpireOrigin.cs" />
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
+    <Compile Include="Components\SpecialConditions\SpecialConditionComponent.cs" />
+    <Compile Include="Components\WinConditions\RoyalAscentWinCondition.cs" />
+    <Compile Include="Components\WinConditions\ShipWinCondition.cs" />
+    <Compile Include="Components\WinConditions\WinConditionComponent.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
@@ -63,6 +68,7 @@
     <Compile Include="ScenParts\FactionGoodwill.cs" />
     <Compile Include="ScenParts\FactionStartingGoodwill.cs" />
     <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />
+    <Compile Include="ScenParts\AdditionalUnwaveringChance.cs" />
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />
     <Compile Include="Settings.cs" />

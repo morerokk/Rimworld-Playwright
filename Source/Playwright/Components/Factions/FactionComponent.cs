@@ -10,7 +10,7 @@ namespace Rokk.Playwright.Components.Factions
     public abstract class FactionComponent : PlaywrightComponent
     {
         /// <summary>
-        /// This faction's def. Can be null if this doesn't apply, but this should be rare.
+        /// This faction's def. Can be null if this doesn't apply, but if your component is for a specific faction, this should be rare.
         /// </summary>
         public virtual FactionDef FactionDef => null;
 

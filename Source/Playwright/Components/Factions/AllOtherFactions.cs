@@ -12,12 +12,13 @@ namespace Rokk.Playwright.Components.Factions
     /// This is a placeholder that represents other factions that this mod did not account for.
     /// If you leave this OUT of the <see cref="PlaywrightStructure.OtherFactions"/> list for instance,
     /// all factions that aren't allies or enemies will be wiped off the map.
+    /// By default, this is left inside all lists, and if left alone, it will simply leave the other factions alone.
     /// </summary>
-    public class UnspecifiedFaction : FactionComponent
+    public class AllOtherFactions : FactionComponent
     {
-        public override string Id => "Factions.Unspecified";
+        public override string Id => "Factions.AllOther";
 
-        public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             // TODO: Add scenpart that wipes neutrals off the map after load
             // probably not here, but in the builder, as this faction is a placeholder,

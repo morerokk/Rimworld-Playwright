@@ -44,4 +44,13 @@
     <selectionWeight>0.1</selectionWeight>
     <summaryPriority>830</summaryPriority>
   </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_AdditionalUnwaveringChance</defName>
+    <label>unwavering additional chance</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.AdditionalUnwaveringChance</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>840</summaryPriority>
+  </ScenPartDef>
 </Defs>

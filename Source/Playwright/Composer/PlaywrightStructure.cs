@@ -29,9 +29,19 @@ namespace Rokk.Playwright.Composer
         public List<BoonComponent> Boons = new List<BoonComponent>();
 
         /// <summary>
-        /// Factions that are in the world, and whether the player is allies/enemies/neutral with them.
+        /// Allied factions in the world.
         /// </summary>
-        public List<FactionComponent> Factions = new List<FactionComponent>();
+        public List<FactionComponent> AllyFactions = new List<FactionComponent>();
+
+        /// <summary>
+        /// Enemy factions in the world.
+        /// </summary>
+        public List<FactionComponent> EnemyFactions = new List<FactionComponent>();
+
+        /// <summary>
+        /// Neutral factions in the world.
+        /// </summary>
+        public List<FactionComponent> NeutralFactions = new List<FactionComponent>();
 
         public static PlaywrightStructure CreateDefault()
         {
@@ -39,12 +49,20 @@ namespace Rokk.Playwright.Composer
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
-                Factions = new List<FactionComponent>()
+                AllyFactions = new List<FactionComponent>()
+                {
+                    new AllOtherFactions()
+                },
+                EnemyFactions = new List<FactionComponent>()
                 {
                     new InsectoidHiveFaction(),
                     new MechanoidHiveFaction(),
-                    new UnspecifiedFaction()
+                    new AllOtherFactions()
                 },
+                NeutralFactions = new List<FactionComponent>()
+                {
+                    new AllOtherFactions()
+                }
             };
         }
 
@@ -60,7 +78,7 @@ namespace Rokk.Playwright.Composer
             }
 
             unavailableComponents.AddRange(Boons.Where(b => !b.IsAvailable));
-            unavailableComponents.AddRange(Factions.Where(f => !f.IsAvailable));
+            unavailableComponents.AddRange(AllyFactions.Where(f => !f.IsAvailable));
 
             return unavailableComponents;
         }
@@ -76,7 +94,7 @@ namespace Rokk.Playwright.Composer
             }
 
             Boons.RemoveAll(b => !b.IsAvailable);
-            Factions.RemoveAll(f => !f.IsAvailable);
+            AllyFactions.RemoveAll(f => !f.IsAvailable);
         }
 
         public void ExposeData()
@@ -84,7 +102,7 @@ namespace Rokk.Playwright.Composer
             Scribe_Deep.Look(ref Origin, nameof(Origin));
 
             Scribe_Collections.Look(ref Boons, nameof(Boons), LookMode.Deep);
-            Scribe_Collections.Look(ref Factions, nameof(Factions), LookMode.Deep);
+            Scribe_Collections.Look(ref AllyFactions, nameof(AllyFactions), LookMode.Deep);
         }
     }
 }

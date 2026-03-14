@@ -185,5 +185,10 @@ Ally: 75 or higher
 Neutral: Between -74 and 74 (inclusive)
 Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  <Playwright.ScenParts.FactionStartingGoodwill.Summary>Goodwill of faction {0} starts at {1}.</Playwright.ScenParts.FactionStartingGoodwill.Summary>
+ 
+ <Playwright.ScenParts.AdditionalUnwaveringChance>Unwavering additional chance</Playwright.ScenParts.AdditionalUnwaveringChance>
+ <Playwright.ScenParts.AdditionalUnwaveringChance.Chance>Chance</Playwright.ScenParts.AdditionalUnwaveringChance.Chance>
+ <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set at 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
+ <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwavering.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
 
 </LanguageData>

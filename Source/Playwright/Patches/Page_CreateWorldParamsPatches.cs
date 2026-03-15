@@ -18,13 +18,29 @@ namespace Rokk.Playwright.Patches
         static void Postfix(ref List<FactionDef> ___factions, ref List<FactionDef> ___initialFactions)
         {
             // On initial setup of the factions or on reset button click, filter out any factions that are removed by default.
-            // They can still be re-added manually, but by doing this, they will be removed on entering this page or when clicking reset
+            // They can still be re-added manually, but with this patch, they will be removed on entering this page or when clicking reset
             Scenario scenario = Find.Scenario;
             if (scenario == null)
             {
                 return;
             }
 
+            // Filter out specific factions first
+            List<RemoveFaction> removeFactionParts = scenario.AllParts
+                .Where(p => p.def == DefOfs.ScenPartDefOf.Playwright_RemoveFaction)
+                .Cast<RemoveFaction>()
+                .ToList();
+            if (removeFactionParts.Count > 0)
+            {
+                ___initialFactions = ___initialFactions
+                    .Where(f => !removeFactionParts.Any(part => part.Faction == f))
+                    .ToList();
+                ___factions = ___factions
+                    .Where(f => !removeFactionParts.Any(part => part.Faction == f))
+                    .ToList();
+            }
+
+            // Do blanket filtering if parts are selected
             NoNeutralFactionsExcept neutralsToKeep = scenario.AllParts
                 .Where(p => p.def == DefOfs.ScenPartDefOf.Playwright_NoNeutralFactionsExcept)
                 .Cast<NoNeutralFactionsExcept>()

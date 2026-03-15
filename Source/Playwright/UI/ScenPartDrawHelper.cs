@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Verse;
 
 namespace Rokk.Playwright.UI
 {
@@ -45,6 +46,15 @@ namespace Rokk.Playwright.UI
         public void Skip(int rows = 1)
         {
             NextRow += rows;
+        }
+
+        public bool DrawListItemWithButton(Rect inRect, string label, Texture2D buttonTex, float buttonScale = 0.4f)
+        {
+            Rect buttonRect = new Rect(0, 0, buttonTex.width * buttonScale, buttonTex.height * buttonScale);
+            Widgets.Label(inRect, label);
+            buttonRect.x = inRect.x + inRect.width - buttonRect.width;
+            buttonRect.y = inRect.y;
+            return Widgets.ButtonImage(buttonRect, buttonTex);
         }
     }
 }

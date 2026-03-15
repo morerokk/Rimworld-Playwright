@@ -62,5 +62,9 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Chance>Chance</Playwright.ScenParts.AdditionalUnwaveringChance.Chance>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set at 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwavering.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
+ 
+ <Playwright.ScenParts.NoFactionsExcept.Add>Add...</Playwright.ScenParts.NoFactionsExcept.Add>
+ <Playwright.ScenParts.NoFactionsExcept.Factions>Factions:</Playwright.ScenParts.NoFactionsExcept.Factions>
+ <Playwright.ScenParts.NoHostileFactionsExcept.Help>Disables all enemy factions except the selected ones.</Playwright.ScenParts.NoHostileFactionsExcept.Help>
 
 </LanguageData>

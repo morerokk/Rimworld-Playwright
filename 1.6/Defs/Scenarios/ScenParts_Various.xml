@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ScenPartDef>
+    <defName>Playwright_NoHostileFactionsExcept</defName>
+    <label>no hostile factions except</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.NoHostileFactionsExcept</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>750</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
     <defName>Playwright_FactionForcedGoodwill</defName>
     <label>set faction forced goodwill</label>
     <scenPartClass>Rokk.Playwright.ScenParts.FactionForcedGoodwill</scenPartClass>

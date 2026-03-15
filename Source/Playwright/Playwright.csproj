@@ -68,6 +68,8 @@
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
+    <Compile Include="ScenParts\NoHostileFactionsExcept.cs" />
+    <Compile Include="ScenParts\NoFactionsExcept.cs" />
     <Compile Include="ScenParts\FactionGoodwill.cs" />
     <Compile Include="ScenParts\FactionStartingGoodwill.cs" />
     <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />

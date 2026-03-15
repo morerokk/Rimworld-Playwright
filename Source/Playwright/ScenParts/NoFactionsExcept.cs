@@ -13,6 +13,10 @@ namespace Rokk.Playwright.ScenParts
     {
         public List<FactionDef> FactionsToAffect = new List<FactionDef>();
         public abstract FactionRelationKind RelationKind { get; }
+        protected abstract string SummaryIntro { get; }
+        protected abstract string SummaryTag { get; }
+        protected abstract string SummaryNoIntro { get; }
+        protected abstract string HelpText { get; }
 
         protected virtual List<FactionDef> GetAllowedFactions()
         {
@@ -45,9 +49,9 @@ namespace Rokk.Playwright.ScenParts
             foreach (FactionDef factionDef in FactionsToAffect.ToList())
             {
                 Rect rect = helper.NextRect();
-                if (helper.DrawListItemWithButton(rect, factionDef.LabelCap, deleteTex, 0.4f))
+                if (helper.DrawListItemWithButton(rect, factionDef.LabelCap, deleteTex, SoundDefOf.Checkbox_TurnedOff, 0.4f))
                 {
-
+                    FactionsToAffect.Remove(factionDef);
                 }
             }
 
@@ -71,7 +75,30 @@ namespace Rokk.Playwright.ScenParts
             base.ExposeData();
         }
 
-        public abstract override string Summary(Scenario scen);
-        protected abstract void DoHelpButton();
+        public override string Summary(Scenario scen)
+        {
+            if (FactionsToAffect.Count == 0)
+            {
+                return SummaryNoIntro;
+            }
+            return ScenSummaryList.SummaryWithList(scen, SummaryTag, SummaryIntro);
+        }
+
+        public override IEnumerable<string> GetSummaryListEntries(string tag)
+        {
+            if (tag == SummaryTag)
+            {
+                foreach (FactionDef factionDef in FactionsToAffect)
+                {
+                    yield return factionDef.LabelCap;
+                }
+            }
+            yield break;
+        }
+
+        protected virtual void DoHelpButton()
+        {
+            Find.WindowStack.Add(new InfoPopupWindow(HelpText));
+        }
     }
 }

@@ -13,14 +13,9 @@ namespace Rokk.Playwright.ScenParts
     {
         public override FactionRelationKind RelationKind => FactionRelationKind.Hostile;
 
-        public override string Summary(Scenario scen)
-        {
-            return "No enemies! Placeholder";
-        }
-
-        protected override void DoHelpButton()
-        {
-            Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.NoHostileFactionsExcept.Help".Translate()));
-        }
+        protected override string SummaryTag => "Playwright_NoHostileFactionsExcept";
+        protected override string SummaryNoIntro => "Playwright.ScenParts.NoHostileFactionsExcept.Summary".Translate();
+        protected override string SummaryIntro => "Playwright.ScenParts.NoHostileFactionsExcept.SummaryIntro".Translate();
+        protected override string HelpText => "Playwright.ScenParts.NoHostileFactionsExcept.Help".Translate();
     }
 }

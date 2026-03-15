@@ -6,7 +6,28 @@
     <scenPartClass>Rokk.Playwright.ScenParts.NoHostileFactionsExcept</scenPartClass>
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>750</summaryPriority>
+    <summaryPriority>50</summaryPriority>
+	<maxUses>1</maxUses>
+  </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_NoNeutralFactionsExcept</defName>
+    <label>no neutral factions except</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.NoNeutralFactionsExcept</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>49</summaryPriority>
+	<maxUses>1</maxUses>
+  </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_NoAllyFactionsExcept</defName>
+    <label>no ally factions except</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.NoAllyFactionsExcept</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>50</summaryPriority>
+	<maxUses>1</maxUses>
   </ScenPartDef>
 
   <ScenPartDef>
@@ -15,7 +36,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.FactionForcedGoodwill</scenPartClass>
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>800</summaryPriority>
+    <summaryPriority>45</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -24,7 +45,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.FactionNaturalGoodwill</scenPartClass>
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>810</summaryPriority>
+    <summaryPriority>40</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -33,7 +54,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.FactionStartingGoodwill</scenPartClass>
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>815</summaryPriority>
+    <summaryPriority>35</summaryPriority>
   </ScenPartDef>
 
   <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">
@@ -42,7 +63,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>820</summaryPriority>
+    <summaryPriority>30</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -51,7 +72,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithNonMinifiedThing</scenPartClass>
     <category>StartingItem</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>830</summaryPriority>
+    <summaryPriority>25</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -60,6 +81,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.AdditionalUnwaveringChance</scenPartClass>
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>840</summaryPriority>
+    <summaryPriority>20</summaryPriority>
+	<maxUses>1</maxUses>
   </ScenPartDef>
 </Defs>

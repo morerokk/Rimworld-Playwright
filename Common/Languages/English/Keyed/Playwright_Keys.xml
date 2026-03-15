@@ -111,9 +111,9 @@
  <Playwright.Tabs.Factions.Neutrals>Neutral</Playwright.Tabs.Factions.Neutrals>
  <Playwright.Tabs.Factions.Enemies>Enemies</Playwright.Tabs.Factions.Enemies>
  
- <Playwright.Tabs.Factions.Add>Add Faction</Playwright.Tabs.Factions.Add>
- <Playwright.Tabs.Factions.AddAlly>Add Ally</Playwright.Tabs.Factions.AddAlly>
- <Playwright.Tabs.Factions.AddEnemy>Add Enemy</Playwright.Tabs.Factions.AddEnemy>
+ <Playwright.Tabs.Factions.Add>Add Faction...</Playwright.Tabs.Factions.Add>
+ <Playwright.Tabs.Factions.AddAlly>Add Ally...</Playwright.Tabs.Factions.AddAlly>
+ <Playwright.Tabs.Factions.AddEnemy>Add Enemy...</Playwright.Tabs.Factions.AddEnemy>
  
  <Playwright.Components.Factions.AllOther>(All others)</Playwright.Components.Factions.AllOther>
  <Playwright.Components.Factions.InsectoidHive>Insect Geneline</Playwright.Components.Factions.InsectoidHive>

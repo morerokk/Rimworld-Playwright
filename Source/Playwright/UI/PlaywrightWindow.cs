@@ -448,12 +448,12 @@ namespace Rokk.Playwright.UI
 
         private void AddSound()
         {
-            SoundDefOf.TabOpen.PlayOneShotOnCamera();
+            SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
         }
 
         private void RemoveSound()
         {
-            SoundDefOf.TabClose.PlayOneShotOnCamera();
+            SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
         }
 
         public enum Tabs

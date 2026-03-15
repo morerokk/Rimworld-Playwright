@@ -65,6 +65,14 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  
  <Playwright.ScenParts.NoFactionsExcept.Add>Add...</Playwright.ScenParts.NoFactionsExcept.Add>
  <Playwright.ScenParts.NoFactionsExcept.Factions>Factions:</Playwright.ScenParts.NoFactionsExcept.Factions>
- <Playwright.ScenParts.NoHostileFactionsExcept.Help>Disables all enemy factions except the selected ones.</Playwright.ScenParts.NoHostileFactionsExcept.Help>
+ <Playwright.ScenParts.NoAllyFactionsExcept.Help>Removes all allied factions except the selected ones.</Playwright.ScenParts.NoAllyFactionsExcept.Help>
+ <Playwright.ScenParts.NoAllyFactionsExcept.Summary>All allied factions are removed.</Playwright.ScenParts.NoAllyFactionsExcept.Summary>
+ <Playwright.ScenParts.NoAllyFactionsExcept.SummaryIntro>All allied factions are removed, except for</Playwright.ScenParts.NoAllyFactionsExcept.SummaryIntro>
+ <Playwright.ScenParts.NoNeutralFactionsExcept.Help>Removes all neutral factions except the selected ones.</Playwright.ScenParts.NoNeutralFactionsExcept.Help>
+ <Playwright.ScenParts.NoNeutralFactionsExcept.Summary>All neutral factions are removed.</Playwright.ScenParts.NoNeutralFactionsExcept.Summary>
+ <Playwright.ScenParts.NoNeutralFactionsExcept.SummaryIntro>All neutral factions are removed, except for</Playwright.ScenParts.NoNeutralFactionsExcept.SummaryIntro>
+ <Playwright.ScenParts.NoHostileFactionsExcept.Help>Removes all enemy factions except the selected ones.</Playwright.ScenParts.NoHostileFactionsExcept.Help>
+ <Playwright.ScenParts.NoHostileFactionsExcept.Summary>All hostile factions are removed.</Playwright.ScenParts.NoHostileFactionsExcept.Summary>
+ <Playwright.ScenParts.NoHostileFactionsExcept.SummaryIntro>All hostile factions are removed, except for</Playwright.ScenParts.NoHostileFactionsExcept.SummaryIntro>
 
 </LanguageData>

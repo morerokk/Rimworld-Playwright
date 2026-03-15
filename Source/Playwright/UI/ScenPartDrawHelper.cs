@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace Rokk.Playwright.UI
 {
@@ -55,6 +56,16 @@ namespace Rokk.Playwright.UI
             buttonRect.x = inRect.x + inRect.width - buttonRect.width;
             buttonRect.y = inRect.y;
             return Widgets.ButtonImage(buttonRect, buttonTex);
+        }
+
+        public bool DrawListItemWithButton(Rect inRect, string label, Texture2D buttonTex, SoundDef clickSound, float buttonScale = 0.4f)
+        {
+            bool clicked = DrawListItemWithButton(inRect, label, buttonTex, buttonScale);
+            if (clicked && clickSound != null)
+            {
+                clickSound.PlayOneShotOnCamera();
+            }
+            return clicked;
         }
     }
 }

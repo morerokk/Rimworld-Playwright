@@ -18,6 +18,9 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_FactionForcedGoodwill;
         public static ScenPartDef Playwright_FactionStartingGoodwill;
         public static ScenPartDef Playwright_AdditionalUnwaveringChance;
+        public static ScenPartDef Playwright_NoAllyFactionsExcept;
+        public static ScenPartDef Playwright_NoNeutralFactionsExcept;
+        public static ScenPartDef Playwright_NoHostileFactionsExcept;
 
         // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;

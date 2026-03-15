@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Rokk.Playwright.ScenParts
 {
     public abstract class NoFactionsExcept : ScenPart
     {
-        public List<FactionDef> FactionsToAffect = new List<FactionDef>();
+        public List<FactionDef> ExceptFactions = new List<FactionDef>();
         public abstract FactionRelationKind RelationKind { get; }
         protected abstract string SummaryIntro { get; }
         protected abstract string SummaryTag { get; }
@@ -21,7 +22,7 @@ namespace Rokk.Playwright.ScenParts
         protected virtual List<FactionDef> GetAllowedFactions()
         {
             return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer)
+                .Where(def => !def.isPlayer && !def.hidden)
                 .ToList();
         }
 
@@ -29,7 +30,7 @@ namespace Rokk.Playwright.ScenParts
         {
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
 
-            int rows = FactionsToAffect.Count + 4;
+            int rows = ExceptFactions.Count + 4;
             Rect scenPartRect = listing.GetScenPartRect(this, RowHeight * rows);
             var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, rows);
 
@@ -40,18 +41,18 @@ namespace Rokk.Playwright.ScenParts
                 List<FactionDef> allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
-                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionsToAffect.Add(factionDef)));
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => ExceptFactions.Add(factionDef)));
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
 
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.NoFactionsExcept.Factions".Translate());
-            foreach (FactionDef factionDef in FactionsToAffect.ToList())
+            foreach (FactionDef factionDef in ExceptFactions.ToList())
             {
                 Rect rect = helper.NextRect();
                 if (helper.DrawListItemWithButton(rect, factionDef.LabelCap, deleteTex, SoundDefOf.Checkbox_TurnedOff, 0.4f))
                 {
-                    FactionsToAffect.Remove(factionDef);
+                    ExceptFactions.Remove(factionDef);
                 }
             }
 
@@ -63,21 +64,16 @@ namespace Rokk.Playwright.ScenParts
             }
         }
 
-        public override void PostWorldGenerate()
-        {
-            // TODO: Remove all factions that aren't allowed
-        }
-
         public override void ExposeData()
         {
-            Scribe_Collections.Look<FactionDef>(ref FactionsToAffect, nameof(FactionsToAffect), LookMode.Def);
+            Scribe_Collections.Look<FactionDef>(ref ExceptFactions, nameof(ExceptFactions), LookMode.Def);
 
             base.ExposeData();
         }
 
         public override string Summary(Scenario scen)
         {
-            if (FactionsToAffect.Count == 0)
+            if (ExceptFactions.Count == 0)
             {
                 return SummaryNoIntro;
             }
@@ -88,7 +84,7 @@ namespace Rokk.Playwright.ScenParts
         {
             if (tag == SummaryTag)
             {
-                foreach (FactionDef factionDef in FactionsToAffect)
+                foreach (FactionDef factionDef in ExceptFactions)
                 {
                     yield return factionDef.LabelCap;
                 }

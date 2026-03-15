@@ -64,11 +64,11 @@
     <Compile Include="Patches\GamePatches.cs" />
     <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />
     <Compile Include="Patches\OptionListingUtilityPatches.cs" />
+    <Compile Include="Patches\Page_CreateWorldParamsPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
-    <Compile Include="ScenParts\NoAllyFactionsExcept.cs" />
     <Compile Include="ScenParts\NoNeutralFactionsExcept.cs" />
     <Compile Include="ScenParts\NoHostileFactionsExcept.cs" />
     <Compile Include="ScenParts\NoFactionsExcept.cs" />

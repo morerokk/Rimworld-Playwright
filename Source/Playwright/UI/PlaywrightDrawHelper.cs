@@ -42,5 +42,13 @@ namespace Rokk.Playwright.UI
             GUI.DrawTexture(drawRect, tex);
             return drawRect;
         }
+
+        public static bool DrawButtonInTopRight(Rect contentRect, Texture2D tex, float margin = 0f, float scale = 1f)
+        {
+            Rect drawRect = new Rect(0, 0, tex.width * scale, tex.height * scale);
+            drawRect.x = (contentRect.x + contentRect.width) - drawRect.width - margin;
+            drawRect.y = contentRect.y + margin;
+            return Widgets.ButtonImage(drawRect, tex);
+        }
     }
 }

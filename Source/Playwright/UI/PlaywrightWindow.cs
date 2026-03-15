@@ -204,15 +204,15 @@ namespace Rokk.Playwright.UI
             Rect availableBoonsRect = new Rect(nextRect);
             availableBoonsRect.width *= 0.25f;
             availableBoonsRect.width += Margin;
+            availableBoonsRect = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
             Rect selectedBoonsRect = new Rect(nextRect);
             selectedBoonsRect.width *= 0.75f;
-            selectedBoonsRect.width -= Margin;
+            selectedBoonsRect.width -= PanelContentMargin;
             selectedBoonsRect.x += availableBoonsRect.width;
 
             Rect availableBoonsRectInner = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
             availableBoonsRectInner.height = OptionHeight * availableBoons.Count;
-            availableBoonsRectInner.width -= Margin * 2;
-            availableBoonsRectInner.x += Margin;
+            availableBoonsRectInner.width -= Margin;
             selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
 
             Widgets.BeginScrollView(availableBoonsRect, ref BoonsScrollPosition, availableBoonsRectInner);
@@ -248,12 +248,20 @@ namespace Rokk.Playwright.UI
                 Rect boonContentRect = selectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
                 boonContentRect = PlaywrightDrawHelper.RectWithMargin(boonContentRect, 5f);
                 boon.DoBoonContents(boonContentRect);
-                Rect deleteButton = PlaywrightDrawHelper.DrawInTopRight(boonContentRect, deleteTex, 2f, 0.4f);
+                //Rect deleteButton = PlaywrightDrawHelper.DrawInTopRight(boonContentRect, deleteTex, 2f, 0.4f);
+                /*
                 if (Widgets.ButtonInvisible(deleteButton))
                 {
                     selectedBoons.Remove(boon);
                     RemoveSound();
                 }
+                */
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(boonContentRect, deleteTex, 2f, 0.4f))
+                {
+                    selectedBoons.Remove(boon);
+                    RemoveSound();
+                }
+
             }
 
             selectedBoonsListing.End();

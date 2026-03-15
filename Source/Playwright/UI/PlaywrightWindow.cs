@@ -277,20 +277,29 @@ namespace Rokk.Playwright.UI
             Listing_Standard alliesListing = new Listing_Standard();
             alliesListing.Begin(alliesRect);
             alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
-            
+            if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
+            {
+                DoFactionFloatMenu(availableFactions, FactionRelationKind.Hostile);
+            }
+            DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
             alliesListing.End();
 
             // Neutrals
             Listing_Standard neutralsListing = new Listing_Standard();
             neutralsListing.Begin(neutralsRect);
             neutralsListing.Label("Playwright.Tabs.Factions.Neutrals".Translate());
+            if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
+            {
+                DoFactionFloatMenu(availableFactions, FactionRelationKind.Neutral);
+            }
+            DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
             neutralsListing.End();
 
             // Enemies
             Listing_Standard enemiesListing = new Listing_Standard();
             enemiesListing.Begin(enemiesRect);
             enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
-            if (enemiesListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
+            if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, FactionRelationKind.Hostile);
             }

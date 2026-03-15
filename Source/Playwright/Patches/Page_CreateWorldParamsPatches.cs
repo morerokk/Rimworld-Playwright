@@ -43,20 +43,20 @@ namespace Rokk.Playwright.Patches
             if (neutralsToKeep != null)
             {
                 ___initialFactions = ___initialFactions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f))
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden)
                     .ToList();
                 ___factions = ___factions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f))
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden)
                     .ToList();
             }
 
             if (hostilesToKeep != null)
             {
                 ___initialFactions = ___initialFactions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f))
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden)
                     .ToList();
                 ___factions = ___factions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f))
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden)
                     .ToList();
             }
         }

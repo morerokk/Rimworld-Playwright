@@ -31,7 +31,7 @@ namespace Rokk.Playwright.UI
 
         private float ListMargin => 5f;
 
-        private float FactionContentHeight => 50f;
+        private float FactionContentHeight => 30f;
 
         public override Vector2 InitialSize => new Vector2(1200, 800);
 
@@ -263,6 +263,9 @@ namespace Rokk.Playwright.UI
             selectedBoonsListing.End();
         }
 
+        Vector2 AlliesScrollPosition = Vector2.zero;
+        Vector2 NeutralsScrollPosition = Vector2.zero;
+        Vector2 EnemiesScrollPosition = Vector2.zero;
         private void DrawFactions(Rect contentRect)
         {
             List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
@@ -288,13 +291,20 @@ namespace Rokk.Playwright.UI
             enemiesRect.width /= 3;
             enemiesRect.x += alliesRect.width + neutralsRect.width;
 
-            alliesRect = PlaywrightDrawHelper.RectWithMargin(alliesRect, PanelContentMargin);
-            neutralsRect = PlaywrightDrawHelper.RectWithMargin(neutralsRect, PanelContentMargin);
-            enemiesRect = PlaywrightDrawHelper.RectWithMargin(enemiesRect, PanelContentMargin);
+            Rect alliesRectInner = PlaywrightDrawHelper.RectWithMargin(alliesRect, PanelContentMargin);
+            alliesRectInner.width -= Margin;
+            alliesRectInner.height = selectedAllies.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
+            Rect neutralsRectInner = PlaywrightDrawHelper.RectWithMargin(neutralsRect, PanelContentMargin);
+            neutralsRectInner.width -= Margin;
+            neutralsRectInner.height = selectedNeutrals.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
+            Rect enemiesRectInner = PlaywrightDrawHelper.RectWithMargin(enemiesRect, PanelContentMargin);
+            enemiesRectInner.width -= Margin;
+            enemiesRectInner.height = selectedEnemies.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
 
             // Allies
+            Widgets.BeginScrollView(alliesRect, ref AlliesScrollPosition, alliesRectInner);
             Listing_Standard alliesListing = new Listing_Standard();
-            alliesListing.Begin(alliesRect);
+            alliesListing.Begin(alliesRectInner);
             alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
             if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
             {
@@ -303,10 +313,12 @@ namespace Rokk.Playwright.UI
             }
             DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
             alliesListing.End();
+            Widgets.EndScrollView();
 
             // Neutrals
+            Widgets.BeginScrollView(neutralsRect, ref NeutralsScrollPosition, neutralsRectInner);
             Listing_Standard neutralsListing = new Listing_Standard();
-            neutralsListing.Begin(neutralsRect);
+            neutralsListing.Begin(neutralsRectInner);
             neutralsListing.Label("Playwright.Tabs.Factions.Neutrals".Translate());
             if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
             {
@@ -315,10 +327,12 @@ namespace Rokk.Playwright.UI
             }
             DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
             neutralsListing.End();
+            Widgets.EndScrollView();
 
             // Enemies
+            Widgets.BeginScrollView(enemiesRect, ref EnemiesScrollPosition, enemiesRectInner);
             Listing_Standard enemiesListing = new Listing_Standard();
-            enemiesListing.Begin(enemiesRect);
+            enemiesListing.Begin(enemiesRectInner);
             enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
             if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
@@ -327,6 +341,7 @@ namespace Rokk.Playwright.UI
             }
             DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
             enemiesListing.End();
+            Widgets.EndScrollView();
         }
 
         private void DoFactionFloatMenu(List<FactionComponent> availableFactions, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
@@ -413,7 +428,7 @@ namespace Rokk.Playwright.UI
                         if (shouldGoToNewGame)
                         {
                             this.Close();
-                            // TODO: Auto-open new game window
+                            Find.WindowStack.Add(new Page_SelectScenario());
                         }
                     }));
                 }));

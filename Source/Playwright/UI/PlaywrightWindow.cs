@@ -279,7 +279,7 @@ namespace Rokk.Playwright.UI
             alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
             if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
             {
-                DoFactionFloatMenu(availableFactions, FactionRelationKind.Hostile);
+                DoFactionFloatMenu(availableFactions, selectedAllies, FactionRelationKind.Ally);
             }
             DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
             alliesListing.End();
@@ -290,7 +290,7 @@ namespace Rokk.Playwright.UI
             neutralsListing.Label("Playwright.Tabs.Factions.Neutrals".Translate());
             if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
             {
-                DoFactionFloatMenu(availableFactions, FactionRelationKind.Neutral);
+                DoFactionFloatMenu(availableFactions, selectedNeutrals, FactionRelationKind.Neutral);
             }
             DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
             neutralsListing.End();
@@ -301,27 +301,14 @@ namespace Rokk.Playwright.UI
             enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
             if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
-                DoFactionFloatMenu(availableFactions, FactionRelationKind.Hostile);
+                DoFactionFloatMenu(availableFactions, selectedEnemies, FactionRelationKind.Hostile);
             }
             DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
             enemiesListing.End();
         }
 
-        private void DoFactionFloatMenu(List<FactionComponent> availableFactions, FactionRelationKind relationKind)
+        private void DoFactionFloatMenu(List<FactionComponent> availableFactions, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
         {
-            List<FactionComponent> selectedFactions;
-            switch (relationKind)
-            {
-                case FactionRelationKind.Ally:
-                    selectedFactions = PlaywrightStructure.AllyFactions;
-                    break;
-                case FactionRelationKind.Hostile:
-                    selectedFactions = PlaywrightStructure.EnemyFactions;
-                    break;
-                default:
-                    selectedFactions = PlaywrightStructure.NeutralFactions;
-                    break;
-            }
             List<FactionComponent> allSelectedFactions = PlaywrightStructure.AllyFactions
                 .Union(PlaywrightStructure.NeutralFactions)
                 .Union(PlaywrightStructure.EnemyFactions)

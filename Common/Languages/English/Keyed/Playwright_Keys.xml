@@ -125,7 +125,7 @@
  <Playwright.Components.WinConditions>Win Conditions</Playwright.Components.WinConditions>
  
  <Playwright.Components.WinConditions.Escape>Escape</Playwright.Components.WinConditions.Escape>
- <Playwright.Components.WinConditions.Escape.Description>Escape the planet by any means. This could be a ship you build yourself, or you can procure a way out from the locals. You win when at least 1 colonist escapes the planet. The default experience.</Playwright.Components.WinConditions.Escape.Description>
+ <Playwright.Components.WinConditions.Escape.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or you can perhaps procure a way out from the locals. You win when at least 1 colonist escapes the planet. The default experience.</Playwright.Components.WinConditions.Escape.Description>
  
  <Playwright.Components.WinConditions.Archonexus>Archonexus</Playwright.Components.WinConditions.Archonexus>
  <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.</Playwright.Components.WinConditions.Archonexus.Description>

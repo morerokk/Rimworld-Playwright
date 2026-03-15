@@ -115,20 +115,27 @@ namespace Rokk.Playwright.UI
             listing.End();
         }
 
+        private Vector2 OriginsScrollPos = Vector2.zero;
         private void DrawOrigin(Rect contentRect)
         {
+            List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
+
             Rect welcomeRect = new Rect(contentRect);
             Rect currentWelcomeRect = PlaywrightDrawHelper.NextLabel(welcomeRect, "Playwright.Tabs.Origin.Welcome");
             currentWelcomeRect.y += Margin * 1.5f;
             currentWelcomeRect.height -= Margin * 1.5f;
 
-            // TODO: Scrollable list probably
             // Left-side rect: render option for each origin
-            var buttonRect = new Rect(currentWelcomeRect);
-            buttonRect.width *= 0.25f;
+            Rect originList = new Rect(currentWelcomeRect);
+            originList.width *= 0.25f;
+            Rect originListInner = new Rect(originList);
+            originListInner.height = (OptionHeight + Margin) * origins.Count;
+            originListInner.width -= Margin;
+            Widgets.BeginScrollView(originList, ref OriginsScrollPos, originListInner);
+            var buttonRect = new Rect(originListInner);
             buttonRect.height = OptionHeight;
             buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
-            var origins = OriginComponent.GetAvailableOrigins();
+            
             foreach (OriginComponent origin in origins)
             {
                 Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
@@ -142,6 +149,8 @@ namespace Rokk.Playwright.UI
                 buttonRect.y += OptionHeight + Margin * 0.25f;
             }
 
+            Widgets.EndScrollView();
+
             if (this.PlaywrightStructure.Origin == null)
             {
                 return;
@@ -153,7 +162,7 @@ namespace Rokk.Playwright.UI
             originRect.height -= (currentWelcomeRect.y - welcomeRect.y);
             originRect.width *= 0.75f;
             originRect.width -= Margin;
-            originRect.x += buttonRect.width + Margin;
+            originRect.x += originList.width + Margin;
             Widgets.DrawBoxSolidWithOutline(originRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
 
             Rect originContentRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
@@ -178,6 +187,7 @@ namespace Rokk.Playwright.UI
             originContentListing.End();
         }
 
+        private Vector2 BoonsScrollPosition = Vector2.zero;
         private void DrawBoons(Rect contentRect)
         {
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
@@ -193,17 +203,21 @@ namespace Rokk.Playwright.UI
 
             Rect availableBoonsRect = new Rect(nextRect);
             availableBoonsRect.width *= 0.25f;
+            availableBoonsRect.width += Margin;
             Rect selectedBoonsRect = new Rect(nextRect);
             selectedBoonsRect.width *= 0.75f;
             selectedBoonsRect.width -= Margin;
             selectedBoonsRect.x += availableBoonsRect.width;
-            selectedBoonsRect.x += Margin;
 
-            availableBoonsRect = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
+            Rect availableBoonsRectInner = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
+            availableBoonsRectInner.height = OptionHeight * availableBoons.Count;
+            availableBoonsRectInner.width -= Margin * 2;
+            availableBoonsRectInner.x += Margin;
             selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
 
+            Widgets.BeginScrollView(availableBoonsRect, ref BoonsScrollPosition, availableBoonsRectInner);
             Listing_Standard availableBoonsListing = new Listing_Standard();
-            availableBoonsListing.Begin(availableBoonsRect);
+            availableBoonsListing.Begin(availableBoonsRectInner);
 
             foreach (BoonComponent boon in availableBoons)
             {
@@ -223,6 +237,7 @@ namespace Rokk.Playwright.UI
             }
 
             availableBoonsListing.End();
+            Widgets.EndScrollView();
 
             Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
             Listing_Standard selectedBoonsListing = new Listing_Standard();
@@ -280,6 +295,7 @@ namespace Rokk.Playwright.UI
             if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedAllies, FactionRelationKind.Ally);
+                ButtonSound();
             }
             DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
             alliesListing.End();
@@ -291,6 +307,7 @@ namespace Rokk.Playwright.UI
             if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedNeutrals, FactionRelationKind.Neutral);
+                ButtonSound();
             }
             DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
             neutralsListing.End();
@@ -302,6 +319,7 @@ namespace Rokk.Playwright.UI
             if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedEnemies, FactionRelationKind.Hostile);
+                ButtonSound();
             }
             DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
             enemiesListing.End();

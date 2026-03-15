@@ -29,6 +29,10 @@ namespace Rokk.Playwright.UI
         private float OptionHeight => 50f;
         private float OptionContentMargin => 5f;
 
+        private float ListMargin => 5f;
+
+        private float FactionContentHeight => 50f;
+
         public override Vector2 InitialSize => new Vector2(1200, 800);
 
         public PlaywrightWindow() : base()
@@ -248,14 +252,6 @@ namespace Rokk.Playwright.UI
                 Rect boonContentRect = selectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
                 boonContentRect = PlaywrightDrawHelper.RectWithMargin(boonContentRect, 5f);
                 boon.DoBoonContents(boonContentRect);
-                //Rect deleteButton = PlaywrightDrawHelper.DrawInTopRight(boonContentRect, deleteTex, 2f, 0.4f);
-                /*
-                if (Widgets.ButtonInvisible(deleteButton))
-                {
-                    selectedBoons.Remove(boon);
-                    RemoveSound();
-                }
-                */
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(boonContentRect, deleteTex, 2f, 0.4f))
                 {
                     selectedBoons.Remove(boon);
@@ -356,13 +352,20 @@ namespace Rokk.Playwright.UI
 
         private void DrawSelectedFactions(Listing_Standard factionListing, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
         {
-            foreach (FactionComponent faction in selectedFactions.ToList())
+            foreach (FactionComponent faction in selectedFactions.OrderBy(f => f.SortOrder).ToList())
             {
                 if (factionListing.ButtonTextLabeledPct(faction.NameTranslated, "-", 0.8f))
                 {
                     selectedFactions.Remove(faction);
                     RemoveSound();
                 }
+
+                if (faction.SettingsHeight > 0f)
+                {
+                    faction.DoSettingsContents(factionListing.GetRect(faction.SettingsHeight));
+                }
+
+                factionListing.GapLine(ListMargin);
             }
         }
 

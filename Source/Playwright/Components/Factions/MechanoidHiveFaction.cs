@@ -20,6 +20,8 @@ namespace Rokk.Playwright.Components.Factions
 
         public override bool AllowForcedDisposition => false;
 
+        public override int SortOrder => 910;
+
         public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
         {
             

@@ -116,9 +116,14 @@
  <Playwright.Tabs.Factions.AddEnemy>Add Enemy</Playwright.Tabs.Factions.AddEnemy>
  
  <Playwright.Components.Factions.AllOther>(All others)</Playwright.Components.Factions.AllOther>
- <Playwright.Components.Factions.Specific>Specific Faction</Playwright.Components.Factions.Specific>
  <Playwright.Components.Factions.InsectoidHive>Insect Geneline</Playwright.Components.Factions.InsectoidHive>
  <Playwright.Components.Factions.MechanoidHive>Mechanoid Hive</Playwright.Components.Factions.MechanoidHive>
+ 
+ <Playwright.Components.Factions.Specific>Specific Faction</Playwright.Components.Factions.Specific>
+ <Playwright.Components.Factions.Specific.Faction>Faction</Playwright.Components.Factions.Specific.Faction>
+ <Playwright.Components.Factions.Specific.Faction.Select>Select...</Playwright.Components.Factions.Specific.Faction.Select>
+ <Playwright.Components.Faction.Specific.ForcedDisposition>Forced</Playwright.Components.Faction.Specific.ForcedDisposition>
+ <Playwright.Components.Faction.Specific.ForcedDisposition.Help>If enabled, faction goodwill is locked. They cannot be swayed.</Playwright.Components.Faction.Specific.ForcedDisposition.Help>
 
  <!-- Win conditions -->
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>

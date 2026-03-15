@@ -38,6 +38,11 @@ namespace Rokk.Playwright.Components.Factions
         /// This should usually be 1, but some factions are placeholders so they might be added multiple times.
         /// </summary>
         public virtual int MaxTotal => 1;
+        /// <summary>
+        /// The sort order of this faction in the faction listing window.
+        /// Useful for placeholder factions that should always go last, for example.
+        /// </summary>
+        public virtual int SortOrder => 0;
 
         public static List<FactionComponent> GetAvailableFactions()
         {

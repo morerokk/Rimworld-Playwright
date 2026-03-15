@@ -19,6 +19,8 @@ namespace Rokk.Playwright.Components.Factions
         public override string Id => "Factions.AllOther";
         public override int MaxTotal => int.MaxValue;
 
+        public override int SortOrder => 1000;
+
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             // TODO: Add scenpart that wipes neutrals off the map after load

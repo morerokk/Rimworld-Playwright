@@ -19,6 +19,15 @@
     <summaryPriority>49</summaryPriority>
 	<maxUses>1</maxUses>
   </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_RemoveFaction</defName>
+    <label>deselect faction</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.RemoveFaction</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>48</summaryPriority>
+  </ScenPartDef>
 
   <ScenPartDef>
     <defName>Playwright_FactionForcedGoodwill</defName>

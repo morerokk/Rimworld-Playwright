@@ -69,6 +69,7 @@
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
+    <Compile Include="ScenParts\RemoveFaction.cs" />
     <Compile Include="ScenParts\NoNeutralFactionsExcept.cs" />
     <Compile Include="ScenParts\NoHostileFactionsExcept.cs" />
     <Compile Include="ScenParts\NoFactionsExcept.cs" />

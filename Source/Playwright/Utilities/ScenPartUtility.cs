@@ -212,5 +212,12 @@ namespace Rokk.Playwright.Utilities
             part.Goodwill = goodwill;
             return part;
         }
+
+        public static RemoveFaction MakeRemoveFactionPart(FactionDef factionDef)
+        {
+            RemoveFaction part = (RemoveFaction)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_RemoveFaction);
+            part.Faction = factionDef;
+            return part;
+        }
     }
 }

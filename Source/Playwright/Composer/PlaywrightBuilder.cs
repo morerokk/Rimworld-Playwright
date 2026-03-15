@@ -81,7 +81,14 @@ namespace Rokk.Playwright.Composer
             }
 
             // If mechanoids/insectoids weren't chosen, add parts for that
-            // TODO: Add parts that disable insects and mechs. We probably don't need to disable their incidents, the game checks for that.
+            if (!playwright.EnemyFactions.Any(f => f.Id == InsectoidHiveFaction.ComponentId))
+            {
+                parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Insect));
+            }
+            if (!playwright.EnemyFactions.Any(f => f.Id == MechanoidHiveFaction.ComponentId))
+            {
+                parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Mechanoid));
+            }
 
             // For any factions that remain, set their dispositions
 

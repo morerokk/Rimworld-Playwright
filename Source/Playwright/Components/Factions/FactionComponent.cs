@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Verse;
 
 namespace Rokk.Playwright.Components.Factions
 {
@@ -26,7 +27,15 @@ namespace Rokk.Playwright.Components.Factions
             FactionRelationKind.Ally
         };
 
+        /// <summary>
+        /// Whether this faction allows the disposition to be forced (as opposed to natural)
+        /// </summary>
         public virtual bool AllowForcedDisposition => true;
+
+        /// <summary>
+        /// Whether their disposition should be forced or natural.
+        /// </summary>
+        public bool ForceDisposition = false;
 
         /// <summary>
         /// How many of this faction can be added within a single group (Allies, Enemies, Neutral).
@@ -61,6 +70,12 @@ namespace Rokk.Playwright.Components.Factions
             }
 
             return list;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<bool>(ref ForceDisposition, nameof(ForceDisposition), false);
         }
     }
 }

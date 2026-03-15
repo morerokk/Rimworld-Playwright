@@ -2,8 +2,10 @@
 using RimWorld;
 using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
+using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Exceptions;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +62,82 @@ namespace Rokk.Playwright.Composer
 
         private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
+            // Separate processing for the (Any Faction) faction, strip out all factions that weren't chosen
+            if (!playwright.NeutralFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
+            {
+                List<FactionDef> factionsToKeep = playwright.NeutralFactions
+                    .Where(f => f.FactionDef != null)
+                    .Select(f => f.FactionDef)
+                    .ToList();
+                parts.Add(ScenPartUtility.MakeNoNeutralFactionsExceptPart(factionsToKeep));
+            }
+            if (!playwright.EnemyFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
+            {
+                List<FactionDef> factionsToKeep = playwright.EnemyFactions
+                    .Where(f => f.FactionDef != null)
+                    .Select(f => f.FactionDef)
+                    .ToList();
+                parts.Add(ScenPartUtility.MakeNoHostileFactionsExceptPart(factionsToKeep));
+            }
 
+            // If mechanoids/insectoids weren't chosen, add parts for that
+            // TODO: Add parts that disable insects and mechs. We probably don't need to disable their incidents, the game checks for that.
+
+            // For any factions that remain, set their dispositions
+
+            // Ally
+            List<FactionComponent> allyFactions = playwright.AllyFactions
+                .Where(fc => fc.Id != AllOtherFactions.ComponentId)
+                .Where(f => f.FactionDef != null)
+                .ToList();
+
+            foreach(FactionComponent allyFaction in allyFactions)
+            {
+                if (allyFaction.AllowForcedDisposition && allyFaction.ForceDisposition)
+                {
+                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(allyFaction.FactionDef, 80));
+                }
+                else
+                {
+                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(allyFaction.FactionDef, 80));
+                }
+            }
+
+            // Neutral
+            List<FactionComponent> neutralFactions = playwright.NeutralFactions
+                .Where(fc => fc.Id != AllOtherFactions.ComponentId)
+                .Where(f => f.FactionDef != null)
+                .ToList();
+
+            foreach (FactionComponent neutralFaction in neutralFactions)
+            {
+                if (neutralFaction.AllowForcedDisposition && neutralFaction.ForceDisposition)
+                {
+                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(neutralFaction.FactionDef, 0));
+                }
+                else
+                {
+                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(neutralFaction.FactionDef, 0));
+                }
+            }
+
+            // Hostile
+            List<FactionComponent> enemyFactions = playwright.EnemyFactions
+                .Where(fc => fc.Id != AllOtherFactions.ComponentId && fc.Id != InsectoidHiveFaction.ComponentId && fc.Id != MechanoidHiveFaction.ComponentId)
+                .Where(f => f.FactionDef != null)
+                .ToList();
+
+            foreach (FactionComponent enemyFaction in enemyFactions)
+            {
+                if (enemyFaction.AllowForcedDisposition && enemyFaction.ForceDisposition)
+                {
+                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(enemyFaction.FactionDef, -100));
+                }
+                else
+                {
+                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(enemyFaction.FactionDef, -80));
+                }
+            }
         }
 
         private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)

@@ -24,11 +24,6 @@ namespace Rokk.Playwright.Components.Factions
         /// </summary>
         public FactionDef Faction;
 
-        /// <summary>
-        /// Whether their disposition should be forced or natural.
-        /// </summary>
-        public bool ForceDisposition = false;
-
         public override FactionDef FactionDef => Faction;
 
         // Since this is a non-specific faction, you are allowed to add multiple.
@@ -88,7 +83,6 @@ namespace Rokk.Playwright.Components.Factions
         {
             base.ExposeData();
             Scribe_Defs.Look(ref Faction, nameof(Faction));
-            Scribe_Values.Look<bool>(ref ForceDisposition, nameof(ForceDisposition), false);
         }
     }
 }

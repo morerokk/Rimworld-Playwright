@@ -176,5 +176,41 @@ namespace Rokk.Playwright.Utilities
 
             return gameConditionPart;
         }
+
+        public static NoNeutralFactionsExcept MakeNoNeutralFactionsExceptPart(List<FactionDef> factionsToKeep = null)
+        {
+            NoNeutralFactionsExcept part = (NoNeutralFactionsExcept)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_NoNeutralFactionsExcept);
+            if (factionsToKeep != null)
+            {
+                part.ExceptFactions = factionsToKeep;
+            }
+            return part;
+        }
+
+        public static NoHostileFactionsExcept MakeNoHostileFactionsExceptPart(List<FactionDef> factionsToKeep = null)
+        {
+            NoHostileFactionsExcept part = (NoHostileFactionsExcept)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_NoHostileFactionsExcept);
+            if (factionsToKeep != null)
+            {
+                part.ExceptFactions = factionsToKeep;
+            }
+            return part;
+        }
+
+        public static FactionNaturalGoodwill MakeFactionNaturalGoodwillPart(FactionDef factionDef, int goodwill)
+        {
+            FactionNaturalGoodwill part = (FactionNaturalGoodwill)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_FactionNaturalGoodwill);
+            part.FactionToAffect = factionDef;
+            part.Goodwill = goodwill;
+            return part;
+        }
+
+        public static FactionForcedGoodwill MakeFactionForcedGoodwillPart(FactionDef factionDef, int goodwill)
+        {
+            FactionForcedGoodwill part = (FactionForcedGoodwill)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_FactionForcedGoodwill);
+            part.FactionToAffect = factionDef;
+            part.Goodwill = goodwill;
+            return part;
+        }
     }
 }

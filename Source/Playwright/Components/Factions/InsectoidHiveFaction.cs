@@ -9,7 +9,8 @@ namespace Rokk.Playwright.Components.Factions
 {
     public class InsectoidHiveFaction : FactionComponent
     {
-        public override string Id => "Factions.InsectoidHive";
+        public const string ComponentId = "Factions.InsectoidHive";
+        public override string Id => ComponentId;
 
         public override FactionDef FactionDef => FactionDefOf.Insect;
 

@@ -16,7 +16,9 @@ namespace Rokk.Playwright.Components.Factions
     /// </summary>
     public class AllOtherFactions : FactionComponent
     {
-        public override string Id => "Factions.AllOther";
+        // Needs special treatment, ID exposed as constant
+        public const string ComponentId = "Factions.AllOther";
+        public override string Id => ComponentId;
         public override int MaxTotal => int.MaxValue;
 
         public override int SortOrder => 1000;

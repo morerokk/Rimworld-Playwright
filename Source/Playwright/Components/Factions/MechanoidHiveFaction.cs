@@ -9,6 +9,7 @@ namespace Rokk.Playwright.Components.Factions
 {
     public class MechanoidHiveFaction : FactionComponent
     {
+        public const string ComponentId = "Factions.MechanoidHive";
         public override string Id => "Factions.MechanoidHive";
 
         public override FactionDef FactionDef => FactionDefOf.Mechanoid;

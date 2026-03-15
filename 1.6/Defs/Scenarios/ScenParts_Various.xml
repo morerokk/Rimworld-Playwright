@@ -19,16 +19,6 @@
     <summaryPriority>49</summaryPriority>
 	<maxUses>1</maxUses>
   </ScenPartDef>
-  
-  <ScenPartDef>
-    <defName>Playwright_NoAllyFactionsExcept</defName>
-    <label>no ally factions except</label>
-    <scenPartClass>Rokk.Playwright.ScenParts.NoAllyFactionsExcept</scenPartClass>
-    <category>Misc</category>
-    <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>50</summaryPriority>
-	<maxUses>1</maxUses>
-  </ScenPartDef>
 
   <ScenPartDef>
     <defName>Playwright_FactionForcedGoodwill</defName>

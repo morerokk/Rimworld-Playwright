@@ -102,7 +102,7 @@ namespace Rokk.Playwright.Composer
             {
                 if (allyFaction.AllowForcedDisposition && allyFaction.ForceDisposition)
                 {
-                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(allyFaction.FactionDef, 80));
+                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(allyFaction.FactionDef, 100));
                 }
                 else
                 {

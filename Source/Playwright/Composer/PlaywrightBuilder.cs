@@ -62,7 +62,7 @@ namespace Rokk.Playwright.Composer
 
         private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
-            // Separate processing for the (Any Faction) faction, strip out all factions that weren't chosen
+            // Separate processing for the (All Others) faction, strip out all factions that weren't chosen
             if (!playwright.NeutralFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
             {
                 List<FactionDef> factionsToKeep = playwright.NeutralFactions

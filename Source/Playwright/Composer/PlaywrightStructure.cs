@@ -2,6 +2,8 @@
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.SpecialConditions;
+using Rokk.Playwright.Components.WinConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,15 @@ using Verse;
 namespace Rokk.Playwright.Composer
 {
     /// <summary>
-    /// Holds all of the player's choices.
+    /// Structure that holds all of the player's choices.
+    /// Can be saved/loaded by Scribe.
     /// </summary>
     public class PlaywrightStructure : IExposable
     {
         /// <summary>
         /// The Origin of the player, as in "why are they here"? The premise.
-        /// Only one such premise can exist.
+        /// Very similar to the various starting scenarios (Crashlanded, Tribal, Rich Explorer, etc.)
+        /// During compilation of the scenario, this cannot be null, but may be null if the chosen origin is unavailable.
         /// </summary>
         public OriginComponent Origin;
 
@@ -27,6 +31,13 @@ namespace Rokk.Playwright.Composer
         /// For example, starting with a pre-placed Odyssey shuttle or some extra goodies.
         /// </summary>
         public List<BoonComponent> Boons = new List<BoonComponent>();
+
+        /// <summary>
+        /// Whether the player wants to customize the factions at all.
+        /// Sort of a safeguard against jank if the player doesn't want to mess with the factions.
+        /// NOTE: Origins may still add/remove certain faction components.
+        /// </summary>
+        public bool CustomizeFactions = false;
 
         /// <summary>
         /// Allied factions in the world.
@@ -43,12 +54,28 @@ namespace Rokk.Playwright.Composer
         /// </summary>
         public List<FactionComponent> NeutralFactions = new List<FactionComponent>();
 
+        /// <summary>
+        /// Whether the player wants to customize the win conditions at all.
+        /// Sort of a safeguard against jank if the player doesn't want to mess with the vanilla win conditions (which can heavily depend on DLC).
+        /// </summary>
+        public bool CustomizeWinConditions = false;
+        /// <summary>
+        /// The player's chosen win conditions (ship, archonexus, colonist count, etc).
+        /// </summary>
+        public List<WinConditionComponent> WinConditions = new List<WinConditionComponent>();
+
+        /// <summary>
+        /// The player's chosen special conditions (planetkiller, no recruitment, etc)
+        /// </summary>
+        public List<SpecialConditionComponent> SpecialConditions = new List<SpecialConditionComponent>();
+
         public static PlaywrightStructure CreateDefault()
         {
             return new PlaywrightStructure()
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
+                CustomizeFactions = false,
                 AllyFactions = new List<FactionComponent>()
                 {
                     new AllOtherFactions()
@@ -62,7 +89,10 @@ namespace Rokk.Playwright.Composer
                 NeutralFactions = new List<FactionComponent>()
                 {
                     new AllOtherFactions()
-                }
+                },
+                CustomizeWinConditions = false,
+                WinConditions = new List<WinConditionComponent>(),
+                SpecialConditions = new List<SpecialConditionComponent>()
             };
         }
 
@@ -79,6 +109,10 @@ namespace Rokk.Playwright.Composer
 
             unavailableComponents.AddRange(Boons.Where(b => !b.IsAvailable));
             unavailableComponents.AddRange(AllyFactions.Where(f => !f.IsAvailable));
+            unavailableComponents.AddRange(EnemyFactions.Where(f => !f.IsAvailable));
+            unavailableComponents.AddRange(NeutralFactions.Where(f => !f.IsAvailable));
+            unavailableComponents.AddRange(WinConditions.Where(w => !w.IsAvailable));
+            unavailableComponents.AddRange(SpecialConditions.Where(s => !s.IsAvailable));
 
             return unavailableComponents;
         }
@@ -95,14 +129,23 @@ namespace Rokk.Playwright.Composer
 
             Boons.RemoveAll(b => !b.IsAvailable);
             AllyFactions.RemoveAll(f => !f.IsAvailable);
+            EnemyFactions.RemoveAll(f => !f.IsAvailable);
+            NeutralFactions.RemoveAll(f => !f.IsAvailable);
+            WinConditions.RemoveAll(w => !w.IsAvailable);
+            SpecialConditions.RemoveAll(s => !s.IsAvailable);
         }
 
         public void ExposeData()
         {
             Scribe_Deep.Look(ref Origin, nameof(Origin));
-
+            Scribe_Values.Look(ref CustomizeFactions, nameof(CustomizeFactions), false);
             Scribe_Collections.Look(ref Boons, nameof(Boons), LookMode.Deep);
             Scribe_Collections.Look(ref AllyFactions, nameof(AllyFactions), LookMode.Deep);
+            Scribe_Collections.Look(ref EnemyFactions, nameof(EnemyFactions), LookMode.Deep);
+            Scribe_Collections.Look(ref NeutralFactions, nameof(NeutralFactions), LookMode.Deep);
+            Scribe_Values.Look(ref CustomizeWinConditions, nameof(CustomizeWinConditions), false);
+            Scribe_Collections.Look(ref WinConditions, nameof(WinConditions), LookMode.Deep);
+            Scribe_Collections.Look(ref SpecialConditions, nameof(SpecialConditions), LookMode.Deep);
         }
     }
 }

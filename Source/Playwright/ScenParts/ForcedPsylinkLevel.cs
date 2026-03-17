@@ -51,7 +51,12 @@ namespace Rokk.Playwright.ScenParts
 
         public override string Summary(Scenario scen)
         {
-            return "ScenPart_PawnsHaveHediff".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), this.PsylinkHediff.label).CapitalizeFirst();
+            string levelRange = SeverityRange.min.ToString();
+            if (SeverityRange.min != SeverityRange.max)
+            {
+                levelRange += "-" + SeverityRange.max.ToString();
+            }
+            return "Playwright.ScenParts.ForcedPsylinkLevel.Summary".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), levelRange).CapitalizeFirst();
         }
 
         protected override void ModifyNewPawn(Pawn p)

@@ -245,10 +245,17 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
-        public static ForcedPsylinkLevel MakeForcedPsylinkLevelPart(FloatRange severityRange)
+        public static ForcedPsylinkLevel MakeForcedPsylinkLevelPart(FloatRange severityRange, float chance, PawnGenerationContext context)
         {
             ForcedPsylinkLevel part = (ForcedPsylinkLevel)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_ForcedPsylinkLevel);
             part.SeverityRange = severityRange;
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "chance");
+            chanceInfo.SetValue(part, chance);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "context");
+            contextInfo.SetValue(part, context);
+
             return part;
         }
     }

@@ -22,8 +22,8 @@ Archon: 65
 Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.
 
 This will not add Psylinks. For that, use the "Forced Health Condition" part.</Playwright.ScenParts.StartWithHonor.Help>
- <Playwright.ScenParts.StartWithHonor.Summary>Starting colonists have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
- <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
+ <Playwright.ScenParts.StartWithHonor.Summary>Player starting characters have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
+ <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Player starting characters have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
  <Playwright.ScenParts.FactionGoodwill.Faction>Faction</Playwright.ScenParts.FactionGoodwill.Faction>
  <Playwright.ScenParts.FactionGoodwill.Goodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.Goodwill>
@@ -93,5 +93,6 @@ Gravships are unaffected, this is exclusively for ships to the stars with the 15
 
  <Playwright.ScenParts.ForcedPsylinkLevel>Forced psylink level</Playwright.ScenParts.ForcedPsylinkLevel>
  <Playwright.ScenParts.ForcedPsylinkLevel.Help>Force the selected pawns to have a psylink level.</Playwright.ScenParts.ForcedPsylinkLevel.Help>
+ <Playwright.ScenParts.ForcedPsylinkLevel.Summary>{0} have a {1} chance to start with a Level {2} Psylink.</Playwright.ScenParts.ForcedPsylinkLevel.Summary>
 
 </LanguageData>

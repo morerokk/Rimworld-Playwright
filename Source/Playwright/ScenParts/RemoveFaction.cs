@@ -37,7 +37,7 @@ namespace Rokk.Playwright.ScenParts
                 List<FactionDef> allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
-                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef));
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }

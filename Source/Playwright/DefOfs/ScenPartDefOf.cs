@@ -12,6 +12,8 @@ namespace Rokk.Playwright.DefOfs
     {
         [MayRequireRoyalty]
         public static ScenPartDef Playwright_StartWithHonor;
+        [MayRequireRoyalty]
+        public static ScenPartDef Playwright_ForcedPsylinkLevel;
 
         public static ScenPartDef Playwright_StartWithNonMinifiedThing;
         public static ScenPartDef Playwright_FactionNaturalGoodwill;

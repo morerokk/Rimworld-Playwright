@@ -84,13 +84,12 @@
  <Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>(None)</Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
- <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent down to lay down the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description>
- <Playwright.Components.Origins.Empire.Description.Short>Imperial Novices sent to lay the foundation for colonization of the planet.</Playwright.Components.Origins.Empire.Description.Short>
+ <Playwright.Components.Origins.Empire.Description>5 Imperial Novices sent out into the field.</Playwright.Components.Origins.Empire.Description>
+ <Playwright.Components.Origins.Empire.Description.Short>Imperial Novices sent out into the field.</Playwright.Components.Origins.Empire.Description.Short>
  <Playwright.Components.Origins.Empire.Summary>- Choose 5 colonists (out of 10)
 - Every colonist starts with a Novice title with the Empire.
 - Every colonist starts with a Level 1 Psylink.
 - You are Allied with the Empire by default.
-- You are Enemies with Deserters by default (VFE Deserters only).
 - Start with some basic supplies.</Playwright.Components.Origins.Empire.Summary>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
  

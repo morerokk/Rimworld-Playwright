@@ -244,5 +244,12 @@ namespace Rokk.Playwright.Utilities
             part.thingDef = thingDef;
             return part;
         }
+
+        public static ForcedPsylinkLevel MakeForcedPsylinkLevelPart(FloatRange severityRange)
+        {
+            ForcedPsylinkLevel part = (ForcedPsylinkLevel)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_ForcedPsylinkLevel);
+            part.SeverityRange = severityRange;
+            return part;
+        }
     }
 }

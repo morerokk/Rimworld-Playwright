@@ -91,4 +91,7 @@ The ship can still be researched and built, but it cannot be started, meaning yo
 
 Gravships are unaffected, this is exclusively for ships to the stars with the 15-day reactor startup sequence.</Playwright.ScenParts.DisableShipStartup.Help>
 
+ <Playwright.ScenParts.ForcedPsylinkLevel>Forced psylink level</Playwright.ScenParts.ForcedPsylinkLevel>
+ <Playwright.ScenParts.ForcedPsylinkLevel.Help>Force the selected pawns to have a psylink level.</Playwright.ScenParts.ForcedPsylinkLevel.Help>
+
 </LanguageData>

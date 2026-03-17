@@ -20,6 +20,7 @@ namespace Rokk.Playwright.Components.Origins
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(FactionDefOf.Empire, 7, true));
+            //scenarioParts.Add(ScenPartUtility.MakeForcedHediffPart(HediffDefOf.PsychicAmplifier))
         }
     }
 }

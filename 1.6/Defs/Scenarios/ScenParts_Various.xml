@@ -93,4 +93,13 @@
     <summaryPriority>20</summaryPriority>
 	<maxUses>1</maxUses>
   </ScenPartDef>
+  
+  <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>Playwright_ForcedPsylinkLevel</defName>
+    <label>forced psylink level</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.ForcedPsylinkLevel</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>459</summaryPriority>
+  </ScenPartDef>
 </Defs>

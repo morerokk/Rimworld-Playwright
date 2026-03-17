@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.ScenParts;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,8 @@ namespace Rokk.Playwright.Components.Boons
         public override bool IsAvailable => ModsConfig.OdysseyActive;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
-        {
-            ScenPartDef startWithNonMinifiedThingDef = Rokk.Playwright.DefOfs.ScenPartDefOf.Playwright_StartWithNonMinifiedThing;
-            StartWithNonMinifiedThing part = (StartWithNonMinifiedThing)ScenarioMaker.MakeScenPart(startWithNonMinifiedThingDef);
-
-            part.thingDef = ThingDefOf.PassengerShuttle;
-            
-            scenarioParts.Add(part);
+        {            
+            scenarioParts.Add(ScenPartUtility.MakeStartWithNonMinifiedThingPart(ThingDefOf.PassengerShuttle));
         }
     }
 }

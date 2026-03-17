@@ -18,12 +18,14 @@ namespace Rokk.Playwright.Components
         /// <summary>
         /// The ID for this component. Must be unique and should be prefixed with the type of component it is.
         /// Example: "Origins.CoolDude"
+        /// If you are making an addon or a compatibility mod, try to use a unique prefix, as ID's must be unique.
+        /// Example: "Origins.Compat_foobarmod_CoolDude"
         /// </summary>
         public abstract string Id { get; }
 
         /// <summary>
         /// Whether this component is currently available.
-        /// Can be available/unavailable for any reason, such as depending on whether a mod or DLC is loaded.
+        /// Can be available/unavailable for any reason, such as depending on whether an expansion or another mod is loaded.
         /// If false, this component will not be shown in the Playwright designer, and can't be loaded from a saved Playwright.
         /// </summary>
         public virtual bool IsAvailable => true;
@@ -64,9 +66,12 @@ namespace Rokk.Playwright.Components
         }
 
         /// <summary>
-        /// Mutate the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part)
+        /// Mutate the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part).
         /// </summary>
-        public abstract void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts);
+        public virtual void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
+        {
+
+        }
 
         /// <summary>
         /// Render the UI for the settings in your component.

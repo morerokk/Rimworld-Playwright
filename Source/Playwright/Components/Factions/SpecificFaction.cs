@@ -31,11 +31,6 @@ namespace Rokk.Playwright.Components.Factions
         public override int MaxInGroup => int.MaxValue;
         public override int MaxTotal => int.MaxValue;
 
-        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
-        {
-
-        }
-
         // Settings
         protected virtual List<FactionDef> GetAllowedFactions()
         {

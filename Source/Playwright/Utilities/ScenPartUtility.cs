@@ -237,5 +237,12 @@ namespace Rokk.Playwright.Utilities
             DisableShipStartup part = (DisableShipStartup)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_DisableShipStartup);
             return part;
         }
+
+        public static StartWithNonMinifiedThing MakeStartWithNonMinifiedThingPart(ThingDef thingDef)
+        {
+            StartWithNonMinifiedThing part = (StartWithNonMinifiedThing)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_StartWithNonMinifiedThing);
+            part.thingDef = thingDef;
+            return part;
+        }
     }
 }

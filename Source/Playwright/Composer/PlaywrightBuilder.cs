@@ -4,6 +4,7 @@ using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Exceptions;
 using Rokk.Playwright.Utilities;
 using System;
@@ -51,9 +52,18 @@ namespace Rokk.Playwright.Composer
             }
 
             // Factions
-            HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
-            this.ProcessFactions(playwright, scenario, parts);
-            HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
+            if (playwright.CustomizeFactions)
+            {
+                HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
+                this.ProcessFactions(playwright, scenario, parts);
+                HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
+            }
+
+            // Win conditions
+            if (playwright.CustomizeWinConditions)
+            {
+                this.ProcessWinConditions(playwright, scenario, parts);
+            }
 
             HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
 
@@ -147,6 +157,24 @@ namespace Rokk.Playwright.Composer
             }
         }
 
+        private void ProcessWinConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        {
+            // If ship wasn't chosen, disable the journey offer quest
+            // Not being allowed to start the ship is a separate patch,
+            // it should still be researchable and buildable for the reactor and mod compatibility reasons
+            if (!playwright.WinConditions.Any(wc => wc.Id == ShipWinCondition.ComponentId))
+            {
+                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ShipEscape));
+                parts.Add(ScenPartUtility.MakeDisableShipStartupPart());
+            }
+
+            // If Archonexus wasn't chosen, disable the quest
+            if (ModsConfig.IdeologyActive && !playwright.WinConditions.Any(wc => wc.Id == ArchonexusWinCondition.ComponentId))
+            {
+                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));
+            }
+        }
+
         private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
         {
             // The below is mostly taken from ScenarioMaker.GenerateNewRandomScenario(),
@@ -196,6 +224,7 @@ namespace Rokk.Playwright.Composer
             surfaceLayerInfo.SetValue(scenario, surfaceLayer);
 
             // If Odyssey is installed, add a new orbit layer and set it to connect to the surface layer by zooming in/out far enough
+            // Does the game add this retroactively if you activate Odyssey mid-save? Fortunately not my problem since we do the same thing here as vanilla
             if (ModsConfig.OdysseyActive)
             {
                 var planetLayer = new ScenPart_PlanetLayer()

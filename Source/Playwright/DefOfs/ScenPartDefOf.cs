@@ -21,6 +21,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_NoNeutralFactionsExcept;
         public static ScenPartDef Playwright_NoHostileFactionsExcept;
         public static ScenPartDef Playwright_RemoveFaction;
+        public static ScenPartDef Playwright_DisableShipStartup;
 
         // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;
@@ -32,5 +33,6 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ScatterThingsAnywhere;
         public static ScenPartDef GameStartDialog;
         public static ScenPartDef GameCondition_Planetkiller;
+        public static ScenPartDef DisableIncident;
     }
 }

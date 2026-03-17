@@ -8,15 +8,15 @@ using Verse;
 
 namespace Rokk.Playwright.Components.WinConditions
 {
-    public class RoyalAscentWinCondition : WinConditionComponent
+    public class ArchonexusWinCondition : WinConditionComponent
     {
-        public const string ComponentId = "WinConditions.RoyalAscent";
+        public const string ComponentId = "WinConditions.Archonexus";
         public override string Id => ComponentId;
-        public override bool IsAvailable => ModsConfig.RoyaltyActive;
+        public override bool IsAvailable => ModsConfig.IdeologyActive;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            // TODO: If disabled, the Royal Ascent quest will not be offered.
+            // TODO: If disabled, the Archonexus quests will not be offered.
         }
     }
 }

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ScenPartDef>
+    <defName>Playwright_DisableShipStartup</defName>
+    <label>disable ship startup</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.DisableShipStartup</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>60</summaryPriority>
+	<maxUses>1</maxUses>
+  </ScenPartDef>
+
+  <ScenPartDef>
     <defName>Playwright_NoHostileFactionsExcept</defName>
     <label>no hostile factions except</label>
     <scenPartClass>Rokk.Playwright.ScenParts.NoHostileFactionsExcept</scenPartClass>

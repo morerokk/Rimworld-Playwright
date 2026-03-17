@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.DefOfs;
 using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
@@ -217,6 +218,23 @@ namespace Rokk.Playwright.Utilities
         {
             RemoveFaction part = (RemoveFaction)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_RemoveFaction);
             part.Faction = factionDef;
+            return part;
+        }
+
+        public static ScenPart_DisableIncident MakeDisableIncidentPart(IncidentDef incidentDef)
+        {
+            ScenPart_DisableIncident part = (ScenPart_DisableIncident)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.DisableIncident);
+
+            FieldInfo incidentInfo = AccessTools.Field(typeof(ScenPart_DisableIncident), "incident");
+            incidentInfo.SetValue(part, incidentDef);
+
+            return part;
+
+        }
+
+        public static DisableShipStartup MakeDisableShipStartupPart()
+        {
+            DisableShipStartup part = (DisableShipStartup)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_DisableShipStartup);
             return part;
         }
     }

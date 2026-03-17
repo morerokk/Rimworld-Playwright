@@ -50,11 +50,13 @@
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Components\SpecialConditions\PlanetkillerSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\SpecialConditionComponent.cs" />
+    <Compile Include="Components\WinConditions\ArchonexusWinCondition.cs" />
     <Compile Include="Components\WinConditions\RoyalAscentWinCondition.cs" />
     <Compile Include="Components\WinConditions\ShipWinCondition.cs" />
     <Compile Include="Components\WinConditions\WinConditionComponent.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\GameConditionDefOf.cs" />
+    <Compile Include="DefOfs\IncidentDefOf.cs" />
     <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="ScenParts\FactionStartingGoodwill.cs" />
     <Compile Include="ScenParts\FactionNaturalGoodwill.cs" />
     <Compile Include="ScenParts\AdditionalUnwaveringChance.cs" />
+    <Compile Include="ScenParts\DisableShipStartup.cs" />
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />
     <Compile Include="Settings.cs" />

@@ -83,4 +83,12 @@ This is purely a convenience feature, as you can do the same thing manually on t
 
 This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.</Playwright.ScenParts.RemoveFaction.Help>
 
+ <Playwright.ScenParts.DisableShipStartup>Disable ship startup</Playwright.ScenParts.DisableShipStartup>
+ <Playwright.ScenParts.DisableShipStartup.Summary>Ship startup sequence is disabled.</Playwright.ScenParts.DisableShipStartup.Summary>
+ <Playwright.ScenParts.DisableShipStartup.Help>Prevents you from starting a ship's startup sequence, both for your own starship and the Journey Offer.
+
+The ship can still be researched and built, but it cannot be started, meaning you cannot use it to leave the planet.
+
+Gravships are unaffected, this is exclusively for ships to the stars with the 15-day reactor startup sequence.</Playwright.ScenParts.DisableShipStartup.Help>
+
 </LanguageData>

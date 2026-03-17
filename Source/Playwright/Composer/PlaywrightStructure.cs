@@ -1,4 +1,5 @@
-﻿using Rokk.Playwright.Components;
+﻿using Rokk.Playwright.Addons;
+using Rokk.Playwright.Components;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
@@ -71,7 +72,7 @@ namespace Rokk.Playwright.Composer
 
         public static PlaywrightStructure CreateDefault()
         {
-            return new PlaywrightStructure()
+            var structure = new PlaywrightStructure()
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
@@ -91,9 +92,36 @@ namespace Rokk.Playwright.Composer
                     new AllOtherFactions()
                 },
                 CustomizeWinConditions = false,
-                WinConditions = new List<WinConditionComponent>(),
+                WinConditions = new List<WinConditionComponent>()
+                {
+                    new ShipWinCondition()
+                },
                 SpecialConditions = new List<SpecialConditionComponent>()
             };
+
+            var royalAscentWinCondition = new RoyalAscentWinCondition();
+            if (royalAscentWinCondition.IsAvailable)
+            {
+                structure.WinConditions.Add(royalAscentWinCondition);
+            }
+
+            var archonexusWinCondition = new ArchonexusWinCondition();
+            if (archonexusWinCondition.IsAvailable)
+            {
+                structure.WinConditions.Add(archonexusWinCondition);
+            }
+
+            // NOTE: I have opted to not include the Anomaly monolith in the selectable win conditions at all.
+            // Anomaly is a bit of an oddball. In my opinion, if you're not going to go for the monolith,
+            // you should just turn on Ambient Horror (or turn off the Anomaly stuff entirely).
+            // If the player wants it as a win condition, they can just go for it anyway.
+            // Either way, I think it's out of scope for this mod. We don't need to enable/disable anything for it.
+
+            // TODO: What about Odyssey?
+
+            HookRegistration.CallPlaywrightDefaultStructureHooks(structure);
+
+            return structure;
         }
 
         /// <summary>

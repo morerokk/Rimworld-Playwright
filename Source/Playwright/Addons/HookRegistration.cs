@@ -27,6 +27,8 @@ namespace Rokk.Playwright.Addons
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPreWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPostWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
 
+        private static List<Action<PlaywrightStructure>> PlaywrightDefaultStructureHooks = new List<Action<PlaywrightStructure>>();
+
         /// <summary>
         /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
         /// Useful for doing some preparation that requires knowledge of the entire playwright and scenario.
@@ -130,6 +132,25 @@ namespace Rokk.Playwright.Addons
             foreach (var hook in PlaywrightWindowPostWindowContentsHooks)
             {
                 hook(window, playwright, inRect);
+            }
+        }
+
+        /// <summary>
+        /// Register a function to be executed when the default Playwright structure is created.
+        /// Used for changing or adding extra components to the default Playwright structure, like factions or win conditions.
+        /// This is called when the player opens the Playwright designer.
+        /// </summary>
+        /// <param name="hook">The function to be called.</param>
+        public static void RegisterPlaywrightDefaultStructureHook(Action<PlaywrightStructure> hook)
+        {
+            PlaywrightDefaultStructureHooks.Add(hook);
+        }
+
+        internal static void CallPlaywrightDefaultStructureHooks(PlaywrightStructure structure)
+        {
+            foreach (var hook in PlaywrightDefaultStructureHooks)
+            {
+                hook(structure);
             }
         }
     }

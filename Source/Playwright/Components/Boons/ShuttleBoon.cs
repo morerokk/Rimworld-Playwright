@@ -18,6 +18,7 @@ namespace Rokk.Playwright.Components.Boons
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {            
             scenarioParts.Add(ScenPartUtility.MakeStartWithNonMinifiedThingPart(ThingDefOf.PassengerShuttle));
+            scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(ThingDefOf.Chemfuel, null, 400));
         }
     }
 }

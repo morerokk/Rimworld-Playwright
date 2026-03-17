@@ -119,7 +119,7 @@ namespace Rokk.Playwright.Composer
 
             // TODO: What about Odyssey?
 
-            HookRegistration.CallPlaywrightDefaultStructureHooks(structure);
+            HookRegistration.CallPlaywrightDefaultStructure(structure);
 
             return structure;
         }

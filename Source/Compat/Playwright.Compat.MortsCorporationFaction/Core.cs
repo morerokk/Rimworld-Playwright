@@ -23,7 +23,11 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             // Register your components with ComponentRegistration if you have any
-            ComponentRegistration.RegisterOrigin(new CorporateOrigin());
+            var corporateOrigin = new CorporateOrigin();
+            if (corporateOrigin.IsAvailable)
+            {
+                ComponentRegistration.RegisterOrigin(corporateOrigin);
+            }
 
             // If you have any hooks, register them
             //HookRegistration.RegisterScenarioPostMutated((playwrightStructure, scenario, parts) =>

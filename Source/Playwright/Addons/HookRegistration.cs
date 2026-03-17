@@ -141,12 +141,12 @@ namespace Rokk.Playwright.Addons
         /// This is called when the player opens the Playwright designer.
         /// </summary>
         /// <param name="hook">The function to be called.</param>
-        public static void RegisterPlaywrightDefaultStructureHook(Action<PlaywrightStructure> hook)
+        public static void RegisterPlaywrightDefaultStructure(Action<PlaywrightStructure> hook)
         {
             PlaywrightDefaultStructureHooks.Add(hook);
         }
 
-        internal static void CallPlaywrightDefaultStructureHooks(PlaywrightStructure structure)
+        internal static void CallPlaywrightDefaultStructure(PlaywrightStructure structure)
         {
             foreach (var hook in PlaywrightDefaultStructureHooks)
             {

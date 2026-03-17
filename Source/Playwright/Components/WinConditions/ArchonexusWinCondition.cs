@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Components.WinConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            // TODO: If disabled, the Archonexus quests will not be offered.
+            // Handled in the composer: if disabled, the Archonexus quests will not be offered.
         }
     }
 }

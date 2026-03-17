@@ -161,14 +161,22 @@ namespace Rokk.Playwright.Composer
         {
             // If ship wasn't chosen, disable the journey offer quest
             // Not being allowed to start the ship is a separate patch,
-            // it should still be researchable and buildable for the reactor and mod compatibility reasons
+            // it should still be researchable and buildable for the reactor and mod compatibility reasons.
             if (!playwright.WinConditions.Any(wc => wc.Id == ShipWinCondition.ComponentId))
             {
+                // Disable journey offer quest-giver incident
                 parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ShipEscape));
+                // Disable the ship startup sequence (handled in patches separately)
                 parts.Add(ScenPartUtility.MakeDisableShipStartupPart());
             }
 
-            // If Archonexus wasn't chosen, disable the quest
+            // If Royal Ascent wasn't chosen, disable the quest-giver incident
+            if (ModsConfig.RoyaltyActive && !playwright.WinConditions.Any(wc => wc.Id == RoyalAscentWinCondition.ComponentId))
+            {
+                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_RoyalAscent));
+            }
+
+            // If Archonexus wasn't chosen, disable the quest-giver incident
             if (ModsConfig.IdeologyActive && !playwright.WinConditions.Any(wc => wc.Id == ArchonexusWinCondition.ComponentId))
             {
                 parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));

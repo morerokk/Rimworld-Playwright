@@ -17,7 +17,7 @@ namespace Rokk.Playwright.Components.Origins
         public override string Id => "Origins.Empire";
         public override bool IsAvailable => ModsConfig.RoyaltyActive;
 
-        public override void MutateScenario(Scenario scenario,List<ScenPart> scenarioParts)
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(FactionDefOf.Empire, 7, true));
         }

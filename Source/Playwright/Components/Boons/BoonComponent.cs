@@ -28,6 +28,11 @@ namespace Rokk.Playwright.Components.Boons
             boonContentListing.End();
         }
 
+        public virtual void DoSettingsContents(Rect inRect)
+        {
+
+        }
+
         public static List<BoonComponent> GetAvailableBoons()
         {
             var list = new List<BoonComponent>();

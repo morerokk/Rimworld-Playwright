@@ -20,7 +20,7 @@ namespace Rokk.Playwright.ScenParts
         protected virtual List<FactionDef> GetAllowedFactions()
         {
             return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer)
+                .Where(def => !def.isPlayer && !def.hidden)
                 .ToList();
         }
 

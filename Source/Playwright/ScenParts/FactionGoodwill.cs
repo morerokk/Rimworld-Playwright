@@ -23,7 +23,7 @@ namespace Rokk.Playwright.ScenParts
         protected virtual List<FactionDef> GetAllowedFactions()
         {
             return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer)
+                .Where(def => !def.isPlayer && !def.hidden && !def.permanentEnemy)
                 .ToList();
         }
 
@@ -40,7 +40,7 @@ namespace Rokk.Playwright.ScenParts
                 List<FactionDef> allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
-                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToAffect = factionDef));
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToAffect = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }

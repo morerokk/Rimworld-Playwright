@@ -11,13 +11,6 @@ namespace Rokk.Playwright.ScenParts
 {
     public class FactionForcedGoodwill : FactionGoodwill
     {
-        protected override List<FactionDef> GetAllowedFactions()
-        {
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer)
-                .ToList();
-        }
-
         public override string Summary(Scenario scen)
         {
             return "Playwright.ScenParts.FactionForcedGoodwill.Summary".Translate(FactionToAffect.label, Goodwill);

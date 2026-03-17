@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Components.Factions
@@ -52,6 +53,21 @@ namespace Rokk.Playwright.Components.Factions
         /// Useful for placeholder factions that should always go last, for example.
         /// </summary>
         public virtual int SortOrder => 0;
+
+        /// <summary>
+        /// Render the UI for the settings in your component.
+        /// If your component doesn't have any extra settings, you don't have to override this.
+        /// If your component has settings, ensure you set <see cref="SettingsHeight"/>.
+        /// </summary>
+        /// <param name="inRect">The <see cref="Rect"/> that your settings will be rendered inside of.</param>
+        /// <param name="relationKind">
+        /// The <see cref="FactionRelationKind"/> that the player is currently configuring.
+        /// Can be used to disallow certain factions outside of the Enemies list, for instance.
+        /// </param>
+        public virtual void DoSettingsContents(Rect inRect, FactionRelationKind relationKind)
+        {
+
+        }
 
         public static List<FactionComponent> GetAvailableFactions()
         {

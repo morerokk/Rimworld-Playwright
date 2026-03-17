@@ -15,15 +15,6 @@ namespace Rokk.Playwright.ScenParts
         protected override int MinGoodwill => -200;
         protected override int MaxGoodwill => 200;
 
-        protected override List<FactionDef> GetAllowedFactions()
-        {
-            // Hidden factions not selectable. You probably don't want natural goodwill with hidden factions,
-            // that's more of a Forced Goodwill thing.
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer && !def.hidden)
-                .ToList();
-        }
-
         public override string Summary(Scenario scen)
         {
             return "Playwright.ScenParts.FactionNaturalGoodwill.Summary".Translate(FactionToAffect.label, Goodwill);

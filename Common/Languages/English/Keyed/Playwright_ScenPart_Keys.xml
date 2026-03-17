@@ -26,7 +26,7 @@ This will not add Psylinks. For that, use the "Forced Health Condition" part.</P
  <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Starting colonists have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
  <Playwright.ScenParts.FactionGoodwill.Faction>Faction</Playwright.ScenParts.FactionGoodwill.Faction>
- <Playwright.ScenParts.FactionGoodwill.StartingGoodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.StartingGoodwill>
+ <Playwright.ScenParts.FactionGoodwill.Goodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.Goodwill>
  
  <Playwright.ScenParts.FactionNaturalGoodwill>Set faction natural goodwill</Playwright.ScenParts.FactionNaturalGoodwill>
  <Playwright.ScenParts.FactionNaturalGoodwill.Help>Change a faction's natural goodwill to a specified amount.

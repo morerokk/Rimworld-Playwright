@@ -24,6 +24,7 @@ namespace Rokk.Playwright.UI
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
         private Color PanelBGColor => Widgets.MenuSectionBGFillColor;
+        private Color PanelSelectionsBGColor => Widgets.HighlightStrongBgColor;
         private float PanelContentMargin => 5f;
 
         private float OptionHeight => 50f;
@@ -75,6 +76,12 @@ namespace Rokk.Playwright.UI
                     break;
                 case Tabs.Factions:
                     DrawFactions(tabContentRect);
+                    break;
+                case Tabs.WinConditions:
+                    DrawWinConditions(tabContentRect);
+                    break;
+                case Tabs.SpecialConditions:
+                    DrawSpecialConditions(tabContentRect);
                     break;
             }
 
@@ -377,11 +384,21 @@ namespace Rokk.Playwright.UI
 
                 if (faction.SettingsHeight > 0f)
                 {
-                    faction.DoSettingsContents(factionListing.GetRect(faction.SettingsHeight));
+                    faction.DoSettingsContents(factionListing.GetRect(faction.SettingsHeight), relationKind);
                 }
 
                 factionListing.GapLine(ListMargin);
             }
+        }
+
+        private void DrawWinConditions(Rect contentRect)
+        {
+            
+        }
+
+        private void DrawSpecialConditions(Rect contentRect)
+        {
+
         }
 
         private void DrawButtonBar(Rect contentRect)
@@ -463,7 +480,7 @@ namespace Rokk.Playwright.UI
             Boons,
             Factions,
             WinConditions,
-            Special
+            SpecialConditions
         }
     }
 }

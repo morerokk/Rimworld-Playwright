@@ -80,11 +80,16 @@ namespace Rokk.Playwright.Components.Origins
 
         /// <summary>
         /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.
-        /// This is only used for content. For settings, use <see cref="PlaywrightComponent.DoSettingsContents"/>.
+        /// This is only used for content. For settings, use <see cref="OriginComponent.DoSettingsContents"/>.
         /// </summary>
         /// <param name="listing">The <see cref="Listing_Standard"/> that the UI is drawing in.</param>
         /// <param name="inRect">The whole <see cref="Rect"/> that the Origin UI is drawing in. Spans the whole origin box, not just the listing contents, be careful!</param>
         public virtual void DoAdditionalContents(Listing_Standard listing, Rect inRect)
+        {
+
+        }
+
+        public virtual void DoSettingsContents(Rect inRect)
         {
 
         }

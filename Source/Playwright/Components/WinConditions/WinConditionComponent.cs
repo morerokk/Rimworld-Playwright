@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Rokk.Playwright.Components.WinConditions
 {
@@ -13,6 +14,9 @@ namespace Rokk.Playwright.Components.WinConditions
     /// </summary>
     public abstract class WinConditionComponent : PlaywrightComponent
     {
+        public virtual void DoSettingsContents(Rect inRect)
+        {
 
+        }
     }
 }

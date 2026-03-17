@@ -74,17 +74,6 @@ namespace Rokk.Playwright.Components
         }
 
         /// <summary>
-        /// Render the UI for the settings in your component.
-        /// If your component doesn't have any extra settings, you don't have to override this.
-        /// If your component has settings, ensure you set <see cref="SettingsHeight"/>.
-        /// </summary>
-        /// <param name="inRect">The <see cref="Rect"/> that your settings will be rendered inside of.</param>
-        public virtual void DoSettingsContents(Rect inRect)
-        {
-
-        }
-
-        /// <summary>
         /// <see cref="IExposable"/>, needed to serialize the Playwright structure with Scribe.
         /// If your component doesn't have any extra settings, you don't have to override this.
         /// If your component has settings, ensure you call <see cref="Scribe_Values"/> etc. on them.

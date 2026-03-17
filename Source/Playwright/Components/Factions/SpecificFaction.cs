@@ -25,25 +25,30 @@ namespace Rokk.Playwright.Components.Factions
         public FactionDef Faction;
 
         public override FactionDef FactionDef => Faction;
+        // Permanent enemies are permanent enemies, checkbox doesn't apply
+        public override bool AllowForcedDisposition => FactionDef != null ? !FactionDef.permanentEnemy : true;
 
         // Since this is a non-specific faction, you are allowed to add multiple.
-        // However, the same faction may still not be added twice.
         public override int MaxInGroup => int.MaxValue;
         public override int MaxTotal => int.MaxValue;
 
         // Settings
-        protected virtual List<FactionDef> GetAllowedFactions()
+        protected virtual List<FactionDef> GetAllowedFactions(FactionRelationKind? relationKind = null)
         {
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer)
-                .ToList();
+            var factions = DefDatabase<FactionDef>.AllDefsListForReading
+                .Where(def => !def.isPlayer && !def.hidden);
+            if (relationKind != null && relationKind != FactionRelationKind.Hostile)
+            {
+                factions = factions.Where(def => !def.permanentEnemy);
+            }
+            return factions.ToList();
         }
 
         public override float SettingsHeight => 100f;
 
         protected string FactionLabelText => Faction != null ? Faction.LabelCap.ToString() : "Playwright.Components.Factions.Specific.Faction.Select".Translate().ToString();
 
-        public override void DoSettingsContents(Rect inRect)
+        public override void DoSettingsContents(Rect inRect, FactionRelationKind relationKind)
         {
             Rect currentRect = new Rect(inRect);
 
@@ -56,21 +61,24 @@ namespace Rokk.Playwright.Components.Factions
             if (Widgets.ButtonText(buttonRect, FactionLabelText))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();
-                List<FactionDef> allowedFactions = GetAllowedFactions();
+                List<FactionDef> allowedFactions = GetAllowedFactions(relationKind);
                 foreach (FactionDef factionDef in allowedFactions)
                 {
-                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef));
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
 
-            // Is forced
-            Rect checkboxRect = new Rect(buttonRect);
-            checkboxRect.y += checkboxRect.height;
-            Widgets.CheckboxLabeled(checkboxRect, "Playwright.Components.Faction.Specific.ForcedDisposition".Translate(), ref ForceDisposition, !AllowForcedDisposition);
-            if (Mouse.IsOver(checkboxRect))
+            if (AllowForcedDisposition)
             {
-                TooltipHandler.TipRegion(checkboxRect, "Playwright.Components.Faction.Specific.ForcedDisposition.Help".Translate());
+                // Is forced
+                Rect checkboxRect = new Rect(buttonRect);
+                checkboxRect.y += checkboxRect.height;
+                Widgets.CheckboxLabeled(checkboxRect, "Playwright.Components.Faction.Specific.ForcedDisposition".Translate(), ref ForceDisposition, !AllowForcedDisposition);
+                if (Mouse.IsOver(checkboxRect))
+                {
+                    TooltipHandler.TipRegion(checkboxRect, "Playwright.Components.Faction.Specific.ForcedDisposition.Help".Translate());
+                }
             }
         }
 

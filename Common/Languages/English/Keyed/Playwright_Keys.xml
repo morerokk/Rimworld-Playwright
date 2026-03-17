@@ -31,7 +31,7 @@
  <Playwright.Tabs.Boons>Boons</Playwright.Tabs.Boons>
  <Playwright.Tabs.Factions>Factions</Playwright.Tabs.Factions>
  <Playwright.Tabs.WinConditions>Win Conditions</Playwright.Tabs.WinConditions>
- <Playwright.Tabs.Special>Special</Playwright.Tabs.Special>
+ <Playwright.Tabs.SpecialConditions>Special</Playwright.Tabs.SpecialConditions>
 
  <Playwright.Components.EnablesLockedWinCondition>Enables win conditions:</Playwright.Components.EnablesLockedWinCondition>
  <Playwright.Components.EnablesLockedSpecial>Enables special:</Playwright.Components.EnablesLockedSpecial>
@@ -62,7 +62,7 @@
 - Start with 3 melee weapons and 2 bows.
 - Start with some basic supplies.
 - Start with 3 random pets.
-- Random wood is scattered around the map.</Playwright.Components.Origins.Tribal.Summary>
+- Wood is scattered around the map.</Playwright.Components.Origins.Tribal.Summary>
  <Playwright.Components.Origins.Tribal.SuggestedIdeo>Tribal</Playwright.Components.Origins.Tribal.SuggestedIdeo>
  
  <Playwright.Components.Origins.RichExplorer>Rich Explorer</Playwright.Components.Origins.RichExplorer>
@@ -91,8 +91,7 @@
 - Every colonist starts with a Level 1 Psylink.
 - You are Allied with the Empire by default.
 - You are Enemies with Deserters by default (VFE Deserters only).
-- Start with some basic supplies.
-- Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Empire.Summary>
+- Start with some basic supplies.</Playwright.Components.Origins.Empire.Summary>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
  
 
@@ -129,7 +128,7 @@
  <Playwright.Components.WinCondition>Win Condition</Playwright.Components.WinCondition>
  <Playwright.Components.WinConditions>Win Conditions</Playwright.Components.WinConditions>
  
- <Playwright.Components.WinConditions.Escape>Escape</Playwright.Components.WinConditions.Escape>
+ <Playwright.Components.WinConditions.Escape>Ship to the Stars</Playwright.Components.WinConditions.Escape>
  <Playwright.Components.WinConditions.Escape.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or you can perhaps procure a way out from the locals. You win when at least 1 colonist escapes the planet. The default experience.</Playwright.Components.WinConditions.Escape.Description>
  
  <Playwright.Components.WinConditions.Archonexus>Archonexus</Playwright.Components.WinConditions.Archonexus>
@@ -139,12 +138,12 @@
  <Playwright.Components.WinConditions.Monolith.Description>Work your way up into Metal Hell, and choose to embrace the void or sever its connection with the world. The default Anomaly experience.</Playwright.Components.WinConditions.Monolith.Description>
  
  <Playwright.Components.WinConditions.Conquest>Conquest</Playwright.Components.WinConditions.Conquest>
- <Playwright.Components.WinConditions.Conquest.Description>Ally with or destroy every possible faction on the planet. Factions without bases (such as Mechanoids or Insectoids) are not counted. You win when the only remaining settlements on the map are owned by either you, or an allied faction.</Playwright.Components.WinConditions.Conquest.Description>
+ <Playwright.Components.WinConditions.Conquest.Description>Ally with or destroy every possible faction on the planet. Factions without settlements (such as Mechanoids or Insectoids) are not counted. You win when the only remaining settlements on the map are owned by either you, or an allied faction.</Playwright.Components.WinConditions.Conquest.Description>
  
  <Playwright.Components.WinConditions.Colony>Colony</Playwright.Components.WinConditions.Colony>
  <Playwright.Components.WinConditions.Colony.Description>Have a certain number of colonists. Temporary colonists (from quests or otherwise) are not counted. You win when your permanent colonist count equals or exceeds the goal. (Mind the potential lag when setting the goal)</Playwright.Components.WinConditions.Colony.Description>
  
  <Playwright.Components.WinConditions.RoyalTitle>Royal Council</Playwright.Components.WinConditions.RoyalTitle>
- <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>
+ <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>
 
 </LanguageData>

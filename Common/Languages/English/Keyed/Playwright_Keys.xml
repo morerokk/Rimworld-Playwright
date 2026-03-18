@@ -103,6 +103,10 @@
  <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.Description>
  <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle</Playwright.Components.Boons.Shuttle.Summary>
  
+ <Playwright.Components.Boons.BionicArm>Bionic Arms</Playwright.Components.Boons.BionicArm>
+ <Playwright.Components.Boons.BionicArm.Description>Each starting colonist has a Bionic Arm implanted on a random side.</Playwright.Components.Boons.BionicArm.Description>
+ <Playwright.Components.Boons.BionicArm.Summary>Starting colonists have a Bionic Arm implant.</Playwright.Components.Boons.BionicArm.Summary>
+ 
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->
  <Playwright.Tabs.Factions.Allies>Allies</Playwright.Tabs.Factions.Allies>

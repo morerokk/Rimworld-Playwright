@@ -35,15 +35,18 @@ namespace Rokk.Playwright.Components.Boons
 
         public static List<BoonComponent> GetAvailableBoons()
         {
-            var list = new List<BoonComponent>();
+            List<BoonComponent> boons = new List<BoonComponent>()
+            {
+                new BionicArmBoon()
+            };
 
             BoonComponent shuttleBoon = new ShuttleBoon();
             if (shuttleBoon.IsAvailable)
             {
-                list.Add(shuttleBoon);
+                boons.Add(shuttleBoon);
             }
 
-            return list;
+            return boons;
         }
     }
 }

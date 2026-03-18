@@ -23,7 +23,7 @@ namespace Rokk.Playwright.Components.Origins
             // TODO: What if mods use xpath stuff to add new things to the default scenarios? Should we still load the default scenarios anyway where it applies?
 
             // Start with cryptosleep sickness
-            scenarioParts.Add(ScenPartUtility.MakeForcedHediffPart(HediffDefOf.CryptosleepSickness, PawnGenerationContext.PlayerStarter, 0.5f, new FloatRange(1f, 1f)));
+            scenarioParts.Add(ScenPartUtility.MakeForcedHediffPart(RimWorld.HediffDefOf.CryptosleepSickness, PawnGenerationContext.PlayerStarter, 0.5f, new FloatRange(1f, 1f)));
 
             // Start with a bunch of stuff
             scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(RimWorld.ThingDefOf.Silver, null, 800));

@@ -16,6 +16,10 @@ namespace Rokk.Playwright.Components.Origins
     {
         public override string Id => "Origins.Empire";
         public override bool IsAvailable => ModsConfig.RoyaltyActive;
+        public override PlayerPawnsArriveMethod? ArrivalMethod => PlayerPawnsArriveMethod.DropPods;
+        public override FactionDef PlayerFaction => FactionDefOf.PlayerColony;
+        public override int? StartingColonistsSelectable => 5;
+        public override int? StartingColonistsTotal => 11;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {

@@ -6,7 +6,7 @@
  <Playwright.ScenParts.StartWithHonor.Faction>Faction</Playwright.ScenParts.StartWithHonor.Faction>
  <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
  <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
- <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the Empire.
+ <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the chosen faction.
  
 "Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
  
@@ -21,7 +21,7 @@ Archon: 65
 
 Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.
 
-This will not add Psylinks. For that, use the "Forced Health Condition" part.</Playwright.ScenParts.StartWithHonor.Help>
+This will not add Psylinks. For that, use the "Forced Psylink Level" part.</Playwright.ScenParts.StartWithHonor.Help>
  <Playwright.ScenParts.StartWithHonor.Summary>Player starting characters have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
  <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Player starting characters have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
@@ -67,12 +67,16 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  <Playwright.ScenParts.NoFactionsExcept.Factions>Factions:</Playwright.ScenParts.NoFactionsExcept.Factions>
  <Playwright.ScenParts.NoNeutralFactionsExcept.Help>Deselects all neutral factions on the world generation screen, except the selected ones.
 
-This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.</Playwright.ScenParts.NoNeutralFactionsExcept.Help>
+This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.
+
+Hidden factions are unaffected.</Playwright.ScenParts.NoNeutralFactionsExcept.Help>
  <Playwright.ScenParts.NoNeutralFactionsExcept.Summary>All neutral factions are deselected by default.</Playwright.ScenParts.NoNeutralFactionsExcept.Summary>
  <Playwright.ScenParts.NoNeutralFactionsExcept.SummaryIntro>All neutral factions are deselected by default, except for</Playwright.ScenParts.NoNeutralFactionsExcept.SummaryIntro>
  <Playwright.ScenParts.NoHostileFactionsExcept.Help>Deselects all enemy factions on the world generation screen, except the selected ones.
 
-This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.</Playwright.ScenParts.NoHostileFactionsExcept.Help>
+This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.
+
+Hidden factions are unaffected.</Playwright.ScenParts.NoHostileFactionsExcept.Help>
  <Playwright.ScenParts.NoHostileFactionsExcept.Summary>All hostile factions are deselected by default.</Playwright.ScenParts.NoHostileFactionsExcept.Summary>
  <Playwright.ScenParts.NoHostileFactionsExcept.SummaryIntro>All hostile factions are deselected by default, except for</Playwright.ScenParts.NoHostileFactionsExcept.SummaryIntro>
  
@@ -81,15 +85,17 @@ This is purely a convenience feature, as you can do the same thing manually on t
  <Playwright.ScenParts.RemoveFaction.Faction>Faction</Playwright.ScenParts.RemoveFaction.Faction>
  <Playwright.ScenParts.RemoveFaction.Help>Deselects a specific faction on the world generation screen.
 
-This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.</Playwright.ScenParts.RemoveFaction.Help>
+This is purely a convenience feature, as you can do the same thing manually on the faction select screen. You can still re-add them manually.
+
+Hidden factions are not selectable.</Playwright.ScenParts.RemoveFaction.Help>
 
  <Playwright.ScenParts.DisableShipStartup>Disable ship startup</Playwright.ScenParts.DisableShipStartup>
  <Playwright.ScenParts.DisableShipStartup.Summary>Ship startup sequence is disabled.</Playwright.ScenParts.DisableShipStartup.Summary>
  <Playwright.ScenParts.DisableShipStartup.Help>Prevents you from starting a ship's startup sequence, both for your own starship and the Journey Offer.
 
-The ship can still be researched and built, but it cannot be started, meaning you cannot use it to leave the planet.
+The ship can still be researched and built, but it cannot be started, meaning you cannot use it to leave the planet. You may also want to add a Disable Incident part to disable the Journey Offer.
 
-Gravships are unaffected, this is exclusively for ships to the stars with the 15-day reactor startup sequence.</Playwright.ScenParts.DisableShipStartup.Help>
+Gravships are unaffected, this is exclusively for ships to the stars (the ones that have the 15-day reactor startup sequence).</Playwright.ScenParts.DisableShipStartup.Help>
 
  <Playwright.ScenParts.ForcedPsylinkLevel>Forced psylink level</Playwright.ScenParts.ForcedPsylinkLevel>
  <Playwright.ScenParts.ForcedPsylinkLevel.Help>Force the selected pawns to have a psylink level.</Playwright.ScenParts.ForcedPsylinkLevel.Help>

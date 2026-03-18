@@ -108,7 +108,7 @@ namespace Rokk.Playwright.Composer
                 .Where(f => f.FactionDef != null)
                 .ToList();
 
-            foreach(FactionComponent allyFaction in allyFactions)
+            foreach (FactionComponent allyFaction in allyFactions)
             {
                 if (allyFaction.AllowForcedDisposition && allyFaction.ForceDisposition)
                 {
@@ -183,6 +183,14 @@ namespace Rokk.Playwright.Composer
             }
         }
 
+        /*
+        public static Scenario GenerateDefaultishScenario()
+        {
+            return ScenarioDefOf.Crashlanded.scenario;
+        }
+        */
+
+        /*
         private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
         {
             // The below is mostly taken from ScenarioMaker.GenerateNewRandomScenario(),
@@ -256,6 +264,89 @@ namespace Rokk.Playwright.Composer
                     zoomMode = LayerConnection.ZoomMode.ZoomIn
                 });
             }
+
+            return scenario;
+        }
+        */
+        private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
+        {
+            Scenario scenario = null;
+            OriginComponent origin = playwright.Origin;
+            if (origin.BasedOnScenario != null)
+            {
+                scenario = origin.BasedOnScenario.scenario.CopyForEditing();
+            }
+            else
+            {
+                scenario = GenerateDefaultishScenario();
+            }
+
+            if (scenario == null)
+            {
+                throw new PlaywrightBuilderException($"Unable to get a base scenario from the selected Playwright's origin. Origin was '{origin.Id}'.", playwright);
+            }
+
+            scenario.Category = ScenarioCategory.CustomLocal;
+            scenario.name = "Playwright.ScenarioNamePrefix".Translate() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
+            scenario.description = origin.DescriptionTranslated;
+            scenario.summary = origin.DescriptionShortTranslated;
+
+            FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
+            List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
+
+            // Set player faction
+            if (origin.PlayerFaction != null)
+            {
+                FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
+                ScenPart_PlayerFaction playerFactionPart = (ScenPart_PlayerFaction)playerFactionInfo.GetValue(scenario);
+
+                FieldInfo playerFactionPartFactionInfo = AccessTools.Field(typeof(ScenPart_PlayerFaction), "factionDef");
+                playerFactionPartFactionInfo.SetValue(playerFactionPart, origin.PlayerFaction);
+            }
+
+            // Selectable pawn count (3 out of 8, etc)
+            if (origin.StartingColonistsSelectable != null || origin.StartingColonistsTotal != null)
+            {
+                ScenPart_ConfigPage_ConfigureStartingPawns startingPawnsConfigurePart = (ScenPart_ConfigPage_ConfigureStartingPawns)parts
+                    .First(p => p.def == ScenPartDefOf.ConfigPage_ConfigureStartingPawns);
+                if (origin.StartingColonistsSelectable != null)
+                {
+                    startingPawnsConfigurePart.pawnCount = origin.StartingColonistsSelectable.Value;
+                }
+                if (origin.StartingColonistsTotal != null)
+                {
+                    startingPawnsConfigurePart.pawnChoiceCount = origin.StartingColonistsTotal.Value;
+                }
+            }
+
+            // Arrival method (Crashland in pods, be already standing, gravship, etc)
+            if (origin.ArrivalMethod != null)
+            {
+                ScenPart_PlayerPawnsArriveMethod pawnArriveMethodPart = (ScenPart_PlayerPawnsArriveMethod)parts
+                    .First(part => part.def == ScenPartDefOf.PlayerPawnsArriveMethod);
+
+                FieldInfo arrivalMethodInfo = AccessTools.Field(typeof(ScenPart_PlayerPawnsArriveMethod), "method");
+                arrivalMethodInfo.SetValue(pawnArriveMethodPart, origin.ArrivalMethod.Value);
+            }
+
+            return scenario;
+        }
+
+        /// <summary>
+        /// Generate a barebones "default-ish" Scenario.
+        /// This scenario is based on Naked Brutality, but without the naked or no possessions parts.
+        /// </summary>
+        public static Scenario GenerateDefaultishScenario()
+        {
+            Scenario scenario = DefOfs.ScenarioDefOf.NakedBrutality.scenario.CopyForEditing();
+
+            FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
+            List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
+
+            parts.RemoveAll(part =>
+                part.def == DefOfs.ScenPartDefOf.Naked
+                || part.def == DefOfs.ScenPartDefOf.NoPossessions
+            );
 
             return scenario;
         }

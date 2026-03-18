@@ -39,13 +39,12 @@ namespace Rokk.Playwright.ScenParts
                 List<FactionDef> allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
-                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToStartWithHonorFor = factionDef));
+                    floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToStartWithHonorFor = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
             }
 
-            helper.Skip(1);
-
+            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.Honor".Translate());
             Widgets.IntEntry(helper.NextRect(), ref StartingHonor, ref StartingHonorBuffer);
             if (StartingHonor < 0)
             {

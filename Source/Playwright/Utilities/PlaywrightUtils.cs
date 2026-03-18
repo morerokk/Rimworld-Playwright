@@ -38,5 +38,18 @@ namespace Rokk.Playwright.Utilities
             }
             return text;
         }
+
+        /// <summary>
+        /// Get just the scenario's summary (without leading description).
+        /// </summary>
+        public static string GetScenarioSummary(Scenario scenario)
+        {
+            string fullText = scenario.GetFullInformationText();
+            if (fullText.StartsWith(scenario.description))
+            {
+                return fullText.Substring(scenario.description.Length).TrimStart();
+            }
+            return fullText;
+        }
     }
 }

@@ -36,34 +36,10 @@ namespace Rokk.Playwright.Components
         /// </summary>
         public virtual float SettingsHeight => 0f;
 
-        public virtual string Name
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id);
-            }
-        }
-        public virtual string Description
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id + ".Description");
-            }
-        }
-        public virtual string NameTranslated
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id).Translate();
-            }
-        }
-        public virtual string DescriptionTranslated
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id + ".Description").Translate();
-            }
-        }
+        public virtual string Name => "Playwright.Components." + this.Id;
+        public virtual string Description => "Playwright.Components." + this.Id + ".Description";
+        public virtual string NameTranslated => Name.Translate();
+        public virtual string DescriptionTranslated => Description.Translate();
 
         /// <summary>
         /// Mutate the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part).

@@ -178,7 +178,7 @@ namespace Rokk.Playwright.ScenParts
             this.AddHediff(p);
         }
 
-        private void AddHediff(Pawn pawn)
+        protected virtual void AddHediff(Pawn pawn)
         {
             // Oh my god this is ass, should I just have gone for a scenario part that pre-applies a surgery?
             if (pawn == null || pawn.health == null || Hediff == null)

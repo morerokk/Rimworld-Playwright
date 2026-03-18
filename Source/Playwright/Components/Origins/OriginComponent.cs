@@ -1,5 +1,7 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.Composer;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,70 +15,48 @@ namespace Rokk.Playwright.Components.Origins
     public abstract class OriginComponent : PlaywrightComponent
     {
         /// <summary>
-        /// How many colonists you can select at the start screen to take with you
+        /// The scenario that this origin uses as a base to copy everything from.
+        /// Defaults to null, which results in a "default-ish" scenario (Naked Brutality, but without the naked/no possessions part).
         /// </summary>
-        public virtual int StartingColonistsSelectable => 3;
+        public virtual ScenarioDef BasedOnScenario => null;
         /// <summary>
-        /// How many colonist choices are available to you total
+        /// How many colonists you can select at the start screen to take with you.
+        /// If null, uses the one from <see cref="BasedOnScenario"/>.
         /// </summary>
-        public virtual int StartingColonistsTotal => 8;
+        public virtual int? StartingColonistsSelectable => null;
         /// <summary>
-        /// How your colonists arrive on the planet
+        /// How many colonist choices are available to you total.
+        /// If null, uses the one from <see cref="BasedOnScenario"/>.
         /// </summary>
-        public virtual PlayerPawnsArriveMethod ArrivalMethod => PlayerPawnsArriveMethod.DropPods;
+        public virtual int? StartingColonistsTotal => null;
         /// <summary>
-        /// What the starting faction of the player is when they start the scenario (new arrivals, new tribe etc)
+        /// How your colonists arrive on the planet.
+        /// If null, uses the one from <see cref="BasedOnScenario"/>.
         /// </summary>
-        public virtual FactionDef PlayerFaction => FactionDefOf.PlayerColony;
+        public virtual PlayerPawnsArriveMethod? ArrivalMethod => null;
+        /// <summary>
+        /// What the starting faction of the player is when they start the scenario (new arrivals, new tribe etc).
+        /// If null, uses the one from <see cref="BasedOnScenario"/>.
+        /// </summary>
+        public virtual FactionDef PlayerFaction => null;
 
-        // Summary is used for summarizing the starting conditions (start with X, you're enemies with Y, etc)
-        public virtual string Summary
-        {
-            get
-            {
-                return "Playwright.Components." + this.Id + ".Summary";
-            }
-        }
-        public virtual string SummaryTranslated
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id + ".Summary").Translate();
-            }
-        }
+        public override string Description => BasedOnScenario != null ? "-" : base.Description;
+        public override string DescriptionTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.description : base.DescriptionTranslated;
 
-        public virtual string SuggestedIdeo
-        {
-            get
-            {
-                return "Playwright.Components." + this.Id + ".SuggestedIdeo";
-            }
-        }
+        /// <summary>
+        /// Summary is used for summarizing the starting conditions (start with X, you're enemies with Y, etc).
+        /// Not every Origin is based on an existing scenario, so for that to work, you will have to provide a summary text.
+        /// </summary>
+        public virtual string SummaryTranslated => BasedOnScenario != null ? PlaywrightUtils.GetScenarioSummary(BasedOnScenario.scenario) : ("Playwright.Components." + this.Id + ".Summary").Translate().ToString();
 
-        public virtual string SuggestedIdeoTranslated
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id + ".SuggestedIdeo").Translate();
-            }
-        }
+        public virtual string SuggestedIdeo => "Playwright.Components." + this.Id + ".SuggestedIdeo";
+        public virtual string SuggestedIdeoTranslated => SuggestedIdeo.Translate();
 
-        // DescriptionShort is used for the Scenario's tagline underneath the name.
-        public virtual string DescriptionShort
-        {
-            get
-            {
-                return "Playwright.Components." + this.Id + ".Description.Short";
-            }
-        }
-
-        public virtual string DescriptionShortTranslated
-        {
-            get
-            {
-                return ("Playwright.Components." + this.Id + ".Description.Short").Translate();
-            }
-        }
+        /// <summary>
+        /// Used for the Scenario's tagline underneath the name.
+        /// If null, the base scenario's tagline is used.
+        /// </summary>
+        public virtual string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
 
         /// <summary>
         /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.

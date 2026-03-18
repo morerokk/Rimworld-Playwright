@@ -94,5 +94,13 @@ Gravships are unaffected, this is exclusively for ships to the stars with the 15
  <Playwright.ScenParts.ForcedPsylinkLevel>Forced psylink level</Playwright.ScenParts.ForcedPsylinkLevel>
  <Playwright.ScenParts.ForcedPsylinkLevel.Help>Force the selected pawns to have a psylink level.</Playwright.ScenParts.ForcedPsylinkLevel.Help>
  <Playwright.ScenParts.ForcedPsylinkLevel.Summary>{0} have a {1} chance to start with a Level {2} Psylink.</Playwright.ScenParts.ForcedPsylinkLevel.Summary>
+ 
+ <Playwright.ScenParts.ForcedImplant>Forced implant</Playwright.ScenParts.ForcedImplant>
+ <Playwright.ScenParts.ForcedImplant.Side>Side</Playwright.ScenParts.ForcedImplant.Side>
+ <Playwright.ScenParts.ForcedImplant.Left>Left</Playwright.ScenParts.ForcedImplant.Left>
+ <Playwright.ScenParts.ForcedImplant.Right>Right</Playwright.ScenParts.ForcedImplant.Right>
+ <Playwright.ScenParts.ForcedImplant.Random>Random</Playwright.ScenParts.ForcedImplant.Random>
+ <Playwright.ScenParts.ForcedImplant.Help>Force the selected pawns to have an implant (such as a bionic limb).</Playwright.ScenParts.ForcedImplant.Help>
+ <Playwright.ScenParts.ForcedImplant.Summary>{0} have a {1} chance to have a {2} implant.</Playwright.ScenParts.ForcedImplant.Summary>
 
 </LanguageData>

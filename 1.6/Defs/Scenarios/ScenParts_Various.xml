@@ -102,4 +102,13 @@
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>459</summaryPriority>
   </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_ForcedImplant</defName>
+    <label>forced implant</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.ForcedImplant</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>459</summaryPriority>
+  </ScenPartDef>
 </Defs>

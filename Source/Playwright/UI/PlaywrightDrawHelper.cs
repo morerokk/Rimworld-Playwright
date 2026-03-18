@@ -50,5 +50,10 @@ namespace Rokk.Playwright.UI
             drawRect.y = contentRect.y + margin;
             return Widgets.ButtonImage(drawRect, tex);
         }
+
+        public static void DrawBottomLine(Rect inRect, Color color, float width)
+        {
+            Widgets.DrawLine(new Vector2(inRect.x, inRect.y + inRect.height), new Vector2(inRect.x + inRect.width, inRect.y + inRect.height), color, width);
+        }
     }
 }

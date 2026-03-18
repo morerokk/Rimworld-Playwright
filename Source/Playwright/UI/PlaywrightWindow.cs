@@ -24,7 +24,7 @@ namespace Rokk.Playwright.UI
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
         private Color PanelBGColor => Widgets.MenuSectionBGFillColor;
-        private Color PanelSelectionsBGColor => Widgets.HighlightStrongBgColor;
+        private Color PanelSelectionsBGColor => Widgets.WindowBGFillColor;
         private float PanelContentMargin => 5f;
 
         private float OptionHeight => 50f;
@@ -172,11 +172,10 @@ namespace Rokk.Playwright.UI
 
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
-            //originRect.height -= (currentWelcomeRect.y - welcomeRect.y);
             originRect.width *= 0.75f;
             originRect.width -= Margin;
             originRect.x += originList.width + Margin;
-            Widgets.DrawBoxSolidWithOutline(originRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Widgets.DrawBoxSolidWithOutline(originRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
             originRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
             originRect.width += Margin * 0.5f;
 
@@ -211,7 +210,8 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private Vector2 BoonsScrollPosition = Vector2.zero;
+        private Vector2 AvailableBoonsScrollPosition = Vector2.zero;
+        private Vector2 SelectedBoonsScrollPosition = Vector2.zero;
         private void DrawBoons(Rect contentRect)
         {
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
@@ -239,7 +239,7 @@ namespace Rokk.Playwright.UI
             availableBoonsRectInner.width -= Margin;
             selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
 
-            Widgets.BeginScrollView(availableBoonsRect, ref BoonsScrollPosition, availableBoonsRectInner);
+            Widgets.BeginScrollView(availableBoonsRect, ref AvailableBoonsScrollPosition, availableBoonsRectInner);
             Listing_Standard availableBoonsListing = new Listing_Standard();
             availableBoonsListing.Begin(availableBoonsRectInner);
 
@@ -263,9 +263,13 @@ namespace Rokk.Playwright.UI
             availableBoonsListing.End();
             Widgets.EndScrollView();
 
-            Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Rect selectedBoonsRectInner = new Rect(selectedBoonsRect);
+            selectedBoonsRectInner.width -= Margin;
+            selectedBoonsRectInner.height = selectedBoons.Sum(b => b.ContentHeight + b.SettingsHeight) + Margin;
+            Widgets.BeginScrollView(selectedBoonsRect, ref SelectedBoonsScrollPosition, selectedBoonsRectInner);
             Listing_Standard selectedBoonsListing = new Listing_Standard();
-            selectedBoonsListing.Begin(selectedBoonsRect);
+            selectedBoonsListing.Begin(selectedBoonsRectInner);
 
             foreach (BoonComponent boon in selectedBoons.ToList())
             {
@@ -277,10 +281,11 @@ namespace Rokk.Playwright.UI
                     selectedBoons.Remove(boon);
                     RemoveSound();
                 }
-
+                PlaywrightDrawHelper.DrawBottomLine(boonContentRect, PanelOutlineColor, PanelOutlineWidth);
             }
 
             selectedBoonsListing.End();
+            Widgets.EndScrollView();
         }
 
         Vector2 AlliesScrollPosition = Vector2.zero;

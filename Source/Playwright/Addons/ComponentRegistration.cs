@@ -55,7 +55,7 @@ namespace Rokk.Playwright.Addons
         /// <summary>
         /// Register a new Win Condition to be usable in Playwright.
         /// </summary>
-        public static void RegisterWinConditions(WinConditionComponent winCondition)
+        public static void RegisterWinCondition(WinConditionComponent winCondition)
         {
             RegisteredWinConditions.Add(winCondition);
         }

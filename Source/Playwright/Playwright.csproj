@@ -64,11 +64,13 @@
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Exceptions\PlaywrightBuilderException.cs" />
     <Compile Include="PatchCheckers\FactionPatchChecker.cs" />
+    <Compile Include="PatchCheckers\WinConditionPatchChecker.cs" />
     <Compile Include="Patches\FactionPatches.cs" />
     <Compile Include="Patches\GamePatches.cs" />
     <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />
     <Compile Include="Patches\OptionListingUtilityPatches.cs" />
     <Compile Include="Patches\Page_CreateWorldParamsPatches.cs" />
+    <Compile Include="Patches\ShipUtilityPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />

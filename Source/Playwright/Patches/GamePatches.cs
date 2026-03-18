@@ -20,6 +20,7 @@ namespace Rokk.Playwright.Patches
             // On new game/game load, un-apply them if necessary and check if they should be re-applied.
             // This way, we run as little of our code as possible, only enough to make the player's current ScenParts work.
             FactionPatchChecker.CheckPatchFactionGoodwill();
+            WinConditionPatchChecker.CheckPatchShipStartup();
         }
     }
 
@@ -30,6 +31,7 @@ namespace Rokk.Playwright.Patches
         static void Prefix()
         {
             FactionPatchChecker.CheckPatchFactionGoodwill();
+            WinConditionPatchChecker.CheckPatchShipStartup();
         }
     }
 }

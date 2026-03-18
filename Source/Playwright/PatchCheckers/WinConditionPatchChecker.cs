@@ -1,0 +1,58 @@
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Verse;
+
+namespace Rokk.Playwright.PatchCheckers
+{
+    public static class WinConditionPatchChecker
+    {
+        internal const string ShipStartupCategory = "Playwright.ShipStartup";
+        internal static bool ShipStartupPatched = false;
+
+        internal static void CheckPatchShipStartup()
+        {
+            if (Core.Harmony == null)
+            {
+                return;
+            }
+
+            UnpatchShipStartup();
+
+            Scenario scenario = Find.Scenario;
+            if (scenario == null)
+            {
+                return;
+            }
+
+            if (scenario.AllParts.Any(p => p.def == DefOfs.ScenPartDefOf.Playwright_DisableShipStartup))
+            {
+                PatchShipStartup();
+            }
+        }
+
+        private static void PatchShipStartup()
+        {
+            if (ShipStartupPatched)
+            {
+                return;
+            }
+            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), ShipStartupCategory);
+            ShipStartupPatched = true;
+        }
+
+        private static void UnpatchShipStartup()
+        {
+            if (!ShipStartupPatched)
+            {
+                return;
+            }
+            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), ShipStartupCategory);
+            ShipStartupPatched = false;
+        }
+    }
+}

@@ -20,7 +20,7 @@ namespace Rokk.Playwright.ScenParts
 
         public FloatRange SeverityRange = new FloatRange(1f, 1f);
 
-        private float MaxSeverity
+        protected virtual float MaxSeverity
         {
             get
             {
@@ -69,7 +69,7 @@ namespace Rokk.Playwright.ScenParts
             this.AddHediff(p);
         }
 
-        private void AddHediff(Pawn p)
+        protected virtual void AddHediff(Pawn p)
         {
             BodyPartRecord brainBodyPart = p.health.hediffSet.GetBrain();
             Hediff_Psylink hediff = (Hediff_Psylink)HediffMaker.MakeHediff(this.PsylinkHediff, p, brainBodyPart);

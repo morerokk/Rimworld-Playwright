@@ -32,6 +32,7 @@ namespace Rokk.Playwright.UI
 
         private float ListMargin => 5f;
 
+        private float OriginContentHeight => 550f;
         private float FactionContentHeight => 30f;
 
         public override Vector2 InitialSize => new Vector2(1200, 800);
@@ -127,6 +128,7 @@ namespace Rokk.Playwright.UI
         }
 
         private Vector2 OriginsScrollPos = Vector2.zero;
+        private Vector2 OriginContentScrollPos = Vector2.zero;
         private void DrawOrigin(Rect contentRect)
         {
             List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
@@ -146,7 +148,7 @@ namespace Rokk.Playwright.UI
             var buttonRect = new Rect(originListInner);
             buttonRect.height = OptionHeight;
             buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
-            
+
             foreach (OriginComponent origin in origins)
             {
                 Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
@@ -170,13 +172,18 @@ namespace Rokk.Playwright.UI
 
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
-            originRect.height -= (currentWelcomeRect.y - welcomeRect.y);
+            //originRect.height -= (currentWelcomeRect.y - welcomeRect.y);
             originRect.width *= 0.75f;
             originRect.width -= Margin;
             originRect.x += originList.width + Margin;
             Widgets.DrawBoxSolidWithOutline(originRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+            originRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
+            originRect.width += Margin * 0.5f;
 
-            Rect originContentRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
+            Rect originContentRect = new Rect(originRect);
+            originContentRect.width -= Margin;
+            originContentRect.height = OriginContentHeight + selectedOrigin.AdditionalContentsHeight + selectedOrigin.SettingsHeight;
+            Widgets.BeginScrollView(originRect, ref OriginContentScrollPos, originContentRect);
             Listing_Standard originContentListing = new Listing_Standard();
             originContentListing.Begin(originContentRect);
 
@@ -191,11 +198,17 @@ namespace Rokk.Playwright.UI
                 originContentListing.Gap();
                 originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
             }
-
             originContentListing.Gap();
             selectedOrigin.DoAdditionalContents(originContentListing, originContentRect);
 
+            if (selectedOrigin.SettingsHeight > 0f)
+            {
+                selectedOrigin.DoSettingsContents(originContentListing.GetRect(selectedOrigin.SettingsHeight));
+            }
+
             originContentListing.End();
+
+            Widgets.EndScrollView();
         }
 
         private Vector2 BoonsScrollPosition = Vector2.zero;
@@ -393,7 +406,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawWinConditions(Rect contentRect)
         {
-            
+
         }
 
         private void DrawSpecialConditions(Rect contentRect)

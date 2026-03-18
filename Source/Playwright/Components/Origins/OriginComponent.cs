@@ -59,6 +59,11 @@ namespace Rokk.Playwright.Components.Origins
         public virtual string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
 
         /// <summary>
+        /// Required for drawing additional content. If you use <see cref="DoAdditionalContents"/>, you should increase this number to fit your content.
+        /// </summary>
+        public virtual float AdditionalContentsHeight => 0f;
+
+        /// <summary>
         /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.
         /// This is only used for content. For settings, use <see cref="OriginComponent.DoSettingsContents"/>.
         /// </summary>

@@ -258,5 +258,19 @@ namespace Rokk.Playwright.Utilities
 
             return part;
         }
+
+        public static ForcedImplant MakeForcedImplantPart(HediffDef hediffDef, BodyPartDef bodyPartDef = null, ForcedImplant.ImplantSide? implantSide = null)
+        {
+            if (implantSide == null)
+            {
+                implantSide = ForcedImplant.ImplantSide.Left;
+            }
+
+            ForcedImplant part = (ForcedImplant)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_ForcedImplant);
+            part.Hediff = hediffDef;
+            part.BodyPart = bodyPartDef;
+            part.Side = implantSide.Value;
+            return part;
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Rokk.Playwright.Patches
     // This method is called once, but when it's done, both factions have mutual relations with each other
     // (vanilla method adds the relation in this instance, and in the other instance)
     // Setup initial relations for forced/natural goodwill scenario parts
+    [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryMakeInitialRelationsWith))]
     public class Faction_TryMakeInitialRelationsWithPatches
     {

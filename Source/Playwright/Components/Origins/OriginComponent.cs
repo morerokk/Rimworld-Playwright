@@ -1,5 +1,9 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.Components.Boons;
+using Rokk.Playwright.Components.Factions;
+using Rokk.Playwright.Components.SpecialConditions;
+using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
 using Rokk.Playwright.Utilities;
 using System;
@@ -39,6 +43,13 @@ namespace Rokk.Playwright.Components.Origins
         /// If null, uses the one from <see cref="BasedOnScenario"/>.
         /// </summary>
         public virtual FactionDef PlayerFaction => null;
+
+        public virtual List<BoonComponent> DefaultBoons => null;
+        public virtual List<FactionComponent> DefaultAllies => null;
+        public virtual List<FactionComponent> DefaultNeutrals => null;
+        public virtual List<FactionComponent> DefaultEnemies => null;
+        public virtual List<WinConditionComponent> DefaultWinConditions => null;
+        public virtual List<SpecialConditionComponent> DefaultSpecialConditions => null;
 
         public override string Description => BasedOnScenario != null ? "-" : base.Description;
         public override string DescriptionTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.description : base.DescriptionTranslated;
@@ -82,17 +93,42 @@ namespace Rokk.Playwright.Components.Origins
         public static List<OriginComponent> GetAvailableOrigins()
         { 
             var origins = new List<OriginComponent>();
+            // Base game stuff
             origins.Add(new CrashlandedOrigin());
             origins.Add(new TribalOrigin());
             origins.Add(new RichExplorerOrigin());
             origins.Add(new NakedBrutalityOrigin());
 
+            // DLC stuff
+            OriginComponent mechanitor = new MechanitorOrigin();
+            if (mechanitor.IsAvailable)
+            {
+                origins.Add(mechanitor);
+            }
+            OriginComponent sanguophage = new SanguophageOrigin();
+            if (sanguophage.IsAvailable)
+            {
+                origins.Add(sanguophage);
+            }
+            OriginComponent anomaly = new AnomalyOrigin();
+            if (anomaly.IsAvailable)
+            {
+                origins.Add(anomaly);
+            }
+            OriginComponent gravship = new GravshipOrigin();
+            if (gravship.IsAvailable)
+            {
+                origins.Add(gravship);
+            }
+
+            // Playwright stuff
             OriginComponent empire = new EmpireOrigin();
             if (empire.IsAvailable)
             {
                 origins.Add(empire);
             }
 
+            // Stuff from addons
             foreach (OriginComponent origin in ComponentRegistration.Origins)
             {
                 if (origin.IsAvailable)
@@ -100,6 +136,8 @@ namespace Rokk.Playwright.Components.Origins
                     origins.Add(origin);
                 }
             }
+
+            // TODO: Custom placeholder origin, selected from scenario
 
             return origins;
         }

@@ -129,6 +129,7 @@ namespace Rokk.Playwright.UI
 
         private Vector2 OriginsScrollPos = Vector2.zero;
         private Vector2 OriginContentScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical OriginContentListing = new Listing_AutoFitVertical();
         private void DrawOrigin(Rect contentRect)
         {
             List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
@@ -155,6 +156,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     this.PlaywrightStructure.Origin = origin;
+                    OriginContentListing.Invalidate();
                     ButtonSound();
                 }
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
@@ -181,31 +183,31 @@ namespace Rokk.Playwright.UI
 
             Rect originContentRect = new Rect(originRect);
             originContentRect.width -= Margin;
-            originContentRect.height = OriginContentHeight + selectedOrigin.AdditionalContentsHeight + selectedOrigin.SettingsHeight;
-            Widgets.BeginScrollView(originRect, ref OriginContentScrollPos, originContentRect);
-            Listing_Standard originContentListing = new Listing_Standard();
-            originContentListing.Begin(originContentRect);
+            originContentRect = OriginContentListing.GetScrollViewInnerRect(originContentRect);
 
-            originContentListing.Label(selectedOrigin.NameTranslated);
-            originContentListing.Gap();
-            originContentListing.Label(selectedOrigin.DescriptionTranslated);
-            originContentListing.Gap();
-            originContentListing.Label(selectedOrigin.SummaryTranslated);
+            Widgets.BeginScrollView(originRect, ref OriginContentScrollPos, originContentRect);
+            OriginContentListing.Begin(originContentRect);
+
+            OriginContentListing.Label(selectedOrigin.NameTranslated);
+            OriginContentListing.Gap();
+            OriginContentListing.Label(selectedOrigin.DescriptionTranslated);
+            OriginContentListing.Gap();
+            OriginContentListing.Label(selectedOrigin.SummaryTranslated);
 
             if (ModsConfig.IdeologyActive)
             {
-                originContentListing.Gap();
-                originContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
+                OriginContentListing.Gap();
+                OriginContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
             }
-            originContentListing.Gap();
-            selectedOrigin.DoAdditionalContents(originContentListing, originContentRect);
+            OriginContentListing.Gap();
+            selectedOrigin.DoAdditionalContents(OriginContentListing, originContentRect);
 
             if (selectedOrigin.SettingsHeight > 0f)
             {
-                selectedOrigin.DoSettingsContents(originContentListing.GetRect(selectedOrigin.SettingsHeight));
+                selectedOrigin.DoSettingsContents(OriginContentListing.GetRect(selectedOrigin.SettingsHeight));
             }
 
-            originContentListing.End();
+            OriginContentListing.End();
 
             Widgets.EndScrollView();
         }

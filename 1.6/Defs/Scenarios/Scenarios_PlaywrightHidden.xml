@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ScenarioDef Name="Playwright_Empire" ParentName="ScenarioBase" MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>Playwright_Empire</defName>
+    <label>Empire</label>
+    <description>Five of you recently joined the ranks of the Empire as Novices. For your first mission, you were sent out to do field work.</description>
+    <scenario>
+	  <showInUI>false</showInUI>
+      <summary>Imperial Novices sent out into the field.</summary>
+      <parts>
+        
+        <!-- Config pages -->
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>5</pawnCount>
+          <pawnChoiceCount>10</pawnChoiceCount>
+        </li>
+
+        <!-- Player starting stuff spawn method-->
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>DropPods</method>
+          <visible>false</visible>
+        </li>
+
+        <!-- Player pawns modifiers -->
+		<li Class="Rokk.Playwright.ScenParts.StartWithHonor">
+			<def>Playwright_StartWithHonor</def>
+			<chance>1</chance>
+			<context>PlayerStarter</context>
+			<FactionToStartWithHonorFor>Empire</FactionToStartWithHonorFor>
+		</li>
+		<li Class="Rokk.Playwright.ScenParts.ForcedPsylinkLevel">
+			<def>Playwright_ForcedPsylinkLevel</def>
+			<chance>1</chance>
+			<context>PlayerStarter</context>
+			<SeverityRange>1~1</SeverityRange>
+		</li>
+		
+		<!-- Starting out allied with the Empire intentionally omitted, will be default-selected in editor by the Origin instead -->
+        
+        <!-- Player starting things -->
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>500</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gold</thingDef>
+          <count>100</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Steel</thingDef>
+          <count>200</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>WoodLog</thingDef>
+          <count>100</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>50</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>30</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>30</count>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <count>5</count>
+          <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+        </li> 
+
+        <!-- Scatter some things anywhere -->
+        <li Class="ScenPart_ScatterThingsAnywhere">
+          <def>ScatterThingsAnywhere</def>
+          <thingDef>ShipChunk</thingDef>
+          <allowRoofed>false</allowRoofed>
+          <count>3</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsAnywhere">
+          <def>ScatterThingsAnywhere</def>
+          <thingDef>WoodLog</thingDef>
+          <count>50</count>
+        </li>
+        
+        <!-- Game start dialog -->
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <textKey>GameStartDialog</textKey>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+        
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+</Defs>

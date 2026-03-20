@@ -45,42 +45,15 @@
  <Playwright.Components.Origins>Origins</Playwright.Components.Origins>
  
  <Playwright.Components.Origins.Crashlanded>Crashlanded</Playwright.Components.Origins.Crashlanded>
- <Playwright.Components.Origins.Crashlanded.Description>Survivors who crashlanded onto the planet. The default experience.</Playwright.Components.Origins.Crashlanded.Description>
- <Playwright.Components.Origins.Crashlanded.Description.Short>Survivors who crashlanded onto the planet.</Playwright.Components.Origins.Crashlanded.Description.Short>
- <Playwright.Components.Origins.Crashlanded.Summary>- Choose 3 colonists (out of 8)
-- Start with a bolt-action rifle, revolver and a knife.
-- Start with 1 set of Flak armor.
-- Start with some basic supplies.
-- Start with 1 random pet.
-- Steel and wood is scattered around the map.</Playwright.Components.Origins.Crashlanded.Summary>
  <Playwright.Components.Origins.Crashlanded.SuggestedIdeo>(None)</Playwright.Components.Origins.Crashlanded.SuggestedIdeo>
  
  <Playwright.Components.Origins.Tribal>Tribal</Playwright.Components.Origins.Tribal>
- <Playwright.Components.Origins.Tribal.Description>The remnants of a destroyed tribe. The default tribal experience.</Playwright.Components.Origins.Tribal.Description>
- <Playwright.Components.Origins.Tribal.Description.Short>The remnants of a destroyed tribe.</Playwright.Components.Origins.Tribal.Description.Short>
- <Playwright.Components.Origins.Tribal.Summary>- Choose 5 colonists (out of 11)
-- Start with 3 melee weapons and 2 bows.
-- Start with some basic supplies.
-- Start with 3 random pets.
-- Wood is scattered around the map.</Playwright.Components.Origins.Tribal.Summary>
  <Playwright.Components.Origins.Tribal.SuggestedIdeo>Tribal</Playwright.Components.Origins.Tribal.SuggestedIdeo>
  
  <Playwright.Components.Origins.RichExplorer>Rich Explorer</Playwright.Components.Origins.RichExplorer>
- <Playwright.Components.Origins.RichExplorer.Description>A Rich Explorer looking to start anew. The default Rich Explorer experience.</Playwright.Components.Origins.RichExplorer.Description>
- <Playwright.Components.Origins.RichExplorer.Description.Short>A Rich Explorer looking to start anew.</Playwright.Components.Origins.RichExplorer.Description.Short>
- <Playwright.Components.Origins.RichExplorer.Summary>- Choose 1 colonist (out of 8)
-- Start with 2000 Silver and 30 Gold.
-- Start with a Charge Rifle.
-- Start with some basic supplies and Glitterworld Medicine.
-- Start with 1 random pet.</Playwright.Components.Origins.RichExplorer.Summary>
  <Playwright.Components.Origins.RichExplorer.SuggestedIdeo>(None)</Playwright.Components.Origins.RichExplorer.SuggestedIdeo>
  
  <Playwright.Components.Origins.NakedBrutality>Naked Brutality</Playwright.Components.Origins.NakedBrutality>
- <Playwright.Components.Origins.NakedBrutality.Description>A single unlucky traveler with nothing to their name. The default Naked Brutality experience. Starts out extremely unfair.</Playwright.Components.Origins.NakedBrutality.Description>
- <Playwright.Components.Origins.NakedBrutality.Description.Short>An unlucky traveler with nothing to their name.</Playwright.Components.Origins.NakedBrutality.Description.Short>
- <Playwright.Components.Origins.NakedBrutality.Summary>- Choose 1 colonist (out of 8)
-- Start naked.
-- Start with no possessions.</Playwright.Components.Origins.NakedBrutality.Summary>
  <Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>(None)</Playwright.Components.Origins.NakedBrutality.SuggestedIdeo>
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
@@ -100,8 +73,8 @@
  <Playwright.Components.Boons>Boons</Playwright.Components.Boons>
  
  <Playwright.Components.Boons.Shuttle>Shuttle</Playwright.Components.Boons.Shuttle>
- <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.Description>
- <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle</Playwright.Components.Boons.Shuttle.Summary>
+ <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey, and enough Chemfuel to fill it up.</Playwright.Components.Boons.Shuttle.Description>
+ <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle and 400x Chemfuel</Playwright.Components.Boons.Shuttle.Summary>
  
  <Playwright.Components.Boons.BionicArm>Bionic Arms</Playwright.Components.Boons.BionicArm>
  <Playwright.Components.Boons.BionicArm.Description>Each starting colonist has a Bionic Arm implanted on a random side.</Playwright.Components.Boons.BionicArm.Description>

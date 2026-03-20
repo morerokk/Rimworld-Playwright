@@ -31,6 +31,11 @@ namespace Rokk.Playwright.UI
         public override void End()
         {
             base.End();
+            // If something inside the listing has invalidated the height (like a button), leave it for next frame
+            if (FittedRect == null)
+            {
+                return;
+            }
             Rect rect = FittedRect.Value;
             rect.height = curY;
             FittedRect = rect;

@@ -30,12 +30,6 @@ namespace Rokk.Playwright.Components
         /// </summary>
         public virtual bool IsAvailable => true;
 
-        /// <summary>
-        /// If your component has settings, how high the settings rect is.
-        /// Needs to be known in advance to reserve space for it in the UI.
-        /// </summary>
-        public virtual float SettingsHeight => 0f;
-
         public virtual string Name => "Playwright.Components." + this.Id;
         public virtual string Description => "Playwright.Components." + this.Id + ".Description";
         public virtual string NameTranslated => Name.Translate();

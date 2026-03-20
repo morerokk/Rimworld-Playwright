@@ -44,11 +44,29 @@ namespace Rokk.Playwright.Components.Origins
         /// </summary>
         public virtual FactionDef PlayerFaction => null;
 
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Boons.
+        /// </summary>
         public virtual List<BoonComponent> DefaultBoons => null;
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Factions as Allies.
+        /// </summary>
         public virtual List<FactionComponent> DefaultAllies => null;
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Factions as Neutrals.
+        /// </summary>
         public virtual List<FactionComponent> DefaultNeutrals => null;
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Factions as Enemies.
+        /// </summary>
         public virtual List<FactionComponent> DefaultEnemies => null;
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Win Conditions.
+        /// </summary>
         public virtual List<WinConditionComponent> DefaultWinConditions => null;
+        /// <summary>
+        /// If not null, selecting this Origin will also auto-set the specified Special Conditions.
+        /// </summary>
         public virtual List<SpecialConditionComponent> DefaultSpecialConditions => null;
 
         public override string Description => BasedOnScenario != null ? "-" : base.Description;
@@ -85,6 +103,11 @@ namespace Rokk.Playwright.Components.Origins
 
         }
 
+        /// <summary>
+        /// If your component has settings, how high the settings rect is.
+        /// Needs to be known in advance to reserve space for it in the UI.
+        /// </summary>
+        public virtual float SettingsHeight => 0f;
         public virtual void DoSettingsContents(Rect inRect)
         {
 

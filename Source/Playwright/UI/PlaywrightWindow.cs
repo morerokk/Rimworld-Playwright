@@ -3,6 +3,7 @@ using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
 using System;
 using System.Collections.Generic;
@@ -188,7 +189,9 @@ namespace Rokk.Playwright.UI
             Widgets.BeginScrollView(originRect, ref OriginContentScrollPos, originContentRect);
             OriginContentListing.Begin(originContentRect);
 
+            Text.Font = GameFont.Medium;
             OriginContentListing.Label(selectedOrigin.NameTranslated);
+            Text.Font = GameFont.Small;
             OriginContentListing.Gap();
             OriginContentListing.Label(selectedOrigin.DescriptionTranslated);
             OriginContentListing.Gap();
@@ -213,7 +216,9 @@ namespace Rokk.Playwright.UI
         }
 
         private Vector2 AvailableBoonsScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical AvailableBoonsListing = new Listing_AutoFitVertical();
         private Vector2 SelectedBoonsScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical SelectedBoonsListing = new Listing_AutoFitVertical();
         private void DrawBoons(Rect contentRect)
         {
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
@@ -227,6 +232,7 @@ namespace Rokk.Playwright.UI
             nextRect.height -= Margin;
             Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
 
+            // Available boons
             Rect availableBoonsRect = new Rect(nextRect);
             availableBoonsRect.width *= 0.25f;
             availableBoonsRect.width += Margin;
@@ -237,17 +243,15 @@ namespace Rokk.Playwright.UI
             selectedBoonsRect.x += availableBoonsRect.width;
 
             Rect availableBoonsRectInner = PlaywrightDrawHelper.RectWithMargin(availableBoonsRect, PanelContentMargin);
-            availableBoonsRectInner.height = OptionHeight * availableBoons.Count;
             availableBoonsRectInner.width -= Margin;
-            selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
+            availableBoonsRectInner = AvailableBoonsListing.GetScrollViewInnerRect(availableBoonsRectInner);
 
             Widgets.BeginScrollView(availableBoonsRect, ref AvailableBoonsScrollPosition, availableBoonsRectInner);
-            Listing_Standard availableBoonsListing = new Listing_Standard();
-            availableBoonsListing.Begin(availableBoonsRectInner);
+            AvailableBoonsListing.Begin(availableBoonsRectInner);
 
             foreach (BoonComponent boon in availableBoons)
             {
-                Rect boonRect = availableBoonsListing.GetRect(OptionHeight);
+                Rect boonRect = AvailableBoonsListing.GetRect(OptionHeight);
                 Widgets.DrawOptionBackground(boonRect, false);
                 Widgets.Label(PlaywrightDrawHelper.RectWithMargin(boonRect, OptionContentMargin), boon.NameTranslated);
                 PlaywrightDrawHelper.DrawInTopRight(boonRect, plusTex, 2f, 0.4f);
@@ -255,6 +259,8 @@ namespace Rokk.Playwright.UI
                 {
                     selectedBoons.Add(boon);
                     this.AddSound();
+                    AvailableBoonsListing.Invalidate();
+                    SelectedBoonsListing.Invalidate();
                 }
                 if (Mouse.IsOver(boonRect))
                 {
@@ -262,37 +268,41 @@ namespace Rokk.Playwright.UI
                 }
             }
 
-            availableBoonsListing.End();
+            AvailableBoonsListing.End();
             Widgets.EndScrollView();
 
+            // Selected boons
+            selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
             Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
             Rect selectedBoonsRectInner = new Rect(selectedBoonsRect);
             selectedBoonsRectInner.width -= Margin;
-            selectedBoonsRectInner.height = selectedBoons.Sum(b => b.ContentHeight + b.SettingsHeight) + Margin;
+            selectedBoonsRectInner = SelectedBoonsListing.GetScrollViewInnerRect(selectedBoonsRectInner);
+
             Widgets.BeginScrollView(selectedBoonsRect, ref SelectedBoonsScrollPosition, selectedBoonsRectInner);
-            Listing_Standard selectedBoonsListing = new Listing_Standard();
-            selectedBoonsListing.Begin(selectedBoonsRectInner);
+            SelectedBoonsListing.Begin(selectedBoonsRectInner);
 
             foreach (BoonComponent boon in selectedBoons.ToList())
             {
-                Rect boonContentRect = selectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
+                Rect boonContentRect = SelectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
                 boonContentRect = PlaywrightDrawHelper.RectWithMargin(boonContentRect, 5f);
                 boon.DoBoonContents(boonContentRect);
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(boonContentRect, deleteTex, 2f, 0.4f))
                 {
                     selectedBoons.Remove(boon);
                     RemoveSound();
+                    AvailableBoonsListing.Invalidate();
+                    SelectedBoonsListing.Invalidate();
                 }
                 PlaywrightDrawHelper.DrawBottomLine(boonContentRect, PanelOutlineColor, PanelOutlineWidth);
             }
 
-            selectedBoonsListing.End();
+            SelectedBoonsListing.End();
             Widgets.EndScrollView();
         }
 
-        Vector2 AlliesScrollPosition = Vector2.zero;
-        Vector2 NeutralsScrollPosition = Vector2.zero;
-        Vector2 EnemiesScrollPosition = Vector2.zero;
+        private Vector2 AlliesScrollPosition = Vector2.zero;
+        private Vector2 NeutralsScrollPosition = Vector2.zero;
+        private Vector2 EnemiesScrollPosition = Vector2.zero;
         private void DrawFactions(Rect contentRect)
         {
             List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
@@ -411,9 +421,89 @@ namespace Rokk.Playwright.UI
             }
         }
 
+        private Vector2 AvailableWinConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical AvailableWinConditionsListing = new Listing_AutoFitVertical();
+        private Vector2 SelectedWinConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical SelectedWinConditionsListing = new Listing_AutoFitVertical();
         private void DrawWinConditions(Rect contentRect)
         {
+            List<WinConditionComponent> allWinConditions = WinConditionComponent.GetAvailableWinConditions();
+            List<WinConditionComponent> selectedWinConditions = PlaywrightStructure.WinConditions;
+            List<WinConditionComponent> availableWinConditions = allWinConditions.Where(b => !selectedWinConditions.Any(sb => sb.Id == b.Id)).ToList();
+            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
 
+            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.WinConditions.Welcome");
+            nextRect.y += Margin;
+            nextRect.height -= Margin;
+            Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+
+            // Available win conditions
+            Rect availableWinConditionsRect = new Rect(nextRect);
+            availableWinConditionsRect.width *= 0.25f;
+            availableWinConditionsRect.width += Margin;
+            availableWinConditionsRect = PlaywrightDrawHelper.RectWithMargin(availableWinConditionsRect, PanelContentMargin);
+            Rect selectedWinConditionsRect = new Rect(nextRect);
+            selectedWinConditionsRect.width *= 0.75f;
+            selectedWinConditionsRect.width -= PanelContentMargin;
+            selectedWinConditionsRect.x += availableWinConditionsRect.width;
+
+            Rect availableWinConditionsRectInner = PlaywrightDrawHelper.RectWithMargin(availableWinConditionsRect, PanelContentMargin);
+            availableWinConditionsRectInner.width -= Margin;
+            availableWinConditionsRectInner = AvailableWinConditionsListing.GetScrollViewInnerRect(availableWinConditionsRectInner);
+
+            Widgets.BeginScrollView(availableWinConditionsRect, ref AvailableWinConditionsScrollPos, availableWinConditionsRectInner);
+            AvailableWinConditionsListing.Begin(availableWinConditionsRectInner);
+
+            foreach (WinConditionComponent winCondition in availableWinConditions)
+            {
+                Rect winConditionRect = AvailableWinConditionsListing.GetRect(OptionHeight);
+                Widgets.DrawOptionBackground(winConditionRect, false);
+                Widgets.Label(PlaywrightDrawHelper.RectWithMargin(winConditionRect, OptionContentMargin), winCondition.NameTranslated);
+                PlaywrightDrawHelper.DrawInTopRight(winConditionRect, plusTex, 2f, 0.4f);
+                if (Widgets.ButtonInvisible(winConditionRect))
+                {
+                    selectedWinConditions.Add(winCondition);
+                    this.AddSound();
+                    AvailableWinConditionsListing.Invalidate();
+                    SelectedWinConditionsListing.Invalidate();
+                }
+                if (Mouse.IsOver(winConditionRect))
+                {
+                    TooltipHandler.TipRegion(winConditionRect, winCondition.DescriptionTranslated);
+                }
+            }
+
+            AvailableWinConditionsListing.End();
+            Widgets.EndScrollView();
+
+            // Selected win conditions
+            selectedWinConditionsRect = PlaywrightDrawHelper.RectWithMargin(selectedWinConditionsRect, PanelContentMargin);
+            Widgets.DrawBoxSolidWithOutline(selectedWinConditionsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+            Rect selectedWinConditionsRectInner = new Rect(selectedWinConditionsRect);
+            selectedWinConditionsRectInner.width -= Margin;
+            selectedWinConditionsRectInner = SelectedWinConditionsListing.GetScrollViewInnerRect(selectedWinConditionsRectInner);
+
+            Widgets.BeginScrollView(selectedWinConditionsRect, ref SelectedWinConditionsScrollPos, selectedWinConditionsRectInner);
+            SelectedWinConditionsListing.Begin(selectedWinConditionsRectInner);
+
+            foreach (WinConditionComponent winCondition in selectedWinConditions.ToList())
+            {
+                Rect winConditionContentRect = SelectedWinConditionsListing.GetRect(winCondition.ContentHeight + winCondition.SettingsHeight);
+                winConditionContentRect = PlaywrightDrawHelper.RectWithMargin(winConditionContentRect, 5f);
+                winCondition.DoWinConditionContents(winConditionContentRect);
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(winConditionContentRect, deleteTex, 2f, 0.4f))
+                {
+                    selectedWinConditions.Remove(winCondition);
+                    RemoveSound();
+                    AvailableWinConditionsListing.Invalidate();
+                    SelectedWinConditionsListing.Invalidate();
+                }
+                PlaywrightDrawHelper.DrawBottomLine(winConditionContentRect, PanelOutlineColor, PanelOutlineWidth);
+            }
+
+            SelectedWinConditionsListing.End();
+            Widgets.EndScrollView();
         }
 
         private void DrawSpecialConditions(Rect contentRect)

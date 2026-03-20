@@ -17,8 +17,8 @@ namespace Rokk.Playwright.UI
 
         public static Rect RectForLabel(Rect contentRect, string text)
         {
-            Vector2 textSize = Text.CalcSize(text);
-            return new Rect(contentRect.x, contentRect.y, textSize.x, textSize.y);
+            float height = Text.CalcHeight(text, contentRect.width);
+            return new Rect(contentRect.x, contentRect.y, contentRect.width, height);
         }
 
         public static Rect NextLabel(Rect contentRect, string translationKey, float margin = 0f)

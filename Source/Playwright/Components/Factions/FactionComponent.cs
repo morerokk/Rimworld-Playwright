@@ -55,6 +55,12 @@ namespace Rokk.Playwright.Components.Factions
         public virtual int SortOrder => 0;
 
         /// <summary>
+        /// If your component has settings, how high the settings rect is.
+        /// Needs to be known in advance to reserve space for it in the UI.
+        /// </summary>
+        public virtual float SettingsHeight => 0f;
+
+        /// <summary>
         /// Render the UI for the settings in your component.
         /// If your component doesn't have any extra settings, you don't have to override this.
         /// If your component has settings, ensure you set <see cref="SettingsHeight"/>.

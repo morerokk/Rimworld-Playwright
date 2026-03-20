@@ -43,12 +43,18 @@
     <Compile Include="Components\Boons\AndroidsBoon.cs" />
     <Compile Include="Components\Origins\AndroidsOrigin.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\ScenarioDefOf.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">
       <Project>{f6164afc-a6f3-49ad-b309-997e47bb6f7d}</Project>
       <Name>Playwright</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="VREAndroids">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2975771801\1.6\Assemblies\VREAndroids.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

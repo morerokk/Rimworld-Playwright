@@ -15,7 +15,6 @@ namespace Rokk.Playwright.Components.Origins
     public class NakedBrutalityOrigin : OriginComponent
     {
         public override string Id => "Origins.NakedBrutality";
-        public override int? StartingColonistsSelectable => 1;
         public override ScenarioDef BasedOnScenario => DefOfs.ScenarioDefOf.NakedBrutality;
     }
 }

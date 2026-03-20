@@ -36,13 +36,20 @@ namespace Rokk.Playwright.Utilities
             return forcedHediffPart;
         }
 
-        public static StartWithHonor MakeStartWithHonorPart(FactionDef factionDef, int startingHonor, bool applyTitles = true)
+        public static StartWithHonor MakeStartWithHonorPart(FactionDef factionDef, int startingHonor, float chance, PawnGenerationContext context, bool applyTitles = true)
         {
-            StartWithHonor startWithHonorPart = (StartWithHonor)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_StartWithHonor);
-            startWithHonorPart.StartingHonor = startingHonor;
-            startWithHonorPart.FactionToStartWithHonorFor = factionDef;
-            startWithHonorPart.ApplyTitles = applyTitles;
-            return startWithHonorPart;
+            StartWithHonor part = (StartWithHonor)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_StartWithHonor);
+            part.StartingHonor = startingHonor;
+            part.FactionToStartWithHonorFor = factionDef;
+            part.ApplyTitles = applyTitles;
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "chance");
+            chanceInfo.SetValue(part, chance);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "context");
+            contextInfo.SetValue(part, context);
+
+            return part;
         }
 
         public static ScenPart_StartingThing_Defined MakeStartingThingDefinedPart(ThingDef thingDef, ThingDef stuff = null, int count = 1, QualityCategory? quality = null)

@@ -9,7 +9,7 @@ using Verse;
 
 namespace Rokk.Playwright.ScenParts
 {
-    public class StartWithHonor : ScenPart
+    public class StartWithHonor : ScenPart_PawnModifier
     {
         public int StartingHonor = 7;
         private string StartingHonorBuffer = "7";
@@ -28,8 +28,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 6);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 6);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 8);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 8);
 
             // Faction selector
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.Faction".Translate());
@@ -54,33 +54,29 @@ namespace Rokk.Playwright.ScenParts
 
             Widgets.CheckboxLabeled(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.ApplyTitles".Translate(), ref ApplyTitles);
 
-            if(Widgets.ButtonText(helper.NextRect(), "?"))
+            base.DoPawnModifierEditInterface(helper.NextRect(2));
+
+            if (Widgets.ButtonText(helper.NextRect(), "?"))
             {
                 Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.StartWithHonor.Help".Translate()));
             }
         }
 
-        public override void PostGameStart()
+        protected override void ModifyNewPawn(Pawn pawn)
         {
-            base.PostGameStart();
-
-            if (FactionToStartWithHonorFor == null)
-            {
-                Log.Error($"[Playwright] {nameof(StartWithHonor)}: Selected faction is null, cannot award honor");
-                return;
-            }
-
             List<Faction> factions = GetApplicableFactions();
-
-            foreach (var map in Current.Game.Maps)
+            foreach (var faction in factions)
             {
-                foreach (var pawn in map.mapPawns.FreeColonists)
-                {
-                    foreach (var faction in factions)
-                    {
-                        ApplyToPawn(pawn, faction);
-                    }
-                }
+                ApplyToPawn(pawn, faction);
+            }
+        }
+
+        protected override void ModifyHideOffMapStartingPawnPostMapGenerate(Pawn pawn)
+        {
+            List<Faction> factions = GetApplicableFactions();
+            foreach (var faction in factions)
+            {
+                ApplyToPawn(pawn, faction);
             }
         }
 
@@ -126,10 +122,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override void ExposeData()
         {
+            base.ExposeData();
             Scribe_Defs.Look<FactionDef>(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));
             Scribe_Values.Look<int>(ref StartingHonor, nameof(StartingHonor), 7, false);
             Scribe_Values.Look<bool>(ref ApplyTitles, nameof(ApplyTitles), true, false);
-            base.ExposeData();
         }
 
         // Scenario summary description
@@ -137,10 +133,21 @@ namespace Rokk.Playwright.ScenParts
         {
             if (this.ApplyTitles)
             {
-                return "Playwright.ScenParts.StartWithHonor.Summary.WithTitles".Translate(StartingHonor, FactionToStartWithHonorFor.LabelCap.ToString());
+                return "Playwright.ScenParts.StartWithHonor.Summary.WithTitles".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), StartingHonor, FactionToAffectLabelText).CapitalizeFirst();
             }
 
-            return "Playwright.ScenParts.StartWithHonor.Summary".Translate(StartingHonor, FactionToStartWithHonorFor.LabelCap.ToString());
+            return "Playwright.ScenParts.StartWithHonor.Summary".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), StartingHonor, FactionToAffectLabelText).CapitalizeFirst();
+        }
+
+        public override bool CanCoexistWith(ScenPart other)
+        {
+            StartWithHonor part = other as StartWithHonor;
+            return part == null || this.FactionToStartWithHonorFor != part.FactionToStartWithHonorFor;
+        }
+
+        public override bool HasNullDefs()
+        {
+            return base.HasNullDefs() || this.FactionToStartWithHonorFor == null;
         }
     }
 }

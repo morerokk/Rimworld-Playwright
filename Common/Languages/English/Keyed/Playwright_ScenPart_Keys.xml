@@ -6,7 +6,7 @@
  <Playwright.ScenParts.StartWithHonor.Faction>Faction</Playwright.ScenParts.StartWithHonor.Faction>
  <Playwright.ScenParts.StartWithHonor.Honor>Starting Honor</Playwright.ScenParts.StartWithHonor.Honor>
  <Playwright.ScenParts.StartWithHonor.ApplyTitles>Apply Titles</Playwright.ScenParts.StartWithHonor.ApplyTitles>
- <Playwright.ScenParts.StartWithHonor.Help>Each starting colonist will start with a specified amount of Honor with the chosen faction.
+ <Playwright.ScenParts.StartWithHonor.Help>Chosen pawns will start with a specified amount of Honor with the chosen faction.
  
 "Apply Titles" will automatically consume Honor to bestow the proper titles. If disabled, the bestowing ceremonies still have to happen.
  
@@ -19,11 +19,9 @@ Praetor: 31
 Baron/Baroness: 45
 Archon: 65
 
-Honor and Titles are awarded after the game begins. They will not be visible in the preparation screen.
-
 This will not add Psylinks. For that, use the "Forced Psylink Level" part.</Playwright.ScenParts.StartWithHonor.Help>
- <Playwright.ScenParts.StartWithHonor.Summary>Player starting characters have {0} Honor with {1}</Playwright.ScenParts.StartWithHonor.Summary>
- <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>Player starting characters have {0} Honor with {1} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
+ <Playwright.ScenParts.StartWithHonor.Summary>{0} have a {1} chance to start with {2} Honor with {3}</Playwright.ScenParts.StartWithHonor.Summary>
+ <Playwright.ScenParts.StartWithHonor.Summary.WithTitles>{0} have a {1} chance to start with {2} Honor with {3} (with bestowed titles)</Playwright.ScenParts.StartWithHonor.Summary.WithTitles>
  
  <Playwright.ScenParts.FactionGoodwill.Faction>Faction</Playwright.ScenParts.FactionGoodwill.Faction>
  <Playwright.ScenParts.FactionGoodwill.Goodwill>Goodwill</Playwright.ScenParts.FactionGoodwill.Goodwill>
@@ -61,7 +59,7 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  <Playwright.ScenParts.AdditionalUnwaveringChance>Unwavering additional chance</Playwright.ScenParts.AdditionalUnwaveringChance>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Chance>Chance</Playwright.ScenParts.AdditionalUnwaveringChance.Chance>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set at 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
- <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwavering.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
+ <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwaveringly loyal.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
  
  <Playwright.ScenParts.NoFactionsExcept.Add>Add...</Playwright.ScenParts.NoFactionsExcept.Add>
  <Playwright.ScenParts.NoFactionsExcept.Factions>Factions:</Playwright.ScenParts.NoFactionsExcept.Factions>

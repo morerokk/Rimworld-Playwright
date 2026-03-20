@@ -14,13 +14,11 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
     {
         // ID's must be unique, so prefix it with something distinct
         public override string Id => "Origins.Compat_MF_Corporate";
-        // Only available if Royalty is also installed. This is redundant for this particular mod but serves as an example.
-        public override bool IsAvailable => ModsConfig.RoyaltyActive;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             // Same thing as the base Empire origin, but with The Corporation from Mort's Factions - The Corporation instead.
-            scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(DefOfs.FactionDefOf.MF_Corporation, 7, true));
+            scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(DefOfs.FactionDefOf.MF_Corporation, 7, 1f, PawnGenerationContext.PlayerStarter, true));
         }
     }
 }

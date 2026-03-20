@@ -65,6 +65,9 @@ namespace Rokk.Playwright.Composer
                 this.ProcessWinConditions(playwright, scenario, parts);
             }
 
+            // Special conditions
+            this.ProcessSpecialConditions(playwright, scenario, parts);
+
             HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
 
             return scenario;
@@ -159,7 +162,7 @@ namespace Rokk.Playwright.Composer
 
         private void ProcessWinConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
-            // If ship wasn't chosen, disable the journey offer quest
+            // If ship wasn't chosen, disable the journey offer quest.
             // Not being allowed to start the ship is a separate patch,
             // it should still be researchable and buildable for the reactor and mod compatibility reasons.
             if (!playwright.WinConditions.Any(wc => wc.Id == ShipWinCondition.ComponentId))
@@ -182,6 +185,12 @@ namespace Rokk.Playwright.Composer
                 parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));
             }
         }
+
+        private void ProcessSpecialConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        {
+
+        }
+
         private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
         {
             Scenario scenario = null;

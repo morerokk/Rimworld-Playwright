@@ -15,7 +15,7 @@ namespace Rokk.Playwright.ScenParts
         private string StartingHonorBuffer = "7";
         public bool ApplyTitles = true;
 
-        public FactionDef FactionToStartWithHonorFor = FactionDefOf.Empire;
+        public FactionDef FactionToStartWithHonorFor;
 
         private string FactionToAffectLabelText => FactionToStartWithHonorFor != null ? FactionToStartWithHonorFor.LabelCap.ToString() : "-";
 

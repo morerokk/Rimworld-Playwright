@@ -28,8 +28,8 @@ namespace Rokk.Playwright.Patches
     [HarmonyPatch(typeof(Game), nameof(Game.LoadGame))]
     public class Game_LoadGamePatches
     {
-        [HarmonyPrefix]
-        static void Prefix()
+        [HarmonyPostfix]
+        static void Postfix()
         {
             FactionPatchChecker.CheckPatchFactionGoodwill();
             WinConditionPatchChecker.CheckPatchShipStartup();

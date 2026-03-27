@@ -113,6 +113,9 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.WinCondition_Colony>Win Condition: Colonists</Playwright.ScenParts.WinCondition_Colony>
  <Playwright.ScenParts.WinCondition_Colony.Colonists>Colonists</Playwright.ScenParts.WinCondition_Colony.Colonists>
  <Playwright.ScenParts.WinCondition_Colony.Summary>Have {0} colonists</Playwright.ScenParts.WinCondition_Colony.Summary>
+ <Playwright.ScenParts.WinCondition_Colony.WinIntro>You have successfully established a colony of impressive size!</Playwright.ScenParts.WinCondition_Colony.WinIntro>
+ <Playwright.ScenParts.WinCondition_Colony.WinEnding>Having already made it this far, your colonists are sure to thrive and survive for many generations. Only time will tell.</Playwright.ScenParts.WinCondition_Colony.WinEnding>
+ <Playwright.ScenParts.WinCondition_Colony.WinColonists>These colonists stand proud:\n\n{0}</Playwright.ScenParts.WinCondition_Colony.WinColonists>
  <Playwright.ScenParts.WinCondition_Colony.Help>Wins the game when you have the specified amount of alive colonists.
 
 If you have multiple colonies enabled, this counts all of them.

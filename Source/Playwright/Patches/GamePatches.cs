@@ -21,6 +21,7 @@ namespace Rokk.Playwright.Patches
             // This way, we run as little of our code as possible, only enough to make the player's current ScenParts work.
             FactionPatchChecker.CheckPatchFactionGoodwill();
             WinConditionPatchChecker.CheckPatchShipStartup();
+            WinConditionPatchChecker.CheckPatchWinConditions();
         }
     }
 
@@ -32,6 +33,7 @@ namespace Rokk.Playwright.Patches
         {
             FactionPatchChecker.CheckPatchFactionGoodwill();
             WinConditionPatchChecker.CheckPatchShipStartup();
+            WinConditionPatchChecker.CheckPatchWinConditions();
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Rokk.Playwright.ScenParts
         {
             return ScenSummaryList.SummaryWithList(scen, SummaryTag, "Playwright.ScenParts.WinCondition.SummaryIntro".Translate());
         }
-        // Require the win condition to specify its summary list entry
         public abstract override IEnumerable<string> GetSummaryListEntries(string tag);
 
         protected abstract void DoHelpButton();

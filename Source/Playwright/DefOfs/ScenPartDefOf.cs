@@ -26,6 +26,9 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_DisableShipStartup;
         public static ScenPartDef Playwright_ForcedImplant;
 
+        // Win conditions
+        public static ScenPartDef Playwright_WinCondition_Colony;
+
         // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;
         public static ScenPartDef NoPossessions;

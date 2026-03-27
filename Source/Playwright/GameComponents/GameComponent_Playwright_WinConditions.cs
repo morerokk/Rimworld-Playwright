@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.GameComponents
@@ -14,9 +15,28 @@ namespace Rokk.Playwright.GameComponents
         public bool ColonyWon = false;
         public int ColonyRequiredColonists = 30;
 
+        private float Countdown = 0f;
+        private Action CountdownEnded;
+
         public GameComponent_Playwright_WinConditions(Game game)
         {
 
+        }
+
+        public override void GameComponentUpdate()
+        {
+            if (Countdown <= 0f || CountdownEnded == null)
+            {
+                return;
+            }
+
+            Countdown -= Time.deltaTime;
+            if (Countdown <= 0f)
+            {
+                CountdownEnded();
+                Countdown = 0f;
+                CountdownEnded = null;
+            }
         }
 
         public override void GameComponentTick()
@@ -26,7 +46,8 @@ namespace Rokk.Playwright.GameComponents
                 int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Count;
                 if (playerPawnCount >= ColonyRequiredColonists)
                 {
-                    WinGameColony();
+                    StartFadeCountdown(5f, WinGameColony);
+                    ColonyWon = true;
                 }
             }
         }
@@ -61,6 +82,13 @@ namespace Rokk.Playwright.GameComponents
                 ColonyRequiredColonists = colonyPart.Colonists;
                 ColonyEnabled = true;
             }
+        }
+
+        private void StartFadeCountdown(float duration, Action onCountDownEnded)
+        {
+            CountdownEnded = onCountDownEnded;
+            Countdown = 5f;
+            ScreenFader.StartFade(Color.white, duration);
         }
 
         private void WinGameColony()

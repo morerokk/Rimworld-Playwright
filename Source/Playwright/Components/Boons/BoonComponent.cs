@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,25 @@ namespace Rokk.Playwright.Components.Boons
 {
     public abstract class BoonComponent : PlaywrightComponent
     {
-        public virtual float ContentHeight => 100f;
         /// <summary>
         /// If your component has settings, how high the settings rect is.
         /// Needs to be known in advance to reserve space for it in the UI.
         /// </summary>
         public virtual float SettingsHeight => 0f;
 
-        public virtual void DoBoonContents(Rect inRect)
+        public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing)
         {
-            Listing_Standard boonContentListing = new Listing_Standard();
-            boonContentListing.Begin(inRect);
+            Text.Font = GameFont.Medium;
             boonContentListing.Label(NameTranslated);
+            Text.Font = GameFont.Small;
             boonContentListing.Gap();
             boonContentListing.Label(DescriptionTranslated);
-            if (SettingsHeight > 0)
-            {
-                Rect boonSettingsRect = boonContentListing.GetRect(SettingsHeight);
-                DoSettingsContents(boonSettingsRect);
-            }
-            boonContentListing.End();
+            DoSettingsContents(boonContentListing);
+        }
+
+        public virtual void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
+        {
+
         }
 
         public virtual void DoSettingsContents(Rect inRect)

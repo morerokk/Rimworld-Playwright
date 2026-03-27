@@ -13,6 +13,7 @@ namespace Rokk.Playwright.UI
     public class Listing_AutoFitVertical : Listing_Standard
     {
         public const float DefaultHeight = 99999f;
+        public const float MarginBottom = 10f;
 
         public Rect? FittedRect { get; protected set; }
 
@@ -37,7 +38,7 @@ namespace Rokk.Playwright.UI
                 return;
             }
             Rect rect = FittedRect.Value;
-            rect.height = curY;
+            rect.height = curY + MarginBottom;
             FittedRect = rect;
         }
 

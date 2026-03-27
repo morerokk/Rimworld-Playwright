@@ -279,6 +279,8 @@ namespace Rokk.Playwright.UI
             // Selected boons
             selectedBoonsRect = PlaywrightDrawHelper.RectWithMargin(selectedBoonsRect, PanelContentMargin);
             Widgets.DrawBoxSolidWithOutline(selectedBoonsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+            selectedBoonsRect.x += Margin;
+            selectedBoonsRect.width -= Margin;
             Rect selectedBoonsRectInner = new Rect(selectedBoonsRect);
             selectedBoonsRectInner.width -= Margin;
             selectedBoonsRectInner = SelectedBoonsListing.GetScrollViewInnerRect(selectedBoonsRectInner);
@@ -288,17 +290,19 @@ namespace Rokk.Playwright.UI
 
             foreach (BoonComponent boon in selectedBoons.ToList())
             {
-                Rect boonContentRect = SelectedBoonsListing.GetRect(boon.ContentHeight + boon.SettingsHeight);
-                boonContentRect = PlaywrightDrawHelper.RectWithMargin(boonContentRect, 5f);
-                boon.DoBoonContents(boonContentRect);
-                if (PlaywrightDrawHelper.DrawButtonInTopRight(boonContentRect, deleteTex, 2f, 0.4f))
+                Rect deleteButtonRect = SelectedBoonsListing.GetRect(0f);
+                deleteButtonRect.height = 50f;
+                deleteButtonRect = PlaywrightDrawHelper.RectWithMargin(deleteButtonRect, 5f);
+                boon.DoBoonContents(SelectedBoonsListing);
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedBoons.Remove(boon);
                     RemoveSound();
                     AvailableBoonsListing.Invalidate();
                     SelectedBoonsListing.Invalidate();
                 }
-                PlaywrightDrawHelper.DrawBottomLine(boonContentRect, PanelOutlineColor, PanelOutlineWidth);
+                Rect lineRect = SelectedBoonsListing.GetRect(PanelOutlineWidth);
+                PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }
 
             SelectedBoonsListing.End();
@@ -499,7 +503,7 @@ namespace Rokk.Playwright.UI
                 Rect deleteButtonRect = SelectedWinConditionsListing.GetRect(0f);
                 deleteButtonRect.height = 50f;
                 deleteButtonRect = PlaywrightDrawHelper.RectWithMargin(deleteButtonRect, 5f);
-                winCondition.DoWinConditionContents(SelectedWinConditionsListing, deleteButtonRect);
+                winCondition.DoWinConditionContents(SelectedWinConditionsListing);
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedWinConditions.Remove(winCondition);
@@ -507,7 +511,7 @@ namespace Rokk.Playwright.UI
                     AvailableWinConditionsListing.Invalidate();
                     SelectedWinConditionsListing.Invalidate();
                 }
-                Rect lineRect = SelectedWinConditionsListing.GetRect(3f);
+                Rect lineRect = SelectedWinConditionsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }
 

@@ -17,25 +17,17 @@ namespace Rokk.Playwright.Components.WinConditions
     /// </summary>
     public abstract class WinConditionComponent : PlaywrightComponent
     {
-        /// <summary>
-        /// If your component has settings, how high the settings rect should be.
-        /// Needs to be known in advance to reserve space for it in the UI.
-        /// Not necessary if your settings fit in a Listing_AutoFitVertical.
-        /// </summary>
-        public virtual float SettingsHeight => 0f;
-
-        public virtual void DoWinConditionContents(Listing_AutoFitVertical winConditionContentListing, Rect inRect)
+        public virtual void DoWinConditionContents(Listing_AutoFitVertical winConditionContentListing)
         {
             Text.Font = GameFont.Medium;
             winConditionContentListing.Label(NameTranslated);
             Text.Font = GameFont.Small;
             winConditionContentListing.Gap();
             winConditionContentListing.Label(DescriptionTranslated);
-            Rect winConditionSettingsRect = winConditionContentListing.GetRect(SettingsHeight);
-            DoSettingsContents(winConditionContentListing, inRect);
+            DoSettingsContents(winConditionContentListing);
         }
 
-        public virtual void DoSettingsContents(Listing_AutoFitVertical winConditionContentListing, Rect inRect)
+        public virtual void DoSettingsContents(Listing_AutoFitVertical winConditionContentListing)
         {
 
         }

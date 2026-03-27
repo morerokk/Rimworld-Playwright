@@ -6,7 +6,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.DisableShipStartup</scenPartClass>
     <category>Misc</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>60</summaryPriority>
+    <summaryPriority>2</summaryPriority>
 	<maxUses>1</maxUses>
   </ScenPartDef>
 
@@ -110,5 +110,16 @@
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>459</summaryPriority>
+  </ScenPartDef>
+  
+  <!-- Win Conditions -->
+  <ScenPartDef>
+    <defName>Playwright_WinCondition_Colony</defName>
+    <label>win condition: colonists</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.WinCondition_Colony</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>1</summaryPriority>
+	<maxUses>1</maxUses>
   </ScenPartDef>
 </Defs>

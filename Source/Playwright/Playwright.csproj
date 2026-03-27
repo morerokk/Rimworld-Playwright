@@ -80,6 +80,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
+    <Compile Include="ScenParts\ScenPart_WinCondition.cs" />
+    <Compile Include="ScenParts\WinCondition_Colony.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />
     <Compile Include="ScenParts\ForcedImplant.cs" />
     <Compile Include="ScenParts\ForcedPsylinkLevel.cs" />

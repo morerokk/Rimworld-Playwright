@@ -63,16 +63,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override IEnumerable<string> GetSummaryListEntries(string tag)
         {
-            if (Faction == null)
-            {
-                yield break;
-            }
-
-            if (tag == SummaryTag)
+            if (tag == SummaryTag && Faction != null)
             {
                 yield return Faction.LabelCap.CapitalizeFirst();
             }
-            yield break;
         }
     }
 }

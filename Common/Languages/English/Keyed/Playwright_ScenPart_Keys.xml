@@ -106,5 +106,19 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.ForcedImplant.Random>Random</Playwright.ScenParts.ForcedImplant.Random>
  <Playwright.ScenParts.ForcedImplant.Help>Force the selected pawns to have an implant (such as a bionic limb).</Playwright.ScenParts.ForcedImplant.Help>
  <Playwright.ScenParts.ForcedImplant.Summary>{0} have a {1} chance to have a {2} implant.</Playwright.ScenParts.ForcedImplant.Summary>
+ 
+ <!-- Win Conditions -->
+ <Playwright.ScenParts.WinCondition.SummaryIntro>Added win conditions</Playwright.ScenParts.WinCondition.SummaryIntro>
+ 
+ <Playwright.ScenParts.WinCondition_Colony>Win Condition: Colonists</Playwright.ScenParts.WinCondition_Colony>
+ <Playwright.ScenParts.WinCondition_Colony.Colonists>Colonists</Playwright.ScenParts.WinCondition_Colony.Colonists>
+ <Playwright.ScenParts.WinCondition_Colony.Summary>Have {0} colonists</Playwright.ScenParts.WinCondition_Colony.Summary>
+ <Playwright.ScenParts.WinCondition_Colony.Help>Wins the game when you have the specified amount of alive colonists.
+
+If you have multiple colonies enabled, this counts all of them.
+
+Does not count temporary colonists or guests. Does not count unloaded colonists, such as those in cryptosleep or living in outposts from Vanilla Outposts Expanded.
+
+Mind the potential lag when setting this very high.</Playwright.ScenParts.WinCondition_Colony.Help>
 
 </LanguageData>

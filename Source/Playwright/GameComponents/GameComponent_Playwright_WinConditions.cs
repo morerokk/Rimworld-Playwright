@@ -105,7 +105,7 @@ namespace Rokk.Playwright.GameComponents
                 "Playwright.ScenParts.WinCondition_Colony.WinIntro".Translate(),
                 "Playwright.ScenParts.WinCondition_Colony.WinEnding".Translate(),
                 stringBuilder.ToString(),
-                "Playwright.ScenParts.WinCondition_Colony.WinColonists");
+                "Playwright.ScenParts.WinCondition_Colony.WinColonists", pawns);
             GameVictoryUtility.ShowCredits(credits, SongDefOf.EndCreditsSong, false, 5f);
 
             ColonyWon = true;

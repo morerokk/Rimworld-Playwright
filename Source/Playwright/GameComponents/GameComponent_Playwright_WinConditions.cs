@@ -41,13 +41,14 @@ namespace Rokk.Playwright.GameComponents
 
         public override void GameComponentTick()
         {
-            if (ColonyEnabled && !ColonyWon)
+            if (ColonyEnabled && !ColonyWon && Find.TickManager.TicksGame % 2000 != 0)
             {
                 int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Count;
                 if (playerPawnCount >= ColonyRequiredColonists)
                 {
                     StartFadeCountdown(5f, WinGameColony);
                     ColonyWon = true;
+                    return;
                 }
             }
         }

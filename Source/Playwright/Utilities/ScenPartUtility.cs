@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using static Rokk.Playwright.ScenParts.ForcedImplant;
 
 namespace Rokk.Playwright.Utilities
 {
@@ -277,6 +278,13 @@ namespace Rokk.Playwright.Utilities
             part.Hediff = hediffDef;
             part.BodyPart = bodyPartDef;
             part.Side = implantSide.Value;
+            return part;
+        }
+
+        public static WinCondition_Colony MakeWinConditionColonyPart(int colonists)
+        {
+            WinCondition_Colony part = (WinCondition_Colony)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Colony);
+            part.Colonists = colonists;
             return part;
         }
     }

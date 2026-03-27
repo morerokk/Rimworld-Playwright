@@ -41,6 +41,7 @@ namespace Rokk.Playwright.Components.Origins
         /// <summary>
         /// What the starting faction of the player is when they start the scenario (new arrivals, new tribe etc).
         /// If null, uses the one from <see cref="BasedOnScenario"/>.
+        /// Recommended to be <see cref="FactionDefOf.PlayerColony"/> in most cases.
         /// </summary>
         public virtual FactionDef PlayerFaction => null;
 
@@ -160,7 +161,8 @@ namespace Rokk.Playwright.Components.Origins
                 }
             }
 
-            // TODO: Custom placeholder origin, selected from scenario
+            // Custom placeholder origin, selected from scenario
+            origins.Add(new ImportOrigin());
 
             return origins;
         }

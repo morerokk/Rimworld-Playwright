@@ -114,13 +114,19 @@
 Consider these long-term goals to strive for during your playthrough.</Playwright.Tabs.WinConditions.Welcome>
  
  <Playwright.Components.WinConditions.Ship>Ship to the Stars</Playwright.Components.WinConditions.Ship>
- <Playwright.Components.WinConditions.Ship.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or perhaps you can procure a way out from the locals. You win when at least 1 colonist escapes the planet on a built starship. The default experience.</Playwright.Components.WinConditions.Ship.Description>
+ <Playwright.Components.WinConditions.Ship.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or perhaps you can procure a way out from the locals. You win when at least 1 colonist escapes the planet on a built starship. The default experience.
+
+Removing this will disable the Journey Offer, and you will not be able to start the Ship Reactor. You can still build the ship.</Playwright.Components.WinConditions.Ship.Description>
  
  <Playwright.Components.WinConditions.RoyalAscent>Royal Ascent</Playwright.Components.WinConditions.RoyalAscent>
- <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Imperial Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.</Playwright.Components.WinConditions.RoyalAscent.Description>
+ <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Imperial Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.
+
+Removing this will disable the Royal Ascent quest.</Playwright.Components.WinConditions.RoyalAscent.Description>
  
  <Playwright.Components.WinConditions.Archonexus>Archonexus</Playwright.Components.WinConditions.Archonexus>
- <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.</Playwright.Components.WinConditions.Archonexus.Description>
+ <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.
+
+Removing this will disable the Archonexus quests.</Playwright.Components.WinConditions.Archonexus.Description>
  
  <Playwright.Components.WinConditions.Monolith>Monolith</Playwright.Components.WinConditions.Monolith>
  <Playwright.Components.WinConditions.Monolith.Description>Work your way up into Metal Hell, and choose to embrace the void or sever its connection with the world. The default Anomaly experience.</Playwright.Components.WinConditions.Monolith.Description>

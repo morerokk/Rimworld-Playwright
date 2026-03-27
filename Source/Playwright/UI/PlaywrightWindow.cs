@@ -33,7 +33,6 @@ namespace Rokk.Playwright.UI
 
         private float ListMargin => 5f;
 
-        private float OriginContentHeight => 550f;
         private float FactionContentHeight => 30f;
 
         public override Vector2 InitialSize => new Vector2(1200, 800);
@@ -171,7 +170,6 @@ namespace Rokk.Playwright.UI
             {
                 return;
             }
-            OriginComponent selectedOrigin = this.PlaywrightStructure.Origin;
 
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
@@ -181,6 +179,13 @@ namespace Rokk.Playwright.UI
             Widgets.DrawBoxSolidWithOutline(originRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
             originRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
             originRect.width += Margin * 0.5f;
+
+            DrawSelectedOrigin(originRect);
+        }
+
+        private void DrawSelectedOrigin(Rect originRect)
+        {
+            OriginComponent selectedOrigin = this.PlaywrightStructure.Origin;
 
             Rect originContentRect = new Rect(originRect);
             originContentRect.width -= Margin;
@@ -480,6 +485,8 @@ namespace Rokk.Playwright.UI
             // Selected win conditions
             selectedWinConditionsRect = PlaywrightDrawHelper.RectWithMargin(selectedWinConditionsRect, PanelContentMargin);
             Widgets.DrawBoxSolidWithOutline(selectedWinConditionsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+            selectedWinConditionsRect.x += Margin;
+            selectedWinConditionsRect.width -= Margin;
             Rect selectedWinConditionsRectInner = new Rect(selectedWinConditionsRect);
             selectedWinConditionsRectInner.width -= Margin;
             selectedWinConditionsRectInner = SelectedWinConditionsListing.GetScrollViewInnerRect(selectedWinConditionsRectInner);
@@ -489,17 +496,19 @@ namespace Rokk.Playwright.UI
 
             foreach (WinConditionComponent winCondition in selectedWinConditions.ToList())
             {
-                Rect winConditionContentRect = SelectedWinConditionsListing.GetRect(winCondition.ContentHeight + winCondition.SettingsHeight);
-                winConditionContentRect = PlaywrightDrawHelper.RectWithMargin(winConditionContentRect, 5f);
-                winCondition.DoWinConditionContents(winConditionContentRect);
-                if (PlaywrightDrawHelper.DrawButtonInTopRight(winConditionContentRect, deleteTex, 2f, 0.4f))
+                Rect deleteButtonRect = SelectedWinConditionsListing.GetRect(0f);
+                deleteButtonRect.height = 50f;
+                deleteButtonRect = PlaywrightDrawHelper.RectWithMargin(deleteButtonRect, 5f);
+                winCondition.DoWinConditionContents(SelectedWinConditionsListing, deleteButtonRect);
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedWinConditions.Remove(winCondition);
                     RemoveSound();
                     AvailableWinConditionsListing.Invalidate();
                     SelectedWinConditionsListing.Invalidate();
                 }
-                PlaywrightDrawHelper.DrawBottomLine(winConditionContentRect, PanelOutlineColor, PanelOutlineWidth);
+                Rect lineRect = SelectedWinConditionsListing.GetRect(3f);
+                PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }
 
             SelectedWinConditionsListing.End();

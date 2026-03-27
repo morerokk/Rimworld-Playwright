@@ -72,7 +72,7 @@
     <scenPartClass>Rokk.Playwright.ScenParts.StartWithHonor</scenPartClass>
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.1</selectionWeight>
-    <summaryPriority>30</summaryPriority>
+    <summaryPriority>459</summaryPriority>
   </ScenPartDef>
   
   <ScenPartDef>

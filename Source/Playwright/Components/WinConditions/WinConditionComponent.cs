@@ -1,4 +1,5 @@
 ﻿using Rokk.Playwright.Addons;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,29 +17,25 @@ namespace Rokk.Playwright.Components.WinConditions
     /// </summary>
     public abstract class WinConditionComponent : PlaywrightComponent
     {
-        public virtual float ContentHeight => 100f;
         /// <summary>
-        /// If your component has settings, how high the settings rect is.
+        /// If your component has settings, how high the settings rect should be.
         /// Needs to be known in advance to reserve space for it in the UI.
+        /// Not necessary if your settings fit in a Listing_AutoFitVertical.
         /// </summary>
         public virtual float SettingsHeight => 0f;
 
-        public virtual void DoWinConditionContents(Rect inRect)
+        public virtual void DoWinConditionContents(Listing_AutoFitVertical winConditionContentListing, Rect inRect)
         {
-            Listing_Standard winConditionContentListing = new Listing_Standard();
-            winConditionContentListing.Begin(inRect);
+            Text.Font = GameFont.Medium;
             winConditionContentListing.Label(NameTranslated);
+            Text.Font = GameFont.Small;
             winConditionContentListing.Gap();
             winConditionContentListing.Label(DescriptionTranslated);
-            if (SettingsHeight > 0)
-            {
-                Rect winConditionSettingsRect = winConditionContentListing.GetRect(SettingsHeight);
-                DoSettingsContents(winConditionSettingsRect);
-            }
-            winConditionContentListing.End();
+            Rect winConditionSettingsRect = winConditionContentListing.GetRect(SettingsHeight);
+            DoSettingsContents(winConditionContentListing, inRect);
         }
 
-        public virtual void DoSettingsContents(Rect inRect)
+        public virtual void DoSettingsContents(Listing_AutoFitVertical winConditionContentListing, Rect inRect)
         {
 
         }

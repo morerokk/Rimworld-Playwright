@@ -85,12 +85,6 @@
         <!-- Scatter some things anywhere -->
         <li Class="ScenPart_ScatterThingsAnywhere">
           <def>ScatterThingsAnywhere</def>
-          <thingDef>ShipChunk</thingDef>
-          <allowRoofed>false</allowRoofed>
-          <count>3</count>
-        </li>
-        <li Class="ScenPart_ScatterThingsAnywhere">
-          <def>ScatterThingsAnywhere</def>
           <thingDef>WoodLog</thingDef>
           <count>50</count>
         </li>

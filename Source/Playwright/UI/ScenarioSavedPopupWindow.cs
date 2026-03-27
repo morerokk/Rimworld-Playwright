@@ -11,6 +11,7 @@ namespace Rokk.Playwright.UI
     public class ScenarioSavedPopupWindow : Window
     {
         private Action<bool> OnClose;
+        public override Vector2 InitialSize => new Vector2(400, 300);
 
         public ScenarioSavedPopupWindow(Action<bool> onClose = null) : base()
         {
@@ -20,19 +21,29 @@ namespace Rokk.Playwright.UI
 
         public override void DoWindowContents(Rect inRect)
         {
+            const float ButtonHeight = 38f;
+            const float ButtonWidth = 140f;
+            const float ButtonMargin = 8f;
+
             Listing_Standard listing = new Listing_Standard();
             listing.Begin(inRect);
             listing.Label("Playwright.ScenarioSaved".Translate());
             if (this.OnClose != null)
             {
                 listing.Label("Playwright.ScenarioSaved.1".Translate());
-                if (listing.ButtonText("Yes".Translate(), null, 0.25f))
-                {
-                    this.Confirm();
-                }
-                if (listing.ButtonText("No".Translate(), null, 0.25f))
+
+                float buttonY = inRect.yMax - ButtonHeight - ButtonMargin;
+                float leftX = inRect.x;
+                Rect noRect = new Rect(leftX, buttonY, ButtonWidth, ButtonHeight);
+                if (Widgets.ButtonText(noRect, "No".Translate()))
                 {
                     this.Cancel();
+                }
+
+                Rect yesRect = new Rect(inRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
+                if (Widgets.ButtonText(yesRect, "Yes".Translate()))
+                {
+                    this.Confirm();
                 }
             }
             listing.End();

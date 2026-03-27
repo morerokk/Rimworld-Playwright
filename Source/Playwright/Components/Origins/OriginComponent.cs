@@ -5,6 +5,7 @@ using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
+using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
@@ -89,27 +90,88 @@ namespace Rokk.Playwright.Components.Origins
         public virtual string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
 
         /// <summary>
-        /// Required for drawing additional content. If you use <see cref="DoAdditionalContents"/>, you should increase this number to fit your content.
+        /// Contents that come before the origin content.
+        /// Useful for creating settings that might completely change the description (like ImportOrigin).
         /// </summary>
-        public virtual float AdditionalContentsHeight => 0f;
-
-        /// <summary>
-        /// Draw additional extra content for your origin here. This will be shown in the Playwright UI below the Origin's summary.
-        /// This is only used for content. For settings, use <see cref="OriginComponent.DoSettingsContents"/>.
-        /// </summary>
-        /// <param name="listing">The <see cref="Listing_Standard"/> that the UI is drawing in.</param>
-        /// <param name="inRect">The whole <see cref="Rect"/> that the Origin UI is drawing in. Spans the whole origin box, not just the listing contents, be careful!</param>
-        public virtual void DoAdditionalContents(Listing_Standard listing, Rect inRect)
+        /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
+        public virtual void DoPreContents(Listing_AutoFitVertical originContentListing)
         {
 
         }
 
         /// <summary>
-        /// If your component has settings, how high the settings rect is.
-        /// Needs to be known in advance to reserve space for it in the UI.
+        /// Additional content for the origin, like flavor text.
+        /// By default, this lists out the origin's extra default-selected boons/factions/etc.
         /// </summary>
-        public virtual float SettingsHeight => 0f;
-        public virtual void DoSettingsContents(Rect inRect)
+        /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
+        public virtual void DoAdditionalContents(Listing_AutoFitVertical originContentListing)
+        {
+            if (DefaultBoons != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultBoons".Translate());
+                foreach (BoonComponent boon in DefaultBoons)
+                {
+                    sb.Append(Environment.NewLine + "- " + boon.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+
+            if (DefaultAllies != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultAllies".Translate());
+                foreach (FactionComponent faction in DefaultAllies)
+                {
+                    sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+
+            if (DefaultNeutrals != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultNeutrals".Translate());
+                foreach (FactionComponent faction in DefaultNeutrals)
+                {
+                    sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+
+            if (DefaultEnemies != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultEnemies".Translate());
+                foreach (FactionComponent faction in DefaultEnemies)
+                {
+                    sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+
+            if (DefaultWinConditions != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultWinConditions".Translate());
+                foreach (WinConditionComponent winCondition in DefaultWinConditions)
+                {
+                    sb.Append(Environment.NewLine + "- " + winCondition.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+
+            if (DefaultSpecialConditions != null)
+            {
+                StringBuilder sb = new StringBuilder("Playwright.DefaultSpecialConditions".Translate());
+                foreach (SpecialConditionComponent specialCondition in DefaultSpecialConditions)
+                {
+                    sb.Append(Environment.NewLine + "- " + specialCondition.NameTranslated);
+                }
+                originContentListing.Label(sb.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Settings for the origin.
+        /// </summary>
+        /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
+        public virtual void DoSettingsContents(Listing_AutoFitVertical originContentListing)
         {
 
         }

@@ -21,6 +21,13 @@
  <Playwright.ScenarioSaved>Your Scenario has been saved successfully.</Playwright.ScenarioSaved>
  <Playwright.ScenarioSaved.1>Do you want to go to the New Colony screen now?</Playwright.ScenarioSaved.1>
  <Playwright.ScenarioNamePrefix>(Playwright) </Playwright.ScenarioNamePrefix>
+ <Playwright.ConfirmReset>This will reset your Boons, Factions, Win Conditions and Special Conditions to the selected Origin's defaults. Are you sure?</Playwright.ConfirmReset>
+ <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
+ <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>
+ <Playwright.DefaultNeutrals>Default Neutral:</Playwright.DefaultNeutrals>
+ <Playwright.DefaultEnemies>Default Enemies:</Playwright.DefaultEnemies>
+ <Playwright.DefaultWinConditions>Default Win Conditions:</Playwright.DefaultWinConditions>
+ <Playwright.DefaultSpecialConditions>Default Special Conditions:</Playwright.DefaultSpecialConditions>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
@@ -70,6 +77,12 @@
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
+ 
+ <Playwright.Components.Origins.Import>(Import)</Playwright.Components.Origins.Import>
+ <Playwright.Components.Origins.Import.Description>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.Description>
+ <Playwright.Components.Origins.Import.Summary></Playwright.Components.Origins.Import.Summary>
+ <Playwright.Components.Origins.Import.Scenario>Scenario</Playwright.Components.Origins.Import.Scenario>
+ <Playwright.Components.Origins.Import.SuggestedIdeo>(None)</Playwright.Components.Origins.Import.SuggestedIdeo>
  
 
  <Playwright.Tabs.Boons.Welcome>Choose your Boons. This will determine extra stuff you start out with (if any).</Playwright.Tabs.Boons.Welcome>

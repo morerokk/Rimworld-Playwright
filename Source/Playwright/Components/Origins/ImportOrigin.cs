@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,50 @@ namespace Rokk.Playwright.Components.Origins
         public override string Id => "Origins.Import";
         public override ScenarioDef BasedOnScenario => Scenario;
 
+        /// <summary>
+        /// Player's selected scenario to import from
+        /// </summary>
         public ScenarioDef Scenario;
+
+        private string ScenarioLabel => Scenario != null ? Scenario.LabelCap.ToString() : "-";
+
+        /// <summary>
+        /// A list of scenario defs that shouldn't appear in the choices menu, as they would be redundant
+        /// </summary>
+        protected virtual List<string> ScenarioDefsToSkip => new List<string>()
+        {
+            "Crashlanded",
+            "LostTribe",
+            "TheRichExplorer",
+            "NakedBrutality",
+            "Mechanitor",
+            "Sanguophage",
+            "TheAnomaly",
+            "TheGravship"
+        };
+
+        public override void DoPreContents(Listing_AutoFitVertical originContentListing)
+        {
+            if (originContentListing.ButtonTextLabeled("Playwright.Components.Origins.Import.Scenario".Translate(), ScenarioLabel))
+            {
+                List<string> defsToSkip = ScenarioDefsToSkip;
+                List<ScenarioDef> availableScenarios = DefDatabase<ScenarioDef>.AllDefsListForReading
+                    .Where(def => !defsToSkip.Contains(def.defName) && def.scenario.showInUI)
+                    .ToList();
+
+                var options = new List<FloatMenuOption>();
+                foreach (ScenarioDef scenario in availableScenarios)
+                {
+                    options.Add(new FloatMenuOption(scenario.LabelCap, () =>
+                    {
+                        this.Scenario = scenario;
+                        originContentListing.Invalidate();
+                    }));
+                }
+
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+        }
 
         public override void ExposeData()
         {

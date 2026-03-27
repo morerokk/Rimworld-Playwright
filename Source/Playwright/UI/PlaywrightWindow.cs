@@ -21,6 +21,7 @@ namespace Rokk.Playwright.UI
     {
         private PlaywrightStructure PlaywrightStructure = PlaywrightStructure.CreateDefault();
         public Tabs ActiveTab { get; private set; } = Tabs.Intro;
+        public bool FormDirty { get; private set; } = false;
 
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
@@ -67,22 +68,26 @@ namespace Rokk.Playwright.UI
             switch (ActiveTab)
             {
                 case Tabs.Intro:
-                    DrawIntro(tabContentRect);
+                    DrawIntroTab(tabContentRect);
                     break;
                 case Tabs.Origin:
-                    DrawOrigin(tabContentRect);
+                    DrawOriginTab(tabContentRect);
                     break;
                 case Tabs.Boons:
-                    DrawBoons(tabContentRect);
+                    DrawBoonsTab(tabContentRect);
+                    FormDirty = true;
                     break;
                 case Tabs.Factions:
-                    DrawFactions(tabContentRect);
+                    DrawFactionsTab(tabContentRect);
+                    FormDirty = true;
                     break;
                 case Tabs.WinConditions:
-                    DrawWinConditions(tabContentRect);
+                    DrawWinConditionsTab(tabContentRect);
+                    FormDirty = true;
                     break;
                 case Tabs.SpecialConditions:
-                    DrawSpecialConditions(tabContentRect);
+                    DrawSpecialConditionsTab(tabContentRect);
+                    FormDirty = true;
                     break;
             }
 
@@ -115,7 +120,7 @@ namespace Rokk.Playwright.UI
             }
         }
 
-        private void DrawIntro(Rect contentRect)
+        private void DrawIntroTab(Rect contentRect)
         {
             Listing_Standard listing = new Listing_Standard();
             listing.Begin(contentRect);
@@ -130,7 +135,7 @@ namespace Rokk.Playwright.UI
         private Vector2 OriginsScrollPos = Vector2.zero;
         private Vector2 OriginContentScrollPos = Vector2.zero;
         private Listing_AutoFitVertical OriginContentListing = new Listing_AutoFitVertical();
-        private void DrawOrigin(Rect contentRect)
+        private void DrawOriginTab(Rect contentRect)
         {
             List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
 
@@ -194,6 +199,7 @@ namespace Rokk.Playwright.UI
             Widgets.BeginScrollView(originRect, ref OriginContentScrollPos, originContentRect);
             OriginContentListing.Begin(originContentRect);
 
+            selectedOrigin.DoPreContents(OriginContentListing);
             Text.Font = GameFont.Medium;
             OriginContentListing.Label(selectedOrigin.NameTranslated);
             Text.Font = GameFont.Small;
@@ -208,12 +214,9 @@ namespace Rokk.Playwright.UI
                 OriginContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
             }
             OriginContentListing.Gap();
-            selectedOrigin.DoAdditionalContents(OriginContentListing, originContentRect);
 
-            if (selectedOrigin.SettingsHeight > 0f)
-            {
-                selectedOrigin.DoSettingsContents(OriginContentListing.GetRect(selectedOrigin.SettingsHeight));
-            }
+            selectedOrigin.DoAdditionalContents(OriginContentListing);
+            selectedOrigin.DoSettingsContents(OriginContentListing);
 
             OriginContentListing.End();
 
@@ -224,7 +227,7 @@ namespace Rokk.Playwright.UI
         private Listing_AutoFitVertical AvailableBoonsListing = new Listing_AutoFitVertical();
         private Vector2 SelectedBoonsScrollPosition = Vector2.zero;
         private Listing_AutoFitVertical SelectedBoonsListing = new Listing_AutoFitVertical();
-        private void DrawBoons(Rect contentRect)
+        private void DrawBoonsTab(Rect contentRect)
         {
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
             List<BoonComponent> selectedBoons = PlaywrightStructure.Boons;
@@ -312,7 +315,7 @@ namespace Rokk.Playwright.UI
         private Vector2 AlliesScrollPosition = Vector2.zero;
         private Vector2 NeutralsScrollPosition = Vector2.zero;
         private Vector2 EnemiesScrollPosition = Vector2.zero;
-        private void DrawFactions(Rect contentRect)
+        private void DrawFactionsTab(Rect contentRect)
         {
             List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
             List<FactionComponent> selectedAllies = PlaywrightStructure.AllyFactions;
@@ -434,7 +437,7 @@ namespace Rokk.Playwright.UI
         private Listing_AutoFitVertical AvailableWinConditionsListing = new Listing_AutoFitVertical();
         private Vector2 SelectedWinConditionsScrollPos = Vector2.zero;
         private Listing_AutoFitVertical SelectedWinConditionsListing = new Listing_AutoFitVertical();
-        private void DrawWinConditions(Rect contentRect)
+        private void DrawWinConditionsTab(Rect contentRect)
         {
             List<WinConditionComponent> allWinConditions = WinConditionComponent.GetAvailableWinConditions();
             List<WinConditionComponent> selectedWinConditions = PlaywrightStructure.WinConditions;
@@ -519,7 +522,7 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private void DrawSpecialConditions(Rect contentRect)
+        private void DrawSpecialConditionsTab(Rect contentRect)
         {
 
         }
@@ -578,6 +581,7 @@ namespace Rokk.Playwright.UI
                 Log.Error("[Playwright] Error generating scenario: " + ex.Message);
                 Log.Error(ex.StackTrace);
                 Find.WindowStack.Add(new InfoPopupWindow("Playwright.ErrorSavingScenario".Translate()));
+                throw;
             }
         }
 

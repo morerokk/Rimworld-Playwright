@@ -43,7 +43,9 @@ namespace Rokk.Playwright.GameComponents
         {
             if (ColonyEnabled && !ColonyWon && Find.TickManager.TicksGame % 2000 != 0)
             {
-                int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Count;
+                int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                    .Count(p => !p.IsAnimal);
+
                 if (playerPawnCount >= ColonyRequiredColonists)
                 {
                     StartFadeCountdown(5f, WinGameColony);

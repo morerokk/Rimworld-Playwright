@@ -22,6 +22,10 @@ namespace Rokk.Playwright.GameComponents
         private bool ConquestWon = false;
         private bool ConquestAllowAllies;
 
+        private bool RoyalTitlesEnabled = false;
+        private bool RoyalTitlesWon = false;
+        private Dictionary<RoyalTitleDef, int> RoyalTitlesRequiredColonists = new Dictionary<RoyalTitleDef, int>();
+
         private float Countdown = 0f;
         private Action CountdownEnded;
 
@@ -80,6 +84,27 @@ namespace Rokk.Playwright.GameComponents
                     return;
                 }
             }
+
+            // Royal titles
+            if (RoyalTitlesEnabled && !RoyalTitlesWon && Find.TickManager.TicksGame % 500 == 0)
+            {
+                var playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                    .Where(p => p.royalty != null)
+                    .ToList();
+                foreach (KeyValuePair<RoyalTitleDef, int> requiredTitleCount in RoyalTitlesRequiredColonists)
+                {
+                    int qualifiedPawns = playerPawns.Count(p => p.royalty.HasTitle(requiredTitleCount.Key));
+                    if (qualifiedPawns >= requiredTitleCount.Value)
+                    {
+                        StartFadeCountdown(5f, () =>
+                        {
+                            WinGameRoyalTitles(playerPawns.Where(p => p.royalty.HasTitle(requiredTitleCount.Key)).ToList());
+                        });
+                        RoyalTitlesWon = true;
+                        return;
+                    }
+                }
+            }
         }
 
         public override void StartedNewGame()
@@ -122,6 +147,20 @@ namespace Rokk.Playwright.GameComponents
             {
                 ConquestAllowAllies = conquestPart.AllowAllies;
                 ConquestEnabled = true;
+            }
+
+            // Royal titles
+            var royalTitlesParts = scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_RoyalTitles)
+                .Cast<WinCondition_RoyalTitles>()
+                .ToList();
+            foreach (WinCondition_RoyalTitles royalTitlesPart in royalTitlesParts)
+            {
+                RoyalTitlesRequiredColonists[royalTitlesPart.Title] = royalTitlesPart.Colonists;
+            }
+            if (royalTitlesParts.Count > 0)
+            {
+                RoyalTitlesEnabled = true;
             }
         }
 
@@ -184,11 +223,32 @@ namespace Rokk.Playwright.GameComponents
             ConquestWon = true;
         }
 
+        private void WinGameRoyalTitles(List<Pawn> royalPawns)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            // Need list of all pawns anyway, to prevent "left behind" messages. However, the win screen will only list the royalty.
+            List<Pawn> pawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction;
+            foreach (Pawn pawn in royalPawns)
+            {
+                stringBuilder.AppendLine(pawn.LabelCap);
+            }
+
+            string credits = GameVictoryUtility.MakeEndCredits(
+                "Playwright.ScenParts.WinCondition_RoyalTitles.WinIntro".Translate(),
+                "Playwright.ScenParts.WinCondition_RoyalTitles.WinEnding".Translate(),
+                stringBuilder.ToString(),
+                "Playwright.ScenParts.WinCondition_RoyalTitles.WinColonists", pawns);
+            GameVictoryUtility.ShowCredits(credits, SongDefOf.EndCreditsSong, false, 5f);
+
+            RoyalTitlesWon = true;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref ColonyWon, nameof(ColonyWon));
             Scribe_Values.Look(ref ConquestWon, nameof(ConquestWon));
+            Scribe_Values.Look(ref RoyalTitlesWon, nameof(RoyalTitlesWon));
         }
     }
 }

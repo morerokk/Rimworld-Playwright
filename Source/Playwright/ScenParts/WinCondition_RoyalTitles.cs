@@ -99,6 +99,12 @@ namespace Rokk.Playwright.ScenParts
             Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_RoyalTitles.Help".Translate()));
         }
 
+        public override bool CanCoexistWith(ScenPart other)
+        {
+            WinCondition_RoyalTitles part = other as WinCondition_RoyalTitles;
+            return part == null || this.Faction != part.Faction || this.Title != part.Title;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();

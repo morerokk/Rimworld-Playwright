@@ -216,6 +216,12 @@ namespace Rokk.Playwright.ScenParts
             pawn.health.AddHediff(Hediff, bodyPartToApplyTo);
         }
 
+        public override bool CanCoexistWith(ScenPart other)
+        {
+            ForcedImplant part = other as ForcedImplant;
+            return part == null || this.Hediff != part.Hediff || this.BodyPart != part.BodyPart || this.Side != part.Side;
+        }
+
         public enum ImplantSide
         {
             Left = 0,

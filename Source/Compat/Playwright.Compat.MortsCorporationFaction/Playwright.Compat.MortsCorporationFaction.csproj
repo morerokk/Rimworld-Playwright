@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Origins\CorporateOrigin.cs" />
+    <Compile Include="Components\WinConditions\CorporateBoardroomWinCondition.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\RoyalTitleDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
   </ItemGroup>
   <ItemGroup>

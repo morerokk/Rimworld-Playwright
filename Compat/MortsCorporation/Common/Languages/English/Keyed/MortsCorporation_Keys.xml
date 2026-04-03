@@ -21,10 +21,15 @@
 - Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Compat_MF_Corporate.Summary>
  <Playwright.Components.Origins.Compat_MF_Corporate.SuggestedIdeo>Corporate</Playwright.Components.Origins.Compat_MF_Corporate.SuggestedIdeo>
  
- <Playwright.Components.WinConditions.Compat_MF_Paperwork>Paperwork</Playwright.Components.WinConditions.Compat_MF_Paperwork>
- <Playwright.Components.WinConditions.Compat_MF_Paperwork.Description>Fill out a certain amount of paperwork, and sell it to The Corporation across your entire playthrough. You win when the total amount of completed paperwork sold to The Corporation equals or exceeds the goal.</Playwright.Components.WinConditions.Compat_MF_Paperwork.Description>
+ <Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom>Corporate Boardroom</Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom>
+ <Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.DescriptionShort>Have a certain number of corporate colonists.</Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.DescriptionShort>
+ <Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Description>Have a certain number of colonists with the chosen Title with The Corporation. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with The Corporation equals or exceeds the goal.</Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Description>
+ <Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Colonists>Colonists</Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Colonists>
+ <Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Title>Title</Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Title>
  
- <Playwright.Components.WinConditions.Compat_MF_CorporateTitle>Corporate Boardroom</Playwright.Components.WinConditions.Compat_MF_CorporateTitle>
- <Playwright.Components.WinConditions.Compat_MF_CorporateTitle.Description>Have a certain number of colonists with the chosen Corporate title. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title equals or exceeds the goal.</Playwright.Components.WinConditions.Compat_MF_CorporateTitle.Description>
+ <Playwright.Components.WinConditions.Compat_MF_Paperwork>Paperwork</Playwright.Components.WinConditions.Compat_MF_Paperwork>
+ <Playwright.Components.WinConditions.Compat_MF_Paperwork.DescriptionShort>Fill out a certain amount of paperwork.</Playwright.Components.WinConditions.Compat_MF_Paperwork.DescriptionShort>
+ <Playwright.Components.WinConditions.Compat_MF_Paperwork.Description>Fill out a certain amount of paperwork, and sell it to The Corporation across your entire playthrough. You win when the total amount of completed paperwork sold to The Corporation equals or exceeds the goal.</Playwright.Components.WinConditions.Compat_MF_Paperwork.Description>
+ <Playwright.Components.WinConditions.Compat_MF_Paperwork.Amount>Amount</Playwright.Components.WinConditions.Compat_MF_Paperwork.Amount>
 
 </LanguageData>

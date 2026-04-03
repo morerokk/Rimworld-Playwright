@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -8,29 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace Rokk.Playwright.Components.WinConditions
+namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinConditions
 {
-    public class RoyalCouncilWinCondition : WinConditionComponent
+    public class CorporateBoardroomWinCondition : WinConditionComponent
     {
-        public override string Id => "WinConditions.RoyalCouncil";
-        public override bool IsAvailable => ModsConfig.RoyaltyActive;
+        public override string Id => "WinConditions.Compat_MF_CorporateBoardroom";
 
         public int Colonists = 10;
         private string ColonistsBuffer = "10";
 
-        public RoyalTitleDef Title = RoyalTitleDefOf.Count;
+        public RoyalTitleDef Title = DefOfs.RoyalTitleDefOf.MF_RegionalExecutive;
         private string TitleText => Title != null ? Title.LabelCap.ToString() : "-";
 
         public override void DoSettingsContents(Listing_AutoFitVertical winConditionContentListing)
         {
             base.DoSettingsContents(winConditionContentListing);
             // Colonist count selector
-            winConditionContentListing.Label("Playwright.Components.WinConditions.RoyalCouncil.Colonists".Translate());
+            winConditionContentListing.Label("Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Colonists".Translate());
             winConditionContentListing.IntEntry(ref Colonists, ref ColonistsBuffer, min: 1);
             // Title selector
-            if (winConditionContentListing.ButtonTextLabeled("Playwright.Components.WinConditions.RoyalCouncil.Title".Translate(), TitleText))
+            if (Title == null)
             {
-                List<RoyalTitleDef> allowedTitles = FactionDefOf.Empire.RoyalTitlesAwardableInSeniorityOrderForReading;
+                Title = DefOfs.RoyalTitleDefOf.MF_RegionalExecutive;
+            }
+            if (winConditionContentListing.ButtonTextLabeled("Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Title".Translate(), TitleText))
+            {
+                List<RoyalTitleDef> allowedTitles = DefOfs.FactionDefOf.MF_Corporation.RoyalTitlesAwardableInSeniorityOrderForReading;
                 var floatMenuOptions = new List<FloatMenuOption>();
                 foreach (RoyalTitleDef titleDef in allowedTitles)
                 {
@@ -43,7 +47,7 @@ namespace Rokk.Playwright.Components.WinConditions
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionRoyalTitlesPart(Colonists, FactionDefOf.Empire, Title));
+            scenarioParts.Add(ScenPartUtility.MakeWinConditionRoyalTitlesPart(Colonists, DefOfs.FactionDefOf.MF_Corporation, Title));
         }
 
         public override void ExposeData()

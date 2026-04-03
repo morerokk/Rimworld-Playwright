@@ -17,6 +17,9 @@ namespace Rokk.Playwright.Components.WinConditions
     /// </summary>
     public abstract class WinConditionComponent : PlaywrightComponent
     {
+        public virtual string DescriptionShort => "Playwright.Components." + this.Id + ".DescriptionShort";
+        public virtual string DescriptionShortTranslated => DescriptionShort.Translate();
+
         public virtual void DoWinConditionContents(Listing_AutoFitVertical winConditionContentListing)
         {
             Text.Font = GameFont.Medium;
@@ -51,6 +54,12 @@ namespace Rokk.Playwright.Components.WinConditions
 
             list.Add(new ConquestWinCondition());
             list.Add(new ColonyWinCondition());
+
+            var royalCouncil = new RoyalCouncilWinCondition();
+            if (royalCouncil.IsAvailable)
+            {
+                list.Add(royalCouncil);
+            }
 
             foreach (WinConditionComponent winCondition in ComponentRegistration.WinConditions)
             {

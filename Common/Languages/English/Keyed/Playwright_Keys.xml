@@ -127,30 +127,38 @@
 Consider these long-term goals to strive for during your playthrough.</Playwright.Tabs.WinConditions.Welcome>
  
  <Playwright.Components.WinConditions.Ship>Ship to the Stars</Playwright.Components.WinConditions.Ship>
+ <Playwright.Components.WinConditions.Ship.DescriptionShort>Escape the planet on a ship to the stars.</Playwright.Components.WinConditions.Ship.DescriptionShort>
  <Playwright.Components.WinConditions.Ship.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or perhaps you can procure a way out from the locals. You win when at least 1 colonist escapes the planet on a built starship. The default experience.
 
 Removing this will disable the Journey Offer, and you will not be able to start the Ship Reactor. You can still build the ship.</Playwright.Components.WinConditions.Ship.Description>
  
  <Playwright.Components.WinConditions.RoyalAscent>Royal Ascent</Playwright.Components.WinConditions.RoyalAscent>
- <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Imperial Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.
+ <Playwright.Components.WinConditions.RoyalAscent.DescriptionShort>Escape the planet on an Empire Shuttle.</Playwright.Components.WinConditions.RoyalAscent.DescriptionShort>
+ <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Empire Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.
 
 Removing this will disable the Royal Ascent quest.</Playwright.Components.WinConditions.RoyalAscent.Description>
  
  <Playwright.Components.WinConditions.Archonexus>Archonexus</Playwright.Components.WinConditions.Archonexus>
+ <Playwright.Components.WinConditions.Archonexus.DescriptionShort>Awaken the Archonexus Core.</Playwright.Components.WinConditions.Archonexus.DescriptionShort>
  <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.
 
 Removing this will disable the Archonexus quests.</Playwright.Components.WinConditions.Archonexus.Description>
  
  <Playwright.Components.WinConditions.Conquest>Conquest</Playwright.Components.WinConditions.Conquest>
- <Playwright.Components.WinConditions.Conquest.Description>Ally with or destroy every possible faction on the planet. Factions without settlements (such as Mechanoids or Insectoids) are not counted. You win when the only remaining settlements on the map are owned by either you, or an allied faction.</Playwright.Components.WinConditions.Conquest.Description>
+ <Playwright.Components.WinConditions.Conquest.DescriptionShort>Defeat all your enemies.</Playwright.Components.WinConditions.Conquest.DescriptionShort>
+ <Playwright.Components.WinConditions.Conquest.Description>Destroy every other faction settlement on the planet. Factions without settlements (such as Mechanoids or Insectoids) are not counted. You win when the only remaining settlements on the map are owned by you.</Playwright.Components.WinConditions.Conquest.Description>
  <Playwright.Components.WinConditions.Conquest.AllowAllies>Can have allies</Playwright.Components.WinConditions.Conquest.AllowAllies>
- <Playwright.Components.WinConditions.Conquest.AllowAllies.Help>If enabled, you can also win by allying all remaining factions. If disabled, ALL other faction settlements must be destroyed.</Playwright.Components.WinConditions.Conquest.AllowAllies.Help>
+ <Playwright.Components.WinConditions.Conquest.AllowAllies.Help>If enabled, you can also win by allying factions instead of destroying them. If disabled, ALL other faction settlements must be destroyed.</Playwright.Components.WinConditions.Conquest.AllowAllies.Help>
  
  <Playwright.Components.WinConditions.Colony>Colony</Playwright.Components.WinConditions.Colony>
+ <Playwright.Components.WinConditions.Colony.DescriptionShort>Have a certain number of colonists.</Playwright.Components.WinConditions.Colony.DescriptionShort>
  <Playwright.Components.WinConditions.Colony.Description>Have a certain number of colonists. Temporary colonists (from quests or otherwise) are not counted. You win when your permanent colonist count equals or exceeds the goal. (Mind the potential lag when setting the goal)</Playwright.Components.WinConditions.Colony.Description>
  <Playwright.Components.WinConditions.Colony.Colonists>Colonists</Playwright.Components.WinConditions.Colony.Colonists>
  
- <Playwright.Components.WinConditions.RoyalTitle>Royal Council</Playwright.Components.WinConditions.RoyalTitle>
- <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>
+ <Playwright.Components.WinConditions.RoyalCouncil>Royal Council</Playwright.Components.WinConditions.RoyalCouncil>
+ <Playwright.Components.WinConditions.RoyalCouncil.DescriptionShort>Have a certain number of royal colonists.</Playwright.Components.WinConditions.RoyalCouncil.DescriptionShort>
+ <Playwright.Components.WinConditions.RoyalCouncil.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalCouncil.Description>
+ <Playwright.Components.WinConditions.RoyalCouncil.Colonists>Colonists</Playwright.Components.WinConditions.RoyalCouncil.Colonists>
+ <Playwright.Components.WinConditions.RoyalCouncil.Title>Title</Playwright.Components.WinConditions.RoyalCouncil.Title>
 
 </LanguageData>

@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.DefOfs;
 using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using static Rokk.Playwright.ScenParts.ForcedImplant;
 
 namespace Rokk.Playwright.Utilities
 {
@@ -292,6 +290,15 @@ namespace Rokk.Playwright.Utilities
         {
             WinCondition_Conquest part = (WinCondition_Conquest)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Conquest);
             part.AllowAllies = allowAllies;
+            return part;
+        }
+
+        public static WinCondition_RoyalTitles MakeWinConditionRoyalTitlesPart(int colonists, FactionDef faction, RoyalTitleDef title)
+        {
+            WinCondition_RoyalTitles part = (WinCondition_RoyalTitles)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_RoyalTitles);
+            part.Colonists = colonists;
+            part.Faction = faction;
+            part.Title = title;
             return part;
         }
     }

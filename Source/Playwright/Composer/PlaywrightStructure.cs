@@ -23,7 +23,7 @@ namespace Rokk.Playwright.Composer
         /// <summary>
         /// The Origin of the player, as in "why are they here"? The premise.
         /// Very similar to the various starting scenarios (Crashlanded, Tribal, Rich Explorer, etc.)
-        /// During compilation of the scenario, this cannot be null, but may be null if the chosen origin is unavailable.
+        /// During compilation of the scenario, this cannot be null, but may be null temporarily in other cases, if the chosen origin is unavailable.
         /// </summary>
         public OriginComponent Origin;
 

@@ -24,7 +24,7 @@ namespace Rokk.Playwright.GameComponents
 
         private bool RoyalTitlesEnabled = false;
         private bool RoyalTitlesWon = false;
-        private Dictionary<RoyalTitleDef, int> RoyalTitlesRequiredColonists = new Dictionary<RoyalTitleDef, int>();
+        private List<WinCondition_RoyalTitles> RoyalTitlesParts = new List<WinCondition_RoyalTitles>();
 
         private float Countdown = 0f;
         private Action CountdownEnded;
@@ -91,14 +91,16 @@ namespace Rokk.Playwright.GameComponents
                 var playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
                     .Where(p => p.royalty != null)
                     .ToList();
-                foreach (KeyValuePair<RoyalTitleDef, int> requiredTitleCount in RoyalTitlesRequiredColonists)
+                foreach (WinCondition_RoyalTitles royalTitlesPart in RoyalTitlesParts)
                 {
-                    int qualifiedPawns = playerPawns.Count(p => p.royalty.HasTitle(requiredTitleCount.Key));
-                    if (qualifiedPawns >= requiredTitleCount.Value)
+                    List<Pawn> qualifiedPawns = playerPawns
+                        .Where(p => p.royalty.AllTitlesInEffectForReading.Any(t => t.faction.def == royalTitlesPart.Faction && t.def.seniority >= royalTitlesPart.Title.seniority))
+                        .ToList();
+                    if (qualifiedPawns.Count >= royalTitlesPart.Colonists)
                     {
                         StartFadeCountdown(5f, () =>
                         {
-                            WinGameRoyalTitles(playerPawns.Where(p => p.royalty.HasTitle(requiredTitleCount.Key)).ToList());
+                            WinGameRoyalTitles(qualifiedPawns);
                         });
                         RoyalTitlesWon = true;
                         return;
@@ -150,15 +152,11 @@ namespace Rokk.Playwright.GameComponents
             }
 
             // Royal titles
-            var royalTitlesParts = scenario.AllParts
+            RoyalTitlesParts = scenario.AllParts
                 .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_RoyalTitles)
                 .Cast<WinCondition_RoyalTitles>()
                 .ToList();
-            foreach (WinCondition_RoyalTitles royalTitlesPart in royalTitlesParts)
-            {
-                RoyalTitlesRequiredColonists[royalTitlesPart.Title] = royalTitlesPart.Colonists;
-            }
-            if (royalTitlesParts.Count > 0)
+            if (RoyalTitlesParts.Count > 0)
             {
                 RoyalTitlesEnabled = true;
             }
@@ -167,7 +165,7 @@ namespace Rokk.Playwright.GameComponents
         private void StartFadeCountdown(float duration, Action onCountDownEnded)
         {
             CountdownEnded = onCountDownEnded;
-            Countdown = 5f;
+            Countdown = duration;
             ScreenFader.StartFade(Color.white, duration);
         }
 

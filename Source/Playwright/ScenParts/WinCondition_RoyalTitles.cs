@@ -38,8 +38,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 8);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 8);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 9);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 9);
+
+            helper.Skip(1);
 
             // Amount of colonists
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.WinCondition_RoyalTitles.Colonists".Translate());

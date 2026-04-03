@@ -277,10 +277,10 @@ namespace Rokk.Playwright.Utilities
             part.BodyPart = bodyPartDef;
             part.Side = implantSide.Value;
 
-            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "chance");
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedImplant), "chance");
             chanceInfo.SetValue(part, chance);
 
-            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "context");
+            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedImplant), "context");
             contextInfo.SetValue(part, context);
 
             return part;

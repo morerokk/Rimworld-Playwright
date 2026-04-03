@@ -108,13 +108,13 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.ForcedImplant.Summary>{0} have a {1} chance to have a {2} implant.</Playwright.ScenParts.ForcedImplant.Summary>
  
  <!-- Win Conditions -->
- <Playwright.ScenParts.WinCondition.SummaryIntro>Added win conditions</Playwright.ScenParts.WinCondition.SummaryIntro>
+ <Playwright.ScenParts.WinCondition.SummaryIntro>Additional win conditions</Playwright.ScenParts.WinCondition.SummaryIntro>
  
  <Playwright.ScenParts.WinCondition_Colony>Win Condition: Colonists</Playwright.ScenParts.WinCondition_Colony>
  <Playwright.ScenParts.WinCondition_Colony.Colonists>Colonists</Playwright.ScenParts.WinCondition_Colony.Colonists>
  <Playwright.ScenParts.WinCondition_Colony.Summary>Have {0} colonists</Playwright.ScenParts.WinCondition_Colony.Summary>
  <Playwright.ScenParts.WinCondition_Colony.WinIntro>You have successfully established a colony of impressive size!</Playwright.ScenParts.WinCondition_Colony.WinIntro>
- <Playwright.ScenParts.WinCondition_Colony.WinEnding>Having already made it this far, your colony is sure to thrive and survive for many generations. Only time will tell.</Playwright.ScenParts.WinCondition_Colony.WinEnding>
+ <Playwright.ScenParts.WinCondition_Colony.WinEnding>Having already made it this far, your colony is sure to thrive and survive for many generations. But only time will tell.</Playwright.ScenParts.WinCondition_Colony.WinEnding>
  <Playwright.ScenParts.WinCondition_Colony.WinColonists>\n\nThese colonists stand proud:\n\n{0}</Playwright.ScenParts.WinCondition_Colony.WinColonists>
  <Playwright.ScenParts.WinCondition_Colony.Help>Wins the game when you have the specified amount of alive colonists.
 
@@ -127,7 +127,7 @@ Mind the potential lag when setting this very high. Recommended maximum is 50 on
  <Playwright.ScenParts.WinCondition_Conquest.Summary>Ally with or destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.Summary>
  <Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>Destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>
  <Playwright.ScenParts.WinCondition_Conquest.WinIntro>You have successfully wiped out all your enemies! One by one, your enemies have fallen. You and your alliance are now the sole rulers of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntro>
- <Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>You have successfully wiped out all others on this planet! One by one, your enemies have fallen. You are now the sole ruler of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>
+ <Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>You have successfully wiped out all other settlements on the planet! One by one, your enemies have fallen. You are now the sole ruler of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>
  <Playwright.ScenParts.WinCondition_Conquest.WinEnding>No one is left to oppose you.</Playwright.ScenParts.WinCondition_Conquest.WinEnding>
  <Playwright.ScenParts.WinCondition_Conquest.WinColonists>\n\nThese soldiers have won the battle, and the war:\n\n{0}</Playwright.ScenParts.WinCondition_Conquest.WinColonists>
  <Playwright.ScenParts.WinCondition_Conquest.Help>Wins the game when you have wiped out all other settlements except your own.

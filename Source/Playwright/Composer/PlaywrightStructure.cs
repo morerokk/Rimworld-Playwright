@@ -34,13 +34,6 @@ namespace Rokk.Playwright.Composer
         public List<BoonComponent> Boons = new List<BoonComponent>();
 
         /// <summary>
-        /// Whether the player wants to customize the factions at all.
-        /// Sort of a safeguard against jank if the player doesn't want to mess with the factions.
-        /// NOTE: Origins may still add/remove certain faction components.
-        /// </summary>
-        public bool CustomizeFactions = false;
-
-        /// <summary>
         /// Allied factions in the world.
         /// </summary>
         public List<FactionComponent> AllyFactions = new List<FactionComponent>();
@@ -55,11 +48,6 @@ namespace Rokk.Playwright.Composer
         /// </summary>
         public List<FactionComponent> NeutralFactions = new List<FactionComponent>();
 
-        /// <summary>
-        /// Whether the player wants to customize the win conditions at all.
-        /// Sort of a safeguard against jank if the player doesn't want to mess with the vanilla win conditions (which can heavily depend on DLC).
-        /// </summary>
-        public bool CustomizeWinConditions = false;
         /// <summary>
         /// The player's chosen win conditions (ship, archonexus, colonist count, etc).
         /// </summary>
@@ -76,7 +64,6 @@ namespace Rokk.Playwright.Composer
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
-                CustomizeFactions = false,
                 AllyFactions = new List<FactionComponent>()
                 {
                     new AllOtherFactions()
@@ -91,7 +78,6 @@ namespace Rokk.Playwright.Composer
                 {
                     new AllOtherFactions()
                 },
-                CustomizeWinConditions = false,
                 WinConditions = new List<WinConditionComponent>()
                 {
                     new ShipWinCondition()
@@ -166,12 +152,10 @@ namespace Rokk.Playwright.Composer
         public void ExposeData()
         {
             Scribe_Deep.Look(ref Origin, nameof(Origin));
-            Scribe_Values.Look(ref CustomizeFactions, nameof(CustomizeFactions), false);
             Scribe_Collections.Look(ref Boons, nameof(Boons), LookMode.Deep);
             Scribe_Collections.Look(ref AllyFactions, nameof(AllyFactions), LookMode.Deep);
             Scribe_Collections.Look(ref EnemyFactions, nameof(EnemyFactions), LookMode.Deep);
             Scribe_Collections.Look(ref NeutralFactions, nameof(NeutralFactions), LookMode.Deep);
-            Scribe_Values.Look(ref CustomizeWinConditions, nameof(CustomizeWinConditions), false);
             Scribe_Collections.Look(ref WinConditions, nameof(WinConditions), LookMode.Deep);
             Scribe_Collections.Look(ref SpecialConditions, nameof(SpecialConditions), LookMode.Deep);
         }

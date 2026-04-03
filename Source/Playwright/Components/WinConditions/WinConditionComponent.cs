@@ -49,6 +49,9 @@ namespace Rokk.Playwright.Components.WinConditions
                 list.Add(archonexus);
             }
 
+            list.Add(new ConquestWinCondition());
+            list.Add(new ColonyWinCondition());
+
             foreach (WinConditionComponent winCondition in ComponentRegistration.WinConditions)
             {
                 if (winCondition.IsAvailable)

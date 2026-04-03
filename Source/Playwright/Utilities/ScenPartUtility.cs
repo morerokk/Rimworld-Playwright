@@ -287,5 +287,12 @@ namespace Rokk.Playwright.Utilities
             part.Colonists = colonists;
             return part;
         }
+
+        public static WinCondition_Conquest MakeWinConditionConquestPart(bool allowAllies)
+        {
+            WinCondition_Conquest part = (WinCondition_Conquest)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Conquest);
+            part.AllowAllies = allowAllies;
+            return part;
+        }
     }
 }

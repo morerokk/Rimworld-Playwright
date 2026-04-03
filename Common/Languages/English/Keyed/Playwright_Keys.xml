@@ -141,14 +141,14 @@ Removing this will disable the Royal Ascent quest.</Playwright.Components.WinCon
 
 Removing this will disable the Archonexus quests.</Playwright.Components.WinConditions.Archonexus.Description>
  
- <Playwright.Components.WinConditions.Monolith>Monolith</Playwright.Components.WinConditions.Monolith>
- <Playwright.Components.WinConditions.Monolith.Description>Work your way up into Metal Hell, and choose to embrace the void or sever its connection with the world. The default Anomaly experience.</Playwright.Components.WinConditions.Monolith.Description>
- 
  <Playwright.Components.WinConditions.Conquest>Conquest</Playwright.Components.WinConditions.Conquest>
  <Playwright.Components.WinConditions.Conquest.Description>Ally with or destroy every possible faction on the planet. Factions without settlements (such as Mechanoids or Insectoids) are not counted. You win when the only remaining settlements on the map are owned by either you, or an allied faction.</Playwright.Components.WinConditions.Conquest.Description>
+ <Playwright.Components.WinConditions.Conquest.AllowAllies>Can have allies</Playwright.Components.WinConditions.Conquest.AllowAllies>
+ <Playwright.Components.WinConditions.Conquest.AllowAllies.Help>If enabled, you can also win by allying all remaining factions. If disabled, ALL other faction settlements must be destroyed.</Playwright.Components.WinConditions.Conquest.AllowAllies.Help>
  
  <Playwright.Components.WinConditions.Colony>Colony</Playwright.Components.WinConditions.Colony>
  <Playwright.Components.WinConditions.Colony.Description>Have a certain number of colonists. Temporary colonists (from quests or otherwise) are not counted. You win when your permanent colonist count equals or exceeds the goal. (Mind the potential lag when setting the goal)</Playwright.Components.WinConditions.Colony.Description>
+ <Playwright.Components.WinConditions.Colony.Colonists>Colonists</Playwright.Components.WinConditions.Colony.Colonists>
  
  <Playwright.Components.WinConditions.RoyalTitle>Royal Council</Playwright.Components.WinConditions.RoyalTitle>
  <Playwright.Components.WinConditions.RoyalTitle.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalTitle.Description>

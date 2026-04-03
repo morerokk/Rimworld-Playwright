@@ -52,18 +52,12 @@ namespace Rokk.Playwright.Composer
             }
 
             // Factions
-            if (playwright.CustomizeFactions)
-            {
-                HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
-                this.ProcessFactions(playwright, scenario, parts);
-                HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
-            }
+            HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
+            this.ProcessFactions(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
 
             // Win conditions
-            if (playwright.CustomizeWinConditions)
-            {
-                this.ProcessWinConditions(playwright, scenario, parts);
-            }
+            this.ProcessWinConditions(playwright, scenario, parts);
 
             // Special conditions
             this.ProcessSpecialConditions(playwright, scenario, parts);
@@ -97,10 +91,17 @@ namespace Rokk.Playwright.Composer
             if (!playwright.EnemyFactions.Any(f => f.Id == InsectoidHiveFaction.ComponentId))
             {
                 parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Insect));
+                parts.Add(ScenPartUtility.MakeDisableIncidentPart(IncidentDefOf.Infestation));
+                // There's an ideology-only incident called IncidentDefOf.Infestation_Jelly. Can someone let me know what this is? Ritual reward?
+                // Either way, doesn't matter if we don't add it
             }
             if (!playwright.EnemyFactions.Any(f => f.Id == MechanoidHiveFaction.ComponentId))
             {
                 parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Mechanoid));
+                if (ModsConfig.RoyaltyActive)
+                {
+                    parts.Add(ScenPartUtility.MakeDisableIncidentPart(IncidentDefOf.MechCluster));
+                }
             }
 
             // For any factions that remain, set their dispositions
@@ -121,6 +122,7 @@ namespace Rokk.Playwright.Composer
                 {
                     parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(allyFaction.FactionDef, 80));
                 }
+                allyFaction.MutateScenario(scenario, parts);
             }
 
             // Neutral
@@ -139,6 +141,7 @@ namespace Rokk.Playwright.Composer
                 {
                     parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(neutralFaction.FactionDef, 0));
                 }
+                neutralFaction.MutateScenario(scenario, parts);
             }
 
             // Hostile
@@ -157,6 +160,7 @@ namespace Rokk.Playwright.Composer
                 {
                     parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(enemyFaction.FactionDef, -80));
                 }
+                enemyFaction.MutateScenario(scenario, parts);
             }
         }
 
@@ -183,6 +187,12 @@ namespace Rokk.Playwright.Composer
             if (ModsConfig.IdeologyActive && !playwright.WinConditions.Any(wc => wc.Id == ArchonexusWinCondition.ComponentId))
             {
                 parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));
+            }
+
+            // Process all other win conditions
+            foreach (WinConditionComponent winCondition in playwright.WinConditions)
+            {
+                winCondition.MutateScenario(scenario, parts);
             }
         }
 

@@ -57,7 +57,9 @@
     <Compile Include="Components\SpecialConditions\PlanetkillerSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\SpecialConditionComponent.cs" />
     <Compile Include="Components\WinConditions\ArchonexusWinCondition.cs" />
+    <Compile Include="Components\WinConditions\ColonyWinCondition.cs" />
     <Compile Include="Components\WinConditions\RoyalAscentWinCondition.cs" />
+    <Compile Include="Components\WinConditions\ConquestWinCondition.cs" />
     <Compile Include="Components\WinConditions\ShipWinCondition.cs" />
     <Compile Include="Components\WinConditions\WinConditionComponent.cs" />
     <Compile Include="Core.cs" />

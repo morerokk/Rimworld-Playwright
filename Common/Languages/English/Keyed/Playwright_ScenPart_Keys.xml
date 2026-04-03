@@ -126,7 +126,7 @@ Mind the potential lag when setting this very high. Recommended maximum is 50 on
  <Playwright.ScenParts.WinCondition_Conquest.AllowAllies>Allow allying</Playwright.ScenParts.WinCondition_Conquest.AllowAllies>
  <Playwright.ScenParts.WinCondition_Conquest.Summary>Ally with or destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.Summary>
  <Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>Destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>
- <Playwright.ScenParts.WinCondition_Conquest.WinIntro>You have successfully wiped out all your enemies! One by one, your enemies have fallen. You and your alliance are now the sole rulers of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntro>
+ <Playwright.ScenParts.WinCondition_Conquest.WinIntro>You have successfully wiped out all your enemies! One by one, your enemies have fallen. You and your allies are now the sole rulers of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntro>
  <Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>You have successfully wiped out all other settlements on the planet! One by one, your enemies have fallen. You are now the sole ruler of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>
  <Playwright.ScenParts.WinCondition_Conquest.WinEnding>No one is left to oppose you.</Playwright.ScenParts.WinCondition_Conquest.WinEnding>
  <Playwright.ScenParts.WinCondition_Conquest.WinColonists>\n\nThese soldiers have won the battle, and the war:\n\n{0}</Playwright.ScenParts.WinCondition_Conquest.WinColonists>

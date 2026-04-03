@@ -86,7 +86,7 @@ namespace Rokk.Playwright.GameComponents
             }
 
             // Royal titles
-            if (RoyalTitlesEnabled && !RoyalTitlesWon && Find.TickManager.TicksGame % 500 == 0)
+            if (RoyalTitlesEnabled && !RoyalTitlesWon && Find.TickManager.TicksGame % 3200 == 0)
             {
                 var playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
                     .Where(p => p.royalty != null)

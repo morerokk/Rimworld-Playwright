@@ -134,4 +134,16 @@ Mind the potential lag when setting this very high. Recommended maximum is 50 on
 
 If "Allow allying" is enabled, you can also ally factions. In this case, you win the game when only your own and allied settlements remain.</Playwright.ScenParts.WinCondition_Conquest.Help>
 
+ <Playwright.ScenParts.WinCondition_RoyalTitles>Win Condition: Royal titles</Playwright.ScenParts.WinCondition_RoyalTitles>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.Colonists>Colonists with title</Playwright.ScenParts.WinCondition_RoyalTitles.Colonists>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.Faction>Faction</Playwright.ScenParts.WinCondition_RoyalTitles.Faction>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.Title>Title</Playwright.ScenParts.WinCondition_RoyalTitles.Title>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.Summary>Have {0} colonists with at least royal title {1} with {2}</Playwright.ScenParts.WinCondition_RoyalTitles.Summary>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.WinIntro>You have joined the ranks of nobility and prestige!</Playwright.ScenParts.WinCondition_RoyalTitles.WinIntro>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.WinEnding>Will their legacy last? Only time will tell.</Playwright.ScenParts.WinCondition_RoyalTitles.WinEnding>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.WinColonists>\n\nThese prestigious individuals will be known for generations to come:\n\n{0}</Playwright.ScenParts.WinCondition_RoyalTitles.WinColonists>
+ <Playwright.ScenParts.WinCondition_RoyalTitles.Help>Wins the game when you have the specified amount of alive colonists with at least the chosen title with the selected faction (usually the Shattered Empire).
+
+Does not count temporary colonists or guests. Does not count unloaded colonists, such as those in cryptosleep or living in outposts from Vanilla Outposts Expanded.</Playwright.ScenParts.WinCondition_RoyalTitles.Help>
+
 </LanguageData>

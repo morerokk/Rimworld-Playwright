@@ -84,6 +84,7 @@
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\ScenPart_WinCondition.cs" />
+    <Compile Include="ScenParts\WinCondition_RoyalTitles.cs" />
     <Compile Include="ScenParts\WinCondition_Conquest.cs" />
     <Compile Include="ScenParts\WinCondition_Colony.cs" />
     <Compile Include="ScenParts\FactionForcedGoodwill.cs" />

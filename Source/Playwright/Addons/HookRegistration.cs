@@ -138,7 +138,7 @@ namespace Rokk.Playwright.Addons
         /// <summary>
         /// Register a function to be executed when the default Playwright structure is created.
         /// Used for changing or adding extra components to the default Playwright structure, like factions or win conditions.
-        /// This is called when the player opens the Playwright designer.
+        /// This is called when the player opens the Playwright designer, or Resets their playwright to the default.
         /// </summary>
         /// <param name="hook">The function to be called.</param>
         public static void RegisterPlaywrightDefaultStructure(Action<PlaywrightStructure> hook)

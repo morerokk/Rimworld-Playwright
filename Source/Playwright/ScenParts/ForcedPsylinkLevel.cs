@@ -82,5 +82,11 @@ namespace Rokk.Playwright.ScenParts
 
             p.health.AddHediff(hediff, brainBodyPart, null, null);
         }
+
+        public override bool CanCoexistWith(ScenPart other)
+        {
+            ForcedPsylinkLevel part = other as ForcedPsylinkLevel;
+            return part == null || this.context != part.context;
+        }
     }
 }

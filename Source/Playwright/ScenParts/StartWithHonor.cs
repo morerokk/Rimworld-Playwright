@@ -144,7 +144,7 @@ namespace Rokk.Playwright.ScenParts
         public override bool CanCoexistWith(ScenPart other)
         {
             StartWithHonor part = other as StartWithHonor;
-            return part == null || this.FactionToStartWithHonorFor != part.FactionToStartWithHonorFor;
+            return part == null || this.FactionToStartWithHonorFor != part.FactionToStartWithHonorFor || this.context != part.context;
         }
 
         public override bool HasNullDefs()

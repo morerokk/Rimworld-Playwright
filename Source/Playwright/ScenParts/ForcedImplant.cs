@@ -219,7 +219,7 @@ namespace Rokk.Playwright.ScenParts
         public override bool CanCoexistWith(ScenPart other)
         {
             ForcedImplant part = other as ForcedImplant;
-            return part == null || this.Hediff != part.Hediff || this.BodyPart != part.BodyPart || this.Side != part.Side;
+            return part == null || this.Hediff != part.Hediff || this.BodyPart != part.BodyPart || this.Side != part.Side || this.context != part.context;
         }
 
         public enum ImplantSide

@@ -122,4 +122,14 @@
     <summaryPriority>1</summaryPriority>
 	<maxUses>1</maxUses>
   </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_WinCondition_Conquest</defName>
+    <label>win condition: conquest</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.WinCondition_Conquest</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>1</summaryPriority>
+	<maxUses>1</maxUses>
+  </ScenPartDef>
 </Defs>

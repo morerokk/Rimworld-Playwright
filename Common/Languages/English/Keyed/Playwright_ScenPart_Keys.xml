@@ -58,7 +58,7 @@ Hostile: -75 or lower</Playwright.ScenParts.FactionStartingGoodwill.Help>
  
  <Playwright.ScenParts.AdditionalUnwaveringChance>Unwavering additional chance</Playwright.ScenParts.AdditionalUnwaveringChance>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Chance>Chance</Playwright.ScenParts.AdditionalUnwaveringChance.Chance>
- <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set at 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
+ <Playwright.ScenParts.AdditionalUnwaveringChance.Help>Adds an additional chance for pawns to be unwavering prisoners. When set to 100%, pawns can never be recruited.</Playwright.ScenParts.AdditionalUnwaveringChance.Help>
  <Playwright.ScenParts.AdditionalUnwaveringChance.Summary>+{0} chance for prisoners to be unwaveringly loyal.</Playwright.ScenParts.AdditionalUnwaveringChance.Summary>
  
  <Playwright.ScenParts.NoFactionsExcept.Add>Add...</Playwright.ScenParts.NoFactionsExcept.Add>
@@ -114,14 +114,24 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.WinCondition_Colony.Colonists>Colonists</Playwright.ScenParts.WinCondition_Colony.Colonists>
  <Playwright.ScenParts.WinCondition_Colony.Summary>Have {0} colonists</Playwright.ScenParts.WinCondition_Colony.Summary>
  <Playwright.ScenParts.WinCondition_Colony.WinIntro>You have successfully established a colony of impressive size!</Playwright.ScenParts.WinCondition_Colony.WinIntro>
- <Playwright.ScenParts.WinCondition_Colony.WinEnding>Having already made it this far, your colonists are sure to thrive and survive for many generations. Only time will tell.</Playwright.ScenParts.WinCondition_Colony.WinEnding>
+ <Playwright.ScenParts.WinCondition_Colony.WinEnding>Having already made it this far, your colony is sure to thrive and survive for many generations. Only time will tell.</Playwright.ScenParts.WinCondition_Colony.WinEnding>
  <Playwright.ScenParts.WinCondition_Colony.WinColonists>\n\nThese colonists stand proud:\n\n{0}</Playwright.ScenParts.WinCondition_Colony.WinColonists>
  <Playwright.ScenParts.WinCondition_Colony.Help>Wins the game when you have the specified amount of alive colonists.
 
-If you have multiple colonies enabled, this counts all of them.
-
 Does not count temporary colonists or guests. Does not count unloaded colonists, such as those in cryptosleep or living in outposts from Vanilla Outposts Expanded.
 
-Mind the potential lag when setting this very high.</Playwright.ScenParts.WinCondition_Colony.Help>
+Mind the potential lag when setting this very high. Recommended maximum is 50 on a decent computer. Most vanilla storytellers will stop making it easier to get new colonists when you have around 20 colonists.</Playwright.ScenParts.WinCondition_Colony.Help>
+
+ <Playwright.ScenParts.WinCondition_Conquest>Win Condition: Conquest</Playwright.ScenParts.WinCondition_Conquest>
+ <Playwright.ScenParts.WinCondition_Conquest.AllowAllies>Allow allying</Playwright.ScenParts.WinCondition_Conquest.AllowAllies>
+ <Playwright.ScenParts.WinCondition_Conquest.Summary>Ally with or destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.Summary>
+ <Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>Destroy every other settlement on the planet</Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies>
+ <Playwright.ScenParts.WinCondition_Conquest.WinIntro>You have successfully wiped out all your enemies! One by one, your enemies have fallen. You and your alliance are now the sole rulers of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntro>
+ <Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>You have successfully wiped out all others on this planet! One by one, your enemies have fallen. You are now the sole ruler of this planet.</Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies>
+ <Playwright.ScenParts.WinCondition_Conquest.WinEnding>No one is left to oppose you.</Playwright.ScenParts.WinCondition_Conquest.WinEnding>
+ <Playwright.ScenParts.WinCondition_Conquest.WinColonists>\n\nThese soldiers have won the battle, and the war:\n\n{0}</Playwright.ScenParts.WinCondition_Conquest.WinColonists>
+ <Playwright.ScenParts.WinCondition_Conquest.Help>Wins the game when you have wiped out all other settlements except your own.
+
+If "Allow allying" is enabled, you can also ally factions. In this case, you win the game when only your own and allied settlements remain.</Playwright.ScenParts.WinCondition_Conquest.Help>
 
 </LanguageData>

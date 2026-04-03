@@ -26,11 +26,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 4);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 4);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 3);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 3);
 
             // Faction selector
-            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.RemoveFaction.Faction".Translate());
             if (Widgets.ButtonText(helper.NextRect(), FactionLabelText))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();

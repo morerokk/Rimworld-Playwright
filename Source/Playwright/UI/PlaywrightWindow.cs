@@ -160,7 +160,7 @@ namespace Rokk.Playwright.UI
                 Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
-                    this.PlaywrightStructure.Origin = origin;
+                    ChangeOrigin(origin);
                     OriginContentListing.Invalidate();
                     ButtonSound();
                 }
@@ -221,6 +221,71 @@ namespace Rokk.Playwright.UI
             OriginContentListing.End();
 
             Widgets.EndScrollView();
+        }
+
+        private void ChangeOrigin(OriginComponent origin)
+        {
+            this.PlaywrightStructure.Origin = origin;
+            if (FormDirty)
+            {
+                return;
+            }
+
+            // Set defaults
+            PlaywrightStructure defaultStructure = PlaywrightStructure.CreateDefault();
+            if (origin.DefaultBoons != null)
+            {
+                this.PlaywrightStructure.Boons = origin.DefaultBoons;
+            }
+            else
+            {
+                this.PlaywrightStructure.Boons = defaultStructure.Boons;
+            }
+
+            if (origin.DefaultAllies != null)
+            {
+                this.PlaywrightStructure.AllyFactions = origin.DefaultAllies;
+            }
+            else
+            {
+                this.PlaywrightStructure.AllyFactions = defaultStructure.AllyFactions;
+            }
+
+            if (origin.DefaultNeutrals != null)
+            {
+                this.PlaywrightStructure.NeutralFactions = origin.DefaultNeutrals;
+            }
+            else
+            {
+                this.PlaywrightStructure.NeutralFactions = defaultStructure.NeutralFactions;
+            }
+
+            if (origin.DefaultEnemies != null)
+            {
+                this.PlaywrightStructure.EnemyFactions = origin.DefaultEnemies;
+            }
+            else
+            {
+                this.PlaywrightStructure.EnemyFactions = defaultStructure.EnemyFactions;
+            }
+
+            if (origin.DefaultWinConditions != null)
+            {
+                this.PlaywrightStructure.WinConditions = origin.DefaultWinConditions;
+            }
+            else
+            {
+                this.PlaywrightStructure.WinConditions = defaultStructure.WinConditions;
+            }
+
+            if (origin.DefaultSpecialConditions != null)
+            {
+                this.PlaywrightStructure.SpecialConditions = origin.DefaultSpecialConditions;
+            }
+            else
+            {
+                this.PlaywrightStructure.SpecialConditions = defaultStructure.SpecialConditions;
+            }
         }
 
         private Vector2 AvailableBoonsScrollPosition = Vector2.zero;

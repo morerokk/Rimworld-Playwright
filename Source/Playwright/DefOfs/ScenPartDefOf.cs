@@ -28,6 +28,7 @@ namespace Rokk.Playwright.DefOfs
 
         // Win conditions
         public static ScenPartDef Playwright_WinCondition_Colony;
+        public static ScenPartDef Playwright_WinCondition_Conquest;
 
         // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;

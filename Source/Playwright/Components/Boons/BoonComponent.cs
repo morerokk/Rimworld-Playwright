@@ -13,11 +13,8 @@ namespace Rokk.Playwright.Components.Boons
 {
     public abstract class BoonComponent : PlaywrightComponent
     {
-        /// <summary>
-        /// If your component has settings, how high the settings rect is.
-        /// Needs to be known in advance to reserve space for it in the UI.
-        /// </summary>
-        public virtual float SettingsHeight => 0f;
+        public virtual string DescriptionShort => "Playwright.Components." + this.Id + ".DescriptionShort";
+        public virtual string DescriptionShortTranslated => DescriptionShort.Translate();
 
         public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing)
         {
@@ -34,11 +31,6 @@ namespace Rokk.Playwright.Components.Boons
 
         }
 
-        public virtual void DoSettingsContents(Rect inRect)
-        {
-
-        }
-
         public static List<BoonComponent> GetAvailableBoons()
         {
             List<BoonComponent> boons = new List<BoonComponent>()
@@ -50,6 +42,12 @@ namespace Rokk.Playwright.Components.Boons
             if (shuttleBoon.IsAvailable)
             {
                 boons.Add(shuttleBoon);
+            }
+
+            BoonComponent novicesBoon = new NovicesBoon();
+            if (novicesBoon.IsAvailable)
+            {
+                boons.Add(novicesBoon);
             }
 
             foreach (BoonComponent boon in ComponentRegistration.Boons)

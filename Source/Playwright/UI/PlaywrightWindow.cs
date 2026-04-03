@@ -337,7 +337,7 @@ namespace Rokk.Playwright.UI
                 }
                 if (Mouse.IsOver(boonRect))
                 {
-                    TooltipHandler.TipRegion(boonRect, boon.DescriptionTranslated);
+                    TooltipHandler.TipRegion(boonRect, boon.DescriptionShortTranslated);
                 }
             }
 

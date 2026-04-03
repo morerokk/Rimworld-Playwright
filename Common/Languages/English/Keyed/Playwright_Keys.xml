@@ -91,12 +91,16 @@
  <Playwright.Components.Boons>Boons</Playwright.Components.Boons>
  
  <Playwright.Components.Boons.Shuttle>Shuttle</Playwright.Components.Boons.Shuttle>
+ <Playwright.Components.Boons.Shuttle.DescriptionShort>Start with a Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.DescriptionShort>
  <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey, and enough Chemfuel to fill it up.</Playwright.Components.Boons.Shuttle.Description>
- <Playwright.Components.Boons.Shuttle.Summary>Start with 1x Passenger Shuttle and 400x Chemfuel</Playwright.Components.Boons.Shuttle.Summary>
  
  <Playwright.Components.Boons.BionicArm>Bionic Arms</Playwright.Components.Boons.BionicArm>
- <Playwright.Components.Boons.BionicArm.Description>Each starting colonist has a Bionic Arm implanted on a random side.</Playwright.Components.Boons.BionicArm.Description>
- <Playwright.Components.Boons.BionicArm.Summary>Starting colonists have a Bionic Arm implant.</Playwright.Components.Boons.BionicArm.Summary>
+ <Playwright.Components.Boons.BionicArm.DescriptionShort>Start with Bionic Arms.</Playwright.Components.Boons.BionicArm.DescriptionShort>
+ <Playwright.Components.Boons.BionicArm.Description>Each starting colonist has 2 Bionic Arms implanted.</Playwright.Components.Boons.BionicArm.Description>
+ 
+ <Playwright.Components.Boons.Novices>Imperial Novices</Playwright.Components.Boons.Novices>
+ <Playwright.Components.Boons.Novices.DescriptionShort>Start with a royal title.</Playwright.Components.Boons.Novices.DescriptionShort>
+ <Playwright.Components.Boons.Novices.Description>Each starting colonist has a Novice title with the Shattered Empire, and a Level 1 Psylink.</Playwright.Components.Boons.Novices.Description>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->

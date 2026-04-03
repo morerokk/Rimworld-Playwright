@@ -25,20 +25,8 @@
         </li>
 
         <!-- Player pawns modifiers -->
-		<li Class="Rokk.Playwright.ScenParts.StartWithHonor">
-			<def>Playwright_StartWithHonor</def>
-			<chance>1</chance>
-			<context>PlayerStarter</context>
-			<FactionToStartWithHonorFor>Empire</FactionToStartWithHonorFor>
-		</li>
-		<li Class="Rokk.Playwright.ScenParts.ForcedPsylinkLevel">
-			<def>Playwright_ForcedPsylinkLevel</def>
-			<chance>1</chance>
-			<context>PlayerStarter</context>
-			<SeverityRange>1~1</SeverityRange>
-		</li>
 		
-		<!-- Starting out allied with the Empire intentionally omitted, will be default-selected in editor by the Origin instead -->
+		<!-- Starting out allied with the Empire or psylinks intentionally omitted, will be default-selected in editor by the Origin instead -->
         
         <!-- Player starting things -->
         <li Class="ScenPart_StartingThing_Defined">

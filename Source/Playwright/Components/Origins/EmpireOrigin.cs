@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace Rokk.Playwright.Components.Origins
         public override string Id => "Origins.Empire";
         public override bool IsAvailable => ModsConfig.RoyaltyActive;
         public override ScenarioDef BasedOnScenario => DefOfs.ScenarioDefOf.Playwright_Empire;
+        public override List<BoonComponent> DefaultBoons => new List<BoonComponent>()
+        {
+            new NovicesBoon()
+        };
         public override List<FactionComponent> DefaultAllies => new List<FactionComponent>()
         {
             new SpecificFaction()

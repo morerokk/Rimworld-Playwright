@@ -36,6 +36,7 @@
     <Compile Include="Addons\HookRegistration.cs" />
     <Compile Include="Components\Boons\BoonComponent.cs" />
     <Compile Include="Components\Boons\BionicArmBoon.cs" />
+    <Compile Include="Components\Boons\NovicesBoon.cs" />
     <Compile Include="Components\Boons\ShuttleBoon.cs" />
     <Compile Include="Components\Factions\FactionComponent.cs" />
     <Compile Include="Components\Factions\InsectoidHiveFaction.cs" />

@@ -16,7 +16,8 @@ namespace Rokk.Playwright.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {            
-            scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(DefOfs.HediffDefOf.BionicArm, BodyPartDefOf.Arm, ForcedImplant.ImplantSide.Random));
+            scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(DefOfs.HediffDefOf.BionicArm, 1f, PawnGenerationContext.PlayerStarter, BodyPartDefOf.Arm, ForcedImplant.ImplantSide.Left));
+            scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(DefOfs.HediffDefOf.BionicArm, 1f, PawnGenerationContext.PlayerStarter, BodyPartDefOf.Arm, ForcedImplant.ImplantSide.Right));
         }
     }
 }

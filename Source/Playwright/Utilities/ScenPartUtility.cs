@@ -265,7 +265,7 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
-        public static ForcedImplant MakeForcedImplantPart(HediffDef hediffDef, BodyPartDef bodyPartDef = null, ForcedImplant.ImplantSide? implantSide = null)
+        public static ForcedImplant MakeForcedImplantPart(HediffDef hediffDef, float chance, PawnGenerationContext context, BodyPartDef bodyPartDef = null, ForcedImplant.ImplantSide? implantSide = null)
         {
             if (implantSide == null)
             {
@@ -276,6 +276,13 @@ namespace Rokk.Playwright.Utilities
             part.Hediff = hediffDef;
             part.BodyPart = bodyPartDef;
             part.Side = implantSide.Value;
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "chance");
+            chanceInfo.SetValue(part, chance);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedPsylinkLevel), "context");
+            contextInfo.SetValue(part, context);
+
             return part;
         }
 

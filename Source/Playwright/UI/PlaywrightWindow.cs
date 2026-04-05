@@ -75,19 +75,15 @@ namespace Rokk.Playwright.UI
                     break;
                 case Tabs.Boons:
                     DrawBoonsTab(tabContentRect);
-                    FormDirty = true;
                     break;
                 case Tabs.Factions:
                     DrawFactionsTab(tabContentRect);
-                    FormDirty = true;
                     break;
                 case Tabs.WinConditions:
                     DrawWinConditionsTab(tabContentRect);
-                    FormDirty = true;
                     break;
                 case Tabs.SpecialConditions:
                     DrawSpecialConditionsTab(tabContentRect);
-                    FormDirty = true;
                     break;
             }
 
@@ -160,9 +156,12 @@ namespace Rokk.Playwright.UI
                 Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
-                    ChangeOrigin(origin);
-                    OriginContentListing.Invalidate();
-                    ButtonSound();
+                    ConfirmReset(() =>
+                    {
+                        ChangeOrigin(origin);
+                        OriginContentListing.Invalidate();
+                        ButtonSound();
+                    });
                 }
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
@@ -334,6 +333,7 @@ namespace Rokk.Playwright.UI
                     this.AddSound();
                     AvailableBoonsListing.Invalidate();
                     SelectedBoonsListing.Invalidate();
+                    FormDirty = true;
                 }
                 if (Mouse.IsOver(boonRect))
                 {
@@ -368,6 +368,7 @@ namespace Rokk.Playwright.UI
                     RemoveSound();
                     AvailableBoonsListing.Invalidate();
                     SelectedBoonsListing.Invalidate();
+                    FormDirty = true;
                 }
                 Rect lineRect = SelectedBoonsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
@@ -474,7 +475,11 @@ namespace Rokk.Playwright.UI
             List<FloatMenuOption> floatMenuOptions = new List<FloatMenuOption>();
             foreach (FactionComponent faction in selectableFactions)
             {
-                floatMenuOptions.Add(new FloatMenuOption(faction.NameTranslated, () => selectedFactions.Add(faction)));
+                floatMenuOptions.Add(new FloatMenuOption(faction.NameTranslated, () =>
+                {
+                    selectedFactions.Add(faction);
+                    FormDirty = true;
+                }));
             }
             Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
         }
@@ -487,6 +492,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedFactions.Remove(faction);
                     RemoveSound();
+                    FormDirty = true;
                 }
 
                 if (faction.SettingsHeight > 0f)
@@ -544,6 +550,7 @@ namespace Rokk.Playwright.UI
                     this.AddSound();
                     AvailableWinConditionsListing.Invalidate();
                     SelectedWinConditionsListing.Invalidate();
+                    FormDirty = true;
                 }
                 if (Mouse.IsOver(winConditionRect))
                 {
@@ -578,6 +585,7 @@ namespace Rokk.Playwright.UI
                     RemoveSound();
                     AvailableWinConditionsListing.Invalidate();
                     SelectedWinConditionsListing.Invalidate();
+                    FormDirty = true;
                 }
                 Rect lineRect = SelectedWinConditionsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
@@ -663,6 +671,25 @@ namespace Rokk.Playwright.UI
         private void RemoveSound()
         {
             SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
+        }
+
+        /// <summary>
+        /// Runs <paramref name="onConfirmed"/>, but asks with a confirm reset popup first if the form is dirty.
+        /// Also sets <see cref="FormDirty"/> back to false if reset was confirmed.
+        /// </summary>
+        private void ConfirmReset(Action onConfirmed)
+        {
+            if (!FormDirty)
+            {
+                onConfirmed();
+                return;
+            }
+
+            Find.WindowStack.Add(new ConfirmResetWindow(() =>
+            {
+                onConfirmed();
+                FormDirty = false;
+            }));
         }
 
         public enum Tabs

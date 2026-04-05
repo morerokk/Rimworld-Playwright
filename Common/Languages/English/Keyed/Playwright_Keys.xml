@@ -21,7 +21,9 @@
  <Playwright.ScenarioSaved>Your Scenario has been saved successfully.</Playwright.ScenarioSaved>
  <Playwright.ScenarioSaved.1>Do you want to go to the New Colony screen now?</Playwright.ScenarioSaved.1>
  <Playwright.ScenarioNamePrefix>(Playwright) </Playwright.ScenarioNamePrefix>
- <Playwright.ConfirmReset>This will reset your Boons, Factions, Win Conditions and Special Conditions to the selected Origin's defaults. Are you sure?</Playwright.ConfirmReset>
+ <Playwright.ConfirmReset>You have pending changes. Selecting a different Origin will reset your Boons, Factions, Win Conditions and Special Conditions to the selected Origin's defaults.
+
+Are you sure?</Playwright.ConfirmReset>
  <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
  <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>
  <Playwright.DefaultNeutrals>Default Neutral:</Playwright.DefaultNeutrals>

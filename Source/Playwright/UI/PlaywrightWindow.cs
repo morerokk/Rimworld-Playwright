@@ -285,6 +285,8 @@ namespace Rokk.Playwright.UI
             {
                 this.PlaywrightStructure.SpecialConditions = defaultStructure.SpecialConditions;
             }
+
+            InvalidateAutoListings();
         }
 
         private Vector2 AvailableBoonsScrollPosition = Vector2.zero;
@@ -621,6 +623,7 @@ namespace Rokk.Playwright.UI
                 Find.WindowStack.Add(new Dialog_PlaywrightList_Load((PlaywrightStructure loadedStructure) =>
                 {
                     this.PlaywrightStructure = loadedStructure;
+                    InvalidateAutoListings();
                 }));
             }
 
@@ -690,6 +693,19 @@ namespace Rokk.Playwright.UI
                 onConfirmed();
                 FormDirty = false;
             }));
+        }
+
+        /// <summary>
+        /// Invalidate the height of all AutoFit listings, for when the playwright structure is changed externally
+        /// (such as when a saved playwright is loaded, or the origin is changed)
+        /// </summary>
+        private void InvalidateAutoListings()
+        {
+            this.AvailableBoonsListing.Invalidate();
+            this.SelectedBoonsListing.Invalidate();
+            this.AvailableWinConditionsListing.Invalidate();
+            this.SelectedWinConditionsListing.Invalidate();
+            this.OriginContentListing.Invalidate();
         }
 
         public enum Tabs

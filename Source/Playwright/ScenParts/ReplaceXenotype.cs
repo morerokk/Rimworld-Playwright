@@ -113,7 +113,7 @@ namespace Rokk.Playwright.ScenParts
         // Scenario summary description
         public override string Summary(Scenario scen)
         {
-            return "Playwright.ScenParts.ReplaceXenotype.Summary".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), FromXenotypeLabel, ToXenotypeLabel);
+            return "Playwright.ScenParts.ReplaceXenotype.Summary".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), FromXenotypeLabel, ToXenotypeLabel).CapitalizeFirst();
         }
 
         public override bool CanCoexistWith(ScenPart other)

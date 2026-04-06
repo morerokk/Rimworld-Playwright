@@ -36,7 +36,6 @@ namespace Rokk.Playwright.Composer
 
             Scenario scenario = this.GenerateDefaultScenario(playwright);
 
-            // This is ugly but the game accesses this directly too, it just has an internal access modifier on it so we have to use reflection
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
@@ -57,7 +56,9 @@ namespace Rokk.Playwright.Composer
             HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
 
             // Win conditions
+            HookRegistration.CallScenarioPreWinCondition(playwright, scenario, parts);
             this.ProcessWinConditions(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostWinCondition(playwright, scenario, parts);
 
             // Special conditions
             this.ProcessSpecialConditions(playwright, scenario, parts);

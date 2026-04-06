@@ -11,9 +11,9 @@ using UnityEngine;
 namespace Rokk.Playwright.Addons
 {
     /// <summary>
-    /// Class for registering simple hooks that will run at specified times during Playwright or scenario building.
+    /// Class for registering hook functions that will run at certain times during Playwright or scenario building.
     /// For example, you can run your own code right before/after the scenario is mutated by its parts.
-    /// This should be used for things that don't fit in a single component, like things that require knowledge of multiple components at once.
+    /// This should be used for things that don't fit in a single component, like code that requires knowledge of multiple components at once.
     /// If you prefer to use Harmony instead that's fine, but if you *can* use these methods you probably should.
     /// </summary>
     public static class HookRegistration
@@ -23,6 +23,9 @@ namespace Rokk.Playwright.Addons
 
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
         private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
 
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPreWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPostWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
@@ -67,7 +70,7 @@ namespace Rokk.Playwright.Addons
         }
 
         /// <summary>
-        /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts adding faction-related parts.
+        /// Register something that should be run before the <see cref="PlaywrightBuilder"/> starts mutating the scenario based on faction components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
         public static void RegisterScenarioPreFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
@@ -76,7 +79,7 @@ namespace Rokk.Playwright.Addons
         }
 
         /// <summary>
-        /// Register something that should happen after the <see cref="PlaywrightBuilder"/> has added faction-related parts.
+        /// Register something that should be run after the <see cref="PlaywrightBuilder"/> has finished mutating the scenario based on faction components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
         public static void RegisterScenarioPostFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
@@ -95,6 +98,40 @@ namespace Rokk.Playwright.Addons
         internal static void CallScenarioPostFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
         {
             foreach (var hook in ScenarioPostFactionHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+
+        /// <summary>
+        /// Register something that should be run before the <see cref="PlaywrightBuilder"/> starts mutating the scenario based on win condition components.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPreWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPreWinConditionHooks.Add(hook);
+        }
+
+        /// <summary>
+        /// Register something that should be run after the <see cref="PlaywrightBuilder"/> has finished mutating the scenario based on win condition components.
+        /// </summary>
+        /// <param name="hook">Your function to register.</param>
+        public static void RegisterScenarioPostWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        {
+            ScenarioPostWinConditionHooks.Add(hook);
+        }
+
+        internal static void CallScenarioPreWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPreWinConditionHooks)
+            {
+                hook(playwright, scenario, scenParts);
+            }
+        }
+
+        internal static void CallScenarioPostWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        {
+            foreach (var hook in ScenarioPostWinConditionHooks)
             {
                 hook(playwright, scenario, scenParts);
             }
@@ -138,7 +175,7 @@ namespace Rokk.Playwright.Addons
         /// <summary>
         /// Register a function to be executed when the default Playwright structure is created.
         /// Used for changing or adding extra components to the default Playwright structure, like factions or win conditions.
-        /// This is called when the player opens the Playwright designer, or Resets their playwright to the default.
+        /// This is called when the player opens the Playwright designer, and when they change their origin.
         /// </summary>
         /// <param name="hook">The function to be called.</param>
         public static void RegisterPlaywrightDefaultStructure(Action<PlaywrightStructure> hook)

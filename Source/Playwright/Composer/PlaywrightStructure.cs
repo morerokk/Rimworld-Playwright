@@ -21,15 +21,15 @@ namespace Rokk.Playwright.Composer
     public class PlaywrightStructure : IExposable
     {
         /// <summary>
-        /// The Origin of the player, as in "why are they here"? The premise.
-        /// Very similar to the various starting scenarios (Crashlanded, Tribal, Rich Explorer, etc.)
-        /// During compilation of the scenario, this cannot be null, but may be null temporarily in other cases, if the chosen origin is unavailable.
+        /// The Origin of the player, which defines the starting point.
+        /// During compilation of the scenario, this cannot be null.
+        /// May be null temporarily in other cases, such as when loading a playwright with missing content.
         /// </summary>
         public OriginComponent Origin;
 
         /// <summary>
         /// Extra bonuses (if any) that the player starts with.
-        /// For example, starting with a pre-placed Odyssey shuttle or some extra goodies.
+        /// For example, starting with a pre-placed Odyssey shuttle, extra goodies, or a royal title.
         /// </summary>
         public List<BoonComponent> Boons = new List<BoonComponent>();
 

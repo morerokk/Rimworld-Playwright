@@ -17,11 +17,17 @@ using Verse;
 
 namespace Rokk.Playwright.Components.Origins
 {
+    /// <summary>
+    /// Defines the starting point of the scenario.
+    /// Usually, an Origin is a starting scenario + default components (like boons or factions).
+    /// However, origins do not need to be based on a scenario.
+    /// </summary>
     public abstract class OriginComponent : PlaywrightComponent
     {
         /// <summary>
         /// The scenario that this origin uses as a base to copy everything from.
         /// Defaults to null, which results in a "default-ish" scenario (Naked Brutality, but without the naked/no possessions part).
+        /// Basing your Origin on a (hidden) scenario is recommended.
         /// </summary>
         public virtual ScenarioDef BasedOnScenario => null;
         /// <summary>
@@ -75,16 +81,18 @@ namespace Rokk.Playwright.Components.Origins
         public override string DescriptionTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.description : base.DescriptionTranslated;
 
         /// <summary>
-        /// Summary is used for summarizing the starting conditions (start with X, you're enemies with Y, etc).
-        /// Not every Origin is based on an existing scenario, so for that to work, you will have to provide a summary text.
+        /// Summary is used for summarizing the starting conditions (your faction is new arrivals, start with X, you're enemies with Y, etc).
+        /// If <see cref="BasedOnScenario"/> is not null, defaults to that scenario's summary text.
+        /// If your Origin is not based on a scenario, you will have to provide a summary text.
         /// </summary>
         public virtual string SummaryTranslated => BasedOnScenario != null ? PlaywrightUtils.GetScenarioSummary(BasedOnScenario.scenario) : ("Playwright.Components." + this.Id + ".Summary").Translate().ToString();
 
+        // TODO: Do we still want this? I feel like we should try to make this work
         public virtual string SuggestedIdeo => "Playwright.Components." + this.Id + ".SuggestedIdeo";
         public virtual string SuggestedIdeoTranslated => SuggestedIdeo.Translate();
 
         /// <summary>
-        /// Used for the Scenario's tagline underneath the name.
+        /// Used for the Scenario's tagline, underneath the name ("3 crashlanded survivors.").
         /// If null, the base scenario's tagline is used.
         /// </summary>
         public virtual string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();

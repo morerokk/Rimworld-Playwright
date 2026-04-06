@@ -37,7 +37,6 @@ namespace Rokk.Playwright.UI
 
         private static bool TryLoadPlaywright(string filePath, out PlaywrightStructure Playwright)
         {
-            // Intentionally capitalized to match other places where Playwright is used as a field or property, do not un-capitalize Playwright
             Playwright = null;
             try
             {
@@ -57,7 +56,7 @@ namespace Rokk.Playwright.UI
             }
             catch (Exception ex)
             {
-                Log.Error("[Playwright] Error loading saved playwright: " + ex.Message);
+                Log.Error("[Playwright] Error loading saved playwright: " + ex.Message + ex.StackTrace);
                 Playwright = null;
                 Scribe.ForceStop();
             }

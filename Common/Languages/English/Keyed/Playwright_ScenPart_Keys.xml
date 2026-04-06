@@ -107,6 +107,20 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.ForcedImplant.Help>Force the selected pawns to have an implant (such as a bionic limb).</Playwright.ScenParts.ForcedImplant.Help>
  <Playwright.ScenParts.ForcedImplant.Summary>{0} have a {1} chance to have a {2} implant.</Playwright.ScenParts.ForcedImplant.Summary>
  
+ <Playwright.ScenParts.ReplaceXenotype>Replace Xenotype</Playwright.ScenParts.ReplaceXenotype>
+ <Playwright.ScenParts.ReplaceXenotype.FromXenotype>From Xenotype</Playwright.ScenParts.ReplaceXenotype.FromXenotype>
+ <Playwright.ScenParts.ReplaceXenotype.ToXenotype>To Xenotype</Playwright.ScenParts.ReplaceXenotype.ToXenotype>
+ <Playwright.ScenParts.ReplaceXenotype.Help>If the selected pawn's xenotype is the chosen "From Xenotype", it will be replaced with the chosen "To Xenotype" when they are generated. This does not restrict xenogerm implantation or pawn editing existing pawns.
+
+Example: replace all Wasters with Dirtmoles.
+
+Does not support custom player-made xenotypes. Instead, you can use another mod to export your custom xenotype to a new mod, which will make it selectable here.
+
+You may run into harmless one-time errors when trying to replace a xenotype with a non-violent one (such as Baseliner->Genie), because of various rules like faction leaders needing to be capable of violence. Those pawns may end up still being their original xenotype.
+
+This scenario part may be janky, I recommend something like Xenotype Spawn Control or Worldbuilder instead if you want to get more in-depth.</Playwright.ScenParts.ReplaceXenotype.Help>
+ <Playwright.ScenParts.ReplaceXenotype.Summary>{0} have a {1} chance to have a {2} xenotype replaced with {3}.</Playwright.ScenParts.ReplaceXenotype.Summary>
+ 
  <!-- Win Conditions -->
  <Playwright.ScenParts.WinCondition.SummaryIntro>Additional win conditions</Playwright.ScenParts.WinCondition.SummaryIntro>
  

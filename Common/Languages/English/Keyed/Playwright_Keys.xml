@@ -158,12 +158,12 @@ Removing this will disable the Archonexus quests.</Playwright.Components.WinCond
  
  <Playwright.Components.WinConditions.Colony>Colony</Playwright.Components.WinConditions.Colony>
  <Playwright.Components.WinConditions.Colony.DescriptionShort>Have a certain number of colonists.</Playwright.Components.WinConditions.Colony.DescriptionShort>
- <Playwright.Components.WinConditions.Colony.Description>Have a certain number of colonists. Temporary colonists (from quests or otherwise) are not counted. You win when your permanent colonist count equals or exceeds the goal. (Mind the potential lag when setting the goal)</Playwright.Components.WinConditions.Colony.Description>
+ <Playwright.Components.WinConditions.Colony.Description>Have a certain number of colonists. You win when your permanent colonist count equals or exceeds the goal.</Playwright.Components.WinConditions.Colony.Description>
  <Playwright.Components.WinConditions.Colony.Colonists>Colonists</Playwright.Components.WinConditions.Colony.Colonists>
  
  <Playwright.Components.WinConditions.RoyalCouncil>Royal Council</Playwright.Components.WinConditions.RoyalCouncil>
  <Playwright.Components.WinConditions.RoyalCouncil.DescriptionShort>Have a certain number of royal colonists.</Playwright.Components.WinConditions.RoyalCouncil.DescriptionShort>
- <Playwright.Components.WinConditions.RoyalCouncil.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. Temporary colonists (from quests or otherwise) are not counted. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalCouncil.Description>
+ <Playwright.Components.WinConditions.RoyalCouncil.Description>Have a certain number of colonists with the chosen Royal Title with the Shattered Empire. You win when the amount of permanent colonists with the specified title with the Shattered Empire equals or exceeds the goal.</Playwright.Components.WinConditions.RoyalCouncil.Description>
  <Playwright.Components.WinConditions.RoyalCouncil.Colonists>Colonists</Playwright.Components.WinConditions.RoyalCouncil.Colonists>
  <Playwright.Components.WinConditions.RoyalCouncil.Title>Title</Playwright.Components.WinConditions.RoyalCouncil.Title>
 

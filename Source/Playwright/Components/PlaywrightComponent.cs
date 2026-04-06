@@ -12,6 +12,9 @@ namespace Rokk.Playwright.Components
     /// <summary>
     /// The base class for any Playwright component.
     /// When extending this, ensure the constructor is safe, as a new instance must be created for <see cref="IsAvailable"/> to be callable.
+    /// 
+    /// Some components may be constructed on game startup, when <see cref="DefOf"/> are not yet loaded.
+    /// If you need a default def value for a setting, consider using null as sentinel value and set the intended default in the settings contents method.
     /// </summary>
     public abstract class PlaywrightComponent : IExposable
     {
@@ -36,7 +39,8 @@ namespace Rokk.Playwright.Components
         public virtual string DescriptionTranslated => Description.Translate();
 
         /// <summary>
-        /// Mutate the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part).
+        /// Mutates the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part).
+        /// Called when a Playwright is compiled into a scenario.
         /// </summary>
         public virtual void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {

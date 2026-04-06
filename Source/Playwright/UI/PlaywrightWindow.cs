@@ -160,8 +160,8 @@ namespace Rokk.Playwright.UI
                     {
                         ChangeOrigin(origin);
                         OriginContentListing.Invalidate();
-                        ButtonSound();
                     });
+                    ButtonSound();
                 }
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
@@ -680,7 +680,7 @@ namespace Rokk.Playwright.UI
         /// Runs <paramref name="onConfirmed"/>, but asks with a confirm reset popup first if the form is dirty.
         /// Also sets <see cref="FormDirty"/> back to false if reset was confirmed.
         /// </summary>
-        private void ConfirmReset(Action onConfirmed)
+        public void ConfirmReset(Action onConfirmed)
         {
             if (!FormDirty)
             {
@@ -696,10 +696,10 @@ namespace Rokk.Playwright.UI
         }
 
         /// <summary>
-        /// Invalidate the height of all AutoFit listings, for when the playwright structure is changed externally
+        /// Recalculate the height of all AutoFit listings in the UI, for when the playwright structure is changed externally
         /// (such as when a saved playwright is loaded, or the origin is changed)
         /// </summary>
-        private void InvalidateAutoListings()
+        public void InvalidateAutoListings()
         {
             this.AvailableBoonsListing.Invalidate();
             this.SelectedBoonsListing.Invalidate();

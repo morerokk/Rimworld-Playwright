@@ -112,6 +112,15 @@
     <summaryPriority>459</summaryPriority>
   </ScenPartDef>
   
+  <ScenPartDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Playwright_ReplaceXenotype</defName>
+    <label>replace xenotype</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.ReplaceXenotype</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>459</summaryPriority>
+  </ScenPartDef>
+  
   <!-- Win Conditions -->
   <ScenPartDef>
     <defName>Playwright_WinCondition_Colony</defName>

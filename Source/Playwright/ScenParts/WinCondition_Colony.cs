@@ -16,10 +16,9 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 4);
-            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 4);
+            var scenPartRect = listing.GetScenPartRect(this, RowHeight * 3);
+            var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 3);
 
-            Widgets.Label(helper.NextRect(), "Playwright.ScenParts.WinCondition_Colony.Colonists".Translate());
             Widgets.IntEntry(helper.NextRect(), ref Colonists, ref ColonistsBuffer);
             if (Colonists < 1)
             {

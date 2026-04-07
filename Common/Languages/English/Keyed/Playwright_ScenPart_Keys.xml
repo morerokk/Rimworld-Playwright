@@ -160,4 +160,15 @@ If "Allow allying" is enabled, you can also ally factions. In this case, you win
 
 Does not count temporary colonists or guests. Does not count unloaded colonists, such as those in cryptosleep or living in outposts from Vanilla Outposts Expanded.</Playwright.ScenParts.WinCondition_RoyalTitles.Help>
 
+ <Playwright.ScenParts.WinCondition_Time>Win Condition: Time</Playwright.ScenParts.WinCondition_Time>
+ <Playwright.ScenParts.WinCondition_Time.Days>Days</Playwright.ScenParts.WinCondition_Time.Days>
+ <Playwright.ScenParts.WinCondition_Time.YearsAndDays>{0} years, {1} days</Playwright.ScenParts.WinCondition_Time.YearsAndDays>
+ <Playwright.ScenParts.WinCondition_Time.Summary>Survive for {0} days</Playwright.ScenParts.WinCondition_Time.Summary>
+ <Playwright.ScenParts.WinCondition_Time.WinIntro>You have stood the test of time!</Playwright.ScenParts.WinCondition_Time.WinIntro>
+ <Playwright.ScenParts.WinCondition_Time.WinEnding>Having already made it this far, your colony is sure to thrive and survive for many generations. But only time will tell.</Playwright.ScenParts.WinCondition_Time.WinEnding>
+ <Playwright.ScenParts.WinCondition_Time.WinColonists>\n\nThese colonists stand proud:\n\n{0}</Playwright.ScenParts.WinCondition_Time.WinColonists>
+ <Playwright.ScenParts.WinCondition_Time.Help>Wins the game when time passes the specified amount of days. Default is 600 days, meaning you win the game when you reach Year 10.
+
+You must have at least 1 alive colonist by that point for it to count. Does not count temporary colonists or guests. Does not count unloaded colonists, such as those in cryptosleep or living in outposts from Vanilla Outposts Expanded.</Playwright.ScenParts.WinCondition_Time.Help>
+
 </LanguageData>

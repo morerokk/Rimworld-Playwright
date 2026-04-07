@@ -87,6 +87,7 @@
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\ScenPart_WinCondition.cs" />
     <Compile Include="ScenParts\ReplaceXenotype.cs" />
+    <Compile Include="ScenParts\WinCondition_Time.cs" />
     <Compile Include="ScenParts\WinCondition_RoyalTitles.cs" />
     <Compile Include="ScenParts\WinCondition_Conquest.cs" />
     <Compile Include="ScenParts\WinCondition_Colony.cs" />

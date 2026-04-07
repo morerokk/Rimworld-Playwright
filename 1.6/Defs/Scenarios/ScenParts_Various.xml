@@ -150,4 +150,14 @@
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>1</summaryPriority>
   </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>Playwright_WinCondition_Time</defName>
+    <label>win condition: time</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.WinCondition_Time</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>1</summaryPriority>
+	<maxUses>1</maxUses>
+  </ScenPartDef>
 </Defs>

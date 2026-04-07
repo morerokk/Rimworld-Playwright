@@ -26,6 +26,10 @@ namespace Rokk.Playwright.GameComponents
         private bool RoyalTitlesWon = false;
         private List<WinCondition_RoyalTitles> RoyalTitlesParts = new List<WinCondition_RoyalTitles>();
 
+        private bool TimeEnabled = false;
+        private bool TimeWon = false;
+        private int TimeDays;
+
         private float Countdown = 0f;
         private Action CountdownEnded;
 
@@ -107,6 +111,24 @@ namespace Rokk.Playwright.GameComponents
                     }
                 }
             }
+
+            // Time
+            if (TimeEnabled && !TimeWon && Find.TickManager.TicksGame % 3300 == 0)
+            {
+                // A day is exactly 60,000 ticks, this seems to work regardless of how much the player moves around the world or re-settles elsewhere
+                float daysPassed = (float)Find.TickManager.TicksGame / 60000f;
+                if (daysPassed >= TimeDays)
+                {
+                    int aliveColonists = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                        .Count(p => !p.IsAnimal);
+                    if (aliveColonists > 0)
+                    {
+                        StartFadeCountdown(5f, WinGameTime);
+                        TimeWon = true;
+                        return;
+                    }
+                }
+            }
         }
 
         public override void StartedNewGame()
@@ -159,6 +181,17 @@ namespace Rokk.Playwright.GameComponents
             if (RoyalTitlesParts.Count > 0)
             {
                 RoyalTitlesEnabled = true;
+            }
+
+            // Time
+            WinCondition_Time timePart = scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_Time)
+                .Cast<WinCondition_Time>()
+                .FirstOrDefault();
+            if (timePart != null)
+            {
+                TimeDays = timePart.Days;
+                TimeEnabled = true;
             }
         }
 
@@ -241,12 +274,32 @@ namespace Rokk.Playwright.GameComponents
             RoyalTitlesWon = true;
         }
 
+        private void WinGameTime()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            List<Pawn> pawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction;
+            foreach (Pawn pawn in pawns)
+            {
+                stringBuilder.AppendLine(pawn.LabelCap);
+            }
+
+            string credits = GameVictoryUtility.MakeEndCredits(
+                "Playwright.ScenParts.WinCondition_Time.WinIntro".Translate(),
+                "Playwright.ScenParts.WinCondition_Time.WinEnding".Translate(),
+                stringBuilder.ToString(),
+                "Playwright.ScenParts.WinCondition_Time.WinColonists", pawns);
+            GameVictoryUtility.ShowCredits(credits, SongDefOf.EndCreditsSong, false, 5f);
+
+            TimeWon = true;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref ColonyWon, nameof(ColonyWon));
             Scribe_Values.Look(ref ConquestWon, nameof(ConquestWon));
             Scribe_Values.Look(ref RoyalTitlesWon, nameof(RoyalTitlesWon));
+            Scribe_Values.Look(ref TimeWon, nameof(TimeWon));
         }
     }
 }

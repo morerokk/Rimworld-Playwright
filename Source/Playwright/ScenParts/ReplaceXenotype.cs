@@ -13,6 +13,9 @@ namespace Rokk.Playwright.ScenParts
     /// When a pawn is generated with <see cref="FromXenotype"/>, it will instead be replaced with <see cref="ToXenotype"/>.
     /// This is a bad idea in my opinion. Not included in the Playwright designer because then the player should just use a faction control/xenotype control mod.
     /// Modifying pawns after generation is probably the approach that is least likely to break things. Patches would make this a nightmare.
+    /// 
+    /// Note: sometimes a generated pawn may need to be capable of violence (like faction leaders).
+    /// The game will give up and ignore this ScenPart after ~100 regeneration attempts if that happens (and maybe ignore other ScenParts too!).
     /// </summary>
     public class ReplaceXenotype : ScenPart_PawnModifier
     {

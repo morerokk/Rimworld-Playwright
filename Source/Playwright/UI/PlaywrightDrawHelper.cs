@@ -55,5 +55,13 @@ namespace Rokk.Playwright.UI
         {
             Widgets.DrawLine(new Vector2(inRect.x, inRect.y + inRect.height), new Vector2(inRect.x + inRect.width, inRect.y + inRect.height), color, width);
         }
+
+        public static Rect GetCenteredLabelRect(Rect inRect, string text)
+        {
+            Vector2 textSize = Text.CalcSize(text);
+            float horizontalMargin = (inRect.width - textSize.x) * 0.5f;
+            float verticalMargin = (inRect.height - textSize.y) * 0.5f;
+            return new Rect(inRect.x + horizontalMargin, inRect.y + verticalMargin, inRect.width - horizontalMargin * 2f, inRect.height - verticalMargin * 2f);
+        }
     }
 }

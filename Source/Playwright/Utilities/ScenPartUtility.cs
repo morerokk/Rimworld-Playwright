@@ -168,18 +168,16 @@ namespace Rokk.Playwright.Utilities
             return noPossessionsPart;
         }
 
-        public static ScenPart_GameCondition MakeGameConditionPart(GameConditionDef gameConditionDef, FloatRange durationRandomRange, bool gameConditionTargetsWorld = true)
+        public static ScenPart_GameCondition MakeGameConditionPlanetkillerPart(float durationDays)
         {
+            // This scenpart is really weird, seemingly made for generic game conditions but then coded to only ever use planetkiller.
+            // I guess it's 1 class meant to be reused by multiple scenpart defs?
+            // The game condition comes from the scenpart's def (including whether it targets the world),
+            // game condition starts at 0 days, lasts until durationDays.
             ScenPart_GameCondition gameConditionPart = (ScenPart_GameCondition)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.GameCondition_Planetkiller);
 
-            FieldInfo gameConditionInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "gameCondition");
-            gameConditionInfo.SetValue(gameConditionPart, gameConditionDef);
-
-            FieldInfo durationRandomRangeInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "durationRandomRange");
-            durationRandomRangeInfo.SetValue(gameConditionPart, durationRandomRange);
-
-            FieldInfo gameConditionTargetsWorldInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "gameConditionTargetsWorld");
-            gameConditionTargetsWorldInfo.SetValue(gameConditionPart, gameConditionTargetsWorld);
+            FieldInfo durationDaysInfo = AccessTools.Field(typeof(ScenPart_GameCondition), "durationDays");
+            durationDaysInfo.SetValue(gameConditionPart, durationDays);
 
             return gameConditionPart;
         }

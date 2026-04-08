@@ -3,6 +3,7 @@ using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
 using System;
@@ -108,7 +109,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     ActiveTab = value;
-                    ButtonSound();
+                    ClickSound();
                 }
                 buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.Label(buttonRect, ("Playwright.Tabs." + value.ToString()).Translate());
@@ -161,7 +162,7 @@ namespace Rokk.Playwright.UI
                         ChangeOrigin(origin);
                         OriginContentListing.Invalidate();
                     });
-                    ButtonSound();
+                    ClickSound();
                 }
                 Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
@@ -426,7 +427,7 @@ namespace Rokk.Playwright.UI
             if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedAllies, FactionRelationKind.Ally);
-                ButtonSound();
+                ClickSound();
             }
             DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
             alliesListing.End();
@@ -440,7 +441,7 @@ namespace Rokk.Playwright.UI
             if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedNeutrals, FactionRelationKind.Neutral);
-                ButtonSound();
+                ClickSound();
             }
             DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
             neutralsListing.End();
@@ -454,7 +455,7 @@ namespace Rokk.Playwright.UI
             if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedEnemies, FactionRelationKind.Hostile);
-                ButtonSound();
+                ClickSound();
             }
             DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
             enemiesListing.End();
@@ -597,9 +598,95 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
+        private Vector2 AvailableSpecialConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical AvailableSpecialConditionsListing = new Listing_AutoFitVertical();
+        private Vector2 SelectedSpecialConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical SelectedSpecialConditionsListing = new Listing_AutoFitVertical();
         private void DrawSpecialConditionsTab(Rect contentRect)
         {
+            List<SpecialConditionComponent> allSpecialConditions = SpecialConditionComponent.GetAvailableSpecialConditions();
+            List<SpecialConditionComponent> selectedSpecialConditions = PlaywrightStructure.SpecialConditions;
+            List<SpecialConditionComponent> availableSpecialConditions = allSpecialConditions.Where(b => !selectedSpecialConditions.Any(sb => sb.Id == b.Id)).ToList();
+            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
 
+            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.SpecialConditions.Welcome");
+            nextRect.y += Margin;
+            nextRect.height -= Margin;
+            Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
+
+            // Available special conditions
+            Rect availableSpecialConditionsRect = new Rect(nextRect);
+            availableSpecialConditionsRect.width *= 0.25f;
+            availableSpecialConditionsRect.width += Margin;
+            availableSpecialConditionsRect = PlaywrightDrawHelper.RectWithMargin(availableSpecialConditionsRect, PanelContentMargin);
+            Rect selectedSpecialConditionsRect = new Rect(nextRect);
+            selectedSpecialConditionsRect.width *= 0.75f;
+            selectedSpecialConditionsRect.width -= PanelContentMargin;
+            selectedSpecialConditionsRect.x += availableSpecialConditionsRect.width;
+
+            Rect availableSpecialConditionsRectInner = PlaywrightDrawHelper.RectWithMargin(availableSpecialConditionsRect, PanelContentMargin);
+            availableSpecialConditionsRectInner.width -= Margin;
+            availableSpecialConditionsRectInner = AvailableSpecialConditionsListing.GetScrollViewInnerRect(availableSpecialConditionsRectInner);
+
+            Widgets.BeginScrollView(availableSpecialConditionsRect, ref AvailableSpecialConditionsScrollPos, availableSpecialConditionsRectInner);
+            AvailableSpecialConditionsListing.Begin(availableSpecialConditionsRectInner);
+
+            foreach (SpecialConditionComponent specialCondition in availableSpecialConditions)
+            {
+                Rect specialConditionRect = AvailableSpecialConditionsListing.GetRect(OptionHeight);
+                Widgets.DrawOptionBackground(specialConditionRect, false);
+                Widgets.Label(PlaywrightDrawHelper.RectWithMargin(specialConditionRect, OptionContentMargin), specialCondition.NameTranslated);
+                PlaywrightDrawHelper.DrawInTopRight(specialConditionRect, plusTex, 2f, 0.4f);
+                if (Widgets.ButtonInvisible(specialConditionRect))
+                {
+                    selectedSpecialConditions.Add(specialCondition);
+                    this.AddSound();
+                    AvailableSpecialConditionsListing.Invalidate();
+                    SelectedSpecialConditionsListing.Invalidate();
+                    FormDirty = true;
+                }
+                if (Mouse.IsOver(specialConditionRect))
+                {
+                    TooltipHandler.TipRegion(specialConditionRect, specialCondition.DescriptionShortTranslated);
+                }
+            }
+
+            AvailableSpecialConditionsListing.End();
+            Widgets.EndScrollView();
+
+            // Selected special conditions
+            selectedSpecialConditionsRect = PlaywrightDrawHelper.RectWithMargin(selectedSpecialConditionsRect, PanelContentMargin);
+            Widgets.DrawBoxSolidWithOutline(selectedSpecialConditionsRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+            selectedSpecialConditionsRect.x += Margin;
+            selectedSpecialConditionsRect.width -= Margin;
+            Rect selectedSpecialConditionsRectInner = new Rect(selectedSpecialConditionsRect);
+            selectedSpecialConditionsRectInner.width -= Margin;
+            selectedSpecialConditionsRectInner = SelectedSpecialConditionsListing.GetScrollViewInnerRect(selectedSpecialConditionsRectInner);
+
+            Widgets.BeginScrollView(selectedSpecialConditionsRect, ref SelectedSpecialConditionsScrollPos, selectedSpecialConditionsRectInner);
+            SelectedSpecialConditionsListing.Begin(selectedSpecialConditionsRectInner);
+
+            foreach (SpecialConditionComponent specialCondition in selectedSpecialConditions.ToList())
+            {
+                Rect deleteButtonRect = SelectedSpecialConditionsListing.GetRect(0f);
+                deleteButtonRect.height = 50f;
+                deleteButtonRect = PlaywrightDrawHelper.RectWithMargin(deleteButtonRect, 5f);
+                specialCondition.DoSpecialConditionContents(SelectedSpecialConditionsListing);
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
+                {
+                    selectedSpecialConditions.Remove(specialCondition);
+                    RemoveSound();
+                    AvailableSpecialConditionsListing.Invalidate();
+                    SelectedSpecialConditionsListing.Invalidate();
+                    FormDirty = true;
+                }
+                Rect lineRect = SelectedSpecialConditionsListing.GetRect(PanelOutlineWidth);
+                PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
+            }
+
+            SelectedSpecialConditionsListing.End();
+            Widgets.EndScrollView();
         }
 
         private void DrawButtonBar(Rect contentRect)
@@ -661,7 +748,7 @@ namespace Rokk.Playwright.UI
             }
         }
 
-        private void ButtonSound()
+        private void ClickSound()
         {
             SoundDefOf.Click.PlayOneShotOnCamera();
         }

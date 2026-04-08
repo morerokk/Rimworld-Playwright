@@ -18,10 +18,16 @@ namespace Rokk.Playwright.Components.SpecialConditions
         public override bool IsAvailable => ModsConfig.BiotechActive;
 
         public List<XenotypeReplacement> XenotypeReplacements = new List<XenotypeReplacement>();
+        public List<CustomXenotypeReplacement> CustomXenotypeReplacements = new List<CustomXenotypeReplacement>();
 
         private string GetXenotypeLabel(XenotypeDef xenotypeDef)
         {
             return xenotypeDef != null ? xenotypeDef.LabelCap.ToString() : "-";
+        }
+
+        private string GetXenotypeLabel(CustomXenotype customXenotype)
+        {
+            return customXenotype != null ? customXenotype.name : "-";
         }
 
         private List<XenotypeDef> GetSelectableFromXenotypes(XenotypeReplacement currentReplacement)
@@ -29,6 +35,18 @@ namespace Rokk.Playwright.Components.SpecialConditions
             // Only allow a xenotype to be selected if it's not already in use,
             // unless the current row is the one that's using it
             List<XenotypeDef> otherReplacementTakenXenotypeDefs = XenotypeReplacements
+                .Where(x => x != currentReplacement && x.From != null)
+                .Select(x => x.From)
+                .ToList();
+
+            return DefDatabase<XenotypeDef>.AllDefsListForReading
+                .Where(def => !otherReplacementTakenXenotypeDefs.Contains(def))
+                .ToList();
+        }
+
+        private List<XenotypeDef> GetSelectableFromXenotypes(CustomXenotypeReplacement currentReplacement)
+        {
+            List<XenotypeDef> otherReplacementTakenXenotypeDefs = CustomXenotypeReplacements
                 .Where(x => x != currentReplacement && x.From != null)
                 .Select(x => x.From)
                 .ToList();
@@ -50,6 +68,11 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 .ToList();
         }
 
+        private List<CustomXenotype> GetCustomXenotypes()
+        {
+            return CharacterCardUtility.CustomXenotypesForReading;
+        }
+
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             foreach (XenotypeReplacement replacement in XenotypeReplacements)
@@ -61,12 +84,20 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 }
                 scenarioParts.Add(ScenPartUtility.MakeReplaceXenotypePart(replacement.From, replacement.To, 1f, PawnGenerationContext.All));
             }
+
+            foreach (CustomXenotypeReplacement customReplacement in CustomXenotypeReplacements)
+            {
+                if (customReplacement.From == null || customReplacement.ToCustom == null)
+                {
+                    Log.Warning("[Playwright] CustomXenotypeReplacement had a null From/ToCustom entry, skipping");
+                    continue;
+                }
+                scenarioParts.Add(ScenPartUtility.MakeReplaceXenotypeWithCustomPart(customReplacement.From, customReplacement.ToCustom, 1f, PawnGenerationContext.All));
+            }
         }
 
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
-
             if (specialConditionContentListing.ButtonText("Playwright.Components.SpecialConditions.XenotypeSwap.Add".Translate()))
             {
                 XenotypeReplacements.Add(new XenotypeReplacement());
@@ -74,7 +105,23 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 AddSound();
             }
 
-            foreach(var replacement in XenotypeReplacements.ToList())
+            DoXenotypesContent(specialConditionContentListing);
+
+            if (specialConditionContentListing.ButtonText("Playwright.Components.SpecialConditions.XenotypeSwap.AddCustom".Translate()))
+            {
+                CustomXenotypeReplacements.Add(new CustomXenotypeReplacement());
+                specialConditionContentListing.Invalidate();
+                AddSound();
+            }
+
+            DoCustomXenotypesContent(specialConditionContentListing);
+        }
+
+        private void DoXenotypesContent(Listing_AutoFitVertical specialConditionContentListing)
+        {
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+
+            foreach (XenotypeReplacement replacement in XenotypeReplacements.ToList())
             {
                 Rect rect = specialConditionContentListing.GetRect(35f);
                 // UI divided into (Button) (Text) (Button) each 30% wide, last 10% taken up by (DeleteButton)
@@ -138,6 +185,69 @@ namespace Rokk.Playwright.Components.SpecialConditions
             }
         }
 
+        private void DoCustomXenotypesContent(Listing_AutoFitVertical specialConditionContentListing)
+        {
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+
+            foreach (CustomXenotypeReplacement customReplacement in CustomXenotypeReplacements.ToList())
+            {
+                Rect rect = specialConditionContentListing.GetRect(35f);
+                // UI divided into (Button) (Text) (Button) each 30% wide, last 10% taken up by (DeleteButton)
+                float colWidth = rect.width * 0.3f;
+                // From
+                Rect fromButtonRect = new Rect(rect)
+                {
+                    width = colWidth
+                };
+                if (Widgets.ButtonText(fromButtonRect, GetXenotypeLabel(customReplacement.From)))
+                {
+                    var options = new List<FloatMenuOption>();
+                    foreach (var xenotypeDef in GetSelectableFromXenotypes(customReplacement))
+                    {
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { customReplacement.From = xenotypeDef; specialConditionContentListing.Invalidate(); }, xenotypeDef.Icon, Color.white));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(options));
+                    ClickSound();
+                }
+                // Replacement text
+                Rect replacesRect = new Rect(rect)
+                {
+                    width = colWidth,
+                    x = rect.x + colWidth
+                };
+                string replacesText = "Playwright.Components.SpecialConditions.XenotypeSwap.ReplacedBy".Translate();
+                Rect replacesRectCentered = PlaywrightDrawHelper.GetCenteredLabelRect(replacesRect, replacesText);
+                Widgets.Label(replacesRectCentered, replacesText);
+                // To
+                Rect toButtonRect = new Rect(rect)
+                {
+                    width = colWidth,
+                    x = rect.x + colWidth * 2
+                };
+                if (Widgets.ButtonText(toButtonRect, GetXenotypeLabel(customReplacement.ToCustom)))
+                {
+                    var options = new List<FloatMenuOption>();
+                    foreach (var customXenotype in GetCustomXenotypes())
+                    {
+                        options.Add(new FloatMenuOption(customXenotype.name, () => { customReplacement.ToCustom = customXenotype; specialConditionContentListing.Invalidate(); }, customXenotype.IconDef.Icon, Color.white));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(options));
+                    ClickSound();
+                }
+                // Delete button
+                Rect deleteButtonRect = new Rect(rect)
+                {
+                    width = rect.width * 0.1f,
+                    x = rect.x + colWidth * 3
+                };
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0f, 0.4f))
+                {
+                    CustomXenotypeReplacements.Remove(customReplacement);
+                    RemoveSound();
+                }
+            }
+        }
+
         private void ClickSound()
         {
             SoundDefOf.Click.PlayOneShotOnCamera();
@@ -169,6 +279,18 @@ namespace Rokk.Playwright.Components.SpecialConditions
             {
                 Scribe_Defs.Look(ref From, nameof(From));
                 Scribe_Defs.Look(ref To, nameof(To));
+            }
+        }
+
+        public class CustomXenotypeReplacement : IExposable
+        {
+            public XenotypeDef From;
+            public CustomXenotype ToCustom;
+
+            public void ExposeData()
+            {
+                Scribe_Defs.Look(ref From, nameof(From));
+                Scribe_Values.Look(ref ToCustom, nameof(ToCustom));
             }
         }
     }

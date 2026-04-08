@@ -26,6 +26,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_DisableShipStartup;
         public static ScenPartDef Playwright_ForcedImplant;
         public static ScenPartDef Playwright_ReplaceXenotype;
+        public static ScenPartDef Playwright_ReplaceXenotypeWithCustom;
 
         // Win conditions
         public static ScenPartDef Playwright_WinCondition_Colony;

@@ -181,11 +181,14 @@ Removing this will disable the Archonexus quests.</Playwright.Components.WinCond
  <Playwright.Components.SpecialConditions.XenotypeSwap.Description>Replaces the chosen xenotypes with other xenotypes.</Playwright.Components.SpecialConditions.XenotypeSwap.Description>
  <Playwright.Components.SpecialConditions.XenotypeSwap.ReplacedBy>replaced by</Playwright.Components.SpecialConditions.XenotypeSwap.ReplacedBy>
  <Playwright.Components.SpecialConditions.XenotypeSwap.Add>Add replacement</Playwright.Components.SpecialConditions.XenotypeSwap.Add>
- <Playwright.Components.SpecialConditions.XenotypeSwap.Help>Quick and dirty xenotype replacement. Replaces the chosen xenotypes with other ones when the pawn is generated (does nothing when implanting an existing pawn). While this does work, I recommend using WorldBuilder or Xenotype Spawn Control instead.
+ <Playwright.Components.SpecialConditions.XenotypeSwap.Add>Add custom replacement</Playwright.Components.SpecialConditions.XenotypeSwap.Add>
+ <Playwright.Components.SpecialConditions.XenotypeSwap.Help>Quick and dirty xenotype replacement. Replaces the chosen xenotypes with other ones when the pawn is generated (does nothing when implanting an existing pawn). While this does work, I recommend using WorldBuilder or Xenotype Spawn Control instead for non-custom xenotypes.
 
-Example: this can replace all Neanderthals with Hussars, or all Baseliners with Genies.
+Use "Add replacement" to replace a xenotype in the game with another xenotype in the game, or "Add custom replacement" to replace a xenotype in the game with one of your own saved custom xenotypes.
 
-Note: The game demands that some generated pawns are capable of certain things, like faction leaders being capable of violence. If this fails, the game will generate a pawn normally and log a harmless error. This component only supports xenotypes that are in the game or added by mods, if you want to use custom xenotypes you have to use Custom Xenotype Exporter Tool.
+Example: this can replace all Neanderthals with Hussars, all Baseliners with Genies, or all Sanguophages with your own custom Sanguophage.
+
+Note: The game demands that some generated pawns are capable of certain things, like faction leaders being capable of violence. If this fails, the game will generate a pawn normally and log a harmless error.
 
 Raids will respect xenotypes when calculating raid points, so replacing one xenotype with another will not result in underpowered/overpowered raids.</Playwright.Components.SpecialConditions.XenotypeSwap.Help>
 

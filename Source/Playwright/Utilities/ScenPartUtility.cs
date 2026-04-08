@@ -284,6 +284,21 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        public static ReplaceXenotype MakeReplaceXenotypePart(XenotypeDef fromXenotype, XenotypeDef toXenotype, float chance, PawnGenerationContext context)
+        {
+            ReplaceXenotype part = (ReplaceXenotype)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_ReplaceXenotype);
+            part.FromXenotype = fromXenotype;
+            part.ToXenotype = toXenotype;
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ForcedImplant), "chance");
+            chanceInfo.SetValue(part, chance);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ForcedImplant), "context");
+            contextInfo.SetValue(part, context);
+
+            return part;
+        }
+
         public static WinCondition_Colony MakeWinConditionColonyPart(int colonists)
         {
             WinCondition_Colony part = (WinCondition_Colony)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Colony);

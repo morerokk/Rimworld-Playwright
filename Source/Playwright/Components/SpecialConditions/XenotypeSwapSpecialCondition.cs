@@ -52,7 +52,15 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            
+            foreach (XenotypeReplacement replacement in XenotypeReplacements)
+            {
+                if (replacement.From == null || replacement.To == null)
+                {
+                    Log.Warning("[Playwright] XenotypeReplacement had a null From/To entry, skipping");
+                    continue;
+                }
+                scenarioParts.Add(ScenPartUtility.MakeReplaceXenotypePart(replacement.From, replacement.To, 1f, PawnGenerationContext.All));
+            }
         }
 
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)

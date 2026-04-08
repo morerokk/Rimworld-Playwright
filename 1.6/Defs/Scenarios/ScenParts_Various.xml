@@ -118,7 +118,16 @@
     <scenPartClass>Rokk.Playwright.ScenParts.ReplaceXenotype</scenPartClass>
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.0</selectionWeight>
-    <summaryPriority>459</summaryPriority>
+    <summaryPriority>2</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Playwright_ReplaceXenotypeWithCustom</defName>
+    <label>replace xenotype with custom</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.ReplaceXenotypeWithCustom</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>2</summaryPriority>
   </ScenPartDef>
   
   <!-- Win Conditions -->

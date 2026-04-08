@@ -4,6 +4,7 @@ using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Exceptions;
 using Rokk.Playwright.Utilities;
@@ -199,7 +200,10 @@ namespace Rokk.Playwright.Composer
 
         private void ProcessSpecialConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
-
+            foreach (SpecialConditionComponent specialCondition in playwright.SpecialConditions)
+            {
+                specialCondition.MutateScenario(scenario, parts);
+            }
         }
 
         private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)

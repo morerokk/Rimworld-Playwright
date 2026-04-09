@@ -15,5 +15,6 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.DefOfs
     public static class FactionDefOf
     {
         public static FactionDef MF_Corporation;
+        public static FactionDef MF_CyberPunks;
     }
 }

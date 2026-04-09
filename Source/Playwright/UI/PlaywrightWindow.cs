@@ -227,10 +227,6 @@ namespace Rokk.Playwright.UI
         private void ChangeOrigin(OriginComponent origin)
         {
             this.PlaywrightStructure.Origin = origin;
-            if (FormDirty)
-            {
-                return;
-            }
 
             // Set defaults
             PlaywrightStructure defaultStructure = PlaywrightStructure.CreateDefault();
@@ -715,6 +711,7 @@ namespace Rokk.Playwright.UI
             if (Widgets.ButtonText(saveRect, "Save".Translate()))
             {
                 Find.WindowStack.Add(new Dialog_PlaywrightList_Save(this.PlaywrightStructure));
+                FormDirty = false;
             }
 
             Rect loadRect = new Rect(saveRect.xMax + ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
@@ -724,6 +721,7 @@ namespace Rokk.Playwright.UI
                 {
                     this.PlaywrightStructure = loadedStructure;
                     InvalidateAutoListings();
+                    FormDirty = false;
                 }));
             }
 
@@ -808,6 +806,20 @@ namespace Rokk.Playwright.UI
             this.SelectedWinConditionsListing.Invalidate();
             this.AvailableSpecialConditionsListing.Invalidate();
             this.SelectedSpecialConditionsListing.Invalidate();
+        }
+
+        public override void Close(bool doCloseSound = true)
+        {
+            if (!FormDirty)
+            {
+                base.Close(doCloseSound);
+                return;
+            }
+
+            Find.WindowStack.Add(new ConfirmCloseWindow(() =>
+            {
+                base.Close(doCloseSound);
+            }));
         }
 
         public enum Tabs

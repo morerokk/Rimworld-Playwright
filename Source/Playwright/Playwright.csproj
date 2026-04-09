@@ -83,12 +83,14 @@
     <Compile Include="Patches\OptionListingUtilityPatches.cs" />
     <Compile Include="Patches\Page_CreateWorldParamsPatches.cs" />
     <Compile Include="Patches\ShipUtilityPatches.cs" />
+    <Compile Include="Patches\TradeablePatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
     <Compile Include="ScenParts\ReplaceXenotypeWithCustom.cs" />
     <Compile Include="ScenParts\ScenPart_WinCondition.cs" />
     <Compile Include="ScenParts\ReplaceXenotype.cs" />
+    <Compile Include="ScenParts\WinCondition_SellItems.cs" />
     <Compile Include="ScenParts\WinCondition_Time.cs" />
     <Compile Include="ScenParts\WinCondition_RoyalTitles.cs" />
     <Compile Include="ScenParts\WinCondition_Conquest.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="ScenParts\StartWithHonor.cs" />
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="UI\ConfirmCloseWindow.cs" />
     <Compile Include="UI\Dialog_PlaywrightList_Save.cs" />
     <Compile Include="UI\Dialog_PlaywrightList_Load.cs" />
     <Compile Include="UI\Dialog_PlaywrightFileList.cs" />

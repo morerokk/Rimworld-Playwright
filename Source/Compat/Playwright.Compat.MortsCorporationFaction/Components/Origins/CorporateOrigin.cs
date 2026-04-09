@@ -1,5 +1,10 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Compat.MortsCorporationFaction.Components.Boons;
+using Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinConditions;
+using Rokk.Playwright.Components.Boons;
+using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.Origins;
+using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
@@ -14,11 +19,33 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
     {
         // ID's must be unique, so prefix it with something distinct
         public override string Id => "Origins.Compat_MF_Corporate";
+        public override ScenarioDef BasedOnScenario => DefOfs.ScenarioDefOf.Playwright_MF_Corporate;
 
-        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
+        public override List<BoonComponent> DefaultBoons => new List<BoonComponent>()
         {
-            // Same thing as the base Empire origin, but with The Corporation from Mort's Factions - The Corporation instead.
-            scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(DefOfs.FactionDefOf.MF_Corporation, 7, 1f, PawnGenerationContext.PlayerStarter, true));
-        }
+            new CorporateGoonsBoon(),
+            new BionicArmBoon()
+        };
+
+        public override List<FactionComponent> DefaultAllies => new List<FactionComponent>()
+        {
+            new SpecificFaction()
+            {
+                Faction = DefOfs.FactionDefOf.MF_Corporation
+            }
+        };
+
+        public override List<FactionComponent> DefaultEnemies => new List<FactionComponent>()
+        {
+            new SpecificFaction()
+            {
+                Faction = DefOfs.FactionDefOf.MF_CyberPunks
+            }
+        };
+
+        public override List<WinConditionComponent> DefaultWinConditions => new List<WinConditionComponent>()
+        {
+            new PaperworkWinCondition()
+        };
     }
 }

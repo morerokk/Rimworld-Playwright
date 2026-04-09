@@ -30,6 +30,11 @@ namespace Rokk.Playwright.GameComponents
         private bool TimeWon = false;
         private int TimeDays;
 
+        private bool SellItemsEnabled = false;
+        private bool SellItemsWon = false;
+        private List<WinCondition_SellItems> SellItemsParts = new List<WinCondition_SellItems>();
+        private Dictionary<ThingDef, int> SellItemsAmountsSold = new Dictionary<ThingDef, int>();
+
         private float Countdown = 0f;
         private Action CountdownEnded;
 
@@ -129,6 +134,23 @@ namespace Rokk.Playwright.GameComponents
                     }
                 }
             }
+
+            // Sell items
+            if (SellItemsEnabled && !SellItemsWon && Find.TickManager.TicksGame % 3400 == 0)
+            {
+                foreach (WinCondition_SellItems part in SellItemsParts)
+                {
+                    if (SellItemsAmountsSold.TryGetValue(part.Thing, out int sold))
+                    {
+                        if (sold >= part.Amount)
+                        {
+                            StartFadeCountdown(5f, WinGameSellItems);
+                            SellItemsWon = true;
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
         public override void StartedNewGame()
@@ -192,6 +214,16 @@ namespace Rokk.Playwright.GameComponents
             {
                 TimeDays = timePart.Days;
                 TimeEnabled = true;
+            }
+
+            // Sell items
+            SellItemsParts = scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_SellItems)
+                .Cast<WinCondition_SellItems>()
+                .ToList();
+            if (SellItemsParts.Count > 0)
+            {
+                SellItemsEnabled = true;
             }
         }
 
@@ -293,6 +325,39 @@ namespace Rokk.Playwright.GameComponents
             TimeWon = true;
         }
 
+        private void WinGameSellItems()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            List<Pawn> pawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction;
+            foreach (Pawn pawn in pawns)
+            {
+                stringBuilder.AppendLine(pawn.LabelCap);
+            }
+
+            string credits = GameVictoryUtility.MakeEndCredits(
+                "Playwright.ScenParts.WinCondition_SellItems.WinIntro".Translate(),
+                "Playwright.ScenParts.WinCondition_SellItems.WinEnding".Translate(),
+                stringBuilder.ToString(),
+                "Playwright.ScenParts.WinCondition_SellItems.WinColonists", pawns);
+            GameVictoryUtility.ShowCredits(credits, SongDefOf.EndCreditsSong, false, 5f);
+
+            SellItemsWon = true;
+        }
+
+        public void NotifyThingSold(Thing thing)
+        {
+            if (!SellItemsEnabled || SellItemsWon)
+            {
+                return;
+            }
+
+            if (!SellItemsAmountsSold.ContainsKey(thing.def))
+            {
+                SellItemsAmountsSold[thing.def] = 0;
+            }
+            SellItemsAmountsSold[thing.def] += thing.stackCount;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -300,6 +365,8 @@ namespace Rokk.Playwright.GameComponents
             Scribe_Values.Look(ref ConquestWon, nameof(ConquestWon));
             Scribe_Values.Look(ref RoyalTitlesWon, nameof(RoyalTitlesWon));
             Scribe_Values.Look(ref TimeWon, nameof(TimeWon));
+            Scribe_Values.Look(ref SellItemsWon, nameof(SellItemsWon));
+            Scribe_Collections.Look(ref SellItemsAmountsSold, nameof(SellItemsAmountsSold));
         }
     }
 }

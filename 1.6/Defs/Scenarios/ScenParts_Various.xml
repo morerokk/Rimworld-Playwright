@@ -7,7 +7,7 @@
     <category>Misc</category>
     <selectionWeight>0.1</selectionWeight>
     <summaryPriority>2</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
 
   <ScenPartDef>
@@ -17,7 +17,7 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>50</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -27,7 +27,7 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>49</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -91,7 +91,7 @@
     <category>PlayerPawnModifier</category>
     <selectionWeight>0.1</selectionWeight>
     <summaryPriority>20</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
   
   <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">
@@ -138,7 +138,7 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>1</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
   
   <ScenPartDef>
@@ -148,7 +148,7 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>1</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
   </ScenPartDef>
   
   <ScenPartDef MayRequire="Ludeon.RimWorld.Royalty">
@@ -167,6 +167,15 @@
     <category>Misc</category>
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>1</summaryPriority>
-	<maxUses>1</maxUses>
+	  <maxUses>1</maxUses>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Playwright_WinCondition_SellItems</defName>
+    <label>win condition: sell items</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.WinCondition_SellItems</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.0</selectionWeight>
+    <summaryPriority>1</summaryPriority>
   </ScenPartDef>
 </Defs>

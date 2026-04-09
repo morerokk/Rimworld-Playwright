@@ -34,6 +34,7 @@ namespace Rokk.Playwright.DefOfs
         [MayRequireRoyalty]
         public static ScenPartDef Playwright_WinCondition_RoyalTitles;
         public static ScenPartDef Playwright_WinCondition_Time;
+        public static ScenPartDef Playwright_WinCondition_SellItems;
 
         // Things that are in the base game but have not been added to a DefOf
         public static ScenPartDef Naked;

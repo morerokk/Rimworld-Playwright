@@ -45,9 +45,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Boons\CorporateGoonsBoon.cs" />
     <Compile Include="Components\Origins\CorporateOrigin.cs" />
+    <Compile Include="Components\WinConditions\PaperworkWinCondition.cs" />
     <Compile Include="Components\WinConditions\CorporateBoardroomWinCondition.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\ScenarioDefOf.cs" />
+    <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="DefOfs\RoyalTitleDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
   </ItemGroup>
@@ -56,6 +60,10 @@
       <Project>{f6164afc-a6f3-49ad-b309-997e47bb6f7d}</Project>
       <Name>Playwright</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameComponents\" />
+    <Folder Include="ScenParts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

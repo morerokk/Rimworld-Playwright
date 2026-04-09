@@ -336,5 +336,13 @@ namespace Rokk.Playwright.Utilities
             part.Title = title;
             return part;
         }
+
+        public static WinCondition_SellItems MakeWinConditionSellItemsPart(ThingDef thingToSell, int amountToSell)
+        {
+            WinCondition_SellItems part = (WinCondition_SellItems)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_SellItems);
+            part.Thing = thingToSell;
+            part.Amount = amountToSell;
+            return part;
+        }
     }
 }

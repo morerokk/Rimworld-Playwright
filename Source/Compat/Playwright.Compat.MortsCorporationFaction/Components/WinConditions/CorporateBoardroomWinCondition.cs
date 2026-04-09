@@ -13,7 +13,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
 {
     public class CorporateBoardroomWinCondition : WinConditionComponent
     {
-        public override string Id => "WinConditions.Compat_MF_CorporateBoardroom";
+        public override string Id => "WinConditions.Compat_MF_Corporate_Boardroom";
 
         public int Colonists = 10;
         private string ColonistsBuffer = "10";
@@ -25,14 +25,14 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
         {
             base.DoSettingsContents(winConditionContentListing);
             // Colonist count selector
-            winConditionContentListing.Label("Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Colonists".Translate());
+            winConditionContentListing.Label("Playwright.Components.WinConditions.Compat_MF_Corporate_Boardroom.Colonists".Translate());
             winConditionContentListing.IntEntry(ref Colonists, ref ColonistsBuffer, min: 1);
             // Title selector
             if (Title == null)
             {
                 Title = DefOfs.RoyalTitleDefOf.MF_RegionalExecutive;
             }
-            if (winConditionContentListing.ButtonTextLabeled("Playwright.Components.WinConditions.Compat_MF_CorporateBoardroom.Title".Translate(), TitleText))
+            if (winConditionContentListing.ButtonTextLabeled("Playwright.Components.WinConditions.Compat_MF_Corporate_Boardroom.Title".Translate(), TitleText))
             {
                 List<RoyalTitleDef> allowedTitles = DefOfs.FactionDefOf.MF_Corporation.RoyalTitlesAwardableInSeniorityOrderForReading;
                 var floatMenuOptions = new List<FloatMenuOption>();

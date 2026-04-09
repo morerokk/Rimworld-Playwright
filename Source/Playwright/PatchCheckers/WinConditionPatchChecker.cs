@@ -55,10 +55,8 @@ namespace Rokk.Playwright.PatchCheckers
             ShipStartupPatched = false;
         }
 
-
-        // TODO: Is this even necessary now that we have a GameComponent for it?
-        internal const string ColonyCategory = "Playwright.WinCondition_Colony";
-        internal static bool ColonyPatched = false;
+        internal const string TradeCategory = "Playwright.Trade";
+        internal static bool TradePatched = false;
 
         internal static void CheckPatchWinConditions()
         {
@@ -67,7 +65,7 @@ namespace Rokk.Playwright.PatchCheckers
                 return;
             }
 
-            UnpatchColony();
+            UnpatchTrade();
 
             Scenario scenario = Find.Scenario;
             if (scenario == null)
@@ -75,30 +73,30 @@ namespace Rokk.Playwright.PatchCheckers
                 return;
             }
 
-            if (scenario.AllParts.Any(p => p.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_Colony))
+            if (scenario.AllParts.Any(p => p.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_SellItems))
             {
-                PatchColony();
+                PatchTrade();
             }
         }
 
-        private static void PatchColony()
+        private static void PatchTrade()
         {
-            if (ColonyPatched)
+            if (TradePatched)
             {
                 return;
             }
-            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), ColonyCategory);
-            ColonyPatched = true;
+            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), TradeCategory);
+            TradePatched = true;
         }
 
-        private static void UnpatchColony()
+        private static void UnpatchTrade()
         {
-            if (!ColonyPatched)
+            if (!TradePatched)
             {
                 return;
             }
-            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), ColonyCategory);
-            ColonyPatched = false;
+            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), TradeCategory);
+            TradePatched = false;
         }
     }
 }

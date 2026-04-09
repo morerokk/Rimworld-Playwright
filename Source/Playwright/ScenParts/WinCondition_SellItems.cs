@@ -58,13 +58,13 @@ namespace Rokk.Playwright.ScenParts
         {
             if (tag == SummaryTag)
             {
-                yield return "Playwright.ScenParts.WinCondition_SellThing.Summary".Translate();
+                yield return "Playwright.ScenParts.WinCondition_SellItems.Summary".Translate(Amount, ThingLabel);
             }
         }
 
         protected override void DoHelpButton()
         {
-            Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_SellThing.Help".Translate()));
+            Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_SellItems.Help".Translate()));
         }
 
         public override bool CanCoexistWith(ScenPart other)

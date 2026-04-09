@@ -166,6 +166,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override string Summary(Scenario scen)
         {
+            if (HasRightSide)
+            {
+                return "Playwright.ScenParts.ForcedImplant.SummarySided".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), HediffLabel, SideLabel).CapitalizeFirst();
+            }
             return "Playwright.ScenParts.ForcedImplant.Summary".Translate(this.context.ToStringHuman(), this.chance.ToStringPercent(), HediffLabel).CapitalizeFirst();
         }
 

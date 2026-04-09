@@ -106,6 +106,7 @@ Gravships are unaffected, this is exclusively for ships to the stars (the ones t
  <Playwright.ScenParts.ForcedImplant.Random>Random</Playwright.ScenParts.ForcedImplant.Random>
  <Playwright.ScenParts.ForcedImplant.Help>Force the selected pawns to have an implant (such as a bionic limb).</Playwright.ScenParts.ForcedImplant.Help>
  <Playwright.ScenParts.ForcedImplant.Summary>{0} have a {1} chance to have a {2} implant.</Playwright.ScenParts.ForcedImplant.Summary>
+ <Playwright.ScenParts.ForcedImplant.SummarySided>{0} have a {1} chance to have a {3} {2} implant.</Playwright.ScenParts.ForcedImplant.SummarySided>
  
  <Playwright.ScenParts.ReplaceXenotype>Replace Xenotype</Playwright.ScenParts.ReplaceXenotype>
  <Playwright.ScenParts.ReplaceXenotype.FromXenotype>From xenotype:</Playwright.ScenParts.ReplaceXenotype.FromXenotype>

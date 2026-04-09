@@ -226,63 +226,42 @@ namespace Rokk.Playwright.UI
 
         private void ChangeOrigin(OriginComponent origin)
         {
+            this.PlaywrightStructure = PlaywrightStructure.CreateDefault();
             this.PlaywrightStructure.Origin = origin;
 
             // Set defaults
-            PlaywrightStructure defaultStructure = PlaywrightStructure.CreateDefault();
             if (origin.DefaultBoons != null)
             {
-                this.PlaywrightStructure.Boons = origin.DefaultBoons;
-            }
-            else
-            {
-                this.PlaywrightStructure.Boons = defaultStructure.Boons;
+                this.PlaywrightStructure.Boons.AddRange(origin.DefaultBoons);
             }
 
             if (origin.DefaultAllies != null)
             {
-                this.PlaywrightStructure.AllyFactions = origin.DefaultAllies;
-            }
-            else
-            {
-                this.PlaywrightStructure.AllyFactions = defaultStructure.AllyFactions;
+                this.PlaywrightStructure.AllyFactions.AddRange(origin.DefaultAllies);
             }
 
             if (origin.DefaultNeutrals != null)
             {
-                this.PlaywrightStructure.NeutralFactions = origin.DefaultNeutrals;
-            }
-            else
-            {
-                this.PlaywrightStructure.NeutralFactions = defaultStructure.NeutralFactions;
+                this.PlaywrightStructure.NeutralFactions.AddRange(origin.DefaultNeutrals);
             }
 
             if (origin.DefaultEnemies != null)
             {
-                this.PlaywrightStructure.EnemyFactions = origin.DefaultEnemies;
-            }
-            else
-            {
-                this.PlaywrightStructure.EnemyFactions = defaultStructure.EnemyFactions;
+                this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies);
             }
 
             if (origin.DefaultWinConditions != null)
             {
-                this.PlaywrightStructure.WinConditions = origin.DefaultWinConditions;
-            }
-            else
-            {
-                this.PlaywrightStructure.WinConditions = defaultStructure.WinConditions;
+                this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions);
             }
 
             if (origin.DefaultSpecialConditions != null)
             {
-                this.PlaywrightStructure.SpecialConditions = origin.DefaultSpecialConditions;
+                this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions);
             }
-            else
-            {
-                this.PlaywrightStructure.SpecialConditions = defaultStructure.SpecialConditions;
-            }
+
+            // Call origin changed hook, to let submods remove default components
+            HookRegistration.CallPlaywrightOriginChanged(this.PlaywrightStructure, origin);
 
             InvalidateAutoListings();
         }

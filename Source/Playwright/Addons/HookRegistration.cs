@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Composer;
 using Rokk.Playwright.UI;
 using System;
@@ -31,6 +32,7 @@ namespace Rokk.Playwright.Addons
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPostWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
 
         private static List<Action<PlaywrightStructure>> PlaywrightDefaultStructureHooks = new List<Action<PlaywrightStructure>>();
+        private static List<Action<PlaywrightStructure, OriginComponent>> PlaywrightChangeOriginHooks = new List<Action<PlaywrightStructure, OriginComponent>>();
 
         /// <summary>
         /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
@@ -188,6 +190,25 @@ namespace Rokk.Playwright.Addons
             foreach (var hook in PlaywrightDefaultStructureHooks)
             {
                 hook(structure);
+            }
+        }
+
+        /// <summary>
+        /// Register a function to be executed when the origin is changed.
+        /// Primarily used to remove default components for certain origins (such as disabling the ship win condition).
+        /// If you do this, ensure you check for your own component ID's, as this hook is fired any time an origin is changed.
+        /// </summary>
+        /// <param name="hook">The function to be called. Takes the changed structure and the new origin as parameters.</param>
+        public static void RegisterPlaywrightOriginChanged(Action<PlaywrightStructure, OriginComponent> hook)
+        {
+            PlaywrightChangeOriginHooks.Add(hook);
+        }
+
+        internal static void CallPlaywrightOriginChanged(PlaywrightStructure structure, OriginComponent newOrigin)
+        {
+            foreach (var hook in PlaywrightChangeOriginHooks)
+            {
+                hook(structure, newOrigin);
             }
         }
     }

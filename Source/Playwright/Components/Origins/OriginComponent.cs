@@ -115,16 +115,11 @@ namespace Rokk.Playwright.Components.Origins
         /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
         public virtual void DoAdditionalContents(Listing_AutoFitVertical originContentListing)
         {
-            PlaywrightStructure defaultPlaywright = PlaywrightStructure.CreateDefault();
             if (DefaultBoons != null)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultBoons".Translate());
                 foreach (BoonComponent boon in DefaultBoons)
                 {
-                    if (defaultPlaywright.Boons.Any(b => b.Id == boon.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + boon.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
@@ -135,10 +130,6 @@ namespace Rokk.Playwright.Components.Origins
                 StringBuilder sb = new StringBuilder("Playwright.DefaultAllies".Translate());
                 foreach (FactionComponent faction in DefaultAllies)
                 {
-                    if (defaultPlaywright.AllyFactions.Any(c => c.Id == faction.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
@@ -149,10 +140,6 @@ namespace Rokk.Playwright.Components.Origins
                 StringBuilder sb = new StringBuilder("Playwright.DefaultNeutrals".Translate());
                 foreach (FactionComponent faction in DefaultNeutrals)
                 {
-                    if (defaultPlaywright.NeutralFactions.Any(c => c.Id == faction.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
@@ -163,10 +150,6 @@ namespace Rokk.Playwright.Components.Origins
                 StringBuilder sb = new StringBuilder("Playwright.DefaultEnemies".Translate());
                 foreach (FactionComponent faction in DefaultEnemies)
                 {
-                    if (defaultPlaywright.EnemyFactions.Any(c => c.Id == faction.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
@@ -177,10 +160,6 @@ namespace Rokk.Playwright.Components.Origins
                 StringBuilder sb = new StringBuilder("Playwright.DefaultWinConditions".Translate());
                 foreach (WinConditionComponent winCondition in DefaultWinConditions)
                 {
-                    if (defaultPlaywright.WinConditions.Any(c => c.Id == winCondition.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + winCondition.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
@@ -191,10 +170,6 @@ namespace Rokk.Playwright.Components.Origins
                 StringBuilder sb = new StringBuilder("Playwright.DefaultSpecialConditions".Translate());
                 foreach (SpecialConditionComponent specialCondition in DefaultSpecialConditions)
                 {
-                    if (defaultPlaywright.SpecialConditions.Any(c => c.Id == specialCondition.Id))
-                    {
-                        continue;
-                    }
                     sb.Append(Environment.NewLine + "- " + specialCondition.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());

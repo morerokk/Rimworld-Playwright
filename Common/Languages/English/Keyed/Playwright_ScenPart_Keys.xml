@@ -187,7 +187,7 @@ You must have at least 1 alive colonist by that point for it to count. Does not 
  <Playwright.ScenParts.WinCondition_SellItems>Win Condition: Sell Items</Playwright.ScenParts.WinCondition_SellItems>
  <Playwright.ScenParts.WinCondition_SellItems.Summary>Sell {0}x {1}</Playwright.ScenParts.WinCondition_SellItems.Summary>
  <Playwright.ScenParts.WinCondition_SellItems.WinIntro>You've hit your trading quota!</Playwright.ScenParts.WinCondition_SellItems.WinIntro>
- <Playwright.ScenParts.WinCondition_SellItems.WinEnding>Perhaps you will stay on this planet, and continue making it big. Or maybe you will venture for greener pastures, ivory towers, or something else entirely.</Playwright.ScenParts.WinCondition_SellItems.WinEnding>
+ <Playwright.ScenParts.WinCondition_SellItems.WinEnding>Perhaps you will stay on this planet, and continue making it big. Or maybe you will venture for greener pastures, ivory towers, or something else entirely. Only time will tell.</Playwright.ScenParts.WinCondition_SellItems.WinEnding>
  <Playwright.ScenParts.WinCondition_SellItems.WinColonists>\n\nThese merchants have made it big:\n\n{0}</Playwright.ScenParts.WinCondition_SellItems.WinColonists>
  <Playwright.ScenParts.WinCondition_SellItems.Help>Wins the game when you have sold the specified amount of the specified item to traders across your run. This can be any trader.
  

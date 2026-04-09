@@ -16,6 +16,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
     {
         public override string Id => "SpecialConditions.XenotypeSwap";
         public override bool IsAvailable => ModsConfig.BiotechActive;
+        public override bool HasHelp => true;
 
         public List<XenotypeReplacement> XenotypeReplacements = new List<XenotypeReplacement>();
         public List<CustomXenotypeReplacement> CustomXenotypeReplacements = new List<CustomXenotypeReplacement>();

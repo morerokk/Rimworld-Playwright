@@ -610,6 +610,7 @@ namespace Rokk.Playwright.UI
             List<SpecialConditionComponent> availableSpecialConditions = allSpecialConditions.Where(b => !selectedSpecialConditions.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
 
             Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.SpecialConditions.Welcome");
             nextRect.y += Margin;
@@ -682,6 +683,17 @@ namespace Rokk.Playwright.UI
                     SelectedSpecialConditionsListing.Invalidate();
                     FormDirty = true;
                 }
+
+                if (specialCondition.HasHelp)
+                {
+                    Rect helpButtonRect = new Rect(deleteButtonRect);
+                    helpButtonRect.width -= 32f;
+                    if (PlaywrightDrawHelper.DrawButtonInTopRight(helpButtonRect, infoTex, 2f, 0.4f))
+                    {
+                        Find.WindowStack.Add(new InfoPopupWindow($"Playwright.Components.{specialCondition.Id}.Help".Translate()));
+                    }
+                }
+
                 Rect lineRect = SelectedSpecialConditionsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }

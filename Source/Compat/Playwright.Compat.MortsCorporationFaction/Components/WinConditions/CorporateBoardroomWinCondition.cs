@@ -40,7 +40,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
                 {
                     floatMenuOptions.Add(new FloatMenuOption(titleDef.LabelCap, () => Title = titleDef));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
         }
 

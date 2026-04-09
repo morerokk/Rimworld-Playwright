@@ -51,5 +51,18 @@ namespace Rokk.Playwright.Utilities
             }
             return fullText;
         }
+
+        /// <summary>
+        /// Opens a float menu.
+        /// If no options are provided, adds an unselectable default option instead of throwing an error.
+        /// </summary>
+        public static void OpenFloatMenu(List<FloatMenuOption> options)
+        {
+            if (options.Count == 0)
+            {
+                options.Add(new FloatMenuOption("Playwright.NoFloatMenuOptions".Translate(), null));
+            }
+            Find.WindowStack.Add(new FloatMenu(options));
+        }
     }
 }

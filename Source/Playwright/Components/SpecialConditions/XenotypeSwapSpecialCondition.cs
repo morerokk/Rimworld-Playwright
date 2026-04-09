@@ -138,7 +138,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     {
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.Invalidate(); }));
                     }
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
                 }
                 // Replacement text
@@ -163,7 +163,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     {
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.Invalidate(); }));
                     }
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
                 }
                 // Delete button
@@ -206,7 +206,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     {
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { customReplacement.From = xenotypeDef; specialConditionContentListing.Invalidate(); }, xenotypeDef.Icon, Color.white));
                     }
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
                 }
                 // Replacement text
@@ -231,7 +231,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     {
                         options.Add(new FloatMenuOption(customXenotype.name, () => { customReplacement.ToCustom = customXenotype; specialConditionContentListing.Invalidate(); }, customXenotype.IconDef.Icon, Color.white));
                     }
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
                 }
                 // Delete button

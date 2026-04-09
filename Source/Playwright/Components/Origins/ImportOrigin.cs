@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace Rokk.Playwright.Components.Origins
                     }));
                 }
 
-                Find.WindowStack.Add(new FloatMenu(options));
+                PlaywrightUtils.OpenFloatMenu(options);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,7 +114,7 @@ namespace Rokk.Playwright.ScenParts
                 {
                     floatMenuOptions.Add(new FloatMenuOption(hediffDef.LabelCap, () => Hediff = hediffDef));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
 
             // Dropdown for which body part to put this on
@@ -126,7 +127,7 @@ namespace Rokk.Playwright.ScenParts
                     {
                         floatMenuOptions.Add(new FloatMenuOption(bodyPartDef.LabelCap, () => BodyPart = bodyPartDef));
                     }
-                    Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                    PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
                 }
             }
 
@@ -141,7 +142,7 @@ namespace Rokk.Playwright.ScenParts
                         new FloatMenuOption("Playwright.ScenParts.ForcedImplant.Right".Translate(), () => Side = ImplantSide.Right),
                         new FloatMenuOption("Playwright.ScenParts.ForcedImplant.Random".Translate(), () => Side = ImplantSide.Random)
                     };
-                    Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                    PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
                 }
             }
 

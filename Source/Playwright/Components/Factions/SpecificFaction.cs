@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Composer;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace Rokk.Playwright.Components.Factions
                 {
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
 
             if (AllowForcedDisposition)

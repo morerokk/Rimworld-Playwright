@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace Rokk.Playwright.ScenParts
                 {
                     floatMenuOptions.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => FromXenotype = xenotypeDef, xenotypeDef.Icon, Color.white));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
 
             // To selector
@@ -65,7 +66,7 @@ namespace Rokk.Playwright.ScenParts
                 {
                     floatMenuOptions.Add(new FloatMenuOption(customXenotype.name, () => ToCustomXenotype = customXenotype, customXenotype.IconDef.Icon, Color.white));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
 
             base.DoPawnModifierEditInterface(helper.NextRect(2));

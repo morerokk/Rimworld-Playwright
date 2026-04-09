@@ -6,6 +6,7 @@ using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -484,7 +485,7 @@ namespace Rokk.Playwright.UI
                     FormDirty = true;
                 }));
             }
-            Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+            PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
         }
 
         private void DrawSelectedFactions(Listing_Standard factionListing, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
@@ -788,11 +789,13 @@ namespace Rokk.Playwright.UI
         /// </summary>
         public void InvalidateAutoListings()
         {
+            this.OriginContentListing.Invalidate();
             this.AvailableBoonsListing.Invalidate();
             this.SelectedBoonsListing.Invalidate();
             this.AvailableWinConditionsListing.Invalidate();
             this.SelectedWinConditionsListing.Invalidate();
-            this.OriginContentListing.Invalidate();
+            this.AvailableSpecialConditionsListing.Invalidate();
+            this.SelectedSpecialConditionsListing.Invalidate();
         }
 
         public enum Tabs

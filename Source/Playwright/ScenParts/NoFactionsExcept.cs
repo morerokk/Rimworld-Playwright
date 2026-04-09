@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Rokk.Playwright.ScenParts
                 {
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => ExceptFactions.Add(factionDef), factionDef.FactionIcon, factionDef.DefaultColor));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
 
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.NoFactionsExcept.Factions".Translate());

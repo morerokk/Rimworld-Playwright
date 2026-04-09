@@ -36,7 +36,7 @@ namespace Rokk.Playwright.Components.WinConditions
                 {
                     floatMenuOptions.Add(new FloatMenuOption(titleDef.LabelCap, () => Title = titleDef));
                 }
-                Find.WindowStack.Add(new FloatMenu(floatMenuOptions));
+                PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
             }
         }
 

@@ -24,6 +24,7 @@
  <Playwright.ConfirmReset>You have pending changes. Selecting a different Origin will reset your Boons, Factions, Win Conditions and Special Conditions to the selected Origin's defaults.
 
 Are you sure?</Playwright.ConfirmReset>
+ <Playwright.NoFloatMenuOptions>(no options)</Playwright.NoFloatMenuOptions>
  <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
  <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>
  <Playwright.DefaultNeutrals>Default Neutral:</Playwright.DefaultNeutrals>
@@ -181,7 +182,7 @@ Removing this will disable the Archonexus quests.</Playwright.Components.WinCond
  <Playwright.Components.SpecialConditions.XenotypeSwap.Description>Replaces the chosen xenotypes with other xenotypes.</Playwright.Components.SpecialConditions.XenotypeSwap.Description>
  <Playwright.Components.SpecialConditions.XenotypeSwap.ReplacedBy>replaced by</Playwright.Components.SpecialConditions.XenotypeSwap.ReplacedBy>
  <Playwright.Components.SpecialConditions.XenotypeSwap.Add>Add replacement</Playwright.Components.SpecialConditions.XenotypeSwap.Add>
- <Playwright.Components.SpecialConditions.XenotypeSwap.Add>Add custom replacement</Playwright.Components.SpecialConditions.XenotypeSwap.Add>
+ <Playwright.Components.SpecialConditions.XenotypeSwap.AddCustom>Add custom replacement</Playwright.Components.SpecialConditions.XenotypeSwap.AddCustom>
  <Playwright.Components.SpecialConditions.XenotypeSwap.Help>Quick and dirty xenotype replacement. Replaces the chosen xenotypes with other ones when the pawn is generated (does nothing when implanting an existing pawn). While this does work, I recommend using WorldBuilder or Xenotype Spawn Control instead for non-custom xenotypes.
 
 Use "Add replacement" to replace a xenotype in the game with another xenotype in the game, or "Add custom replacement" to replace a xenotype in the game with one of your own saved custom xenotypes.

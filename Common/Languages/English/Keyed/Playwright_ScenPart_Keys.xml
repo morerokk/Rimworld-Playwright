@@ -125,7 +125,7 @@ This scenario part may be janky, I recommend something like Xenotype Spawn Contr
 
  <Playwright.ScenParts.ReplaceXenotypeWithCustom>Replace Xenotype With Custom</Playwright.ScenParts.ReplaceXenotypeWithCustom>
  <Playwright.ScenParts.ReplaceXenotypeWithCustom.FromXenotype>From xenotype:</Playwright.ScenParts.ReplaceXenotypeWithCustom.FromXenotype>
- <Playwright.ScenParts.ReplaceXenotypeWithCustom.ToCustomXenotype>To custom xenotype:</Playwright.ScenParts.ReplaceXenotypeWithCustom.ToXenotype>
+ <Playwright.ScenParts.ReplaceXenotypeWithCustom.ToCustomXenotype>To custom xenotype:</Playwright.ScenParts.ReplaceXenotypeWithCustom.ToCustomXenotype>
  <Playwright.ScenParts.ReplaceXenotypeWithCustom.Help>If a pawn's xenotype is the chosen "From Xenotype" when they are generated, it will be replaced with the chosen "To custom xenotype".
 
 Example: replace all Sanguophages with your own custom version of Sanguophages. (Or something else entirely!)

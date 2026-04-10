@@ -58,6 +58,27 @@ namespace Rokk.Playwright.Composer
         /// </summary>
         public List<SpecialConditionComponent> SpecialConditions = new List<SpecialConditionComponent>();
 
+        /// <summary>
+        /// The name of the Playwright, which will end up being the scenario name as well.
+        /// Example: "Lone Crashlander"
+        /// </summary>
+        public string Name;
+        /// <summary>
+        /// Short description, 2 short sentences max. Will be shown under the scenario name.
+        /// Example: "Three crashlanded survivors. The classic Rimworld experience."
+        /// </summary>
+        public string DescriptionShort;
+        /// <summary>
+        /// Longer description that will be shown on the scenario, above the summary.
+        /// Example: "You awaken to the sound of(...)"
+        /// </summary>
+        public string Description;
+        /// <summary>
+        /// Description that's shown on initial new game start.
+        /// This is usually the same as Description, minus the "Note: this is a difficult scenario(...)" etc.
+        /// </summary>
+        public string GameStartDialogText;
+
         public static PlaywrightStructure CreateDefault()
         {
             var structure = new PlaywrightStructure()
@@ -106,6 +127,10 @@ namespace Rokk.Playwright.Composer
             // TODO: What about Odyssey?
 
             HookRegistration.CallPlaywrightDefaultStructure(structure);
+
+            structure.Name = structure.Origin.NameTranslated;
+            structure.DescriptionShort = structure.Origin.DescriptionShortTranslated;
+            structure.Description = structure.Origin.DescriptionTranslated;
 
             return structure;
         }
@@ -158,6 +183,10 @@ namespace Rokk.Playwright.Composer
             Scribe_Collections.Look(ref NeutralFactions, nameof(NeutralFactions), LookMode.Deep);
             Scribe_Collections.Look(ref WinConditions, nameof(WinConditions), LookMode.Deep);
             Scribe_Collections.Look(ref SpecialConditions, nameof(SpecialConditions), LookMode.Deep);
+            Scribe_Values.Look(ref Name, nameof(Name));
+            Scribe_Values.Look(ref DescriptionShort, nameof(DescriptionShort));
+            Scribe_Values.Look(ref Description, nameof(Description));
+            Scribe_Values.Look(ref GameStartDialogText, nameof(GameStartDialogText));
         }
     }
 }

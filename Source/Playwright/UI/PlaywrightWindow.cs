@@ -15,7 +15,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
 using Verse.Sound;
 
 namespace Rokk.Playwright.UI
@@ -87,6 +86,9 @@ namespace Rokk.Playwright.UI
                     break;
                 case Tabs.SpecialConditions:
                     DrawSpecialConditionsTab(tabContentRect);
+                    break;
+                case Tabs.Summary:
+                    DrawSummaryTab(tabContentRect);
                     break;
             }
 
@@ -243,6 +245,9 @@ namespace Rokk.Playwright.UI
             this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies.Union(OriginDefaultsRegistration.GetDefaultEnemies(origin.Id)));
             this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions.Union(OriginDefaultsRegistration.GetDefaultWinConditions(origin.Id)));
             this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions.Union(OriginDefaultsRegistration.GetDefaultSpecialConditions(origin.Id)));
+
+            // Set name, description and summary
+            ResetSummaryToOriginDefaults();
 
             // Call origin changed hook, to let submods remove default components
             HookRegistration.CallPlaywrightOriginChanged(this.PlaywrightStructure, origin);
@@ -661,6 +666,45 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
+        private Listing_AutoFitVertical SummaryListing = new Listing_AutoFitVertical();
+        private Listing_AutoFitVertical SummaryContentListing = new Listing_AutoFitVertical();
+        private void DrawSummaryTab(Rect contentRect)
+        {
+            // Summary heading
+            Rect summaryIntroRect = new Rect(contentRect);
+            summaryIntroRect.height *= 0.1f;
+            SummaryListing.Begin(summaryIntroRect);
+            SummaryListing.Label("Playwright.Tabs.Summary.Intro".Translate());
+            SummaryListing.End();
+
+            Rect summaryRect = new Rect(contentRect);
+            summaryRect.height *= 0.9f;
+            summaryRect.y += summaryIntroRect.height;
+            Widgets.DrawBoxSolidWithOutline(summaryRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+
+            Rect summaryContentRect = PlaywrightDrawHelper.RectWithMargin(summaryRect, 10f);
+            SummaryContentListing.Begin(summaryContentRect);
+
+            if (SummaryContentListing.ButtonText("Playwright.Reset".Translate(), widthPct: 0.25f))
+            {
+                Find.WindowStack.Add(new ConfirmResetSummaryWindow(() =>
+                {
+                    ResetSummaryToOriginDefaults();
+                }));
+            }
+
+            SummaryContentListing.Label("Playwright.Tabs.Summary.Name".Translate());
+            this.PlaywrightStructure.Name = SummaryContentListing.TextEntry(this.PlaywrightStructure.Name, 1);
+            SummaryContentListing.Label("Playwright.Tabs.Summary.DescriptionShort".Translate());
+            this.PlaywrightStructure.DescriptionShort = SummaryContentListing.TextEntry(this.PlaywrightStructure.DescriptionShort, 1);
+            SummaryContentListing.Label("Playwright.Tabs.Summary.Description".Translate());
+            this.PlaywrightStructure.Description = SummaryContentListing.TextEntry(this.PlaywrightStructure.Description, 8);
+            SummaryContentListing.Label("Playwright.Tabs.Summary.GameStartDialog".Translate());
+            this.PlaywrightStructure.GameStartDialogText = SummaryContentListing.TextEntry(this.PlaywrightStructure.GameStartDialogText, 6);
+
+            SummaryContentListing.End();
+        }
+
         private void DrawButtonBar(Rect contentRect)
         {
             const float ButtonHeight = 38f;
@@ -693,6 +737,13 @@ namespace Rokk.Playwright.UI
             {
                 this.CompileScenario();
             }
+        }
+
+        private void ResetSummaryToOriginDefaults()
+        {
+            this.PlaywrightStructure.Name = this.PlaywrightStructure.Origin?.NameTranslated;
+            this.PlaywrightStructure.DescriptionShort = this.PlaywrightStructure.Origin?.DescriptionShortTranslated;
+            this.PlaywrightStructure.Description = this.PlaywrightStructure.Origin?.DescriptionTranslated;
         }
 
         private void CompileScenario()
@@ -795,6 +846,17 @@ namespace Rokk.Playwright.UI
             }));
         }
 
+        public override void OnAcceptKeyPressed()
+        {
+            // Don't eat the whole window if someone presses enter
+        }
+
+        public override void OnCancelKeyPressed()
+        {
+            // Will ask the player to save first
+            this.Close(true);
+        }
+
         public enum Tabs
         {
             Intro,
@@ -802,7 +864,8 @@ namespace Rokk.Playwright.UI
             Boons,
             Factions,
             WinConditions,
-            SpecialConditions
+            SpecialConditions,
+            Summary
         }
     }
 }

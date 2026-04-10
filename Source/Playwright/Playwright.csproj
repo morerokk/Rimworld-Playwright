@@ -112,6 +112,7 @@
     <Compile Include="ScenParts\StartWithNonMinifiedThing.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="UI\ConfirmCloseWindow.cs" />
+    <Compile Include="UI\ConfirmResetSummaryWindow.cs" />
     <Compile Include="UI\Dialog_PlaywrightList_Save.cs" />
     <Compile Include="UI\Dialog_PlaywrightList_Load.cs" />
     <Compile Include="UI\Dialog_PlaywrightFileList.cs" />

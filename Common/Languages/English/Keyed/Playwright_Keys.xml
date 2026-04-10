@@ -27,6 +27,7 @@ Are you sure?</Playwright.ConfirmReset>
  <Playwright.ConfirmClose>You have unsaved changes.
 
 Are you sure you want to close the window without saving?</Playwright.ConfirmClose>
+ <Playwright.ConfirmResetSummary>Are you sure you want to reset your name and descriptions to the Origin's defaults?</Playwright.ConfirmResetSummary>
  <Playwright.NoFloatMenuOptions>(no options)</Playwright.NoFloatMenuOptions>
  <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
  <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>
@@ -45,6 +46,15 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.Tabs.Factions>Factions</Playwright.Tabs.Factions>
  <Playwright.Tabs.WinConditions>Win Conditions</Playwright.Tabs.WinConditions>
  <Playwright.Tabs.SpecialConditions>Special</Playwright.Tabs.SpecialConditions>
+ <Playwright.Tabs.Summary>Summary</Playwright.Tabs.Summary>
+
+ <Playwright.Tabs.Summary.Intro>Optionally, type in a name and description for your scenario.
+
+When you're done, click "Create Scenario" to save your Playwright as a scenario.</Playwright.Tabs.Summary.Intro>
+ <Playwright.Tabs.Summary.Name>Name</Playwright.Tabs.Summary.Name>
+ <Playwright.Tabs.Summary.DescriptionShort>Description (short)</Playwright.Tabs.Summary.DescriptionShort>
+ <Playwright.Tabs.Summary.Description>Description</Playwright.Tabs.Summary.Description>
+ <Playwright.Tabs.Summary.GameStartDialog>Game start dialog text (leave blank to use default from Origin)</Playwright.Tabs.Summary.GameStartDialog>
 
  <Playwright.Components.EnablesLockedWinCondition>Enables win conditions:</Playwright.Components.EnablesLockedWinCondition>
  <Playwright.Components.EnablesLockedSpecial>Enables special:</Playwright.Components.EnablesLockedSpecial>

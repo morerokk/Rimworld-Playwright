@@ -8,6 +8,8 @@
  <Playwright.Components.Boons.Compat_VREAndroids_Androids.DescriptionShort>Start with extra Androids.</Playwright.Components.Boons.Compat_VREAndroids_Androids.DescriptionShort>
  <Playwright.Components.Boons.Compat_VREAndroids_Androids.Description>Start with extra Basic Androids from Vanilla Races Expanded - Android (alongside your other colonists). You also start with Neutroamine Logistics and Androidtech research.</Playwright.Components.Boons.Compat_VREAndroids_Androids.Description>
  <Playwright.Components.Boons.Compat_VREAndroids_Androids.Amount>Amount</Playwright.Components.Boons.Compat_VREAndroids_Androids.Amount>
- <Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>Androids boon: unable to add extra Androids to colonist preparation screen. This scenario/origin's colonist preparation screen does not support adding specific xenotypes. Please deselect the Androids boon or select a different Origin.</Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>Androids boon: unable to add extra Androids to colonist preparation screen. This scenario/origin's colonist preparation screen does not support adding specific xenotypes (such as The Anomaly, due to its Ghoul requirement).
+
+Please deselect the Androids boon or select a different Origin. (Sorry!)</Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>
 
 </LanguageData>

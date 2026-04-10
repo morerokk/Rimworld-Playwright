@@ -225,12 +225,57 @@ namespace Rokk.Playwright.Composer
             }
 
             scenario.Category = ScenarioCategory.CustomLocal;
-            scenario.name = "Playwright.ScenarioNamePrefix".Translate() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
-            scenario.description = origin.DescriptionTranslated;
-            scenario.summary = origin.DescriptionShortTranslated;
+            // Set name, description and summary from Playwright if provided, otherwise use default from origin
+            if (!string.IsNullOrWhiteSpace(playwright.Name))
+            {
+                scenario.name = playwright.Name;
+            }
+            else
+            {
+                scenario.name = "Playwright.ScenarioNamePrefix".Translate().ToString() + NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
+            }
+            if (!string.IsNullOrWhiteSpace(playwright.Description))
+            {
+                scenario.description = playwright.Description;
+            }
+            else
+            {
+                scenario.description = origin.DescriptionTranslated;
+            }
+            if (!string.IsNullOrWhiteSpace(playwright.DescriptionShort))
+            {
+                scenario.summary = playwright.DescriptionShort;
+            }
+            else
+            {
+                scenario.summary = origin.DescriptionShortTranslated;
+            }
 
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
+
+            // Change the game start dialog IF it has been provided, otherwise we'll just leave it as-is
+            if (!string.IsNullOrWhiteSpace(playwright.GameStartDialogText))
+            {
+                ScenPart_GameStartDialog dialogPart = parts
+                    .Where(part => part.def == DefOfs.ScenPartDefOf.GameStartDialog)
+                    .Cast<ScenPart_GameStartDialog>()
+                    .FirstOrDefault();
+
+                if (dialogPart == null)
+                {
+                    dialogPart = ScenPartUtility.MakeGameStartDialogPart(playwright.GameStartDialogText, null, SoundDefOf.GameStartSting);
+                    parts.Add(dialogPart);
+                }
+                else
+                {
+                    FieldInfo textInfo = AccessTools.Field(typeof(ScenPart_GameStartDialog), "text");
+                    textInfo.SetValue(dialogPart, playwright.GameStartDialogText);
+
+                    FieldInfo textKeyInfo = AccessTools.Field(typeof(ScenPart_GameStartDialog), "textKey");
+                    textKeyInfo.SetValue(dialogPart, null);
+                }
+            }
 
             // Set player faction
             if (origin.PlayerFaction != null)

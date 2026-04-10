@@ -44,6 +44,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef StartingAnimal;
         public static ScenPartDef ScatterThingsNearPlayerStart;
         public static ScenPartDef ScatterThingsAnywhere;
+        public static ScenPartDef StartingResearch;
         public static ScenPartDef GameStartDialog;
         public static ScenPartDef GameCondition_Planetkiller;
         public static ScenPartDef DisableIncident;

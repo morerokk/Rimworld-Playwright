@@ -236,6 +236,16 @@ namespace Rokk.Playwright.Utilities
 
         }
 
+        public static ScenPart_StartingResearch MakeStartingResearchPart(ResearchProjectDef researchProjectDef)
+        {
+            ScenPart_StartingResearch part = (ScenPart_StartingResearch)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.StartingResearch);
+
+            FieldInfo projectInfo = AccessTools.Field(typeof(ScenPart_StartingResearch), "project");
+            projectInfo.SetValue(part, researchProjectDef);
+
+            return part;
+        }
+
         public static DisableShipStartup MakeDisableShipStartupPart()
         {
             DisableShipStartup part = (DisableShipStartup)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_DisableShipStartup);

@@ -6,6 +6,7 @@ using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
+using Rokk.Playwright.Exceptions;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
@@ -702,6 +703,7 @@ namespace Rokk.Playwright.UI
                 Scenario scenario = builder.MakeScenario(this.PlaywrightStructure);
                 Find.WindowStack.Add(new Dialog_ScenarioList_Save(scenario, () =>
                 {
+                    FormDirty = false;
                     Find.WindowStack.Add(new ScenarioSavedPopupWindow((bool shouldGoToNewGame) =>
                     {
                         if (shouldGoToNewGame)
@@ -711,6 +713,13 @@ namespace Rokk.Playwright.UI
                         }
                     }));
                 }));
+            }
+            catch (PlaywrightBuilderException ex)
+            {
+                Log.Warning("[Playwright] Builder error while generating scenario: " + ex.Message);
+                Log.Warning(ex.StackTrace);
+                // These are known errors/conflicts and will be handled at the place where they happen.
+                // Log as warning so the error screen doesn't cover the popup window that explains what went wrong.
             }
             catch (Exception ex)
             {

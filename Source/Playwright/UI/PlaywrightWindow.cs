@@ -739,6 +739,7 @@ namespace Rokk.Playwright.UI
         /// <summary>
         /// Runs <paramref name="onConfirmed"/>, but asks with a confirm reset popup first if the form is dirty.
         /// Also sets <see cref="FormDirty"/> back to false if reset was confirmed.
+        /// Used to ask the user if they want to discard their unsaved changes before doing something.
         /// </summary>
         public void ConfirmReset(Action onConfirmed)
         {

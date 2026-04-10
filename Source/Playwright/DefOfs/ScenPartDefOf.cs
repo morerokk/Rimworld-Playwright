@@ -47,5 +47,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef GameStartDialog;
         public static ScenPartDef GameCondition_Planetkiller;
         public static ScenPartDef DisableIncident;
+        [MayRequireBiotech]
+        public static ScenPartDef ConfigurePawnsXenotypes;
     }
 }

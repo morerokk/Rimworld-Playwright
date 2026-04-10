@@ -43,6 +43,8 @@
     <Compile Include="Components\Boons\AndroidsBoon.cs" />
     <Compile Include="Components\Origins\AndroidsOrigin.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\PawnKindDefOf.cs" />
+    <Compile Include="DefOfs\XenotypeDefOf.cs" />
     <Compile Include="DefOfs\ScenarioDefOf.cs" />
   </ItemGroup>
   <ItemGroup>

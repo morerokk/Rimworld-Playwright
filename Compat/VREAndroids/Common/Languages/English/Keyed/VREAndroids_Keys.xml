@@ -2,13 +2,12 @@
 <LanguageData>
 
  <Playwright.Components.Origins.Compat_VREAndroids_Androids>Androids</Playwright.Components.Origins.Compat_VREAndroids_Androids>
- <Playwright.Components.Origins.Compat_VREAndroids_Androids.Description>(TODO) Androids hoping to create a new utopia for themselves and their kind. News of their efforts will spread far and wide. Can you handle the influx of newcomers?</Playwright.Components.Origins.Compat_VREAndroids_Androids.Description>
- <Playwright.Components.Origins.Compat_VREAndroids_Androids.Description.Short>Androids hoping to create a new utopia for themselves and their kind.</Playwright.Components.Origins.Compat_VREAndroids_Androids.Description.Short>
- <Playwright.Components.Origins.Compat_VREAndroids_Androids.Summary>- Choose 3 colonists (out of 10)
-- Every starting colonist is an Android.
-- You will get an influx of Android refugees every so often.
-- Start with some basic supplies.
-- Random junk like steel and wood is scattered around the map.</Playwright.Components.Origins.Compat_VREAndroids_Androids.Summary>
  <Playwright.Components.Origins.Compat_VREAndroids_Androids.SuggestedIdeo>Egalitarian</Playwright.Components.Origins.Compat_VREAndroids_Androids.SuggestedIdeo>
+
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids>Androids</Playwright.Components.Boons.Compat_VREAndroids_Androids>
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids.DescriptionShort>Start with extra Androids.</Playwright.Components.Boons.Compat_VREAndroids_Androids.DescriptionShort>
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids.Description>Start with extra Basic Androids from Vanilla Races Expanded - Android, alongside your other colonists.</Playwright.Components.Boons.Compat_VREAndroids_Androids.Description>
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids.Amount>Amount</Playwright.Components.Boons.Compat_VREAndroids_Androids.Amount>
+ <Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>Unable to add extra Androids to colonist preparation screen. This scenario/origin's colonist preparation screen does not support adding specific xenotypes. Please deselect the Androids boon or select a different Origin.</Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>
 
 </LanguageData>

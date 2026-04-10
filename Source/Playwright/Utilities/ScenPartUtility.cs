@@ -344,5 +344,25 @@ namespace Rokk.Playwright.Utilities
             part.Amount = amountToSell;
             return part;
         }
+
+        /// <summary>
+        /// Converts an existing <see cref="ScenPart_ConfigPage_ConfigureStartingPawns"/> part into a <see cref="ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes"/> part.
+        /// The new part has no specific demands for pawn kinds or xenotypes and has the same choice counts as the original.
+        /// You can add new entries to XenotypeCounts at will.
+        /// Requires Biotech, will throw an error otherwise.
+        /// </summary>
+        public static ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes ConvertConfigureStartingPawnsToXenotypes(ScenPart_ConfigPage_ConfigureStartingPawns originalPart)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes part = (ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ConfigurePawnsXenotypes);
+            part.pawnChoiceCount = originalPart.pawnChoiceCount;
+            part.xenotypeCounts.Add(new XenotypeCount()
+            {
+                count = originalPart.pawnCount,
+                countBuffer = originalPart.pawnCount.ToString(),
+                xenotype = XenotypeDefOf.Baseliner
+            });
+
+            return part;
+        }
     }
 }

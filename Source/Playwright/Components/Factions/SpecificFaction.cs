@@ -54,7 +54,7 @@ namespace Rokk.Playwright.Components.Factions
             Rect currentRect = new Rect(inRect);
 
             // Label
-            currentRect = PlaywrightDrawHelper.NextLabel(currentRect, "Playwright.Components.Factions.Specific.Faction");
+            currentRect = PlaywrightDrawHelper.NextLabelTranslated(currentRect, "Playwright.Components.Factions.Specific.Faction");
 
             // Faction selector button
             Rect buttonRect = new Rect(currentRect);

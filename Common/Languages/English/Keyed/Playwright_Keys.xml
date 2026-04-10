@@ -85,6 +85,7 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
  
  <Playwright.Components.Origins.Import>(Import)</Playwright.Components.Origins.Import>
+ <Playwright.Components.Origins.Import.DescriptionShort>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.DescriptionShort>
  <Playwright.Components.Origins.Import.Description>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.Description>
  <Playwright.Components.Origins.Import.Summary></Playwright.Components.Origins.Import.Summary>
  <Playwright.Components.Origins.Import.Scenario>Scenario</Playwright.Components.Origins.Import.Scenario>

@@ -95,7 +95,7 @@ namespace Rokk.Playwright.Components.Origins
         /// Used for the Scenario's tagline, underneath the name ("3 crashlanded survivors.").
         /// If null, the base scenario's tagline is used.
         /// </summary>
-        public override string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
+        public override string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : base.DescriptionShortTranslated;
 
         /// <summary>
         /// Contents that come before the origin content.

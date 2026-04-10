@@ -37,7 +37,8 @@ namespace Rokk.Playwright.Components.Origins
             "Mechanitor",
             "Sanguophage",
             "TheAnomaly",
-            "TheGravship"
+            "TheGravship",
+            "VREA_NewUtopia"
         };
 
         public override void DoPreContents(Listing_AutoFitVertical originContentListing)

@@ -53,7 +53,7 @@ namespace Rokk.Playwright.UI
             HookRegistration.CallPlaywrightWindowPreWindowContents(this, PlaywrightStructure, inRect);
 
             Rect tabPanelRect = new Rect(inRect);
-            tabPanelRect.width *= 0.25f;
+            tabPanelRect.width *= 0.15f;
             tabPanelRect.height *= 0.9f;
 
             DrawTabPanel(tabPanelRect);
@@ -132,44 +132,50 @@ namespace Rokk.Playwright.UI
 
         private Vector2 OriginsScrollPos = Vector2.zero;
         private Vector2 OriginContentScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical OriginsListing = new Listing_AutoFitVertical();
         private Listing_AutoFitVertical OriginContentListing = new Listing_AutoFitVertical();
         private void DrawOriginTab(Rect contentRect)
         {
             List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
 
             Rect welcomeRect = new Rect(contentRect);
-            Rect currentWelcomeRect = PlaywrightDrawHelper.NextLabel(welcomeRect, "Playwright.Tabs.Origin.Welcome");
+            Rect currentWelcomeRect = PlaywrightDrawHelper.NextLabelTranslated(welcomeRect, "Playwright.Tabs.Origin.Welcome");
             currentWelcomeRect.y += Margin * 1.5f;
             currentWelcomeRect.height -= Margin * 1.5f;
 
             // Left-side rect: render option for each origin
             Rect originList = new Rect(currentWelcomeRect);
-            originList.width *= 0.25f;
+            originList.width *= 0.3f;
+            originList.width += Margin;
             Rect originListInner = new Rect(originList);
-            originListInner.height = (OptionHeight + Margin) * origins.Count;
             originListInner.width -= Margin;
+            originListInner = OriginsListing.GetScrollViewInnerRect(originListInner);
+
             Widgets.BeginScrollView(originList, ref OriginsScrollPos, originListInner);
-            var buttonRect = new Rect(originListInner);
-            buttonRect.height = OptionHeight;
-            buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
+            OriginsListing.Begin(originListInner);
 
             foreach (OriginComponent origin in origins)
             {
+                Rect buttonRect = OriginsListing.GetRect(75f);
+                buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, 4f);
                 Widgets.DrawOptionBackground(buttonRect, this.PlaywrightStructure.Origin?.Id == origin.Id);
+                Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
+                Rect tagline = PlaywrightDrawHelper.NextLabel(buttonContentRect, origin.NameTranslated);
+                Text.Font = GameFont.Tiny;
+                Widgets.Label(tagline, origin.DescriptionShortTranslated);
+                Text.Font = GameFont.Small;
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     ConfirmReset(() =>
                     {
                         ChangeOrigin(origin);
-                        OriginContentListing.Invalidate();
                     });
                     ClickSound();
                 }
-                Rect buttonContentRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
-                Widgets.LabelFit(buttonContentRect, origin.NameTranslated);
-                buttonRect.y += OptionHeight + Margin * 0.25f;
+                OriginsListing.Gap(4f);
             }
 
+            OriginsListing.End();
             Widgets.EndScrollView();
 
             if (this.PlaywrightStructure.Origin == null)
@@ -179,9 +185,9 @@ namespace Rokk.Playwright.UI
 
             // Right-side rect: render origin description
             Rect originRect = new Rect(currentWelcomeRect);
-            originRect.width *= 0.75f;
+            originRect.width *= 0.7f;
             originRect.width -= Margin;
-            originRect.x += originList.width + Margin;
+            originRect.x += originList.width;
             Widgets.DrawBoxSolidWithOutline(originRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
             originRect = PlaywrightDrawHelper.RectWithMargin(originRect, Margin);
             originRect.width += Margin * 0.5f;
@@ -255,7 +261,7 @@ namespace Rokk.Playwright.UI
             Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
 
-            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Boons.Welcome");
+            Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.Boons.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
             Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
@@ -344,7 +350,7 @@ namespace Rokk.Playwright.UI
             List<FactionComponent> selectedNeutrals = PlaywrightStructure.NeutralFactions;
             List<FactionComponent> selectedEnemies = PlaywrightStructure.EnemyFactions;
 
-            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.Factions.Welcome");
+            Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.Factions.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
 
@@ -472,7 +478,7 @@ namespace Rokk.Playwright.UI
             Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
 
-            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.WinConditions.Welcome");
+            Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.WinConditions.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
             Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
@@ -564,7 +570,7 @@ namespace Rokk.Playwright.UI
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
             Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
 
-            Rect nextRect = PlaywrightDrawHelper.NextLabel(contentRect, "Playwright.Tabs.SpecialConditions.Welcome");
+            Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.SpecialConditions.Welcome");
             nextRect.y += Margin;
             nextRect.height -= Margin;
             Widgets.DrawBoxSolidWithOutline(nextRect, PanelBGColor, PanelOutlineColor, PanelOutlineWidth);
@@ -755,6 +761,7 @@ namespace Rokk.Playwright.UI
         /// </summary>
         public void InvalidateAutoListings()
         {
+            this.OriginsListing.Invalidate();
             this.OriginContentListing.Invalidate();
             this.AvailableBoonsListing.Invalidate();
             this.SelectedBoonsListing.Invalidate();

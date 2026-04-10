@@ -21,7 +21,19 @@ namespace Rokk.Playwright.UI
             return new Rect(contentRect.x, contentRect.y, contentRect.width, height);
         }
 
-        public static Rect NextLabel(Rect contentRect, string translationKey, float margin = 0f)
+        public static Rect NextLabel(Rect contentRect, string label, float margin = 0f)
+        {
+            if (margin != 0f)
+            {
+                contentRect = RectWithMargin(contentRect, margin);
+            }
+
+            Rect rect = RectForLabel(contentRect, label);
+            Widgets.Label(rect, label);
+            return new Rect(contentRect.x, contentRect.y + rect.height, contentRect.width, contentRect.height - rect.height);
+        }
+
+        public static Rect NextLabelTranslated(Rect contentRect, string translationKey, float margin = 0f)
         {
             if (margin != 0f)
             {

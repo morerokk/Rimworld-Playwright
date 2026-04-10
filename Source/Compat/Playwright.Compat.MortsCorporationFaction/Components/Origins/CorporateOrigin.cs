@@ -32,8 +32,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
             new SpecificFaction()
             {
                 Faction = DefOfs.FactionDefOf.MF_Corporation
-            },
-            new AllOtherFactions()
+            }
         };
 
         public override List<FactionComponent> DefaultEnemies => new List<FactionComponent>()
@@ -41,10 +40,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
             new SpecificFaction()
             {
                 Faction = DefOfs.FactionDefOf.MF_CyberPunks
-            },
-            new InsectoidHiveFaction(),
-            new MechanoidHiveFaction(),
-            new AllOtherFactions()
+            }
         };
 
         public override List<WinConditionComponent> DefaultWinConditions => new List<WinConditionComponent>()

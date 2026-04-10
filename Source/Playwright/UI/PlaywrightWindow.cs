@@ -230,35 +230,12 @@ namespace Rokk.Playwright.UI
             this.PlaywrightStructure.Origin = origin;
 
             // Set defaults
-            if (origin.DefaultBoons != null)
-            {
-                this.PlaywrightStructure.Boons.AddRange(origin.DefaultBoons);
-            }
-
-            if (origin.DefaultAllies != null)
-            {
-                this.PlaywrightStructure.AllyFactions.AddRange(origin.DefaultAllies);
-            }
-
-            if (origin.DefaultNeutrals != null)
-            {
-                this.PlaywrightStructure.NeutralFactions.AddRange(origin.DefaultNeutrals);
-            }
-
-            if (origin.DefaultEnemies != null)
-            {
-                this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies);
-            }
-
-            if (origin.DefaultWinConditions != null)
-            {
-                this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions);
-            }
-
-            if (origin.DefaultSpecialConditions != null)
-            {
-                this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions);
-            }
+            this.PlaywrightStructure.Boons.AddRange(origin.DefaultBoons.Union(OriginDefaultsRegistration.GetDefaultBoons(origin.Id)));
+            this.PlaywrightStructure.AllyFactions.AddRange(origin.DefaultAllies.Union(OriginDefaultsRegistration.GetDefaultAllies(origin.Id)));
+            this.PlaywrightStructure.NeutralFactions.AddRange(origin.DefaultNeutrals.Union(OriginDefaultsRegistration.GetDefaultNeutrals(origin.Id)));
+            this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies.Union(OriginDefaultsRegistration.GetDefaultEnemies(origin.Id)));
+            this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions.Union(OriginDefaultsRegistration.GetDefaultWinConditions(origin.Id)));
+            this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions.Union(OriginDefaultsRegistration.GetDefaultSpecialConditions(origin.Id)));
 
             // Call origin changed hook, to let submods remove default components
             HookRegistration.CallPlaywrightOriginChanged(this.PlaywrightStructure, origin);

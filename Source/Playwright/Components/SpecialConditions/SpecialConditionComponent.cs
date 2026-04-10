@@ -11,8 +11,6 @@ namespace Rokk.Playwright.Components.SpecialConditions
 {
     public abstract class SpecialConditionComponent : PlaywrightComponent
     {
-        public virtual string DescriptionShort => "Playwright.Components." + this.Id + ".DescriptionShort";
-        public virtual string DescriptionShortTranslated => DescriptionShort.Translate();
         /// <summary>
         /// If true, a question mark button that shows help text will be shown on the component UI.
         /// </summary>

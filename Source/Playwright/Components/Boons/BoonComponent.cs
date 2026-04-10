@@ -13,9 +13,6 @@ namespace Rokk.Playwright.Components.Boons
 {
     public abstract class BoonComponent : PlaywrightComponent
     {
-        public virtual string DescriptionShort => "Playwright.Components." + this.Id + ".DescriptionShort";
-        public virtual string DescriptionShortTranslated => DescriptionShort.Translate();
-
         public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing)
         {
             Text.Font = GameFont.Medium;

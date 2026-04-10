@@ -195,10 +195,10 @@ namespace Rokk.Playwright.Addons
 
         /// <summary>
         /// Register a function to be executed when the origin is changed.
-        /// Primarily used to remove default components for certain origins (such as disabling the ship win condition).
-        /// If you do this, ensure you check for your own component ID's, as this hook is fired any time an origin is changed.
+        /// Primarily used to remove default components for certain origins (such as disabling the ship win condition), or adding new defaults.
+        /// If you do this, ensure you check that the new Origin's ID matches your component's ID's, as this hook is fired any time an origin is changed.
         /// </summary>
-        /// <param name="hook">The function to be called. Takes the changed structure and the new origin as parameters.</param>
+        /// <param name="hook">The function to be called. Takes the changed playwrightstructure and the new origin as parameters.</param>
         public static void RegisterPlaywrightOriginChanged(Action<PlaywrightStructure, OriginComponent> hook)
         {
             PlaywrightChangeOriginHooks.Add(hook);

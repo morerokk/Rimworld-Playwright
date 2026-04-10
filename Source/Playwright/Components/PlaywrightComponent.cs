@@ -37,6 +37,11 @@ namespace Rokk.Playwright.Components
         public virtual string Description => "Playwright.Components." + this.Id + ".Description";
         public virtual string NameTranslated => Name.Translate();
         public virtual string DescriptionTranslated => Description.Translate();
+        public virtual string DescriptionShort => "Playwright.Components." + this.Id + ".DescriptionShort";
+        /// <summary>
+        /// Short description that is generally used for tooltips.
+        /// </summary>
+        public virtual string DescriptionShortTranslated => DescriptionShort.Translate();
 
         /// <summary>
         /// Mutates the scenario and its parts based on what this component does (such as adding a ScenPart for forced goodwill or removing a pre-existing part).

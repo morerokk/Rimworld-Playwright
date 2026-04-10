@@ -14,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Rokk.Playwright.Components.Origins
 {
@@ -54,29 +53,29 @@ namespace Rokk.Playwright.Components.Origins
         public virtual FactionDef PlayerFaction => null;
 
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Boons.
+        /// If not empty, selecting this Origin will also auto-set the specified Boons.
         /// </summary>
-        public virtual List<BoonComponent> DefaultBoons => null;
+        public virtual List<BoonComponent> DefaultBoons => new List<BoonComponent>();
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Factions as Allies.
+        /// If not empty, selecting this Origin will also auto-set the specified Factions as Allies.
         /// </summary>
-        public virtual List<FactionComponent> DefaultAllies => null;
+        public virtual List<FactionComponent> DefaultAllies => new List<FactionComponent>();
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Factions as Neutrals.
+        /// If not empty, selecting this Origin will also auto-set the specified Factions as Neutrals.
         /// </summary>
-        public virtual List<FactionComponent> DefaultNeutrals => null;
+        public virtual List<FactionComponent> DefaultNeutrals => new List<FactionComponent>();
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Factions as Enemies.
+        /// If not empty, selecting this Origin will also auto-set the specified Factions as Enemies.
         /// </summary>
-        public virtual List<FactionComponent> DefaultEnemies => null;
+        public virtual List<FactionComponent> DefaultEnemies => new List<FactionComponent>();
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Win Conditions.
+        /// If not empty, selecting this Origin will also auto-set the specified Win Conditions.
         /// </summary>
-        public virtual List<WinConditionComponent> DefaultWinConditions => null;
+        public virtual List<WinConditionComponent> DefaultWinConditions => new List<WinConditionComponent>();
         /// <summary>
-        /// If not null, selecting this Origin will also auto-set the specified Special Conditions.
+        /// If not empty, selecting this Origin will also auto-set the specified Special Conditions.
         /// </summary>
-        public virtual List<SpecialConditionComponent> DefaultSpecialConditions => null;
+        public virtual List<SpecialConditionComponent> DefaultSpecialConditions => new List<SpecialConditionComponent>();
 
         public override string Description => BasedOnScenario != null ? "-" : base.Description;
         public override string DescriptionTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.description : base.DescriptionTranslated;
@@ -96,7 +95,7 @@ namespace Rokk.Playwright.Components.Origins
         /// Used for the Scenario's tagline, underneath the name ("3 crashlanded survivors.").
         /// If null, the base scenario's tagline is used.
         /// </summary>
-        public virtual string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
+        public override string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : ("Playwright.Components." + this.Id + ".Description.Short").Translate().ToString();
 
         /// <summary>
         /// Contents that come before the origin content.
@@ -115,60 +114,78 @@ namespace Rokk.Playwright.Components.Origins
         /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
         public virtual void DoAdditionalContents(Listing_AutoFitVertical originContentListing)
         {
-            if (DefaultBoons != null)
+            List<BoonComponent> defaultBoons = OriginDefaultsRegistration.GetDefaultBoons(Id)
+                .Union(DefaultBoons)
+                .ToList();
+            if (defaultBoons.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultBoons".Translate());
-                foreach (BoonComponent boon in DefaultBoons)
+                foreach (BoonComponent boon in defaultBoons)
                 {
                     sb.Append(Environment.NewLine + "- " + boon.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
             }
 
-            if (DefaultAllies != null)
+            List<FactionComponent> defaultAllies = OriginDefaultsRegistration.GetDefaultAllies(Id)
+                .Union(DefaultAllies)
+                .ToList();
+            if (defaultAllies.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultAllies".Translate());
-                foreach (FactionComponent faction in DefaultAllies)
+                foreach (FactionComponent faction in defaultAllies)
                 {
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
             }
 
-            if (DefaultNeutrals != null)
+            List<FactionComponent> defaultNeutrals = OriginDefaultsRegistration.GetDefaultNeutrals(Id)
+                .Union(DefaultNeutrals)
+                .ToList();
+            if (defaultNeutrals.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultNeutrals".Translate());
-                foreach (FactionComponent faction in DefaultNeutrals)
+                foreach (FactionComponent faction in defaultNeutrals)
                 {
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
             }
 
-            if (DefaultEnemies != null)
+            List<FactionComponent> defaultEnemies = OriginDefaultsRegistration.GetDefaultEnemies(Id)
+                .Union(DefaultEnemies)
+                .ToList();
+            if (DefaultEnemies.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultEnemies".Translate());
-                foreach (FactionComponent faction in DefaultEnemies)
+                foreach (FactionComponent faction in defaultEnemies)
                 {
                     sb.Append(Environment.NewLine + "- " + faction.FactionDef?.LabelCap.ToString() ?? faction.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
             }
 
-            if (DefaultWinConditions != null)
+            List<WinConditionComponent> defaultWinConditions = OriginDefaultsRegistration.GetDefaultWinConditions(Id)
+                .Union(DefaultWinConditions)
+                .ToList();
+            if (defaultWinConditions.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultWinConditions".Translate());
-                foreach (WinConditionComponent winCondition in DefaultWinConditions)
+                foreach (WinConditionComponent winCondition in defaultWinConditions)
                 {
                     sb.Append(Environment.NewLine + "- " + winCondition.NameTranslated);
                 }
                 originContentListing.Label(sb.ToString());
             }
 
-            if (DefaultSpecialConditions != null)
+            List<SpecialConditionComponent> defaultSpecialConditions = OriginDefaultsRegistration.GetDefaultSpecialConditions(Id)
+                .Union(DefaultSpecialConditions)
+                .ToList();
+            if (defaultSpecialConditions.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultSpecialConditions".Translate());
-                foreach (SpecialConditionComponent specialCondition in DefaultSpecialConditions)
+                foreach (SpecialConditionComponent specialCondition in defaultSpecialConditions)
                 {
                     sb.Append(Environment.NewLine + "- " + specialCondition.NameTranslated);
                 }

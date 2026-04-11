@@ -7,13 +7,14 @@ using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Exceptions;
+using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+
 using Verse;
 
 namespace Rokk.Playwright.Composer
@@ -32,7 +33,8 @@ namespace Rokk.Playwright.Composer
 
             if (playwright.Origin == null)
             {
-                throw new PlaywrightBuilderException("Playwright Origin was null", playwright);
+                Find.WindowStack.Add(new InfoPopupWindow("Playwright Origin was null, did you select an Origin/Scenario?"));
+                throw new PlaywrightBuilderException("Playwright Origin was null, did you select an Origin/Scenario?", playwright);
             }
 
             Scenario scenario = this.GenerateDefaultScenario(playwright);
@@ -46,10 +48,7 @@ namespace Rokk.Playwright.Composer
             playwright.Origin.MutateScenario(scenario, parts);
 
             // Boons
-            foreach (BoonComponent boon in playwright.Boons)
-            {
-                boon.MutateScenario(scenario, parts);
-            }
+            this.ProcessBoons(playwright, scenario, parts);
 
             // Factions
             HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
@@ -67,6 +66,14 @@ namespace Rokk.Playwright.Composer
             HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
 
             return scenario;
+        }
+
+        private void ProcessBoons(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        {
+            foreach (BoonComponent boon in playwright.Boons)
+            {
+                boon.MutateScenario(scenario, parts);
+            }
         }
 
         private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)

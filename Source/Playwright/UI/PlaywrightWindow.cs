@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -849,12 +849,17 @@ namespace Rokk.Playwright.UI
         public override void OnAcceptKeyPressed()
         {
             // Don't eat the whole window if someone presses enter
+            // For fuck's sake, why is this the default behavior?
         }
 
         public override void OnCancelKeyPressed()
         {
             // Will ask the player to save first
-            this.Close(true);
+            // Does not actually work because ?????????
+            // At the very least, this won't instantly eat the entire fucking window when someone dares press ESC
+            // Hypothesis: the ESC press pops up the "Are you sure you want to exit?" menu, and then the same keypress insta-closes that window
+            // Fucking stupid
+            // this.Close(true);
         }
 
         public enum Tabs

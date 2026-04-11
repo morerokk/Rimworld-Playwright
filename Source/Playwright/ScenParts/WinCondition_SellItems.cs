@@ -5,11 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using Verse;
 
 namespace Rokk.Playwright.ScenParts
 {
+    /// <summary>
+    /// Wins the game when the specified amount of the specified item is sold.
+    /// This is handled in patches separately,
+    /// check <see cref="Patches.Tradeable_ResolveTradePatches"/>, <see cref="PatchCheckers.WinConditionPatchChecker"/> and <see cref="GameComponents.GameComponent_Playwright_WinConditions"/>.
+    /// </summary>
     public class WinCondition_SellItems : ScenPart_WinCondition
     {
         public ThingDef Thing;

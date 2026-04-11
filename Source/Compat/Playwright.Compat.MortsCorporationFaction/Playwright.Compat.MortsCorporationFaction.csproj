@@ -61,10 +61,7 @@
       <Name>Playwright</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameComponents\" />
-    <Folder Include="ScenParts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)\..\Compat\MortsCorporation\1.6\Assemblies"</PostBuildEvent>

@@ -56,6 +56,7 @@
     <Compile Include="Components\Origins\EmpireOrigin.cs" />
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
+    <Compile Include="Components\SpecialConditions\DisableMechanoidSignalSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\XenotypeSwapSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PlanetkillerSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\SpecialConditionComponent.cs" />

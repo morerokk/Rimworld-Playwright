@@ -19,5 +19,8 @@ namespace Rokk.Playwright.DefOfs
 
         [MayRequireIdeology]
         public static IncidentDef GiveQuest_EndGame_ArchonexusVictory;
+
+        [MayRequireOdyssey]
+        public static IncidentDef GiveQuest_MechanoidSignal;
     }
 }

@@ -207,4 +207,8 @@ Note: The game demands that some generated pawns are capable of certain things, 
 
 Raids will respect xenotypes when calculating raid points, so replacing one xenotype with another will not result in underpowered/overpowered raids.</Playwright.Components.SpecialConditions.XenotypeSwap.Help>
 
+ <Playwright.Components.SpecialConditions.DisableMechanoidSignal>Disable Mechanoid Signal</Playwright.Components.SpecialConditions.DisableMechanoidSignal>
+ <Playwright.Components.SpecialConditions.DisableMechanoidSignal.DescriptionShort>Disables the Odyssey Mechanoid Signal quest.</Playwright.Components.SpecialConditions.DisableMechanoidSignal.DescriptionShort>
+ <Playwright.Components.SpecialConditions.DisableMechanoidSignal.Description>Disables Odyssey's Mechanoid Signal quest. This will remove the default way of acquiring a Gravship.</Playwright.Components.SpecialConditions.DisableMechanoidSignal.Description>
+
 </LanguageData>

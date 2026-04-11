@@ -44,6 +44,12 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 specialConditions.Add(xenotypeSwapCondition);
             }
 
+            SpecialConditionComponent disableMechanoidSignalCondition = new DisableMechanoidSignalSpecialCondition();
+            if (disableMechanoidSignalCondition.IsAvailable)
+            {
+                specialConditions.Add(disableMechanoidSignalCondition);
+            }
+
             foreach (SpecialConditionComponent specialCondition in ComponentRegistration.SpecialConditions)
             {
                 if (specialCondition.IsAvailable)

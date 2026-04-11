@@ -25,7 +25,9 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_RemoveFaction;
         public static ScenPartDef Playwright_DisableShipStartup;
         public static ScenPartDef Playwright_ForcedImplant;
+        [MayRequireBiotech]
         public static ScenPartDef Playwright_ReplaceXenotype;
+        [MayRequireBiotech]
         public static ScenPartDef Playwright_ReplaceXenotypeWithCustom;
 
         // Win conditions
@@ -50,5 +52,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef DisableIncident;
         [MayRequireBiotech]
         public static ScenPartDef ConfigurePawnsXenotypes;
+        [MayRequireBiotech]
+        public static ScenPartDef ConfigurePawnsKindDefs;
     }
 }

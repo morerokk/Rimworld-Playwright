@@ -35,6 +35,13 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                 .Where(part => part.def == ScenPartDefOf.ConfigPage_ConfigureStartingPawns)
                 .Cast<ScenPart_ConfigPage_ConfigureStartingPawns>()
                 .FirstOrDefault();
+
+            // We need either a ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes or a ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs to add androids specifically.
+            // If we have a regular ScenPart_ConfigPage_ConfigureStartingPawns, convert it to the xenotype variant.
+            // When we have the xenotype variant, add the androids xenotype to it as requirement.
+            // If we have a kind variant, add the androids kind to it as requirement.
+            // Anything else is not supported.
+            // (Holy shit this is ass)
             if (regularConfigurePart != null)
             {
                 xenotypeConfigurePart = ScenPartUtility.ConvertConfigureStartingPawnsToXenotypes(regularConfigurePart);
@@ -48,27 +55,44 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                     .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes>()
                     .FirstOrDefault();
             }
-            // TODO: Add support for the other "weird" configurestartingpawns parts?
-            // Or should we just airdrop X default androids in on game start when this happens, and call it a day?
-            if (xenotypeConfigurePart == null)
-            {
-                Find.WindowStack.Add(new InfoPopupWindow("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate()));
-                throw new PlaywrightBuilderException("Androids boon: current scenario's config page unsupported, must be ScenPart_ConfigPage_ConfigureStartingPawns or ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes.");
-            }
 
-            xenotypeConfigurePart.pawnChoiceCount += Amount;
-            xenotypeConfigurePart.xenotypeCounts.Add(new XenotypeCount()
+            if (xenotypeConfigurePart != null)
             {
-                count = Amount,
-                countBuffer = Amount.ToString(),
-                requiredAtStart = true,
-                xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic
-            });
-            xenotypeConfigurePart.overrideKinds.Add(new XenotypePawnKind()
+                xenotypeConfigurePart.pawnChoiceCount += Amount;
+                xenotypeConfigurePart.xenotypeCounts.Add(new XenotypeCount()
+                {
+                    count = Amount,
+                    countBuffer = Amount.ToString(),
+                    requiredAtStart = true,
+                    xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic
+                });
+                xenotypeConfigurePart.overrideKinds.Add(new XenotypePawnKind()
+                {
+                    xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic,
+                    pawnKind = DefOfs.PawnKindDefOf.VREA_AndroidBasic
+                });
+            }
+            else
             {
-                xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic,
-                pawnKind = DefOfs.PawnKindDefOf.VREA_AndroidBasic
-            });
+                ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs kindConfigurePart = scenarioParts
+                    .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs)
+                    .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs>()
+                    .FirstOrDefault();
+                if (kindConfigurePart == null)
+                {
+                    Find.WindowStack.Add(new InfoPopupWindow("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate()));
+                    throw new PlaywrightBuilderException("Androids boon: current scenario's config page unsupported, must be ScenPart_ConfigPage_ConfigureStartingPawns, ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes or ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs.");
+                }
+
+                kindConfigurePart.pawnChoiceCount += Amount;
+                kindConfigurePart.kindCounts.Add(new PawnKindCount()
+                {
+                    count = Amount,
+                    countBuffer = Amount.ToString(),
+                    requiredAtStart = true,
+                    kindDef = DefOfs.PawnKindDefOf.VREA_AndroidBasic
+                });
+            }
 
             // Add research if it doesn't exist yet
             var existingResearchParts = scenarioParts

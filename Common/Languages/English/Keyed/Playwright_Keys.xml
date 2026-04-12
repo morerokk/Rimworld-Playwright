@@ -44,7 +44,7 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
  <Playwright.Tabs.Intro.Welcome.1>Use the tabs on the left to start composing your scenario.</Playwright.Tabs.Intro.Welcome.1>
- <Playwright.Tabs.Intro.Welcome.2>When you're done, click "Save Scenario" to save your Playwright as a new scenario.</Playwright.Tabs.Intro.Welcome.2>
+ <Playwright.Tabs.Intro.Welcome.2>When you're done, review your scenario in the "Review &amp; Save" tab, and save your Playwright as a new scenario.</Playwright.Tabs.Intro.Welcome.2>
 
  <Playwright.Tabs.Origin>Origin</Playwright.Tabs.Origin>
  <Playwright.Tabs.Boons>Boons</Playwright.Tabs.Boons>
@@ -53,20 +53,25 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.Tabs.SpecialConditions>Special</Playwright.Tabs.SpecialConditions>
  <Playwright.Tabs.Summary>Summary</Playwright.Tabs.Summary>
 
- <Playwright.Tabs.Summary.Intro>Optionally, type in a name and description for your scenario.
-
-When you're done, click "Create Scenario" to save your Playwright as a scenario.</Playwright.Tabs.Summary.Intro>
+ <Playwright.Tabs.Summary.Intro>Optionally, type in a name, description and custom starting dialog text for your scenario.</Playwright.Tabs.Summary.Intro>
  <Playwright.Tabs.Summary.Name>Name</Playwright.Tabs.Summary.Name>
  <Playwright.Tabs.Summary.DescriptionShort>Description (short)</Playwright.Tabs.Summary.DescriptionShort>
  <Playwright.Tabs.Summary.Description>Description</Playwright.Tabs.Summary.Description>
  <Playwright.Tabs.Summary.GameStartDialog>Game start dialog text (leave blank to use default from Origin)</Playwright.Tabs.Summary.GameStartDialog>
+
+ <Playwright.Tabs.ReviewAndSave>Review &amp; Save</Playwright.Tabs.ReviewAndSave>
+ <Playwright.Tabs.ReviewAndSave.Intro>This is what your scenario will look like when it's saved.
+
+When you're happy with your scenario, click "Create Scenario" to save it as a scenario.</Playwright.Tabs.ReviewAndSave.Intro>
+ <Playwright.Tabs.ReviewAndSave.ErrorBuilderException>A conflict occurred with one of your selected components:</Playwright.Tabs.ReviewAndSave.ErrorBuilderException>
+ <Playwright.Tabs.ReviewAndSave.ErrorUnknownException>An error occurred with one of your selected components. Check the log for more details.</Playwright.Tabs.ReviewAndSave.ErrorUnknownException>
 
  <Playwright.Components.EnablesLockedWinCondition>Enables win conditions:</Playwright.Components.EnablesLockedWinCondition>
  <Playwright.Components.EnablesLockedSpecial>Enables special:</Playwright.Components.EnablesLockedSpecial>
  <Playwright.Components.SuggestedIdeo>Suggested Ideoligion:</Playwright.Components.SuggestedIdeo>
  <Playwright.Components.SuggestedIdeo.Help>You are not required to pick the suggested Ideoligion. Go wild!</Playwright.Components.SuggestedIdeo.Help>
  
- <Playwright.Tabs.Origin.Welcome>Choose an Origin. This will determine who you are, and why you are here.</Playwright.Tabs.Origin.Welcome>
+ <Playwright.Tabs.Origin.Welcome>Choose an Origin. This will determine the starting point for your scenario.</Playwright.Tabs.Origin.Welcome>
  
  <!-- Origins -->
  <Playwright.Components.Origin>Origin</Playwright.Components.Origin>

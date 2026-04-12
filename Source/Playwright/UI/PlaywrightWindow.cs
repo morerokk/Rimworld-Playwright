@@ -91,6 +91,10 @@ namespace Rokk.Playwright.UI
                     DrawSummaryTab(tabContentRect);
                     // We can't easily detect changes in a text input, just assume that someone visiting the Summary tab may change something
                     FormDirty = true;
+                    InvalidateAutoListings();
+                    break;
+                case Tabs.ReviewAndSave:
+                    DrawReviewAndSaveTab(tabContentRect);
                     break;
             }
 
@@ -301,8 +305,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedBoons.Add(boon);
                     this.AddSound();
-                    AvailableBoonsListing.Invalidate();
-                    SelectedBoonsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
                 if (Mouse.IsOver(boonRect))
@@ -336,8 +339,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedBoons.Remove(boon);
                     RemoveSound();
-                    AvailableBoonsListing.Invalidate();
-                    SelectedBoonsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
                 Rect lineRect = SelectedBoonsListing.GetRect(PanelOutlineWidth);
@@ -449,6 +451,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedFactions.Add(faction);
                     FormDirty = true;
+                    InvalidateAutoListings();
                 }));
             }
             PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
@@ -518,8 +521,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedWinConditions.Add(winCondition);
                     this.AddSound();
-                    AvailableWinConditionsListing.Invalidate();
-                    SelectedWinConditionsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
                 if (Mouse.IsOver(winConditionRect))
@@ -553,8 +555,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedWinConditions.Remove(winCondition);
                     RemoveSound();
-                    AvailableWinConditionsListing.Invalidate();
-                    SelectedWinConditionsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
                 Rect lineRect = SelectedWinConditionsListing.GetRect(PanelOutlineWidth);
@@ -610,8 +611,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedSpecialConditions.Add(specialCondition);
                     this.AddSound();
-                    AvailableSpecialConditionsListing.Invalidate();
-                    SelectedSpecialConditionsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
                 if (Mouse.IsOver(specialConditionRect))
@@ -645,8 +645,7 @@ namespace Rokk.Playwright.UI
                 {
                     selectedSpecialConditions.Remove(specialCondition);
                     RemoveSound();
-                    AvailableSpecialConditionsListing.Invalidate();
-                    SelectedSpecialConditionsListing.Invalidate();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
 
@@ -668,8 +667,8 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private Listing_AutoFitVertical SummaryListing = new Listing_AutoFitVertical();
-        private Listing_AutoFitVertical SummaryContentListing = new Listing_AutoFitVertical();
+        private Listing_Standard SummaryListing = new Listing_Standard();
+        private Listing_Standard SummaryContentListing = new Listing_Standard();
         private void DrawSummaryTab(Rect contentRect)
         {
             // Summary heading
@@ -713,6 +712,81 @@ namespace Rokk.Playwright.UI
             SummaryContentListing.End();
         }
 
+        private Listing_Standard ReviewListing = new Listing_Standard();
+        private Listing_AutoFitVertical ReviewContentListing = new Listing_AutoFitVertical();
+        private Vector2 ReviewContentScrollPos = Vector2.zero;
+        private Listing_Standard ReviewErrorListing = new Listing_Standard();
+        private void DrawReviewAndSaveTab(Rect contentRect)
+        {
+            // Review heading
+            Rect reviewIntroRect = new Rect(contentRect);
+            reviewIntroRect.height *= 0.1f;
+            ReviewListing.Begin(reviewIntroRect);
+            ReviewListing.Label("Playwright.Tabs.ReviewAndSave.Intro".Translate());
+            ReviewListing.End();
+
+            Rect reviewRect = new Rect(contentRect);
+            reviewRect.height *= 0.9f;
+            reviewRect.y += reviewIntroRect.height;
+            Widgets.DrawBoxSolidWithOutline(reviewRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+
+            Rect reviewContentRect = PlaywrightDrawHelper.RectWithMargin(reviewRect, 10f);
+
+            PlaywrightBuilder builder = new PlaywrightBuilder();
+            Scenario previewScenario = null;
+            string errorText = null;
+            bool hasError = false;
+            try
+            {
+                previewScenario = builder.MakeScenario(this.PlaywrightStructure);
+            }
+            catch (PlaywrightBuilderException ex)
+            {
+                hasError = true;
+                errorText = ex.Message;
+                Log.Warning("[Playwright] A Playwright error occurred while previewing the generated scenario:");
+                Log.Warning(ex.Message);
+                Log.Warning(ex.StackTrace);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[Playwright] An error occurred while previewing the generated scenario:");
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
+                // Have to draw this here if we want to rethrow the exception (and we DO want to rethrow it!)
+                // Since we rethrow, we don't have to set errorText, we just bail
+                ReviewErrorListing.Begin(reviewContentRect);
+                ReviewErrorListing.Label("Playwright.Tabs.ReviewAndSave.ErrorUnknownException".Translate());
+                ReviewErrorListing.End();
+                throw;
+            }
+
+            if (hasError)
+            {
+                ReviewErrorListing.Begin(reviewContentRect);
+                ReviewErrorListing.Label("Playwright.Tabs.ReviewAndSave.ErrorBuilderException".Translate());
+                ReviewErrorListing.Label(errorText);
+                ReviewErrorListing.End();
+                return;
+            }
+
+            // If we got this far, we have a working scenario
+            Rect reviewContentRectInner = new Rect(reviewContentRect);
+            reviewContentRectInner.width -= Margin;
+            reviewContentRectInner = ReviewContentListing.GetScrollViewInnerRect(reviewContentRectInner);
+            Widgets.BeginScrollView(reviewContentRect, ref ReviewContentScrollPos, reviewContentRectInner);
+            ReviewContentListing.Begin(reviewContentRectInner);
+
+            Text.Font = GameFont.Medium;
+            ReviewContentListing.Label(previewScenario.name);
+            Text.Font = GameFont.Small;
+
+            ReviewContentListing.Label(previewScenario.GetFullInformationText());
+
+            ReviewContentListing.End();
+            Widgets.EndScrollView();
+        }
+
         private void DrawButtonBar(Rect contentRect)
         {
             const float ButtonHeight = 38f;
@@ -740,10 +814,13 @@ namespace Rokk.Playwright.UI
                 }));
             }
 
-            Rect generateRect = new Rect(contentRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
-            if (Widgets.ButtonText(generateRect, "Playwright.CreateScenario".Translate()))
+            if (ActiveTab == Tabs.ReviewAndSave)
             {
-                this.CompileScenario();
+                Rect generateRect = new Rect(contentRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
+                if (Widgets.ButtonText(generateRect, "Playwright.CreateScenario".Translate()))
+                {
+                    this.CompileScenario();
+                }
             }
         }
 
@@ -839,6 +916,7 @@ namespace Rokk.Playwright.UI
             this.SelectedWinConditionsListing.Invalidate();
             this.AvailableSpecialConditionsListing.Invalidate();
             this.SelectedSpecialConditionsListing.Invalidate();
+            this.ReviewContentListing.Invalidate();
         }
 
         public override void Close(bool doCloseSound = true)
@@ -874,7 +952,8 @@ namespace Rokk.Playwright.UI
             Factions,
             WinConditions,
             SpecialConditions,
-            Summary
+            Summary,
+            ReviewAndSave
         }
     }
 }

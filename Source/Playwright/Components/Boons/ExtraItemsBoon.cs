@@ -179,7 +179,7 @@ namespace Rokk.Playwright.Components.Boons
 
             public string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";
             public string StuffLabel => Stuff != null ? Stuff.LabelCap.ToString() : "-";
-            public string QualityLabel => Quality != null ? Quality.Value.GetLabel().CapitalizeFirst() : "-";
+            public string QualityLabel => Quality != null ? Quality.Value.GetLabel().CapitalizeFirst() : "Default".Translate().CapitalizeFirst().ToString();
 
             public void ExposeData()
             {

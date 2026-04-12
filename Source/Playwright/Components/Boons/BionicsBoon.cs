@@ -19,8 +19,8 @@ namespace Rokk.Playwright.Components.Boons
 
         public override void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
         {
-            boonContentListing.CheckboxLabeled("Playwright.Components.Boons.Bionics.Arms", ref ArmsEnabled);
-            boonContentListing.CheckboxLabeled("Playwright.Components.Boons.Bionics.Legs", ref LegsEnabled);
+            boonContentListing.CheckboxLabeled("Playwright.Components.Boons.Bionics.Arms".Translate(), ref ArmsEnabled, labelPct: 0.2f);
+            boonContentListing.CheckboxLabeled("Playwright.Components.Boons.Bionics.Legs".Translate(), ref LegsEnabled, labelPct: 0.2f);
         }
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)

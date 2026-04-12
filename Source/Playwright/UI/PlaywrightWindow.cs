@@ -767,7 +767,8 @@ namespace Rokk.Playwright.UI
                     {
                         if (shouldGoToNewGame)
                         {
-                            this.Close();
+                            // Call base close class to bypass our FormDirty checks
+                            base.Close(true);
                             Find.WindowStack.Add(new Page_SelectScenario());
                         }
                     }));

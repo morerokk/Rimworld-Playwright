@@ -154,7 +154,15 @@ namespace Rokk.Playwright.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-
+            foreach (ExtraItemEntry item in Items)
+            {
+                if (item.Thing == null)
+                {
+                    Log.Warning("[Playwright] Extra items boon: item thing was null");
+                    continue;
+                }
+                scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(item.Thing, item.Stuff, item.Count, item.Quality));
+            }
         }
 
         public override void ExposeData()

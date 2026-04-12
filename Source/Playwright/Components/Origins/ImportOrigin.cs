@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Addons;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -46,6 +47,15 @@ namespace Rokk.Playwright.Components.Origins
             if (originContentListing.ButtonTextLabeled("Playwright.Components.Origins.Import.Scenario".Translate(), ScenarioLabel))
             {
                 List<string> defsToSkip = ScenarioDefsToSkip;
+                // If the scenario appears in an origin that's been registered by an addon, hide it, too
+                foreach (OriginComponent origin in ComponentRegistration.Origins)
+                {
+                    if (origin.BasedOnScenario != null)
+                    {
+                        defsToSkip.Add(origin.BasedOnScenario.defName);
+                    }
+                }
+
                 List<ScenarioDef> availableScenarios = DefDatabase<ScenarioDef>.AllDefsListForReading
                     .Where(def => !defsToSkip.Contains(def.defName) && def.scenario.showInUI)
                     .ToList();

@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using Rokk.Playwright.ScenParts;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -9,7 +8,6 @@ using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
-using static Rokk.Playwright.Components.SpecialConditions.XenotypeSwapSpecialCondition;
 
 namespace Rokk.Playwright.Components.Boons
 {

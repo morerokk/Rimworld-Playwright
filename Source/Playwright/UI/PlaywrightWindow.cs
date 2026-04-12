@@ -774,6 +774,9 @@ namespace Rokk.Playwright.UI
             Rect reviewContentRectInner = new Rect(reviewContentRect);
             reviewContentRectInner.width -= Margin;
             reviewContentRectInner = ReviewContentListing.GetScrollViewInnerRect(reviewContentRectInner);
+            // Expand the summary screen a bit. Some actions will cause the summary to get larger, which makes the text just not render at all (thanks)
+            // We can hopefully catch most cases with this
+            reviewContentRectInner.height += 200f;
             Widgets.BeginScrollView(reviewContentRect, ref ReviewContentScrollPos, reviewContentRectInner);
             ReviewContentListing.Begin(reviewContentRectInner);
 

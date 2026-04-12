@@ -182,6 +182,24 @@ namespace Rokk.Playwright.Utilities
             return gameConditionPart;
         }
 
+        public static ScenPart_OnPawnDeathExplode MakeOnPawnDeathExplodePart(DamageDef damageDef = null, float radius = 5.9f)
+        {
+            if (damageDef == null)
+            {
+                damageDef = DamageDefOf.Bomb;
+            }
+
+            ScenPart_OnPawnDeathExplode part = (ScenPart_OnPawnDeathExplode)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.OnPawnDeathExplode);
+
+            FieldInfo damageInfo = AccessTools.Field(typeof(ScenPart_OnPawnDeathExplode), "damage");
+            damageInfo.SetValue(part, damageDef);
+
+            FieldInfo radiusInfo = AccessTools.Field(typeof(ScenPart_OnPawnDeathExplode), "radius");
+            damageInfo.SetValue(part, radius);
+
+            return part;
+        }
+
         public static NoNeutralFactionsExcept MakeNoNeutralFactionsExceptPart(List<FactionDef> factionsToKeep = null)
         {
             NoNeutralFactionsExcept part = (NoNeutralFactionsExcept)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_NoNeutralFactionsExcept);
@@ -358,6 +376,13 @@ namespace Rokk.Playwright.Utilities
             WinCondition_SellItems part = (WinCondition_SellItems)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_SellItems);
             part.Thing = thingToSell;
             part.Amount = amountToSell;
+            return part;
+        }
+
+        public static WinCondition_Time MakeWinConditionTimePart(int days)
+        {
+            WinCondition_Time part = (WinCondition_Time)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Time);
+            part.Days = days;
             return part;
         }
 

@@ -57,5 +57,6 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ConfigurePawnsKindDefs;
         [MayRequireAnomaly]
         public static ScenPartDef ConfigurePawnsMutants;
+        public static ScenPartDef OnPawnDeathExplode;
     }
 }

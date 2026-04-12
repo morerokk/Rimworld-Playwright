@@ -58,6 +58,8 @@ namespace Rokk.Playwright.Components.WinConditions
                 list.Add(royalCouncil);
             }
 
+            list.Add(new TimeWinCondition());
+
             foreach (WinConditionComponent winCondition in ComponentRegistration.WinConditions)
             {
                 if (winCondition.IsAvailable)

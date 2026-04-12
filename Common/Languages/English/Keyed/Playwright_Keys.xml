@@ -130,6 +130,12 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.Novices>Imperial Novices</Playwright.Components.Boons.Novices>
  <Playwright.Components.Boons.Novices.DescriptionShort>Start with a royal title.</Playwright.Components.Boons.Novices.DescriptionShort>
  <Playwright.Components.Boons.Novices.Description>Each starting colonist has a Novice title with the Shattered Empire, and a Level 1 Psylink.</Playwright.Components.Boons.Novices.Description>
+
+ <Playwright.Components.Boons.ExtraItems>Extra Items</Playwright.Components.Boons.ExtraItems>
+ <Playwright.Components.Boons.ExtraItems.DescriptionShort>Start with extra items.</Playwright.Components.Boons.ExtraItems.DescriptionShort>
+ <Playwright.Components.Boons.ExtraItems.Description>Start with the chosen extra items.</Playwright.Components.Boons.ExtraItems.Description>
+ <Playwright.Components.Boons.ExtraItems.Add>Add Item</Playwright.Components.Boons.ExtraItems.Add>
+ <Playwright.Components.Boons.ExtraItems.Count>Count</Playwright.Components.Boons.ExtraItems.Count>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->
@@ -194,6 +200,11 @@ Removing this will disable the Archonexus quests.</Playwright.Components.WinCond
  <Playwright.Components.WinConditions.RoyalCouncil.Colonists>Colonists</Playwright.Components.WinConditions.RoyalCouncil.Colonists>
  <Playwright.Components.WinConditions.RoyalCouncil.Title>Title</Playwright.Components.WinConditions.RoyalCouncil.Title>
  
+ <Playwright.Components.WinConditions.Time>Time</Playwright.Components.WinConditions.Time>
+ <Playwright.Components.WinConditions.Time.DescriptionShort>Survive until the time goal.</Playwright.Components.WinConditions.Time.DescriptionShort>
+ <Playwright.Components.WinConditions.Time.Description>Survive until the specified amount of years and days have passed. You win when you have at least 1 alive colonist after the time has elapsed.</Playwright.Components.WinConditions.Time.Description>
+ <Playwright.Components.WinConditions.Time.Days>Days</Playwright.Components.WinConditions.Time.Days>
+ <Playwright.Components.WinConditions.Time.YearsAndDays>{0} years, {1} days</Playwright.Components.WinConditions.Time.YearsAndDays>
  
  <Playwright.Tabs.SpecialConditions.Welcome>Choose any special conditions to add to your scenario.</Playwright.Tabs.SpecialConditions.Welcome>
  <!-- Special conditions -->
@@ -229,5 +240,11 @@ Raids will respect xenotypes when calculating raid points, so replacing one xeno
  <Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage>Prepare Haphazardly special condition: unable to increase the amount of choices in the colonist preparation screen. This scenario/origin's colonist preparation screen has an unknown/unrecognized configpage part.
 
 Please deselect the Prepare Haphazardly special condition or select a different Origin. (Sorry!)</Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage>
+
+ <Playwright.Components.SpecialConditions.DeathExplosion>Death Explosion</Playwright.Components.SpecialConditions.DeathExplosion>
+ <Playwright.Components.SpecialConditions.DeathExplosion.DescriptionShort>Pawns explode on death.</Playwright.Components.SpecialConditions.DeathExplosion.DescriptionShort>
+ <Playwright.Components.SpecialConditions.DeathExplosion.Description>Pawns explode when they die.</Playwright.Components.SpecialConditions.DeathExplosion.Description>
+ <Playwright.Components.SpecialConditions.DeathExplosion.Radius>Radius</Playwright.Components.SpecialConditions.DeathExplosion.Radius>
+ <Playwright.Components.SpecialConditions.DeathExplosion.Damage>Damage Type</Playwright.Components.SpecialConditions.DeathExplosion.Damage>
 
 </LanguageData>

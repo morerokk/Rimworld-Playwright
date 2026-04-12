@@ -35,6 +35,7 @@
     <Compile Include="Addons\OriginDefaultsRegistration.cs" />
     <Compile Include="Addons\ComponentRegistration.cs" />
     <Compile Include="Addons\HookRegistration.cs" />
+    <Compile Include="Components\Boons\ExtraItemsBoon.cs" />
     <Compile Include="Components\Boons\BoonComponent.cs" />
     <Compile Include="Components\Boons\BionicsBoon.cs" />
     <Compile Include="Components\Boons\NovicesBoon.cs" />
@@ -56,12 +57,14 @@
     <Compile Include="Components\Origins\EmpireOrigin.cs" />
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
+    <Compile Include="Components\SpecialConditions\DeathExplosionSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PrepareHaphazardlySpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\DisableMechanoidSignalSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\XenotypeSwapSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PlanetkillerSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\SpecialConditionComponent.cs" />
     <Compile Include="Components\WinConditions\ArchonexusWinCondition.cs" />
+    <Compile Include="Components\WinConditions\TimeWinCondition.cs" />
     <Compile Include="Components\WinConditions\RoyalCouncilWinCondition.cs" />
     <Compile Include="Components\WinConditions\ColonyWinCondition.cs" />
     <Compile Include="Components\WinConditions\RoyalAscentWinCondition.cs" />

@@ -51,6 +51,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             }
 
             specialConditions.Add(new PrepareHaphazardlySpecialCondition());
+            specialConditions.Add(new DeathExplosionSpecialCondition());
 
             foreach (SpecialConditionComponent specialCondition in ComponentRegistration.SpecialConditions)
             {

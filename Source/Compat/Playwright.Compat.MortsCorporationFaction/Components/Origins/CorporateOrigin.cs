@@ -21,7 +21,27 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
         public override List<BoonComponent> DefaultBoons => new List<BoonComponent>()
         {
             new CorporateGoonsBoon(),
-            new BionicsBoon()
+            new ExtraItemsBoon()
+            {
+                Items = new List<ExtraItemsBoon.ExtraItemEntry>()
+                {
+                    new ExtraItemsBoon.ExtraItemEntry()
+                    {
+                        Thing = DefOfs.ThingDefOf.MF_CorporateSimpleOfficeDesk,
+                        Count = 1,
+                        CountBuffer = "1",
+                        Stuff = ThingDefOf.WoodLog
+                    },
+                    new ExtraItemsBoon.ExtraItemEntry()
+                    {
+                        Thing = DefOfs.ThingDefOf.MF_CorporateOfficeChairSimple,
+                        Count = 2,
+                        CountBuffer = "2",
+                        Stuff = ThingDefOf.Cloth,
+                        Quality = QualityCategory.Poor
+                    }
+                }
+            }
         };
 
         public override List<FactionComponent> DefaultAllies => new List<FactionComponent>()

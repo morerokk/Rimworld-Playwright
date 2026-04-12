@@ -174,7 +174,13 @@ namespace Rokk.Playwright.Components.Boons
             public ThingDef Thing;
             public ThingDef Stuff;
             public QualityCategory? Quality;
+            /// <summary>
+            /// If constructing an instance of this manually, set <see cref="CountBuffer"/> to <see cref="Count"/>.ToString() for the editor to work properly.
+            /// </summary>
             public int Count = 1;
+            /// <summary>
+            /// If constructing an instance of this manually, set this to <see cref="Count"/>.ToString() for the editor to work properly.
+            /// </summary>
             public string CountBuffer = "1";
 
             public string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";

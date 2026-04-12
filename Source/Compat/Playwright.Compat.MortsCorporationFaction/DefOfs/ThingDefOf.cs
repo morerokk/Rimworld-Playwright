@@ -12,5 +12,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.DefOfs
     public static class ThingDefOf
     {
         public static ThingDef MF_CorporateCompletedPaperwork;
+        public static ThingDef MF_CorporateOfficeChairSimple;
+        public static ThingDef MF_CorporateSimpleOfficeDesk;
     }
 }

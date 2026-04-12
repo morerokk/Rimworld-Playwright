@@ -687,12 +687,10 @@ namespace Rokk.Playwright.UI
             Rect summaryContentRect = PlaywrightDrawHelper.RectWithMargin(summaryRect, 10f);
             SummaryContentListing.Begin(summaryContentRect);
 
-            if (SummaryContentListing.ButtonText("Playwright.Reset".Translate(), widthPct: 0.25f))
+            if (SummaryContentListing.ButtonText("Playwright.RandomizeName".Translate(), widthPct: 0.25f))
             {
-                Find.WindowStack.Add(new ConfirmResetSummaryWindow(() =>
-                {
-                    ResetSummaryToOriginDefaults();
-                }));
+                ClickSound();
+                this.PlaywrightStructure.Name = NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
             }
 
             SummaryContentListing.Label("Playwright.Tabs.Summary.Name".Translate());
@@ -703,6 +701,14 @@ namespace Rokk.Playwright.UI
             this.PlaywrightStructure.Description = SummaryContentListing.TextEntry(this.PlaywrightStructure.Description, 8);
             SummaryContentListing.Label("Playwright.Tabs.Summary.GameStartDialog".Translate());
             this.PlaywrightStructure.GameStartDialogText = SummaryContentListing.TextEntry(this.PlaywrightStructure.GameStartDialogText, 6);
+
+            if (SummaryContentListing.ButtonText("Playwright.Reset".Translate(), widthPct: 0.25f))
+            {
+                Find.WindowStack.Add(new ConfirmResetSummaryWindow(() =>
+                {
+                    ResetSummaryToOriginDefaults();
+                }));
+            }
 
             SummaryContentListing.End();
         }

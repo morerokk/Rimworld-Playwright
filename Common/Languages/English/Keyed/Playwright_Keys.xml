@@ -32,6 +32,7 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.NoKeepOrigin>No, keep Origin</Playwright.NoKeepOrigin>
  <Playwright.YesChangeOrigin>Yes, change Origin</Playwright.YesChangeOrigin>
  <Playwright.ErrorOriginNull>Playwright Origin empty, did you select an Origin/Scenario?</Playwright.ErrorOriginNull>
+ <Playwright.RandomizeName>Randomize name</Playwright.RandomizeName>
  <Playwright.NoFloatMenuOptions>(no options)</Playwright.NoFloatMenuOptions>
  <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
  <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>

@@ -13,10 +13,13 @@ namespace Rokk.Playwright.UI
         private Action OnConfirm;
         public override Vector2 InitialSize => new Vector2(400, 300);
 
+        private float OpenTime;
+
         public ConfirmResetSummaryWindow(Action onConfirm) : base()
         {
             this.OnConfirm = onConfirm;
             this.closeOnClickedOutside = true;
+            this.OpenTime = Time.unscaledTime;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -59,6 +62,22 @@ namespace Rokk.Playwright.UI
         private void Cancel()
         {
             this.Close(true);
+        }
+
+        public override void OnAcceptKeyPressed()
+        {
+            if (Time.unscaledTime - this.OpenTime >= 0.05f)
+            {
+                this.Confirm();
+            }
+        }
+
+        public override void OnCancelKeyPressed()
+        {
+            if (Time.unscaledTime - this.OpenTime >= 0.05f)
+            {
+                this.Cancel();
+            }
         }
     }
 }

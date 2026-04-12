@@ -41,7 +41,7 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
             // When we have the xenotype variant, add the androids xenotype to it as requirement.
             // If we have a kind variant, add the androids kind to it as requirement.
             // Anything else is not supported.
-            // (Holy shit this is ass)
+            // (Holy shit this is ass. At least the mechanitor start is supported now, so we support everything except "The Anomaly" start.)
             if (regularConfigurePart != null)
             {
                 xenotypeConfigurePart = ScenPartUtility.ConvertConfigureStartingPawnsToXenotypes(regularConfigurePart);

@@ -36,7 +36,7 @@
     <Compile Include="Addons\ComponentRegistration.cs" />
     <Compile Include="Addons\HookRegistration.cs" />
     <Compile Include="Components\Boons\BoonComponent.cs" />
-    <Compile Include="Components\Boons\BionicArmBoon.cs" />
+    <Compile Include="Components\Boons\BionicsBoon.cs" />
     <Compile Include="Components\Boons\NovicesBoon.cs" />
     <Compile Include="Components\Boons\ShuttleBoon.cs" />
     <Compile Include="Components\Factions\FactionComponent.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="Components\Origins\EmpireOrigin.cs" />
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
+    <Compile Include="Components\SpecialConditions\PrepareHaphazardlySpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\DisableMechanoidSignalSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\XenotypeSwapSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PlanetkillerSpecialCondition.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="GameComponents\GameComponent_Playwright_WinConditions.cs" />
     <Compile Include="PatchCheckers\FactionPatchChecker.cs" />
     <Compile Include="PatchCheckers\WinConditionPatchChecker.cs" />
+    <Compile Include="Patches\StartingPawnUtilityPatches.cs" />
     <Compile Include="Patches\FactionPatches.cs" />
     <Compile Include="Patches\GamePatches.cs" />
     <Compile Include="Patches\GoodwillSituationManagerPatches.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composer\PlaywrightBuilder.cs" />
     <Compile Include="Composer\PlaywrightStructure.cs" />
+    <Compile Include="ScenParts\NoColonistRerolls.cs" />
     <Compile Include="ScenParts\ReplaceXenotypeWithCustom.cs" />
     <Compile Include="ScenParts\ScenPart_WinCondition.cs" />
     <Compile Include="ScenParts\ReplaceXenotype.cs" />

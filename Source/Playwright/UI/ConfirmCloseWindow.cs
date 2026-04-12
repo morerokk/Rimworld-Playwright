@@ -12,11 +12,16 @@ namespace Rokk.Playwright.UI
     {
         private Action OnConfirm;
         public override Vector2 InitialSize => new Vector2(400, 300);
+        /// <summary>
+        /// The unscaled time at which this window was opened.
+        /// </summary>
+        private float OpenTime;
 
         public ConfirmCloseWindow(Action onConfirm) : base()
         {
             this.OnConfirm = onConfirm;
             this.closeOnClickedOutside = true;
+            this.OpenTime = Time.unscaledTime;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -27,19 +32,19 @@ namespace Rokk.Playwright.UI
             listing.End();
 
             const float ButtonHeight = 38f;
-            const float ButtonWidth = 140f;
+            const float ButtonWidth = 150f;
             const float ButtonMargin = 8f;
 
             float buttonY = inRect.yMax - ButtonHeight - ButtonMargin;
             float leftX = inRect.x;
             Rect noRect = new Rect(leftX, buttonY, ButtonWidth, ButtonHeight);
-            if (Widgets.ButtonText(noRect, "No".Translate()))
+            if (Widgets.ButtonText(noRect, "Cancel".Translate()))
             {
                 this.Cancel();
             }
 
             Rect yesRect = new Rect(inRect.xMax - ButtonWidth - ButtonMargin, buttonY, ButtonWidth, ButtonHeight);
-            if (Widgets.ButtonText(yesRect, "Yes".Translate()))
+            if (Widgets.ButtonText(yesRect, "Playwright.CloseWithoutSaving".Translate()))
             {
                 this.Confirm();
             }
@@ -59,6 +64,22 @@ namespace Rokk.Playwright.UI
         private void Cancel()
         {
             this.Close(true);
+        }
+
+        public override void OnAcceptKeyPressed()
+        {
+            if (Time.unscaledTime - this.OpenTime >= 0.05f)
+            {
+                this.Confirm();
+            }
+        }
+
+        public override void OnCancelKeyPressed()
+        {
+            if (Time.unscaledTime - this.OpenTime >= 0.05f)
+            {
+                this.Cancel();
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Rokk.Playwright.Components.Boons
         {
             List<BoonComponent> boons = new List<BoonComponent>()
             {
-                new BionicArmBoon()
+                new BionicsBoon()
             };
 
             BoonComponent shuttleBoon = new ShuttleBoon();

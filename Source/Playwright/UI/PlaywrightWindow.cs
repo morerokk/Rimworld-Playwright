@@ -89,6 +89,8 @@ namespace Rokk.Playwright.UI
                     break;
                 case Tabs.Summary:
                     DrawSummaryTab(tabContentRect);
+                    // We can't easily detect changes in a text input, just assume that someone visiting the Summary tab may change something
+                    FormDirty = true;
                     break;
             }
 
@@ -848,18 +850,13 @@ namespace Rokk.Playwright.UI
 
         public override void OnAcceptKeyPressed()
         {
-            // Don't eat the whole window if someone presses enter
-            // For fuck's sake, why is this the default behavior?
+            // This window can have multiline text input fields, we should do absolutely nothing on enter press
         }
 
         public override void OnCancelKeyPressed()
         {
             // Will ask the player to save first
-            // Does not actually work because ?????????
-            // At the very least, this won't instantly eat the entire fucking window when someone dares press ESC
-            // Hypothesis: the ESC press pops up the "Are you sure you want to exit?" menu, and then the same keypress insta-closes that window
-            // Fucking stupid
-            // this.Close(true);
+            this.Close(true);
         }
 
         public enum Tabs

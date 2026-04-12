@@ -324,6 +324,12 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        public static NoColonistRerolls MakeNoColonistRerollsPart()
+        {
+            NoColonistRerolls part = (NoColonistRerolls)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_NoColonistRerolls);
+            return part;
+        }
+
         public static WinCondition_Colony MakeWinConditionColonyPart(int colonists)
         {
             WinCondition_Colony part = (WinCondition_Colony)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Colony);
@@ -373,6 +379,37 @@ namespace Rokk.Playwright.Utilities
             });
 
             return part;
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawnsBase GetConfigureStartingPawnsPart(Scenario scenario)
+        {
+            FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
+            List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
+            return GetConfigureStartingPawnsPart(parts);
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawnsBase GetConfigureStartingPawnsPart(List<ScenPart> parts)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawnsBase result = parts
+                .Where(part =>
+                    part.def == ScenPartDefOf.ConfigPage_ConfigureStartingPawns
+                    || (ModsConfig.BiotechActive && part.def == DefOfs.ScenPartDefOf.ConfigurePawnsXenotypes)
+                    || (ModsConfig.BiotechActive && part.def == DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs)
+                    || (ModsConfig.AnomalyActive && part.def == DefOfs.ScenPartDefOf.ConfigurePawnsMutants)
+                )
+                .Cast<ScenPart_ConfigPage_ConfigureStartingPawnsBase>()
+                .FirstOrDefault();
+
+            if (result == null)
+            {
+                // Try harder! Just get the first part that matches, is slower but works with modded configpages
+                result = parts
+                    .Where(part => part is ScenPart_ConfigPage_ConfigureStartingPawnsBase)
+                    .Cast<ScenPart_ConfigPage_ConfigureStartingPawnsBase>()
+                    .FirstOrDefault();
+            }
+
+            return result;
         }
     }
 }

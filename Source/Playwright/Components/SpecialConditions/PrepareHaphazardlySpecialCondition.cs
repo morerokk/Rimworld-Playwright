@@ -1,0 +1,31 @@
+﻿using RimWorld;
+using Rokk.Playwright.Exceptions;
+using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Verse;
+
+namespace Rokk.Playwright.Components.SpecialConditions
+{
+    public class PrepareHaphazardlySpecialCondition : SpecialConditionComponent
+    {
+        public override string Id => "SpecialConditions.PrepareHaphazardly";
+
+        public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
+        {
+            // Add twice as many colonist choices
+            var configurePart = ScenPartUtility.GetConfigureStartingPawnsPart(scenarioParts);
+            if (configurePart == null)
+            {
+                Find.WindowStack.Add(new InfoPopupWindow("Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage".Translate()));
+                throw new PlaywrightBuilderException("Prepare Haphazardly special condition: configurePart was null, the scenario's configure starting pawns part is probably unknown or unrecognized.");
+            }
+            configurePart.pawnChoiceCount *= 2;
+            // Disable rerolls
+            scenarioParts.Add(ScenPartUtility.MakeNoColonistRerollsPart());
+        }
+    }
+}

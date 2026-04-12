@@ -133,6 +133,12 @@ Example: replace all Sanguophages with your own custom version of Sanguophages. 
 
 You may run into harmless one-time errors when trying to replace a xenotype with a non-violent one, because of various rules like faction leaders needing to be capable of violence. Those pawns may end up still being their original xenotype.</Playwright.ScenParts.ReplaceXenotypeWithCustom.Help>
  <Playwright.ScenParts.ReplaceXenotypeWithCustom.Summary>{0} have a {1} chance for {2} xenotype to be replaced with custom xenotype {3}.</Playwright.ScenParts.ReplaceXenotypeWithCustom.Summary>
+
+ <Playwright.ScenParts.NoColonistRerolls>No colonist rerolls</Playwright.ScenParts.NoColonistRerolls>
+ <Playwright.ScenParts.NoColonistRerolls.Summary>Colonists can't be rerolled during preparation.</Playwright.ScenParts.NoColonistRerolls.Summary>
+ <Playwright.ScenParts.NoColonistRerolls.Help>Prevents you from rerolling colonists in the preparation screen.
+
+Due to technical limitations, you also cannot change their xenotypes in the preparation screen.</Playwright.ScenParts.NoColonistRerolls.Help>
  
  <!-- Win Conditions -->
  <Playwright.ScenParts.WinCondition.SummaryIntro>Additional win conditions</Playwright.ScenParts.WinCondition.SummaryIntro>

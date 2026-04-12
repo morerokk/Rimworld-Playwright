@@ -29,6 +29,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Playwright_ReplaceXenotype;
         [MayRequireBiotech]
         public static ScenPartDef Playwright_ReplaceXenotypeWithCustom;
+        public static ScenPartDef Playwright_NoColonistRerolls;
 
         // Win conditions
         public static ScenPartDef Playwright_WinCondition_Colony;
@@ -54,5 +55,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ConfigurePawnsXenotypes;
         [MayRequireBiotech]
         public static ScenPartDef ConfigurePawnsKindDefs;
+        [MayRequireAnomaly]
+        public static ScenPartDef ConfigurePawnsMutants;
     }
 }

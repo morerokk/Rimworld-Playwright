@@ -129,6 +129,16 @@
     <selectionWeight>0.0</selectionWeight>
     <summaryPriority>2</summaryPriority>
   </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Playwright_NoColonistRerolls</defName>
+    <label>no colonist rerolls</label>
+    <scenPartClass>Rokk.Playwright.ScenParts.NoColonistRerolls</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>459</summaryPriority>
+	  <maxUses>1</maxUses>
+  </ScenPartDef>
   
   <!-- Win Conditions -->
   <ScenPartDef>

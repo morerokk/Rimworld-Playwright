@@ -28,6 +28,10 @@ Are you sure?</Playwright.ConfirmReset>
 
 Are you sure you want to close the window without saving?</Playwright.ConfirmClose>
  <Playwright.ConfirmResetSummary>Are you sure you want to reset your name and descriptions to the Origin's defaults?</Playwright.ConfirmResetSummary>
+ <Playwright.CloseWithoutSaving>Close without saving</Playwright.CloseWithoutSaving>
+ <Playwright.NoKeepOrigin>No, keep Origin</Playwright.NoKeepOrigin>
+ <Playwright.YesChangeOrigin>Yes, change Origin</Playwright.YesChangeOrigin>
+ <Playwright.ErrorOriginNull>Playwright Origin empty, did you select an Origin/Scenario?</Playwright.ErrorOriginNull>
  <Playwright.NoFloatMenuOptions>(no options)</Playwright.NoFloatMenuOptions>
  <Playwright.DefaultBoons>Default Boons:</Playwright.DefaultBoons>
  <Playwright.DefaultAllies>Default Allies:</Playwright.DefaultAllies>
@@ -111,10 +115,12 @@ When you're done, click "Create Scenario" to save your Playwright as a scenario.
  <Playwright.Components.Boons.Shuttle.DescriptionShort>Start with a Shuttle from Odyssey.</Playwright.Components.Boons.Shuttle.DescriptionShort>
  <Playwright.Components.Boons.Shuttle.Description>Start with a pre-built Passenger Shuttle from Odyssey, and enough Chemfuel to fill it up.</Playwright.Components.Boons.Shuttle.Description>
  
- <Playwright.Components.Boons.BionicArm>Bionic Arms</Playwright.Components.Boons.BionicArm>
- <Playwright.Components.Boons.BionicArm.DescriptionShort>Start with Bionic Arms.</Playwright.Components.Boons.BionicArm.DescriptionShort>
- <Playwright.Components.Boons.BionicArm.Description>Each starting colonist has 2 Bionic Arms implanted.</Playwright.Components.Boons.BionicArm.Description>
- 
+ <Playwright.Components.Boons.Bionics>Bionics</Playwright.Components.Boons.Bionics>
+ <Playwright.Components.Boons.Bionics.DescriptionShort>Start with Bionic implants.</Playwright.Components.Boons.Bionics.DescriptionShort>
+ <Playwright.Components.Boons.Bionics.Description>Each starting colonist has the selected bionic limbs implanted on both sides.</Playwright.Components.Boons.Bionics.Description>
+ <Playwright.Components.Boons.Bionics.Arms>Arms</Playwright.Components.Boons.Bionics.Arms>
+ <Playwright.Components.Boons.Bionics.Legs>Legs</Playwright.Components.Boons.Bionics.Legs>
+
  <Playwright.Components.Boons.Novices>Imperial Novices</Playwright.Components.Boons.Novices>
  <Playwright.Components.Boons.Novices.DescriptionShort>Start with a royal title.</Playwright.Components.Boons.Novices.DescriptionShort>
  <Playwright.Components.Boons.Novices.Description>Each starting colonist has a Novice title with the Shattered Empire, and a Level 1 Psylink.</Playwright.Components.Boons.Novices.Description>
@@ -210,5 +216,12 @@ Raids will respect xenotypes when calculating raid points, so replacing one xeno
  <Playwright.Components.SpecialConditions.DisableMechanoidSignal>Disable Mechanoid Signal</Playwright.Components.SpecialConditions.DisableMechanoidSignal>
  <Playwright.Components.SpecialConditions.DisableMechanoidSignal.DescriptionShort>Disables the Odyssey Mechanoid Signal quest.</Playwright.Components.SpecialConditions.DisableMechanoidSignal.DescriptionShort>
  <Playwright.Components.SpecialConditions.DisableMechanoidSignal.Description>Disables Odyssey's Mechanoid Signal quest. This will remove the default way of acquiring a Gravship.</Playwright.Components.SpecialConditions.DisableMechanoidSignal.Description>
+
+ <Playwright.Components.SpecialConditions.PrepareHaphazardly>Prepare Haphazardly</Playwright.Components.SpecialConditions.PrepareHaphazardly>
+ <Playwright.Components.SpecialConditions.PrepareHaphazardly.DescriptionShort>More colonist choices, but you can't reroll them.</Playwright.Components.SpecialConditions.PrepareHaphazardly.DescriptionShort>
+ <Playwright.Components.SpecialConditions.PrepareHaphazardly.Description>You can choose from twice as many colonists on the colonist preparation screen (such as 3 out of 16, instead of 3 out of 8), but you can't reroll any of them. You also cannot change their xenotypes in this screen.</Playwright.Components.SpecialConditions.PrepareHaphazardly.Description>
+ <Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage>Prepare Haphazardly special condition: unable to increase the amount of choices in the colonist preparation screen. This scenario/origin's colonist preparation screen has an unknown/unrecognized configpage part.
+
+Please deselect the Prepare Haphazardly special condition or select a different Origin. (Sorry!)</Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage>
 
 </LanguageData>

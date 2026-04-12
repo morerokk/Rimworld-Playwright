@@ -13,5 +13,6 @@ namespace Rokk.Playwright.DefOfs
     {
         // Things that are in the base game but have not been added to a DefOf
         public static HediffDef BionicArm;
+        public static HediffDef BionicLeg;
     }
 }

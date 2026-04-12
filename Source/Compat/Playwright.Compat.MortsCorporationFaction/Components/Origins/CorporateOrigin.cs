@@ -21,7 +21,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Origins
         public override List<BoonComponent> DefaultBoons => new List<BoonComponent>()
         {
             new CorporateGoonsBoon(),
-            new BionicArmBoon()
+            new BionicsBoon()
         };
 
         public override List<FactionComponent> DefaultAllies => new List<FactionComponent>()

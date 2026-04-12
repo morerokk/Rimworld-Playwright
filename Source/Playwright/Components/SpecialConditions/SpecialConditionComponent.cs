@@ -50,6 +50,8 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 specialConditions.Add(disableMechanoidSignalCondition);
             }
 
+            specialConditions.Add(new PrepareHaphazardlySpecialCondition());
+
             foreach (SpecialConditionComponent specialCondition in ComponentRegistration.SpecialConditions)
             {
                 if (specialCondition.IsAvailable)

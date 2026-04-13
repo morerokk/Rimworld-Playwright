@@ -17,6 +17,18 @@ namespace Rokk.Playwright.UI
 
         public Rect? FittedRect { get; protected set; }
 
+        private Action InvalidateGroupHook;
+
+        public Listing_AutoFitVertical() : base()
+        {
+
+        }
+
+        public Listing_AutoFitVertical(Action invalidateGroupHook) : base()
+        {
+            InvalidateGroupHook = invalidateGroupHook;
+        }
+
         public override void Begin(Rect rect)
         {
             if (FittedRect == null)
@@ -49,6 +61,24 @@ namespace Rokk.Playwright.UI
         public virtual void Invalidate()
         {
             FittedRect = null;
+        }
+
+        /// <summary>
+        /// If this instance was constructed with a hook, calls the hook.
+        /// If not constructed with a hook, just calls <see cref="Invalidate"/>.
+        /// Useful for when every auto-listing has to be invalidated.
+        /// (For instance, <seealso cref="Components.Boons.ExtraItemsBoon"/> may add content to the scenario's summary, which requires the summary to expand)
+        /// </summary>
+        public virtual void InvalidateGroup()
+        {
+            if (InvalidateGroupHook != null)
+            {
+                InvalidateGroupHook();
+            }
+            else
+            {
+                Invalidate();
+            }
         }
 
         public Rect GetScrollViewInnerRect(Rect rect)

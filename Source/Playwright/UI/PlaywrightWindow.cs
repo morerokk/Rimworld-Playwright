@@ -40,12 +40,57 @@ namespace Rokk.Playwright.UI
 
         public override Vector2 InitialSize => new Vector2(1200, 800);
 
+        // Auto-listings and scroll positions
+        // Can't use field initializers because I cannot use a reference to InvalidateAutoListings() there,
+        // have to assign them in the constructor
+        private Vector2 OriginsScrollPos = Vector2.zero;
+        private Vector2 OriginContentScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical OriginsListing;
+        private Listing_AutoFitVertical OriginContentListing;
+
+        private Vector2 AvailableBoonsScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical AvailableBoonsListing;
+        private Vector2 SelectedBoonsScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical SelectedBoonsListing;
+
+        private Vector2 AlliesScrollPosition = Vector2.zero;
+        private Vector2 NeutralsScrollPosition = Vector2.zero;
+        private Vector2 EnemiesScrollPosition = Vector2.zero;
+
+        private Vector2 AvailableWinConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical AvailableWinConditionsListing;
+        private Vector2 SelectedWinConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical SelectedWinConditionsListing;
+
+        private Vector2 AvailableSpecialConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical AvailableSpecialConditionsListing;
+        private Vector2 SelectedSpecialConditionsScrollPos = Vector2.zero;
+        private Listing_AutoFitVertical SelectedSpecialConditionsListing;
+
+        private Listing_Standard SummaryListing = new Listing_Standard();
+        private Listing_Standard SummaryContentListing = new Listing_Standard();
+
+        private Listing_Standard ReviewListing = new Listing_Standard();
+        private Listing_AutoFitVertical ReviewContentListing;
+        private Vector2 ReviewContentScrollPos = Vector2.zero;
+        private Listing_Standard ReviewErrorListing = new Listing_Standard();
+
         public PlaywrightWindow() : base()
         {
             this.closeOnClickedOutside = false;
             this.resizeable = false;
             this.optionalTitle = "Playwright.WindowTitle".Translate();
             this.doCloseX = true;
+
+            this.OriginsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.OriginContentListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.AvailableBoonsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.SelectedBoonsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.AvailableWinConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.SelectedWinConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.AvailableSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.SelectedSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.ReviewContentListing = new Listing_AutoFitVertical(InvalidateAutoListings);
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -139,10 +184,6 @@ namespace Rokk.Playwright.UI
             listing.End();
         }
 
-        private Vector2 OriginsScrollPos = Vector2.zero;
-        private Vector2 OriginContentScrollPos = Vector2.zero;
-        private Listing_AutoFitVertical OriginsListing = new Listing_AutoFitVertical();
-        private Listing_AutoFitVertical OriginContentListing = new Listing_AutoFitVertical();
         private void DrawOriginTab(Rect contentRect)
         {
             List<OriginComponent> origins = OriginComponent.GetAvailableOrigins();
@@ -261,10 +302,6 @@ namespace Rokk.Playwright.UI
             InvalidateAutoListings();
         }
 
-        private Vector2 AvailableBoonsScrollPosition = Vector2.zero;
-        private Listing_AutoFitVertical AvailableBoonsListing = new Listing_AutoFitVertical();
-        private Vector2 SelectedBoonsScrollPosition = Vector2.zero;
-        private Listing_AutoFitVertical SelectedBoonsListing = new Listing_AutoFitVertical();
         private void DrawBoonsTab(Rect contentRect)
         {
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
@@ -350,9 +387,6 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private Vector2 AlliesScrollPosition = Vector2.zero;
-        private Vector2 NeutralsScrollPosition = Vector2.zero;
-        private Vector2 EnemiesScrollPosition = Vector2.zero;
         private void DrawFactionsTab(Rect contentRect)
         {
             List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
@@ -477,10 +511,6 @@ namespace Rokk.Playwright.UI
             }
         }
 
-        private Vector2 AvailableWinConditionsScrollPos = Vector2.zero;
-        private Listing_AutoFitVertical AvailableWinConditionsListing = new Listing_AutoFitVertical();
-        private Vector2 SelectedWinConditionsScrollPos = Vector2.zero;
-        private Listing_AutoFitVertical SelectedWinConditionsListing = new Listing_AutoFitVertical();
         private void DrawWinConditionsTab(Rect contentRect)
         {
             List<WinConditionComponent> allWinConditions = WinConditionComponent.GetAvailableWinConditions();
@@ -566,10 +596,6 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private Vector2 AvailableSpecialConditionsScrollPos = Vector2.zero;
-        private Listing_AutoFitVertical AvailableSpecialConditionsListing = new Listing_AutoFitVertical();
-        private Vector2 SelectedSpecialConditionsScrollPos = Vector2.zero;
-        private Listing_AutoFitVertical SelectedSpecialConditionsListing = new Listing_AutoFitVertical();
         private void DrawSpecialConditionsTab(Rect contentRect)
         {
             List<SpecialConditionComponent> allSpecialConditions = SpecialConditionComponent.GetAvailableSpecialConditions();
@@ -667,8 +693,6 @@ namespace Rokk.Playwright.UI
             Widgets.EndScrollView();
         }
 
-        private Listing_Standard SummaryListing = new Listing_Standard();
-        private Listing_Standard SummaryContentListing = new Listing_Standard();
         private void DrawSummaryTab(Rect contentRect)
         {
             // Summary heading
@@ -712,10 +736,6 @@ namespace Rokk.Playwright.UI
             SummaryContentListing.End();
         }
 
-        private Listing_Standard ReviewListing = new Listing_Standard();
-        private Listing_AutoFitVertical ReviewContentListing = new Listing_AutoFitVertical();
-        private Vector2 ReviewContentScrollPos = Vector2.zero;
-        private Listing_Standard ReviewErrorListing = new Listing_Standard();
         private void DrawReviewAndSaveTab(Rect contentRect)
         {
             // Review heading
@@ -774,9 +794,6 @@ namespace Rokk.Playwright.UI
             Rect reviewContentRectInner = new Rect(reviewContentRect);
             reviewContentRectInner.width -= Margin;
             reviewContentRectInner = ReviewContentListing.GetScrollViewInnerRect(reviewContentRectInner);
-            // Expand the summary screen a bit. Some actions will cause the summary to get larger, which makes the text just not render at all (thanks)
-            // We can hopefully catch most cases with this
-            reviewContentRectInner.height += 200f;
             Widgets.BeginScrollView(reviewContentRect, ref ReviewContentScrollPos, reviewContentRectInner);
             ReviewContentListing.Begin(reviewContentRectInner);
 

@@ -36,7 +36,7 @@ namespace Rokk.Playwright.Components.Boons
             if (boonContentListing.ButtonText("Playwright.Components.Boons.ExtraItems.Add".Translate()))
             {
                 Items.Add(new ExtraItemEntry());
-                boonContentListing.Invalidate();
+                boonContentListing.InvalidateGroup();
                 AddSound();
             }
 
@@ -51,8 +51,8 @@ namespace Rokk.Playwright.Components.Boons
             foreach (ExtraItemEntry item in Items.ToList())
             {
                 Rect rect = boonContentListing.GetRect(35f);
-                // UI divided into Count (Thing) (Stuff) (Quality) each 22% wide, last 12% taken up by (DeleteButton)
-                float colWidth = rect.width * 0.22f;
+                // UI divided into Count (Thing) (Stuff) (Quality) each 23% wide, last 8% taken up by (DeleteButton)
+                float colWidth = rect.width * 0.24f;
 
                 // Count
                 Rect countRect = new Rect(rect);
@@ -124,13 +124,14 @@ namespace Rokk.Playwright.Components.Boons
                 // Delete button
                 Rect deleteButtonRect = new Rect(rect)
                 {
-                    width = rect.width * 0.12f,
+                    width = rect.width * 0.04f,
                     x = rect.x + colWidth * 4
                 };
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0f, 0.4f))
                 {
                     Items.Remove(item);
                     RemoveSound();
+                    boonContentListing.InvalidateGroup();
                 }
             }
         }
@@ -183,8 +184,8 @@ namespace Rokk.Playwright.Components.Boons
             /// </summary>
             public string CountBuffer = "1";
 
-            public string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";
-            public string StuffLabel => Stuff != null ? Stuff.LabelCap.ToString() : "-";
+            public string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "Playwright.Components.Boons.ExtraItems.SelectThing".Translate().ToString();
+            public string StuffLabel => Stuff != null ? Stuff.LabelCap.ToString() : "Playwright.Components.Boons.ExtraItems.SelectStuff".Translate().ToString();
             public string QualityLabel => Quality != null ? Quality.Value.GetLabel().CapitalizeFirst() : "Default".Translate().CapitalizeFirst().ToString();
 
             public void ExposeData()

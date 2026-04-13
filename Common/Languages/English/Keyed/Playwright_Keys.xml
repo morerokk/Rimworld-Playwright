@@ -136,6 +136,8 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.ExtraItems.Description>Start with the chosen extra items.</Playwright.Components.Boons.ExtraItems.Description>
  <Playwright.Components.Boons.ExtraItems.Add>Add Item</Playwright.Components.Boons.ExtraItems.Add>
  <Playwright.Components.Boons.ExtraItems.Count>Count</Playwright.Components.Boons.ExtraItems.Count>
+ <Playwright.Components.Boons.ExtraItems.SelectThing>Select item...</Playwright.Components.Boons.ExtraItems.SelectThing>
+ <Playwright.Components.Boons.ExtraItems.SelectStuff>Select material...</Playwright.Components.Boons.ExtraItems.SelectStuff>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->

@@ -53,6 +53,34 @@ namespace Rokk.Playwright.ScenParts
             Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_Time.Help".Translate()));
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+            if (Won)
+            {
+                return;
+            }
+
+            if (Find.TickManager.TicksGame % 3300 == 0)
+            {
+                // A day is exactly 60,000 ticks, this seems to work regardless of how much the player moves around the world or re-settles elsewhere
+                float daysPassed = (float)Find.TickManager.TicksGame / 60000f;
+                if (daysPassed >= Days)
+                {
+                    int aliveColonists = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                        .Count(p => !p.IsAnimal);
+                    if (aliveColonists > 0)
+                    {
+                        FadeOutAndWinGame(
+                            "Playwright.ScenParts.WinCondition_Time.WinIntro",
+                            "Playwright.ScenParts.WinCondition_Time.WinEnding",
+                            "Playwright.ScenParts.WinCondition_Time.WinColonists"
+                        );
+                    }
+                }
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();

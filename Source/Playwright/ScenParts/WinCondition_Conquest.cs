@@ -1,8 +1,10 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -39,6 +41,49 @@ namespace Rokk.Playwright.ScenParts
                 else
                 {
                     yield return "Playwright.ScenParts.WinCondition_Conquest.SummaryNoAllies".Translate();
+                }
+            }
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            if (Won)
+            {
+                return;
+            }
+
+            if (Find.TickManager.TicksGame % 3100 == 0)
+            {
+                var settlements = Find.WorldObjects.Settlements
+                    .Where(s => s.Faction != null && !s.Faction.IsPlayer);
+
+                if (AllowAllies)
+                {
+                    settlements = settlements.Where(s => s.Faction.PlayerRelationKind != FactionRelationKind.Ally);
+                }
+
+                if (settlements.Count() == 0)
+                {
+                    // Check if we should show the "you and your alliance" credits text, or just "you"
+                    bool playerHasAllies = false;
+                    if (AllowAllies)
+                    {
+                        FieldInfo relationsFieldInfo = AccessTools.Field(typeof(Faction), "relations");
+                        var playerRelations = (List<FactionRelation>)relationsFieldInfo.GetValue(Faction.OfPlayer);
+                        playerHasAllies = playerRelations.Any(r => r.kind == FactionRelationKind.Ally);
+                    }
+                    string winIntroKey = "Playwright.ScenParts.WinCondition_Conquest.WinIntro";
+                    if (!playerHasAllies)
+                    {
+                        winIntroKey = "Playwright.ScenParts.WinCondition_Conquest.WinIntroNoAllies";
+                    }
+
+                    FadeOutAndWinGame(
+                        winIntroKey,
+                        "Playwright.ScenParts.WinCondition_Conquest.WinEnding",
+                        "Playwright.ScenParts.WinCondition_Conquest.WinColonists"
+                    );
                 }
             }
         }

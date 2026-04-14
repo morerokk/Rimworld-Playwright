@@ -100,6 +100,37 @@ namespace Rokk.Playwright.ScenParts
             Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_RoyalTitles.Help".Translate()));
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+            if (Won)
+            {
+                return;
+            }
+
+            if (Find.TickManager.TicksGame % 3200 == 0)
+            {
+                List<Pawn> playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                    .Where(p => p.royalty != null)
+                    .ToList();
+
+                List<Pawn> qualifiedPawns = playerPawns
+                    .Where(p => p.royalty.AllTitlesInEffectForReading.Any(t => t.faction.def == Faction && t.def.seniority >= Title.seniority))
+                    .ToList();
+
+                if (qualifiedPawns.Count >= Colonists)
+                {
+                    FadeOutAndWinGame(
+                        "Playwright.ScenParts.WinCondition_RoyalTitles.WinIntro",
+                        "Playwright.ScenParts.WinCondition_RoyalTitles.WinEnding",
+                        "Playwright.ScenParts.WinCondition_RoyalTitles.WinColonists",
+                        qualifiedPawns,
+                        false
+                    );
+                }
+            }
+        }
+
         public override bool CanCoexistWith(ScenPart other)
         {
             WinCondition_RoyalTitles part = other as WinCondition_RoyalTitles;

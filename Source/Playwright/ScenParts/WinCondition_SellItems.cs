@@ -21,6 +21,8 @@ namespace Rokk.Playwright.ScenParts
         public int Amount;
         private string AmountBuffer;
 
+        public int AmountSold;
+
         private string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";
 
         private IEnumerable<ThingDef> PossibleThingDefs()
@@ -72,6 +74,30 @@ namespace Rokk.Playwright.ScenParts
             Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_SellItems.Help".Translate()));
         }
 
+        /// <summary>
+        /// Should be called by external patches when an item is sold to a trader.
+        /// Lets this ScenPart know that something has been sold to a trader, so that we can trigger the win if necessary.
+        /// </summary>
+        /// <param name="thing">The Thing that's been sold. Should at least include the def and the stack count.</param>
+        public void NotifyThingSoldToTrader(Thing thing)
+        {
+            if (thing.def != this.Thing)
+            {
+                return;
+            }
+
+            AmountSold += thing.stackCount;
+
+            if (!Won && AmountSold >= Amount)
+            {
+                FadeOutAndWinGame(
+                    "Playwright.ScenParts.WinCondition_SellItems.WinIntro",
+                    "Playwright.ScenParts.WinCondition_SellItems.WinEnding",
+                    "Playwright.ScenParts.WinCondition_SellItems.WinColonists"
+                );
+            }
+        }
+
         public override bool CanCoexistWith(ScenPart other)
         {
             WinCondition_SellItems part = other as WinCondition_SellItems;
@@ -83,6 +109,7 @@ namespace Rokk.Playwright.ScenParts
             base.ExposeData();
             Scribe_Defs.Look(ref Thing, nameof(Thing));
             Scribe_Values.Look(ref Amount, nameof(Amount));
+            Scribe_Values.Look(ref AmountSold, nameof(AmountSold));
         }
     }
 }

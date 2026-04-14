@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.GameComponents;
 using Rokk.Playwright.PatchCheckers;
+using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +18,28 @@ namespace Rokk.Playwright.Patches
         [HarmonyPostfix]
         static void Postfix(Tradeable __instance)
         {
-            // When the player sells an item, notify the win conditions gamecomponent
+            // When the player sells an item, notify each ScenPart_SellItems
             if (__instance.ActionToDo != TradeAction.PlayerSells)
             {
                 return;
             }
 
-            var component = Current.Game.GetComponent<GameComponent_Playwright_WinConditions>();
-            if (component == null)
+            Scenario scenario = Find.Scenario;
+            if (scenario == null)
             {
                 return;
             }
 
-            foreach (Thing thing in __instance.thingsColony)
+            List<WinCondition_SellItems> sellItemsParts = scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.Playwright_WinCondition_SellItems)
+                .Cast<WinCondition_SellItems>()
+                .ToList();
+            foreach (WinCondition_SellItems sellItemsPart in sellItemsParts)
             {
-                component.NotifyThingSold(thing);
+                foreach (Thing thing in __instance.thingsColony)
+                {
+                    sellItemsPart.NotifyThingSoldToTrader(thing);
+                }
             }
         }
     }

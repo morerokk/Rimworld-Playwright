@@ -28,7 +28,7 @@ namespace Rokk.Playwright.ScenParts
 
             helper.Skip(1);
 
-            if(Widgets.ButtonText(helper.NextRect(), "?"))
+            if (Widgets.ButtonText(helper.NextRect(), "?"))
             {
                 DoHelpButton();
             }
@@ -45,6 +45,30 @@ namespace Rokk.Playwright.ScenParts
         protected override void DoHelpButton()
         {
             Find.WindowStack.Add(new InfoPopupWindow("Playwright.ScenParts.WinCondition_Colony.Help".Translate()));
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            if (Won)
+            {
+                return;
+            }
+
+            if (Find.TickManager.TicksGame % 3000 == 0)
+            {
+                int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction
+                    .Count(p => !p.IsAnimal);
+
+                if (playerPawnCount >= Colonists)
+                {
+                    FadeOutAndWinGame(
+                        "Playwright.ScenParts.WinCondition_Colony.WinIntro",
+                        "Playwright.ScenParts.WinCondition_Colony.WinEnding",
+                        "Playwright.ScenParts.WinCondition_Colony.WinColonists"
+                    );
+                }
+            }
         }
 
         public override void ExposeData()

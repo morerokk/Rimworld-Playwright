@@ -55,6 +55,11 @@ namespace Rokk.Playwright.ScenParts
                 return;
             }
 
+            // Winning is kind of rare (tends to only happen once per run after all).
+            // When making a Win Condition, limit how often it runs. This one runs once every 3000 ticks.
+            // Try to stagger the numbers so you're not "doing nothing" most of the time,
+            // and then suddenly checking a whole bunch of win conditions all on the same tick.
+            // If your win condition checks are even slightly laggy, this would result in noticeable lagspikes.
             if (Find.TickManager.TicksGame % 3000 == 0)
             {
                 int playerPawnCount = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction

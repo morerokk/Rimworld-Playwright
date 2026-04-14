@@ -63,7 +63,7 @@ namespace Rokk.Playwright.ScenParts
             }
 
             Won = true;
-            FadeEndTime = Time.realtimeSinceStartup + 5f;
+            FadeEndTime = Time.realtimeSinceStartup + fadeDuration;
             CountdownEnded = () =>
             {
                 WinGame(winIntroKey, winEndingKey, winColonistsKey, spotlightPawns, showLeftBehindPawns, creditsSong);

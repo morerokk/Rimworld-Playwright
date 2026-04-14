@@ -126,9 +126,9 @@ namespace Rokk.Playwright.ScenParts
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Defs.Look<FactionDef>(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));
-            Scribe_Values.Look<int>(ref StartingHonor, nameof(StartingHonor), 7, false);
-            Scribe_Values.Look<bool>(ref ApplyTitles, nameof(ApplyTitles), true, false);
+            Scribe_Defs.Look(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));
+            Scribe_Values.Look(ref StartingHonor, nameof(StartingHonor), 7, false);
+            Scribe_Values.Look(ref ApplyTitles, nameof(ApplyTitles), true, false);
         }
 
         // Scenario summary description

@@ -264,6 +264,12 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        public static ScenPart_PursuingMechanoids MakePursuingMechanoidsPart()
+        {
+            ScenPart_PursuingMechanoids part = (ScenPart_PursuingMechanoids)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.PursuingMechanoids);
+            return part;
+        }
+
         public static DisableShipStartup MakeDisableShipStartupPart()
         {
             DisableShipStartup part = (DisableShipStartup)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_DisableShipStartup);

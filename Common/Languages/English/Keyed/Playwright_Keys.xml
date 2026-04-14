@@ -249,4 +249,8 @@ Please deselect the Prepare Haphazardly special condition or select a different 
  <Playwright.Components.SpecialConditions.DeathExplosion.Radius>Radius</Playwright.Components.SpecialConditions.DeathExplosion.Radius>
  <Playwright.Components.SpecialConditions.DeathExplosion.Damage>Damage Type</Playwright.Components.SpecialConditions.DeathExplosion.Damage>
 
+ <Playwright.Components.SpecialConditions.PursuingMechanoids>Pursuing Mechanoids</Playwright.Components.SpecialConditions.PursuingMechanoids>
+ <Playwright.Components.SpecialConditions.PursuingMechanoids.DescriptionShort>You are hounded by Mechanoid raids.</Playwright.Components.SpecialConditions.PursuingMechanoids.DescriptionShort>
+ <Playwright.Components.SpecialConditions.PursuingMechanoids.Description>If you have a Gravship, large Mechanoid raids will harass you wherever you go, attracted to your Grav Engine. These raids will not start until you land a Gravship, and will cease when you complete The Mechhive ending with either choice (or lose your Gravship).</Playwright.Components.SpecialConditions.PursuingMechanoids.Description>
+
 </LanguageData>

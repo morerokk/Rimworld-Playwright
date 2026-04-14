@@ -52,8 +52,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void ExposeData()
         {
-            Scribe_Defs.Look<FactionDef>(ref Faction, nameof(Faction));
             base.ExposeData();
+            Scribe_Defs.Look(ref Faction, nameof(Faction));
         }
 
         public override string Summary(Scenario scen)

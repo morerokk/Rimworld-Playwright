@@ -42,8 +42,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void ExposeData()
         {
-            Scribe_Values.Look<float>(ref Chance, nameof(Chance), 1f, false);
             base.ExposeData();
+            Scribe_Values.Look(ref Chance, nameof(Chance), 1f, false);
         }
 
         // Scenario summary description

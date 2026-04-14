@@ -109,7 +109,7 @@ namespace Rokk.Playwright.ScenParts
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref Colonists, nameof(Colonists));
+            Scribe_Values.Look(ref Colonists, nameof(Colonists));
             Scribe_Defs.Look(ref Faction, nameof(Faction));
             Scribe_Defs.Look(ref Title, nameof(Title));
         }

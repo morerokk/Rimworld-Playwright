@@ -50,7 +50,7 @@ namespace Rokk.Playwright.ScenParts
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref Colonists, nameof(Colonists));
+            Scribe_Values.Look(ref Colonists, nameof(Colonists));
         }
     }
 }

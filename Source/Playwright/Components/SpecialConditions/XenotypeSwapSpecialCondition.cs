@@ -102,7 +102,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             if (specialConditionContentListing.ButtonText("Playwright.Components.SpecialConditions.XenotypeSwap.Add".Translate()))
             {
                 XenotypeReplacements.Add(new XenotypeReplacement());
-                specialConditionContentListing.Invalidate();
+                specialConditionContentListing.InvalidateGroup();
                 AddSound();
             }
 
@@ -111,7 +111,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             if (specialConditionContentListing.ButtonText("Playwright.Components.SpecialConditions.XenotypeSwap.AddCustom".Translate()))
             {
                 CustomXenotypeReplacements.Add(new CustomXenotypeReplacement());
-                specialConditionContentListing.Invalidate();
+                specialConditionContentListing.InvalidateGroup();
                 AddSound();
             }
 
@@ -137,7 +137,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var xenotypeDef in GetSelectableFromXenotypes(replacement))
                     {
-                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.Invalidate(); }));
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
@@ -162,7 +162,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var xenotypeDef in GetSelectableToXenotypes(replacement))
                     {
-                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.Invalidate(); }));
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
@@ -177,6 +177,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 {
                     XenotypeReplacements.Remove(replacement);
                     RemoveSound();
+                    specialConditionContentListing.InvalidateGroup();
                 }
 
                 if (replacement.From == replacement.To)
@@ -205,7 +206,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var xenotypeDef in GetSelectableFromXenotypes(customReplacement))
                     {
-                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { customReplacement.From = xenotypeDef; specialConditionContentListing.Invalidate(); }, xenotypeDef.Icon, Color.white));
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { customReplacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
@@ -230,7 +231,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var customXenotype in GetCustomXenotypes())
                     {
-                        options.Add(new FloatMenuOption(customXenotype.name, () => { customReplacement.ToCustom = customXenotype; specialConditionContentListing.Invalidate(); }, customXenotype.IconDef.Icon, Color.white));
+                        options.Add(new FloatMenuOption(customXenotype.name, () => { customReplacement.ToCustom = customXenotype; specialConditionContentListing.InvalidateGroup(); }, customXenotype.IconDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
@@ -245,6 +246,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 {
                     CustomXenotypeReplacements.Remove(customReplacement);
                     RemoveSound();
+                    specialConditionContentListing.InvalidateGroup();
                 }
             }
         }
@@ -270,7 +272,6 @@ namespace Rokk.Playwright.Components.SpecialConditions
             Scribe_Collections.Look(ref XenotypeReplacements, nameof(XenotypeReplacements), LookMode.Deep);
         }
 
-        // Read-write tuple that's also IExposable
         public class XenotypeReplacement : IExposable
         {
             public XenotypeDef From;

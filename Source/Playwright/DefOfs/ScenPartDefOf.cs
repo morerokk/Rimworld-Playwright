@@ -58,5 +58,7 @@ namespace Rokk.Playwright.DefOfs
         [MayRequireAnomaly]
         public static ScenPartDef ConfigurePawnsMutants;
         public static ScenPartDef OnPawnDeathExplode;
+        [MayRequireOdyssey]
+        public static ScenPartDef PursuingMechanoids;
     }
 }

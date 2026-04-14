@@ -56,7 +56,7 @@ namespace Rokk.Playwright.ScenParts
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref Days, nameof(Days));
+            Scribe_Values.Look(ref Days, nameof(Days));
         }
     }
 }

@@ -10,6 +10,8 @@
  
  <!-- Settings -->
  <Playwright.Settings.EnablePlaywrightButton>Enable Playwright button in main menu</Playwright.Settings.EnablePlaywrightButton>
+ <Playwright.Settings.HideReplacedFactions>Hide replaced factions</Playwright.Settings.HideReplacedFactions>
+ <Playwright.Settings.HideReplacedFactions.Help>If enabled, factions that are replaced by other factions. Default: enabled.</Playwright.Settings.HideReplacedFactions.Help>
  
  <!-- Main Menu -->
  <Playwright.OpenPlaywrightButton>Playwright</Playwright.OpenPlaywrightButton>

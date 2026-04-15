@@ -21,11 +21,10 @@ namespace Rokk.Playwright.ScenParts
 
         protected string FactionToAffectLabelText => FactionToAffect != null ? FactionToAffect.LabelCap.ToString() : "-";
 
-        protected virtual List<FactionDef> GetAllowedFactions()
+        protected virtual IEnumerable<FactionDef> GetAllowedFactions()
         {
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer && !def.hidden && !def.permanentEnemy)
-                .ToList();
+            return PlaywrightUtils.GetAllNpcFactions()
+                .Where(def => !def.permanentEnemy);
         }
 
         public override void DoEditInterface(Listing_ScenEdit listing)
@@ -37,7 +36,7 @@ namespace Rokk.Playwright.ScenParts
             if (Widgets.ButtonText(helper.NextRect(), FactionToAffectLabelText))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();
-                List<FactionDef> allowedFactions = GetAllowedFactions();
+                var allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToAffect = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));

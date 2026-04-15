@@ -18,11 +18,9 @@ namespace Rokk.Playwright.ScenParts
 
         public string SummaryTag => "Playwright_RemoveFaction";
 
-        protected virtual List<FactionDef> GetAllowedFactions()
+        protected virtual IEnumerable<FactionDef> GetAllowedFactions()
         {
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer && !def.hidden)
-                .ToList();
+            return PlaywrightUtils.GetAllNpcFactions();
         }
 
         public override void DoEditInterface(Listing_ScenEdit listing)
@@ -34,7 +32,7 @@ namespace Rokk.Playwright.ScenParts
             if (Widgets.ButtonText(helper.NextRect(), FactionLabelText))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();
-                List<FactionDef> allowedFactions = GetAllowedFactions();
+                var allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));

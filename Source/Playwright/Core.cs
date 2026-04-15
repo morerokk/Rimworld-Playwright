@@ -30,8 +30,8 @@ namespace Rokk.Playwright
             listingStandard.Begin(inRect);
 
             listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButton".Translate(), ref Settings.EnablePlaywrightButton);
-
             listingStandard.Gap();
+            listingStandard.CheckboxLabeled("Playwright.Settings.HideReplacedFactions".Translate(), ref Settings.HideReplacedFactions);
 
             if (listingStandard.ButtonText("Playwright.Reset".Translate(), null, 0.25f))
             {

@@ -78,20 +78,18 @@ namespace Rokk.Playwright.Composer
 
         private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
-            // Separate processing for the (All Others) faction, strip out all factions that weren't chosen
+            // Separate processing for the absence of the "(All Others)" faction, strip out all factions that weren't explicitly chosen
             if (!playwright.NeutralFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
             {
-                List<FactionDef> factionsToKeep = playwright.NeutralFactions
-                    .Where(f => f.FactionDef != null)
-                    .Select(f => f.FactionDef)
+                var factionsToKeep = PlaywrightUtils.GetDefaultNeutralFactions()
+                    .Where(factionDef => playwright.IsFactionSelectedAnywhere(factionDef))
                     .ToList();
                 parts.Add(ScenPartUtility.MakeNoNeutralFactionsExceptPart(factionsToKeep));
             }
             if (!playwright.EnemyFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
             {
-                List<FactionDef> factionsToKeep = playwright.EnemyFactions
-                    .Where(f => f.FactionDef != null)
-                    .Select(f => f.FactionDef)
+                var factionsToKeep = PlaywrightUtils.GetDefaultEnemyFactions()
+                    .Where(factionDef => playwright.IsFactionSelectedAnywhere(factionDef))
                     .ToList();
                 parts.Add(ScenPartUtility.MakeNoHostileFactionsExceptPart(factionsToKeep));
             }

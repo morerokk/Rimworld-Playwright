@@ -1,4 +1,5 @@
-﻿using Rokk.Playwright.Addons;
+﻿using RimWorld;
+using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
@@ -85,10 +86,7 @@ namespace Rokk.Playwright.Composer
             {
                 Origin = new CrashlandedOrigin(),
                 Boons = new List<BoonComponent>(),
-                AllyFactions = new List<FactionComponent>()
-                {
-                    new AllOtherFactions()
-                },
+                AllyFactions = new List<FactionComponent>(),
                 EnemyFactions = new List<FactionComponent>()
                 {
                     new InsectoidHiveFaction(),
@@ -172,6 +170,17 @@ namespace Rokk.Playwright.Composer
             NeutralFactions.RemoveAll(f => !f.IsAvailable);
             WinConditions.RemoveAll(w => !w.IsAvailable);
             SpecialConditions.RemoveAll(s => !s.IsAvailable);
+        }
+
+        public bool IsFactionSelectedAnywhere(FactionDef factionDef)
+        {
+            var selectedAllies = AllyFactions.Select(f => f.FactionDef);
+            var selectedNeutrals = NeutralFactions.Select(f => f.FactionDef);
+            var selectedEnemies = EnemyFactions.Select(f => f.FactionDef);
+            return selectedAllies
+                .Union(selectedNeutrals)
+                .Union(selectedEnemies)
+                .Contains(factionDef);
         }
 
         public void ExposeData()

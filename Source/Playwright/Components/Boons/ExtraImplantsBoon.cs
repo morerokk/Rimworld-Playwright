@@ -21,7 +21,7 @@ namespace Rokk.Playwright.Components.Boons
         private IEnumerable<HediffDef> PossibleHediffs()
         {
             return DefDatabase<HediffDef>.AllDefs
-                .Where((HediffDef x) => x.countsAsAddedPartOrImplant);
+                .Where(hediffDef => hediffDef.countsAsAddedPartOrImplant);
         }
 
         private List<BodyPartDef> GetBodyPartsForHediff(HediffDef hediff)

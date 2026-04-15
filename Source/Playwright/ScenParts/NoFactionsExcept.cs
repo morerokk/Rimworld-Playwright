@@ -20,12 +20,13 @@ namespace Rokk.Playwright.ScenParts
         protected abstract string SummaryNoIntro { get; }
         protected abstract string HelpText { get; }
 
-        protected virtual List<FactionDef> GetAllowedFactions()
+        protected virtual IEnumerable<FactionDef> GetAllowedFactions()
         {
-            return DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(def => !def.isPlayer && !def.hidden)
-                .Where(def => !ExceptFactions.Contains(def))
-                .ToList();
+            if (RelationKind == FactionRelationKind.Hostile)
+            {
+                return PlaywrightUtils.GetDefaultEnemyFactions();
+            }
+            return PlaywrightUtils.GetDefaultNeutralFactions();
         }
 
         public override void DoEditInterface(Listing_ScenEdit listing)
@@ -40,7 +41,7 @@ namespace Rokk.Playwright.ScenParts
             if (Widgets.ButtonText(helper.NextRect(), "Playwright.ScenParts.NoFactionsExcept.Add".Translate()))
             {
                 var floatMenuOptions = new List<FloatMenuOption>();
-                List<FactionDef> allowedFactions = GetAllowedFactions();
+                var allowedFactions = GetAllowedFactions();
                 foreach (FactionDef factionDef in allowedFactions)
                 {
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => ExceptFactions.Add(factionDef), factionDef.FactionIcon, factionDef.DefaultColor));

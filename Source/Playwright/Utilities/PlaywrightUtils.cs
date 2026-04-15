@@ -64,5 +64,60 @@ namespace Rokk.Playwright.Utilities
             }
             Find.WindowStack.Add(new FloatMenu(options));
         }
+
+        /// <summary>
+        /// Returns all selectable non-player factions.
+        /// </summary>
+        /// <remarks>
+        /// Depending on settings, this can return just factions that the game would add by default (no factions that are replaced by others).
+        /// </remarks>
+        public static IEnumerable<FactionDef> GetAllNpcFactions()
+        {
+            var result = DefDatabase<FactionDef>.AllDefs
+                .Where(def => def.displayInFactionSelection);
+            if (Core.Settings.HideReplacedFactions)
+            {
+                var replacedFactions = DefDatabase<FactionDef>.AllDefs
+                    .Where(def => def.replacesFaction != null)
+                    .Select(def => def.replacesFaction);
+                result = result.Where(def => !replacedFactions.Contains(def));
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Returns all selectable factions that the game would consider a "neutral" faction to the player by default.
+        /// </summary>
+        /// <remarks>
+        /// Depending on settings, this can return just factions that the game would add by default (no factions that are replaced by others).
+        /// </remarks>
+        public static IEnumerable<FactionDef> GetDefaultNeutralFactions()
+        {
+            // We assume that when "permanentEnemyToEveryoneExcept" is used, if at least one faction is a player faction,
+            // they probably intend for all the player factions to be in there.
+            // Some factions may be hostile to new arrivals but neutral towards new tribes,
+            // but at that point we're stretching the limits of what we can do in the UI. It's fine
+            return GetAllNpcFactions()
+                .Where(def =>
+                !def.naturalEnemy
+                && !def.permanentEnemy
+                && (def.permanentEnemyToEveryoneExcept == null || def.permanentEnemyToEveryoneExcept.Any(exceptFaction => exceptFaction?.isPlayer == true)));
+        }
+
+        /// <summary>
+        /// Returns all selectable factions that the game would consider an "enemy" faction to the player by default.
+        /// </summary>
+        /// <remarks>
+        /// Depending on settings, this can return just factions that the game would add by default (no factions that are replaced by others).
+        /// </remarks>
+        public static IEnumerable<FactionDef> GetDefaultEnemyFactions()
+        {
+            return GetAllNpcFactions()
+                .Where(def => 
+                def.naturalEnemy
+                || def.permanentEnemy
+                || (def.permanentEnemyToEveryoneExcept?.Count > 0 && !def.permanentEnemyToEveryoneExcept.Any(exceptFaction => exceptFaction?.isPlayer == true)));
+        }
     }
 }

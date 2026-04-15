@@ -38,7 +38,6 @@
     <Compile Include="Components\Boons\ExtraImplantsBoon.cs" />
     <Compile Include="Components\Boons\ExtraItemsBoon.cs" />
     <Compile Include="Components\Boons\BoonComponent.cs" />
-    <Compile Include="Components\Boons\BionicsBoon.cs" />
     <Compile Include="Components\Boons\NovicesBoon.cs" />
     <Compile Include="Components\Boons\ShuttleBoon.cs" />
     <Compile Include="Components\Factions\FactionComponent.cs" />

@@ -73,8 +73,9 @@ namespace Rokk.Playwright.Utilities
         /// </remarks>
         public static IEnumerable<FactionDef> GetAllNpcFactions()
         {
-            var result = DefDatabase<FactionDef>.AllDefs
+            var result = FactionGenerator.ConfigurableFactions
                 .Where(def => def.displayInFactionSelection);
+
             if (Core.Settings.HideReplacedFactions)
             {
                 var replacedFactions = DefDatabase<FactionDef>.AllDefs
@@ -118,6 +119,20 @@ namespace Rokk.Playwright.Utilities
                 def.naturalEnemy
                 || def.permanentEnemy
                 || (def.permanentEnemyToEveryoneExcept?.Count > 0 && !def.permanentEnemyToEveryoneExcept.Any(exceptFaction => exceptFaction?.isPlayer == true)));
+        }
+
+        /// <summary>
+        /// Returns all selectable factions that the game does not consider a "permanent enemy" faction to the player.
+        /// If they are neutral or can ever be made non-hostile through goodwill, this will return them.
+        /// </summary>
+        /// <remarks>
+        /// Depending on settings, this can return just factions that the game would add by default (no factions that are replaced by others).
+        /// </remarks>
+        public static IEnumerable<FactionDef> GetNotPermanentlyHostileFactions()
+        {
+            return GetAllNpcFactions()
+                .Where(def => !def.permanentEnemy
+                && (def.permanentEnemyToEveryoneExcept == null || def.permanentEnemyToEveryoneExcept.Any(exceptFaction => exceptFaction?.isPlayer == true)));
         }
     }
 }

@@ -54,8 +54,11 @@ namespace Rokk.Playwright.UI
         private Listing_AutoFitVertical SelectedBoonsListing;
 
         private Vector2 AlliesScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical AllyFactionsListing;
         private Vector2 NeutralsScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical NeutralFactionsListing;
         private Vector2 EnemiesScrollPosition = Vector2.zero;
+        private Listing_AutoFitVertical EnemyFactionsListing;
 
         private Vector2 AvailableWinConditionsScrollPos = Vector2.zero;
         private Listing_AutoFitVertical AvailableWinConditionsListing;
@@ -86,6 +89,9 @@ namespace Rokk.Playwright.UI
             this.OriginContentListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.AvailableBoonsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.SelectedBoonsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.AllyFactionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.NeutralFactionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+            this.EnemyFactionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.AvailableWinConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.SelectedWinConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.AvailableSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
@@ -410,71 +416,75 @@ namespace Rokk.Playwright.UI
             nextRect.y += Margin;
             nextRect.height -= Margin;
 
-            // Fuuck how do I RectDivider?
-            Rect alliesRect = new Rect(nextRect);
-            alliesRect.width /= 3;
-            Widgets.DrawLine(new Vector2(alliesRect.x + alliesRect.width, alliesRect.y), new Vector2(alliesRect.x + alliesRect.width, alliesRect.y + alliesRect.height), PanelOutlineColor, PanelOutlineWidth);
+            // RectDivider? I hardly know 'er
+            Rect factionHeaderRect = new Rect(nextRect);
+            factionHeaderRect.height = 60f;
 
-            Rect neutralsRect = new Rect(nextRect);
-            neutralsRect.width /= 3;
-            neutralsRect.x += alliesRect.width;
-            Widgets.DrawLine(new Vector2(neutralsRect.x + neutralsRect.width, neutralsRect.y), new Vector2(neutralsRect.x + neutralsRect.width, neutralsRect.y + neutralsRect.height), PanelOutlineColor, PanelOutlineWidth);
+            Rect alliesHeaderRect = new Rect(factionHeaderRect);
+            alliesHeaderRect.width /= 3f;
+            Rect neutralsHeaderRect = new Rect(factionHeaderRect);
+            neutralsHeaderRect.width /= 3f;
+            neutralsHeaderRect.x += alliesHeaderRect.width;
+            Rect enemiesHeaderRect = new Rect(factionHeaderRect);
+            enemiesHeaderRect.width /= 3f;
+            enemiesHeaderRect.x += alliesHeaderRect.width + neutralsHeaderRect.width;
+            alliesHeaderRect = PlaywrightDrawHelper.RectWithMargin(alliesHeaderRect, 5f);
+            neutralsHeaderRect = PlaywrightDrawHelper.RectWithMargin(neutralsHeaderRect, 5f);
+            enemiesHeaderRect = PlaywrightDrawHelper.RectWithMargin(enemiesHeaderRect, 5f);
 
-            Rect enemiesRect = new Rect(nextRect);
-            enemiesRect.width /= 3;
-            enemiesRect.x += alliesRect.width + neutralsRect.width;
-
-            Rect alliesRectInner = PlaywrightDrawHelper.RectWithMargin(alliesRect, PanelContentMargin);
-            alliesRectInner.width -= Margin;
-            alliesRectInner.height = selectedAllies.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
-            Rect neutralsRectInner = PlaywrightDrawHelper.RectWithMargin(neutralsRect, PanelContentMargin);
-            neutralsRectInner.width -= Margin;
-            neutralsRectInner.height = selectedNeutrals.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
-            Rect enemiesRectInner = PlaywrightDrawHelper.RectWithMargin(enemiesRect, PanelContentMargin);
-            enemiesRectInner.width -= Margin;
-            enemiesRectInner.height = selectedEnemies.Sum(f => f.SettingsHeight + FactionContentHeight + ListMargin) + 120f;
-
-            // Allies
-            Widgets.BeginScrollView(alliesRect, ref AlliesScrollPosition, alliesRectInner);
-            Listing_Standard alliesListing = new Listing_Standard();
-            alliesListing.Begin(alliesRectInner);
-            alliesListing.Label("Playwright.Tabs.Factions.Allies".Translate());
-            if (alliesListing.ButtonText("Playwright.Tabs.Factions.AddAlly".Translate()))
+            alliesHeaderRect = PlaywrightDrawHelper.NextLabelTranslated(alliesHeaderRect, "Playwright.Tabs.Factions.Allies");
+            if (Widgets.ButtonText(alliesHeaderRect, "Playwright.Tabs.Factions.AddAlly".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedAllies, FactionRelationKind.Ally);
                 ClickSound();
             }
-            DrawSelectedFactions(alliesListing, selectedAllies, FactionRelationKind.Ally);
-            alliesListing.End();
-            Widgets.EndScrollView();
 
-            // Neutrals
-            Widgets.BeginScrollView(neutralsRect, ref NeutralsScrollPosition, neutralsRectInner);
-            Listing_Standard neutralsListing = new Listing_Standard();
-            neutralsListing.Begin(neutralsRectInner);
-            neutralsListing.Label("Playwright.Tabs.Factions.Neutrals".Translate());
-            if (neutralsListing.ButtonText("Playwright.Tabs.Factions.Add".Translate()))
+
+            neutralsHeaderRect = PlaywrightDrawHelper.NextLabelTranslated(neutralsHeaderRect, "Playwright.Tabs.Factions.Neutrals");
+            if (Widgets.ButtonText(neutralsHeaderRect, "Playwright.Tabs.Factions.AddNeutral".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedNeutrals, FactionRelationKind.Neutral);
                 ClickSound();
             }
-            DrawSelectedFactions(neutralsListing, selectedNeutrals, FactionRelationKind.Neutral);
-            neutralsListing.End();
-            Widgets.EndScrollView();
 
-            // Enemies
-            Widgets.BeginScrollView(enemiesRect, ref EnemiesScrollPosition, enemiesRectInner);
-            Listing_Standard enemiesListing = new Listing_Standard();
-            enemiesListing.Begin(enemiesRectInner);
-            enemiesListing.Label("Playwright.Tabs.Factions.Enemies".Translate());
-            if (enemiesListing.ButtonText("Playwright.Tabs.Factions.AddEnemy".Translate()))
+            enemiesHeaderRect = PlaywrightDrawHelper.NextLabelTranslated(enemiesHeaderRect, "Playwright.Tabs.Factions.Enemies");
+            if (Widgets.ButtonText(enemiesHeaderRect, "Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedEnemies, FactionRelationKind.Hostile);
                 ClickSound();
             }
-            DrawSelectedFactions(enemiesListing, selectedEnemies, FactionRelationKind.Hostile);
-            enemiesListing.End();
-            Widgets.EndScrollView();
+
+            Rect factionContentRect = new Rect(nextRect);
+            factionContentRect.y += factionHeaderRect.height;
+            factionContentRect.height -= factionHeaderRect.height;
+            Widgets.DrawBoxSolidWithOutline(factionContentRect, PanelSelectionsBGColor, PanelOutlineColor, PanelOutlineWidth);
+
+            Rect alliesContentRect = new Rect(factionContentRect);
+            alliesContentRect.width /= 3f;
+            Rect neutralsContentRect = new Rect(factionContentRect);
+            neutralsContentRect.width /= 3f;
+            neutralsContentRect.x += alliesContentRect.width;
+            Rect enemiesContentRect = new Rect(factionContentRect);
+            enemiesContentRect.width /= 3f;
+            enemiesContentRect.x += alliesContentRect.width + neutralsContentRect.width;
+
+            alliesContentRect = PlaywrightDrawHelper.RectWithMargin(alliesContentRect, PanelContentMargin);
+            DrawSelectedFactions(alliesContentRect, AllyFactionsListing, ref AlliesScrollPosition, selectedAllies, FactionRelationKind.Ally);
+
+            neutralsContentRect = PlaywrightDrawHelper.RectWithMargin(neutralsContentRect, PanelContentMargin);
+            DrawSelectedFactions(neutralsContentRect, NeutralFactionsListing, ref NeutralsScrollPosition, selectedNeutrals, FactionRelationKind.Neutral);
+
+            enemiesContentRect = PlaywrightDrawHelper.RectWithMargin(enemiesContentRect, PanelContentMargin);
+            DrawSelectedFactions(enemiesContentRect, EnemyFactionsListing, ref EnemiesScrollPosition, selectedEnemies, FactionRelationKind.Hostile);
+
+            // Draw divider lines
+            // DrawLineVertical is too wide with no way to change it
+            float dividerX = factionContentRect.x + (factionContentRect.width / 3f);
+            float dividerY1 = factionContentRect.y;
+            float dividerY2 = factionContentRect.y + factionContentRect.height;
+            Widgets.DrawLine(new Vector2(dividerX, dividerY1), new Vector2(dividerX, dividerY2), Color.white, PanelOutlineWidth);
+            dividerX = factionContentRect.x + (factionContentRect.width / 1.5f);
+            Widgets.DrawLine(new Vector2(dividerX, dividerY1), new Vector2(dividerX, dividerY2), Color.white, PanelOutlineWidth);
         }
 
         private void DoFactionFloatMenu(List<FactionComponent> availableFactions, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
@@ -508,24 +518,32 @@ namespace Rokk.Playwright.UI
             PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
         }
 
-        private void DrawSelectedFactions(Listing_Standard factionListing, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
+        private void DrawSelectedFactions(Rect contentRect, Listing_AutoFitVertical factionListing, ref Vector2 scrollPos, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
         {
+            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+
+            Rect contentInnerRect = new Rect(contentRect);
+            contentInnerRect.width -= Margin;
+            contentInnerRect = factionListing.GetScrollViewInnerRect(contentInnerRect);
+
+            Widgets.BeginScrollView(contentRect, ref scrollPos, contentInnerRect);
+            factionListing.Begin(contentInnerRect);
             foreach (FactionComponent faction in selectedFactions.OrderBy(f => f.SortOrder).ToList())
             {
-                if (factionListing.ButtonTextLabeledPct(faction.NameTranslated, "-", 0.8f))
+                Rect deleteButtonRect = factionListing.GetRect(0f);
+                deleteButtonRect.height = 50f;
+                faction.DoFactionContents(factionListing, relationKind);
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0, 0.4f))
                 {
                     selectedFactions.Remove(faction);
                     RemoveSound();
+                    InvalidateAutoListings();
                     FormDirty = true;
                 }
-
-                if (faction.SettingsHeight > 0f)
-                {
-                    faction.DoSettingsContents(factionListing.GetRect(faction.SettingsHeight), relationKind);
-                }
-
-                factionListing.GapLine(ListMargin);
+                factionListing.GapLine(10f);
             }
+            factionListing.End();
+            Widgets.EndScrollView();
         }
 
         private void DrawWinConditionsTab(Rect contentRect)
@@ -961,6 +979,9 @@ namespace Rokk.Playwright.UI
             this.OriginContentListing.Invalidate();
             this.AvailableBoonsListing.Invalidate();
             this.SelectedBoonsListing.Invalidate();
+            this.AllyFactionsListing.Invalidate();
+            this.NeutralFactionsListing.Invalidate();
+            this.EnemyFactionsListing.Invalidate();
             this.AvailableWinConditionsListing.Invalidate();
             this.SelectedWinConditionsListing.Invalidate();
             this.AvailableSpecialConditionsListing.Invalidate();

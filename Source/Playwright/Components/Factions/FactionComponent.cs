@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,25 +55,26 @@ namespace Rokk.Playwright.Components.Factions
         /// </summary>
         public virtual int SortOrder => 0;
 
-        /// <summary>
-        /// If your component has settings, how high the settings rect is.
-        /// Needs to be known in advance to reserve space for it in the UI.
-        /// </summary>
-        public virtual float SettingsHeight => 0f;
+        public virtual void DoFactionContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind)
+        {
+            factionContentListing.Label(NameTranslated);
+            factionContentListing.Gap(5f);
+            DoSettingsContents(factionContentListing, relationKind);
+        }
 
         /// <summary>
         /// Render the UI for the settings in your component.
-        /// If your component doesn't have any extra settings, you don't have to override this.
-        /// If your component has settings, ensure you set <see cref="SettingsHeight"/>.
         /// </summary>
-        /// <param name="inRect">The <see cref="Rect"/> that your settings will be rendered inside of.</param>
         /// <param name="relationKind">
         /// The <see cref="FactionRelationKind"/> that the player is currently configuring.
         /// Can be used to disallow certain factions outside of the Enemies list, for instance.
         /// </param>
-        public virtual void DoSettingsContents(Rect inRect, FactionRelationKind relationKind)
+        public virtual void DoSettingsContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind)
         {
-
+            if (AllowForcedDisposition)
+            {
+                factionContentListing.CheckboxLabeled("Playwright.Components.Faction.Specific.ForcedDisposition".Translate(), ref ForceDisposition, "Playwright.Components.Faction.Specific.ForcedDisposition.Help".Translate());
+            }
         }
 
         public static List<FactionComponent> GetAvailableFactions()

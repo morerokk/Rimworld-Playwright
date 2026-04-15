@@ -161,6 +161,7 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  
  <Playwright.Tabs.Factions.Add>Add Faction...</Playwright.Tabs.Factions.Add>
  <Playwright.Tabs.Factions.AddAlly>Add Ally...</Playwright.Tabs.Factions.AddAlly>
+ <Playwright.Tabs.Factions.AddNeutral>Add Neutral...</Playwright.Tabs.Factions.AddNeutral>
  <Playwright.Tabs.Factions.AddEnemy>Add Enemy...</Playwright.Tabs.Factions.AddEnemy>
  
  <Playwright.Components.Factions.AllOther>(All others)</Playwright.Components.Factions.AllOther>

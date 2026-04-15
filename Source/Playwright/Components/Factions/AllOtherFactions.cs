@@ -20,6 +20,7 @@ namespace Rokk.Playwright.Components.Factions
         public const string ComponentId = "Factions.AllOther";
         public override string Id => ComponentId;
         public override int MaxTotal => int.MaxValue;
+        public override bool AllowForcedDisposition => false;
 
         public override int SortOrder => 1000;
     }

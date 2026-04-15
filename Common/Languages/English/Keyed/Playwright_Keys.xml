@@ -139,6 +139,17 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.ExtraItems.Count>Count</Playwright.Components.Boons.ExtraItems.Count>
  <Playwright.Components.Boons.ExtraItems.SelectThing>Select item...</Playwright.Components.Boons.ExtraItems.SelectThing>
  <Playwright.Components.Boons.ExtraItems.SelectStuff>Select material...</Playwright.Components.Boons.ExtraItems.SelectStuff>
+
+ <Playwright.Components.Boons.ExtraImplants>Extra Implants</Playwright.Components.Boons.ExtraImplants>
+ <Playwright.Components.Boons.ExtraImplants.DescriptionShort>Start with extra implants.</Playwright.Components.Boons.ExtraImplants.DescriptionShort>
+ <Playwright.Components.Boons.ExtraImplants.Description>All your starting colonists have the chosen implants.</Playwright.Components.Boons.ExtraImplants.Description>
+ <Playwright.Components.Boons.ExtraImplants.Add>Add Implant</Playwright.Components.Boons.ExtraImplants.Add>
+ <Playwright.Components.Boons.ExtraImplants.SelectHediff>Select implant...</Playwright.Components.Boons.ExtraImplants.SelectHediff>
+ <Playwright.Components.Boons.ExtraImplants.SelectBodyPart>Select bodypart...</Playwright.Components.Boons.ExtraImplants.SelectBodyPart>
+ <Playwright.Components.Boons.ExtraImplants.Side.Left>Left</Playwright.Components.Boons.ExtraImplants.Side.Left>
+ <Playwright.Components.Boons.ExtraImplants.Side.Right>Right</Playwright.Components.Boons.ExtraImplants.Side.Right>
+ <Playwright.Components.Boons.ExtraImplants.Side.Both>Both</Playwright.Components.Boons.ExtraImplants.Side.Both>
+ <Playwright.Components.Boons.ExtraImplants.Side.Random>Random</Playwright.Components.Boons.ExtraImplants.Side.Random>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->

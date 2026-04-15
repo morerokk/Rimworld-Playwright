@@ -51,7 +51,7 @@ namespace Rokk.Playwright.Components.Boons
             foreach (ExtraItemEntry item in Items.ToList())
             {
                 Rect rect = boonContentListing.GetRect(35f);
-                // UI divided into Count (Thing) (Stuff) (Quality) each 23% wide, last 8% taken up by (DeleteButton)
+                // UI divided into Count (Thing) (Stuff) (Quality) each 24% wide, last 4% taken up by (DeleteButton)
                 float colWidth = rect.width * 0.24f;
 
                 // Count

@@ -38,7 +38,7 @@ namespace Rokk.Playwright.Components.Boons
             List<BoonComponent> boons = new List<BoonComponent>()
             {
                 new ExtraItemsBoon(),
-                new BionicsBoon()
+                new ExtraImplantsBoon()
             };
 
             BoonComponent shuttleBoon = new ShuttleBoon();

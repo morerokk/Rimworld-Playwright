@@ -14,6 +14,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
     {
         public override string Id => "SpecialConditions.PursuingMechanoids";
         public override bool IsAvailable => ModsConfig.OdysseyActive;
+        public override bool HasHelp => true;
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {

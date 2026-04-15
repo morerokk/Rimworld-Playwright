@@ -309,6 +309,7 @@ namespace Rokk.Playwright.UI
             List<BoonComponent> availableBoons = allBoons.Where(b => !selectedBoons.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
 
             Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.Boons.Welcome");
             nextRect.y += Margin;
@@ -379,6 +380,17 @@ namespace Rokk.Playwright.UI
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
+
+                if (boon.HasHelp)
+                {
+                    Rect helpButtonRect = new Rect(deleteButtonRect);
+                    helpButtonRect.width -= 32f;
+                    if (PlaywrightDrawHelper.DrawButtonInTopRight(helpButtonRect, infoTex, 2f, 0.4f))
+                    {
+                        Find.WindowStack.Add(new InfoPopupWindow($"Playwright.Components.{boon.Id}.Help".Translate()));
+                    }
+                }
+
                 Rect lineRect = SelectedBoonsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }
@@ -518,6 +530,7 @@ namespace Rokk.Playwright.UI
             List<WinConditionComponent> availableWinConditions = allWinConditions.Where(b => !selectedWinConditions.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
             Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
 
             Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.WinConditions.Welcome");
             nextRect.y += Margin;
@@ -588,6 +601,17 @@ namespace Rokk.Playwright.UI
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
+
+                if (winCondition.HasHelp)
+                {
+                    Rect helpButtonRect = new Rect(deleteButtonRect);
+                    helpButtonRect.width -= 32f;
+                    if (PlaywrightDrawHelper.DrawButtonInTopRight(helpButtonRect, infoTex, 2f, 0.4f))
+                    {
+                        Find.WindowStack.Add(new InfoPopupWindow($"Playwright.Components.{winCondition.Id}.Help".Translate()));
+                    }
+                }
+
                 Rect lineRect = SelectedWinConditionsListing.GetRect(PanelOutlineWidth);
                 PlaywrightDrawHelper.DrawBottomLine(lineRect, PanelOutlineColor, PanelOutlineWidth);
             }

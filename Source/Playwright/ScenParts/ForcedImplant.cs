@@ -41,7 +41,12 @@ namespace Rokk.Playwright.ScenParts
             }
         }
 
-        // Left/Right side mirrored tag is not implemented on all mirrored parts, have to make some exceptions
+        /// <summary>
+        /// Left/Right side mirrored tag is not implemented on all mirrored parts, have to hardcode some exceptions.
+        /// This getter should return an accurate answer for all vanilla body parts that can apply to humans.
+        /// We assume that mod authors adding their own body parts will apply the Mirrored tag.
+        /// Would like to support as many things as possible, but I don't use HAR often.
+        /// </summary>
         protected virtual bool HasRightSide
         {
             get
@@ -61,7 +66,7 @@ namespace Rokk.Playwright.ScenParts
                     return true;
                 }
 
-                if (BodyPart.defName == "Hand" || BodyPart.defName == "Leg")
+                if (BodyPart.defName == "Hand" || BodyPart.defName == "Leg" || BodyPart.defName == "Eye" || BodyPart.defName == "Ear" || BodyPart.defName == "Lung" || BodyPart.defName == "Kidney" || BodyPart.defName == "Breast" || BodyPart.defName == "Boob") // Lol
                 {
                     return true;
                 }

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
@@ -10,6 +11,7 @@ using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using UnityEngine;
@@ -98,6 +100,45 @@ namespace Rokk.Playwright.Components.Origins
         public override string DescriptionShortTranslated => BasedOnScenario != null ? BasedOnScenario.scenario.summary : base.DescriptionShortTranslated;
 
         /// <summary>
+        /// Get the tech level of the current origin.
+        /// Read-only, used to display the tech level in the Origin selection screen.
+        /// Actual ingame tech level is based on the player faction's tech level.
+        /// </summary>
+        /// I'm not a rocket scientist. I'm not going to mess with tech levels, as tempting as it is to add a selector for it.
+        /// Add a selector to override the player faction instead? I'll leave that up to the origins if they want to.
+        public virtual TechLevel TechLevel
+        {
+            get
+            {
+                FactionDef playerFaction = PlayerFaction;
+                if (playerFaction != null)
+                {
+                    return playerFaction.techLevel;
+                }
+                ScenarioDef basedOnScenario = BasedOnScenario;
+                if (basedOnScenario != null)
+                {
+                    ScenPart_PlayerFaction playerFactionPart = basedOnScenario.scenario.AllParts
+                        .Where(part => part.def == ScenPartDefOf.PlayerFaction)
+                        .Cast<ScenPart_PlayerFaction>()
+                        .FirstOrDefault();
+                    if (playerFactionPart == null)
+                    {
+                        return TechLevel.Undefined;
+                    }
+                    FieldInfo factionDefInfo = AccessTools.Field(typeof(ScenPart_PlayerFaction), "factionDef");
+                    playerFaction = factionDefInfo.GetValue(playerFactionPart) as FactionDef;
+                    if (playerFaction == null)
+                    {
+                        return TechLevel.Undefined;
+                    }
+                    return playerFaction.techLevel;
+                }
+                return TechLevel.Undefined;
+            }
+        }
+
+        /// <summary>
         /// Contents that come before the origin content.
         /// Useful for creating settings that might completely change the description (like ImportOrigin).
         /// </summary>
@@ -109,11 +150,13 @@ namespace Rokk.Playwright.Components.Origins
 
         /// <summary>
         /// Additional content for the origin, like flavor text.
-        /// By default, this lists out the origin's extra default-selected boons/factions/etc.
+        /// By default, this lists out the origin's tech level, and its extra default-selected boons/factions/etc.
         /// </summary>
         /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
         public virtual void DoAdditionalContents(Listing_AutoFitVertical originContentListing)
         {
+            originContentListing.Label("Playwright.TechLevel".Translate() + " " + ("TechLevel_" + this.TechLevel.ToString()).Translate().CapitalizeFirst());
+
             List<BoonComponent> defaultBoons = OriginDefaultsRegistration.GetDefaultBoons(Id)
                 .Union(DefaultBoons)
                 .ToList();

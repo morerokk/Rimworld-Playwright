@@ -1,5 +1,4 @@
-﻿using RimWorld;
-using Rokk.Playwright.Addons;
+﻿using Rokk.Playwright.Addons;
 using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,12 @@ namespace Rokk.Playwright.Components.Boons
 {
     public abstract class BoonComponent : PlaywrightComponent
     {
+        /// <summary>
+        /// If true, a question mark button that shows help text will be shown on the component UI.
+        /// Expects the translation key "Playwright.Components.{ComponentId}.Help" to be present.
+        /// </summary>
+        public virtual bool HasHelp => false;
+
         public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing)
         {
             Text.Font = GameFont.Medium;

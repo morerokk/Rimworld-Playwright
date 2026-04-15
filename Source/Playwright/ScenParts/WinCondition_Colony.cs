@@ -49,6 +49,8 @@ namespace Rokk.Playwright.ScenParts
 
         public override void Tick()
         {
+            // Always run base.Tick(). This handles the fade to white countdown, and showing the credits once the fade is done.
+            // You can skip running this if you want to use your own fade logic, or if you call WinGame() directly without fade.
             base.Tick();
             if (Won)
             {

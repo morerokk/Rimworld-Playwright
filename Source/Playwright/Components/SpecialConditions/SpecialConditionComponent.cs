@@ -13,6 +13,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
     {
         /// <summary>
         /// If true, a question mark button that shows help text will be shown on the component UI.
+        /// Expects the translation key "Playwright.Components.{ComponentId}.Help" to be present.
         /// </summary>
         public virtual bool HasHelp => false;
 
@@ -44,14 +45,19 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 specialConditions.Add(xenotypeSwapCondition);
             }
 
+            specialConditions.Add(new PrepareHaphazardlySpecialCondition());
+            specialConditions.Add(new DeathExplosionSpecialCondition());
+
             SpecialConditionComponent disableMechanoidSignalCondition = new DisableMechanoidSignalSpecialCondition();
             if (disableMechanoidSignalCondition.IsAvailable)
             {
                 specialConditions.Add(disableMechanoidSignalCondition);
             }
-
-            specialConditions.Add(new PrepareHaphazardlySpecialCondition());
-            specialConditions.Add(new DeathExplosionSpecialCondition());
+            SpecialConditionComponent pursuingMechanoidsCondition = new PursuingMechanoidsSpecialCondition();
+            if (pursuingMechanoidsCondition.IsAvailable)
+            {
+                specialConditions.Add(pursuingMechanoidsCondition);
+            }
 
             foreach (SpecialConditionComponent specialCondition in ComponentRegistration.SpecialConditions)
             {

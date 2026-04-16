@@ -16,6 +16,7 @@ namespace Rokk.Playwright.UI
         public const float MarginBottom = 10f;
 
         public Rect? FittedRect { get; protected set; }
+        public bool AutoInvalidateOnHeightExceeded { get; set; } = true;
 
         private Action InvalidateGroupHook;
 
@@ -52,6 +53,16 @@ namespace Rokk.Playwright.UI
             Rect rect = FittedRect.Value;
             rect.height = curY + MarginBottom;
             FittedRect = rect;
+            // We assume that an AutoFitVertical implies you just want a scrollable vertical list with a known width.
+            // If curX is greater than the column width, oops, we've made a new column! Things are almost certain to silently break and not render.
+            // In this case, we force an Invalidate.
+            // This is NOT a replacement for managing Invalidate calls yourself, as it would still look weird if the listing was never able to shrink.
+            // This is just a last chance to ensure my stupid chud son that I hate doesn't silently stop rendering content with no indication that something is wrong.
+            // (Checking curX is the only way without Harmony, as all methods that make new columns are non-virtual)
+            if (AutoInvalidateOnHeightExceeded && curX > ColumnWidth)
+            {
+                Invalidate();
+            }
         }
 
         /// <summary>

@@ -34,10 +34,6 @@ namespace Rokk.Playwright.UI
         private float OptionHeight => 50f;
         private float OptionContentMargin => 5f;
 
-        private float ListMargin => 5f;
-
-        private float FactionContentHeight => 30f;
-
         public override Vector2 InitialSize => new Vector2(1200, 800);
 
         // Auto-listings and scroll positions

@@ -33,7 +33,6 @@ namespace Rokk.Playwright.Composer
 
             if (playwright.Origin == null)
             {
-                Find.WindowStack.Add(new InfoPopupWindow("Playwright.ErrorOriginNull".Translate()));
                 throw new PlaywrightBuilderException("Playwright Origin was null, did you select an Origin/Scenario?", playwright);
             }
 

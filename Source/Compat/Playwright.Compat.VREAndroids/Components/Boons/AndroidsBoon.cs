@@ -80,8 +80,7 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                     .FirstOrDefault();
                 if (kindConfigurePart == null)
                 {
-                    Find.WindowStack.Add(new InfoPopupWindow("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate()));
-                    throw new PlaywrightBuilderException("Androids boon: current scenario's config page unsupported, must be ScenPart_ConfigPage_ConfigureStartingPawns, ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes or ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs.");
+                    throw new PlaywrightBuilderException("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate());
                 }
 
                 kindConfigurePart.pawnChoiceCount += Amount;

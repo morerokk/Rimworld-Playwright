@@ -20,8 +20,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             var configurePart = ScenPartUtility.GetConfigureStartingPawnsPart(scenarioParts);
             if (configurePart == null)
             {
-                Find.WindowStack.Add(new InfoPopupWindow("Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage".Translate()));
-                throw new PlaywrightBuilderException("Prepare Haphazardly special condition: configurePart was null, the scenario's configure starting pawns part is probably unknown or unrecognized.");
+                throw new PlaywrightBuilderException("Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage".Translate());
             }
             configurePart.pawnChoiceCount *= 2;
             // Disable rerolls

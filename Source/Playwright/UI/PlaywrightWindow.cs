@@ -801,9 +801,6 @@ namespace Rokk.Playwright.UI
             {
                 hasError = true;
                 errorText = ex.Message;
-                Log.Warning("[Playwright] A Playwright error occurred while previewing the generated scenario:");
-                Log.Warning(ex.Message);
-                Log.Warning(ex.StackTrace);
             }
             catch (Exception ex)
             {
@@ -912,8 +909,7 @@ namespace Rokk.Playwright.UI
             {
                 Log.Warning("[Playwright] Builder error while generating scenario: " + ex.Message);
                 Log.Warning(ex.StackTrace);
-                // These are known errors/conflicts and will be handled at the place where they happen.
-                // Log as warning so the error screen doesn't cover the popup window that explains what went wrong.
+                Find.WindowStack.Add(new InfoPopupWindow(ex.Message));
             }
             catch (Exception ex)
             {

@@ -179,6 +179,12 @@ namespace Rokk.Playwright.Components.Boons
         {
             foreach (ExtraImplantEntry implant in Implants)
             {
+                if (implant.Hediff == null)
+                {
+                    Log.WarningOnce("[Playwright] Extra implants boon: hediff was null", 595002);
+                    continue;
+                }
+
                 switch (implant.Side)
                 {
                     case ExtraImplantEntry.ImplantSide.Left:

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace Rokk.Playwright.Compat.MortsCorporationFaction.DefOfs
 {
     // Use this to provide any DefOfs that the mod doesn't include in the C# code

@@ -85,7 +85,7 @@ namespace Rokk.Playwright.Utilities
         /// <remarks>
         /// This does some spooky stuff to make the ideoligion editor work without needing to be in the world menu.
         /// It's also a bit jank and insists on adding a harmless default Pasturism ideology.
-        /// Do NOT use this while the game is ingame, and don't use this from any location in the main menu on or past the "New Colony" screen.
+        /// Do NOT use this while the game is ingame, and don't use this from any location in the main menu that's on or past the "New Colony" screen.
         /// This is basically only safe in the main menu landing, in options or in the playwright editor.
         /// </remarks>
         public static void OpenIdeoligionEditor()
@@ -108,7 +108,7 @@ namespace Rokk.Playwright.Utilities
         }
 
         /// <summary>
-        /// Returns all selectable non-player factions.
+        /// Returns all selectable non-player factions that would be selectable in the game's faction UI when starting a new game.
         /// </summary>
         /// <remarks>
         /// Depending on settings, this can return just factions that the game would add by default (no factions that are replaced by others).

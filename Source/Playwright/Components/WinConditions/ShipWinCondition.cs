@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace Rokk.Playwright.Components.WinConditions
 {
     // Placeholder since the default state is for this part to be present.

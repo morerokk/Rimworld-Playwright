@@ -12,7 +12,7 @@ using Verse;
 namespace Rokk.Playwright.Utilities
 {
     /// <summary>
-    /// Utility class for making scenario parts, as many of them involve a lot of reflection boilerplate.
+    /// Utility class for making and configuring specific scenario parts, as many of them involve a lot of reflection boilerplate.
     /// </summary>
     public static class ScenPartUtility
     {

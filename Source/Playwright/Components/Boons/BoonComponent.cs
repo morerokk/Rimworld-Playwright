@@ -35,33 +35,33 @@ namespace Rokk.Playwright.Components.Boons
 
         public static List<BoonComponent> GetAvailableBoons()
         {
-            List<BoonComponent> boons = new List<BoonComponent>()
+            List<BoonComponent> result = new List<BoonComponent>();
+
+            List<BoonComponent> playwrightBoons = new List<BoonComponent>()
             {
                 new ExtraItemsBoon(),
-                new ExtraImplantsBoon()
+                new ExtraImplantsBoon(),
+                new NovicesBoon(),
+                new ShuttleBoon()
             };
 
-            BoonComponent shuttleBoon = new ShuttleBoon();
-            if (shuttleBoon.IsAvailable)
+            foreach (BoonComponent boon in playwrightBoons)
             {
-                boons.Add(shuttleBoon);
-            }
-
-            BoonComponent novicesBoon = new NovicesBoon();
-            if (novicesBoon.IsAvailable)
-            {
-                boons.Add(novicesBoon);
+                if (boon.IsAvailable)
+                {
+                    result.Add(boon);
+                }
             }
 
             foreach (BoonComponent boon in ComponentRegistration.Boons)
             {
                 if (boon.IsAvailable)
                 {
-                    boons.Add(boon);
+                    result.Add(boon);
                 }
             }
 
-            return boons;
+            return result;
         }
     }
 }

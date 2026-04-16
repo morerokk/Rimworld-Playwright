@@ -40,41 +40,36 @@ namespace Rokk.Playwright.Components.WinConditions
 
         public static List<WinConditionComponent> GetAvailableWinConditions()
         {
-            var list = new List<WinConditionComponent>();
-            list.Add(new ShipWinCondition());
+            var result = new List<WinConditionComponent>();
 
-            var royalAscent = new RoyalAscentWinCondition();
-            if (royalAscent.IsAvailable)
+            var playwrightWinConditions = new List<WinConditionComponent>()
             {
-                list.Add(royalAscent);
-            }
+                new ShipWinCondition(),
+                new RoyalAscentWinCondition(),
+                new ArchonexusWinCondition(),
+                new ConquestWinCondition(),
+                new ColonyWinCondition(),
+                new RoyalCouncilWinCondition(),
+                new TimeWinCondition()
+            };
 
-            var archonexus = new ArchonexusWinCondition();
-            if (archonexus.IsAvailable)
+            foreach (WinConditionComponent winCondition in playwrightWinConditions)
             {
-                list.Add(archonexus);
+                if (winCondition.IsAvailable)
+                {
+                    result.Add(winCondition);
+                }
             }
-
-            list.Add(new ConquestWinCondition());
-            list.Add(new ColonyWinCondition());
-
-            var royalCouncil = new RoyalCouncilWinCondition();
-            if (royalCouncil.IsAvailable)
-            {
-                list.Add(royalCouncil);
-            }
-
-            list.Add(new TimeWinCondition());
 
             foreach (WinConditionComponent winCondition in ComponentRegistration.WinConditions)
             {
                 if (winCondition.IsAvailable)
                 {
-                    list.Add(winCondition);
+                    result.Add(winCondition);
                 }
             }
 
-            return list;
+            return result;
         }
     }
 }

@@ -79,21 +79,33 @@ namespace Rokk.Playwright.Components.Factions
 
         public static List<FactionComponent> GetAvailableFactions()
         {
-            var list = new List<FactionComponent>();
-            list.Add(new AllOtherFactions());
-            list.Add(new SpecificFaction());
-            list.Add(new InsectoidHiveFaction());
-            list.Add(new MechanoidHiveFaction());
+            var result = new List<FactionComponent>();
 
-            foreach (var faction in ComponentRegistration.Factions)
+            var playwrightFactions = new List<FactionComponent>()
+            {
+                new InsectoidHiveFaction(),
+                new MechanoidHiveFaction(),
+                new SpecificFaction(),
+                new AllOtherFactions()
+            };
+
+            foreach (FactionComponent faction in playwrightFactions)
             {
                 if (faction.IsAvailable)
                 {
-                    list.Add(faction);
+                    result.Add(faction);
                 }
             }
 
-            return list;
+            foreach (FactionComponent faction in ComponentRegistration.Factions)
+            {
+                if (faction.IsAvailable)
+                {
+                    result.Add(faction);
+                }
+            }
+
+            return result;
         }
 
         public override void ExposeData()

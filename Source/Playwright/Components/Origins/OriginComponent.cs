@@ -246,41 +246,33 @@ namespace Rokk.Playwright.Components.Origins
         }
 
         public static List<OriginComponent> GetAvailableOrigins()
-        { 
-            var origins = new List<OriginComponent>();
-            // Base game stuff
-            origins.Add(new CrashlandedOrigin());
-            origins.Add(new TribalOrigin());
-            origins.Add(new RichExplorerOrigin());
-            origins.Add(new NakedBrutalityOrigin());
+        {
+            var result = new List<OriginComponent>();
 
-            // DLC stuff
-            OriginComponent mechanitor = new MechanitorOrigin();
-            if (mechanitor.IsAvailable)
+            var playwrightOrigins = new List<OriginComponent>()
             {
-                origins.Add(mechanitor);
-            }
-            OriginComponent sanguophage = new SanguophageOrigin();
-            if (sanguophage.IsAvailable)
-            {
-                origins.Add(sanguophage);
-            }
-            OriginComponent anomaly = new AnomalyOrigin();
-            if (anomaly.IsAvailable)
-            {
-                origins.Add(anomaly);
-            }
-            OriginComponent gravship = new GravshipOrigin();
-            if (gravship.IsAvailable)
-            {
-                origins.Add(gravship);
-            }
+                // Base game
+                new CrashlandedOrigin(),
+                new TribalOrigin(),
+                new RichExplorerOrigin(),
+                new NakedBrutalityOrigin(),
 
-            // Playwright stuff
-            OriginComponent empire = new EmpireOrigin();
-            if (empire.IsAvailable)
+                // DLC
+                new MechanitorOrigin(),
+                new SanguophageOrigin(),
+                new AnomalyOrigin(),
+                new GravshipOrigin(),
+
+                // Playwright
+                new EmpireOrigin()
+            };
+
+            foreach (OriginComponent origin in playwrightOrigins)
             {
-                origins.Add(empire);
+                if (origin.IsAvailable)
+                {
+                    result.Add(origin);
+                }
             }
 
             // Stuff from addons
@@ -288,14 +280,14 @@ namespace Rokk.Playwright.Components.Origins
             {
                 if (origin.IsAvailable)
                 {
-                    origins.Add(origin);
+                    result.Add(origin);
                 }
             }
 
-            // Custom placeholder origin, selected from scenario
-            origins.Add(new ImportOrigin());
+            // Custom placeholder origin, selected from scenario, should always be at the bottom
+            result.Add(new ImportOrigin());
 
-            return origins;
+            return result;
         }
     }
 }

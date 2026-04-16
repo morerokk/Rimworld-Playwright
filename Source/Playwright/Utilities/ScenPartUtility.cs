@@ -354,6 +354,13 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        public static AdditionalUnwaveringChance MakeAdditionalUnwaveringChancePart(float chance)
+        {
+            AdditionalUnwaveringChance part = (AdditionalUnwaveringChance)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_AdditionalUnwaveringChance);
+            part.Chance = chance;
+            return part;
+        }
+
         public static WinCondition_Colony MakeWinConditionColonyPart(int colonists)
         {
             WinCondition_Colony part = (WinCondition_Colony)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_WinCondition_Colony);

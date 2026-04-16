@@ -901,6 +901,10 @@ namespace Rokk.Playwright.UI
                             // Call base close class to bypass our FormDirty checks
                             base.Close(true);
                             Find.WindowStack.Add(new Page_SelectScenario());
+                            // I have attempted to pre-select the scenario that was just saved,
+                            // but no matter what I do, I can't get the selection to work properly.
+                            // It seems to pre-select a different copy of the just saved scenario instead, even if I first reload the scenario from the lister,
+                            // and even if the lister is marked dirty. I give up.
                         }
                     }));
                 }));

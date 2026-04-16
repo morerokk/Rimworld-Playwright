@@ -59,6 +59,7 @@
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Components\SpecialConditions\DeathExplosionSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\MorePsycastersSpecialCondition.cs" />
+    <Compile Include="Components\SpecialConditions\UnwaveringLoyaltySpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PursuingMechanoidsSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PrepareHaphazardlySpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\DisableMechanoidSignalSpecialCondition.cs" />

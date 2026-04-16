@@ -19,14 +19,14 @@ namespace Rokk.Playwright.Addons
     /// </summary>
     public static class HookRegistration
     {
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPreMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPostMutatedHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
 
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPreFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPostFactionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
 
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPreWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
-        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>>> ScenarioPostWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPreWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
+        private static List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>> ScenarioPostWinConditionHooks = new List<Action<PlaywrightStructure, Scenario, List<ScenPart>, bool>>();
 
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPreWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
         private static List<Action<PlaywrightWindow, PlaywrightStructure, Rect>> PlaywrightWindowPostWindowContentsHooks = new List<Action<PlaywrightWindow, PlaywrightStructure, Rect>>();
@@ -38,8 +38,10 @@ namespace Rokk.Playwright.Addons
         /// Register something that should happen before the <see cref="PlaywrightBuilder"/> starts mutating the initial "blank" scenario.
         /// Useful for doing some preparation that requires knowledge of the entire playwright and scenario.
         /// </summary>
-        /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPreMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        /// <param name="hook">
+        /// Your function to register.
+        /// The bool parameter is dryRun, if true, we're not actually generating a scenario yet, just making a throwaway one for preview.</param>
+        public static void RegisterScenarioPreMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPreMutatedHooks.Add(hook);
         }
@@ -49,25 +51,25 @@ namespace Rokk.Playwright.Addons
         /// Useful for doing some fix-ups that requires knowledge of the entire playwright and scenario.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPostMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        public static void RegisterScenarioPostMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPostMutatedHooks.Add(hook);
         }
 
         // Internal-only functions to call registered hooks, these shouldn't be accidentally used from outside the assembly
-        internal static void CallScenarioPreMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPreMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPreMutatedHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 
-        internal static void CallScenarioPostMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPostMutated(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPostMutatedHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 
@@ -75,7 +77,7 @@ namespace Rokk.Playwright.Addons
         /// Register something that should be run before the <see cref="PlaywrightBuilder"/> starts mutating the scenario based on faction components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPreFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        public static void RegisterScenarioPreFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPreFactionHooks.Add(hook);
         }
@@ -84,24 +86,24 @@ namespace Rokk.Playwright.Addons
         /// Register something that should be run after the <see cref="PlaywrightBuilder"/> has finished mutating the scenario based on faction components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPostFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        public static void RegisterScenarioPostFaction(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPostFactionHooks.Add(hook);
         }
 
-        internal static void CallScenarioPreFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPreFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPreFactionHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 
-        internal static void CallScenarioPostFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPostFaction(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPostFactionHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 
@@ -109,7 +111,7 @@ namespace Rokk.Playwright.Addons
         /// Register something that should be run before the <see cref="PlaywrightBuilder"/> starts mutating the scenario based on win condition components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPreWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        public static void RegisterScenarioPreWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPreWinConditionHooks.Add(hook);
         }
@@ -118,24 +120,24 @@ namespace Rokk.Playwright.Addons
         /// Register something that should be run after the <see cref="PlaywrightBuilder"/> has finished mutating the scenario based on win condition components.
         /// </summary>
         /// <param name="hook">Your function to register.</param>
-        public static void RegisterScenarioPostWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>> hook)
+        public static void RegisterScenarioPostWinCondition(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPostWinConditionHooks.Add(hook);
         }
 
-        internal static void CallScenarioPreWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPreWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPreWinConditionHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 
-        internal static void CallScenarioPostWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts)
+        internal static void CallScenarioPostWinCondition(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> scenParts, bool dryRun)
         {
             foreach (var hook in ScenarioPostWinConditionHooks)
             {
-                hook(playwright, scenario, scenParts);
+                hook(playwright, scenario, scenParts, dryRun);
             }
         }
 

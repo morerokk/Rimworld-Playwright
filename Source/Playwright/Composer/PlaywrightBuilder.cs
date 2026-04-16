@@ -24,7 +24,7 @@ namespace Rokk.Playwright.Composer
     /// </summary>
     public class PlaywrightBuilder
     {
-        public Scenario MakeScenario(PlaywrightStructure playwright)
+        public Scenario MakeScenario(PlaywrightStructure playwright, bool dryRun = false)
         {
             if (playwright == null)
             {
@@ -41,7 +41,7 @@ namespace Rokk.Playwright.Composer
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
             List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
 
-            HookRegistration.CallScenarioPreMutated(playwright, scenario, parts);
+            HookRegistration.CallScenarioPreMutated(playwright, scenario, parts, dryRun);
 
             // Origin
             playwright.Origin.MutateScenario(scenario, parts);
@@ -50,19 +50,19 @@ namespace Rokk.Playwright.Composer
             this.ProcessBoons(playwright, scenario, parts);
 
             // Factions
-            HookRegistration.CallScenarioPreFaction(playwright, scenario, parts);
+            HookRegistration.CallScenarioPreFaction(playwright, scenario, parts, dryRun);
             this.ProcessFactions(playwright, scenario, parts);
-            HookRegistration.CallScenarioPostFaction(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostFaction(playwright, scenario, parts, dryRun);
 
             // Win conditions
-            HookRegistration.CallScenarioPreWinCondition(playwright, scenario, parts);
+            HookRegistration.CallScenarioPreWinCondition(playwright, scenario, parts, dryRun);
             this.ProcessWinConditions(playwright, scenario, parts);
-            HookRegistration.CallScenarioPostWinCondition(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostWinCondition(playwright, scenario, parts, dryRun);
 
             // Special conditions
             this.ProcessSpecialConditions(playwright, scenario, parts);
 
-            HookRegistration.CallScenarioPostMutated(playwright, scenario, parts);
+            HookRegistration.CallScenarioPostMutated(playwright, scenario, parts, dryRun);
 
             return scenario;
         }

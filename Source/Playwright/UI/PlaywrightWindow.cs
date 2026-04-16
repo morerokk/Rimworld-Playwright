@@ -814,7 +814,7 @@ namespace Rokk.Playwright.UI
             bool hasError = false;
             try
             {
-                previewScenario = builder.MakeScenario(this.PlaywrightStructure);
+                previewScenario = builder.MakeScenario(this.PlaywrightStructure, true);
             }
             catch (PlaywrightBuilderException ex)
             {
@@ -909,7 +909,7 @@ namespace Rokk.Playwright.UI
             PlaywrightBuilder builder = new PlaywrightBuilder();
             try
             {
-                Scenario scenario = builder.MakeScenario(this.PlaywrightStructure);
+                Scenario scenario = builder.MakeScenario(this.PlaywrightStructure, false);
                 Find.WindowStack.Add(new Dialog_ScenarioList_Save(scenario, () =>
                 {
                     FormDirty = false;

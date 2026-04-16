@@ -9,7 +9,7 @@ using Verse;
 namespace Rokk.Playwright.UI
 {
     /// <summary>
-    /// (Hopefully) a standalone implementation of the ideoligion editor UI that doesn't need to be attached to a map and a scenario in progress.
+    /// A standalone implementation of the ideoligion editor UI that is slightly more aware of the fact that it's not attached to a real game in progress.
     /// </summary>
     public class Page_ConfigureIdeo_Playwright : Page_ConfigureIdeo
     {

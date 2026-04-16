@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
 using Rokk.Playwright.Addons;
 using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Factions;
@@ -185,41 +184,21 @@ namespace Rokk.Playwright.UI
             listing.Gap();
             listing.Label("Playwright.Tabs.Intro.Welcome.2".Translate());
 
-            listing.Gap();
-
             if (ModsConfig.BiotechActive)
             {
+                listing.Gap();
                 if (listing.ButtonText("Playwright.OpenXenotypeEditor".Translate(), widthPct: 0.2f))
                 {
-                    var dialog = new Dialog_CreateXenotype(0, () =>
-                    {
-                        CharacterCardUtility.cachedCustomXenotypes = null;
-                    });
-                    Find.WindowStack.Add(dialog);
+                    PlaywrightUtils.OpenXenotypeEditorWindow();
                 }
             }
 
-            listing.Gap();
-
             if (ModsConfig.IdeologyActive)
             {
+                listing.Gap();
                 if (listing.ButtonText("Playwright.OpenIdeoligionEditor".Translate(), widthPct: 0.2f))
                 {
-                    // Do NOT try this at home
-                    Current.ProgramState = ProgramState.Entry;
-                    Current.Game = new Game();
-                    Current.Game.InitData = new GameInitData();
-                    Current.Game.Scenario = ScenarioDefOf.Crashlanded.scenario;
-                    Find.Scenario.PreConfigure();
-                    Current.Game.storyteller = new Storyteller(StorytellerDefOf.Cassandra, DifficultyDefOf.Rough);
-                    List<FactionDef> list = new List<FactionDef> { FactionDefOf.PlayerColony };
-                    Current.Game.World = WorldGenerator.GenerateWorld(0.05f, "test", OverallRainfall.Normal, OverallTemperature.Normal, OverallPopulation.AlmostNone, LandmarkDensity.Sparse, list, 0f);
-                    Find.GameInitData.startingTile = 0;
-                    var page = new Page_ConfigureIdeo_Playwright();
-                    page.doCloseX = true;
-                    page.next = null;
-                    page.prev = null;
-                    Find.WindowStack.Add(page);
+                    PlaywrightUtils.OpenIdeoligionEditor();
                 }
             }
 

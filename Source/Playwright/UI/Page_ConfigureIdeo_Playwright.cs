@@ -98,7 +98,7 @@ namespace Rokk.Playwright.UI
 
             Rect addButtonRect = new Rect(buttonBarRect);
             addButtonRect.width = 150f;
-            if (Widgets.ButtonText(addButtonRect, "Add".Translate()))
+            if (Widgets.ButtonText(addButtonRect, "Add".Translate().CapitalizeFirst()))
             {
                 SelectOrMakeNewIdeo(null);
             }

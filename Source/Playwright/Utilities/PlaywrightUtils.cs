@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
+using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -63,6 +65,46 @@ namespace Rokk.Playwright.Utilities
                 options.Add(new FloatMenuOption("Playwright.NoFloatMenuOptions".Translate(), null));
             }
             Find.WindowStack.Add(new FloatMenu(options));
+        }
+
+        /// <summary>
+        /// Opens the game's Custom Xenotype editor window from anywhere.
+        /// </summary>
+        public static void OpenXenotypeEditorWindow()
+        {
+            var dialog = new Dialog_CreateXenotype(0, () =>
+            {
+                CharacterCardUtility.cachedCustomXenotypes = null;
+            });
+            Find.WindowStack.Add(dialog);
+        }
+
+        /// <summary>
+        /// Opens an Ideology editor window from anywhere in the main menu.
+        /// </summary>
+        /// <remarks>
+        /// This does some spooky stuff to make the ideoligion editor work without needing to be in the world menu.
+        /// It's also a bit jank and insists on adding a harmless default Pasturism ideology.
+        /// Do NOT use this while the game is ingame, and don't use this from any location in the main menu on or past the "New Colony" screen.
+        /// This is basically only safe in the main menu landing, in options or in the playwright editor.
+        /// </remarks>
+        public static void OpenIdeoligionEditor()
+        {
+            // Do NOT try this at home
+            Current.ProgramState = ProgramState.Entry;
+            Current.Game = new Game();
+            Current.Game.InitData = new GameInitData();
+            Current.Game.Scenario = ScenarioDefOf.Crashlanded.scenario;
+            Find.Scenario.PreConfigure();
+            Current.Game.storyteller = new Storyteller(StorytellerDefOf.Cassandra, DifficultyDefOf.Rough);
+            List<FactionDef> list = new List<FactionDef> { FactionDefOf.PlayerColony };
+            Current.Game.World = WorldGenerator.GenerateWorld(0.05f, "test", OverallRainfall.Normal, OverallTemperature.Normal, OverallPopulation.AlmostNone, LandmarkDensity.Sparse, list, 0f);
+            Find.GameInitData.startingTile = 0;
+            var page = new Page_ConfigureIdeo_Playwright();
+            page.doCloseX = true;
+            page.next = null;
+            page.prev = null;
+            Find.WindowStack.Add(page);
         }
 
         /// <summary>

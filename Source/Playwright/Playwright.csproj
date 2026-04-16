@@ -127,6 +127,7 @@
     <Compile Include="UI\Dialog_PlaywrightFileList.cs" />
     <Compile Include="UI\Listing_AutoFitVertical.cs" />
     <Compile Include="UI\ConfirmResetWindow.cs" />
+    <Compile Include="UI\Page_ConfigureIdeo_Playwright.cs" />
     <Compile Include="UI\ScenarioSavedPopupWindow.cs" />
     <Compile Include="UI\PlaywrightDrawHelper.cs" />
     <Compile Include="UI\PlaywrightWindow.cs" />

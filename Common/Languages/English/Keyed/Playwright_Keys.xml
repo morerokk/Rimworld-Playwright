@@ -43,6 +43,8 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.DefaultWinConditions>Default Win Conditions:</Playwright.DefaultWinConditions>
  <Playwright.DefaultSpecialConditions>Default Special Conditions:</Playwright.DefaultSpecialConditions>
  <Playwright.TechLevel>Tech level:</Playwright.TechLevel>
+ <Playwright.OpenXenotypeEditor>Xenotype Editor</Playwright.OpenXenotypeEditor>
+ <Playwright.OpenIdeoligionEditor>Ideoligion Editor</Playwright.OpenIdeoligionEditor>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>

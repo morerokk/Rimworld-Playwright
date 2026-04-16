@@ -271,4 +271,13 @@ Please deselect the Prepare Haphazardly special condition or select a different 
 
 These raids will not start until you land a Gravship for the first time, and will cease when you complete The Mechhive ending with either choice (or lose your Gravship).</Playwright.Components.SpecialConditions.PursuingMechanoids.Help>
 
+ <Playwright.Components.SpecialConditions.MorePsycasters>More Psycasters</Playwright.Components.SpecialConditions.MorePsycasters>
+ <Playwright.Components.SpecialConditions.MorePsycasters.DescriptionShort>Some pawns in the world are psycasters.</Playwright.Components.SpecialConditions.MorePsycasters.DescriptionShort>
+ <Playwright.Components.SpecialConditions.MorePsycasters.Description>Adds a chance for non-player pawns in the world to be psycasters.</Playwright.Components.SpecialConditions.MorePsycasters.Description>
+ <Playwright.Components.SpecialConditions.MorePsycasters.Chance>Chance</Playwright.Components.SpecialConditions.MorePsycasters.Chance>
+ <Playwright.Components.SpecialConditions.MorePsycasters.ChancePercentage>Chance ({0}%)</Playwright.Components.SpecialConditions.MorePsycasters.ChancePercentage>
+ <Playwright.Components.SpecialConditions.MorePsycasters.Chance.Help>The chance for a non-player pawn to be a psycaster.</Playwright.Components.SpecialConditions.MorePsycasters.Chance.Help>
+ <Playwright.Components.SpecialConditions.MorePsycasters.PsylinkLevel>Psylink Level range</Playwright.Components.SpecialConditions.MorePsycasters.PsylinkLevel>
+ <Playwright.Components.SpecialConditions.MorePsycasters.PsylinkLevel.Help>The psycaster's psylink level will be a random level in this range. Recommended maximum is 5.</Playwright.Components.SpecialConditions.MorePsycasters.PsylinkLevel.Help>
+
 </LanguageData>

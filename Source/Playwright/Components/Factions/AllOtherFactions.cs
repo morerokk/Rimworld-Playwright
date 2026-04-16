@@ -21,6 +21,11 @@ namespace Rokk.Playwright.Components.Factions
         public override string Id => ComponentId;
         public override int MaxTotal => int.MaxValue;
         public override bool AllowForcedDisposition => false;
+        public override HashSet<FactionRelationKind> AllowedDispositions => new HashSet<FactionRelationKind>()
+        {
+            FactionRelationKind.Neutral,
+            FactionRelationKind.Hostile
+        };
 
         public override int SortOrder => 1000;
     }

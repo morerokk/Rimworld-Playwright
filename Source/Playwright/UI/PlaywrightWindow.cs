@@ -498,12 +498,6 @@ namespace Rokk.Playwright.UI
                 .Where(f => f.AllowedDispositions.Contains(relationKind))
                 .Where(f => selectedFactions.Count(ef => ef.Id == f.Id) < f.MaxInGroup)
                 .Where(f => allSelectedFactions.Count(ef => ef.Id == f.Id) < f.MaxTotal);
-            // Game has no default allies, don't give (All Others) as an option under allies
-            if (relationKind == FactionRelationKind.Ally)
-            {
-                selectableFactions = selectableFactions
-                    .Where(f => f.Id != AllOtherFactions.ComponentId);
-            }
 
             List<FloatMenuOption> floatMenuOptions = new List<FloatMenuOption>();
             foreach (FactionComponent faction in selectableFactions)

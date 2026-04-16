@@ -34,40 +34,36 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public static List<SpecialConditionComponent> GetAvailableSpecialConditions()
         {
-            List<SpecialConditionComponent> specialConditions = new List<SpecialConditionComponent>()
+            var result = new List<SpecialConditionComponent>();
+
+            var playwrightSpecialConditions = new List<SpecialConditionComponent>()
             {
-                new PlanetkillerSpecialCondition()
+                new PlanetkillerSpecialCondition(),
+                new MorePsycastersSpecialCondition(),
+                new XenotypeSwapSpecialCondition(),
+                new PrepareHaphazardlySpecialCondition(),
+                new DeathExplosionSpecialCondition(),
+                new DisableMechanoidSignalSpecialCondition(),
+                new PursuingMechanoidsSpecialCondition()
             };
 
-            SpecialConditionComponent xenotypeSwapCondition = new XenotypeSwapSpecialCondition();
-            if (xenotypeSwapCondition.IsAvailable)
+            foreach (SpecialConditionComponent specialCondition in playwrightSpecialConditions)
             {
-                specialConditions.Add(xenotypeSwapCondition);
-            }
-
-            specialConditions.Add(new PrepareHaphazardlySpecialCondition());
-            specialConditions.Add(new DeathExplosionSpecialCondition());
-
-            SpecialConditionComponent disableMechanoidSignalCondition = new DisableMechanoidSignalSpecialCondition();
-            if (disableMechanoidSignalCondition.IsAvailable)
-            {
-                specialConditions.Add(disableMechanoidSignalCondition);
-            }
-            SpecialConditionComponent pursuingMechanoidsCondition = new PursuingMechanoidsSpecialCondition();
-            if (pursuingMechanoidsCondition.IsAvailable)
-            {
-                specialConditions.Add(pursuingMechanoidsCondition);
+                if (specialCondition.IsAvailable)
+                {
+                    result.Add(specialCondition);
+                }
             }
 
             foreach (SpecialConditionComponent specialCondition in ComponentRegistration.SpecialConditions)
             {
                 if (specialCondition.IsAvailable)
                 {
-                    specialConditions.Add(specialCondition);
+                    result.Add(specialCondition);
                 }
             }
 
-            return specialConditions;
+            return result;
         }
     }
 }

@@ -98,7 +98,8 @@ namespace Rokk.Playwright.Utilities
             // We assume that when "permanentEnemyToEveryoneExcept" is used, if at least one faction is a player faction,
             // they probably intend for all the player factions to be in there.
             // Some factions may be hostile to new arrivals but neutral towards new tribes,
-            // but at that point we're stretching the limits of what we can do in the UI. It's fine
+            // but at that point we're stretching the limits of what we can do in the UI. It's fine.
+            // Theoretically this would be possible by just reading the origin's playerfaction now actually.
             return GetAllNpcFactions()
                 .Where(def =>
                 !def.naturalEnemy

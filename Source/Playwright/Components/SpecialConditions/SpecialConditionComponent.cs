@@ -39,13 +39,13 @@ namespace Rokk.Playwright.Components.SpecialConditions
             var playwrightSpecialConditions = new List<SpecialConditionComponent>()
             {
                 new PlanetkillerSpecialCondition(),
-                new PrepareHaphazardlySpecialCondition(),
-                new UnwaveringLoyaltySpecialCondition(),
                 new DeathExplosionSpecialCondition(),
+                new PrepareHaphazardlySpecialCondition(),
                 new MorePsycastersSpecialCondition(),
                 new XenotypeSwapSpecialCondition(),
                 new DisableMechanoidSignalSpecialCondition(),
-                new PursuingMechanoidsSpecialCondition()
+                new PursuingMechanoidsSpecialCondition(),
+                new UnwaveringLoyaltySpecialCondition(),
             };
 
             foreach (SpecialConditionComponent specialCondition in playwrightSpecialConditions)

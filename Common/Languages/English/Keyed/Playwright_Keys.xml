@@ -282,6 +282,6 @@ These raids will not start until you land a Gravship for the first time, and wil
 
  <Playwright.Components.SpecialConditions.UnwaveringLoyalty>Unwavering Loyalty</Playwright.Components.SpecialConditions.UnwaveringLoyalty>
  <Playwright.Components.SpecialConditions.UnwaveringLoyalty.DescriptionShort>You can't recruit prisoners.</Playwright.Components.SpecialConditions.UnwaveringLoyalty.DescriptionShort>
- <Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>All prisoners are unwaveringly loyal, meaning they cannot be recruited. You will need to resort to other means if you want to get more colonists.</Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>
+ <Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>All prisoners are unwaveringly loyal, preventing you from recruiting them. You will need to resort to other means if you want to get more colonists.</Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>
 
 </LanguageData>

@@ -74,10 +74,17 @@ namespace Rokk.Playwright.Components.Origins
             }
         }
 
+        public override void DoAdditionalContents(Listing_AutoFitVertical originContentListing)
+        {
+            // base intentionally not called.
+            // This origin will never have default components, and listing the tech level is a bit dicey
+            // because I don't know what people might do with scenarios.
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Defs.Look<ScenarioDef>(ref Scenario, nameof(Scenario));
+            Scribe_Defs.Look(ref Scenario, nameof(Scenario));
         }
     }
 }

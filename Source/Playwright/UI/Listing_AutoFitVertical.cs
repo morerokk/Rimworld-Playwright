@@ -18,7 +18,7 @@ namespace Rokk.Playwright.UI
         public Rect? FittedRect { get; protected set; }
         public bool AutoInvalidateOnHeightExceeded { get; set; } = true;
 
-        private Action InvalidateGroupHook;
+        protected Action InvalidateGroupHook;
 
         public Listing_AutoFitVertical() : base()
         {
@@ -92,7 +92,7 @@ namespace Rokk.Playwright.UI
             }
         }
 
-        public Rect GetScrollViewInnerRect(Rect rect)
+        public virtual Rect GetScrollViewInnerRect(Rect rect)
         {
             if (FittedRect == null)
             {

@@ -25,6 +25,11 @@ namespace Rokk.Playwright.Components.Origins
         /// </summary>
         public ScenarioDef Scenario;
 
+        // Change origin name and descriptions to ensure the correct text is in the summary
+        public override string NameTranslated => Scenario != null ? Scenario.scenario.name : base.NameTranslated;
+        public override string DescriptionTranslated => Scenario != null ? Scenario.scenario.description : base.DescriptionTranslated;
+        public override string DescriptionShortTranslated => Scenario != null ? Scenario.scenario.summary : base.DescriptionShortTranslated;
+
         private string ScenarioLabel => Scenario != null ? Scenario.LabelCap.ToString() : "-";
 
         /// <summary>
@@ -66,7 +71,7 @@ namespace Rokk.Playwright.Components.Origins
                     options.Add(new FloatMenuOption(scenario.LabelCap, () =>
                     {
                         this.Scenario = scenario;
-                        originContentListing.Invalidate();
+                        originContentListing.InvalidateGroup();
                     }));
                 }
 

@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,7 @@ namespace Rokk.Playwright.UI
             if (Widgets.ButtonText(addButtonRect, "Add".Translate().CapitalizeFirst()))
             {
                 SelectOrMakeNewIdeo(null);
+                SoundUtils.PlayAdd();
             }
         }
     }

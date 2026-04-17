@@ -38,6 +38,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
             var playwrightSpecialConditions = new List<SpecialConditionComponent>()
             {
+                new DisableIncidentsSpecialCondition(),
                 new PlanetkillerSpecialCondition(),
                 new DeathExplosionSpecialCondition(),
                 new PrepareHaphazardlySpecialCondition(),
@@ -46,6 +47,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 new DisableMechanoidSignalSpecialCondition(),
                 new PursuingMechanoidsSpecialCondition(),
                 new UnwaveringLoyaltySpecialCondition(),
+                new DisableManInBlackSpecialCondition()
             };
 
             foreach (SpecialConditionComponent specialCondition in playwrightSpecialConditions)

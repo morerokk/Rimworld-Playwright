@@ -24,6 +24,12 @@ namespace Rokk.Playwright.UI
         private PlaywrightStructure PlaywrightStructure = PlaywrightStructure.CreateDefault();
         public Tabs ActiveTab { get; private set; } = Tabs.Intro;
         public bool FormDirty { get; private set; } = false;
+        /// <summary>
+        /// Used to track whether an error has occurred the last time the player tried to open the Ideoligion Editor.
+        /// This usually works in vanilla, but it's necessarily janky due to having to generate a hidden throwaway world.
+        /// If true, a small bit of text will be shown informing the player that their current modlist setup may cause it to not work.
+        /// </summary>
+        public bool IdeoligionEditorHasErrored { get; private set; } = false;
 
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
@@ -198,7 +204,20 @@ namespace Rokk.Playwright.UI
                 listing.Gap();
                 if (listing.ButtonText("Playwright.OpenIdeoligionEditor".Translate(), widthPct: 0.2f))
                 {
-                    PlaywrightUtils.OpenIdeoligionEditor();
+                    try
+                    {
+                        PlaywrightUtils.OpenIdeoligionEditor();
+                    }
+                    catch (Exception ex)
+                    {
+                        IdeoligionEditorHasErrored = true;
+                        throw;
+                    }
+                }
+                if (IdeoligionEditorHasErrored)
+                {
+                    listing.Gap();
+                    listing.Label("Playwright.ErrorOpeningIdeoligionEditor".Translate());
                 }
             }
 

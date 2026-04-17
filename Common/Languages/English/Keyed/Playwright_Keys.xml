@@ -45,6 +45,11 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
  <Playwright.TechLevel>Tech level:</Playwright.TechLevel>
  <Playwright.OpenXenotypeEditor>Xenotype Editor</Playwright.OpenXenotypeEditor>
  <Playwright.OpenIdeoligionEditor>Ideoligion Editor</Playwright.OpenIdeoligionEditor>
+ <Playwright.ErrorOpeningIdeoligionEditor>An error occurred when the Ideoligion Editor was opened.
+
+Due to technical limitations, the editor is somewhat error-prone when combined with certain mods. If the editor has opened and seems to work, you can ignore this message. If the editor hasn't opened, you may need to customize your Ideoligions in the vanilla new colony menu instead.
+
+Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
@@ -285,5 +290,14 @@ These raids will not start until you land a Gravship for the first time, and wil
  <Playwright.Components.SpecialConditions.UnwaveringLoyalty>Unwavering Loyalty</Playwright.Components.SpecialConditions.UnwaveringLoyalty>
  <Playwright.Components.SpecialConditions.UnwaveringLoyalty.DescriptionShort>You can't recruit prisoners.</Playwright.Components.SpecialConditions.UnwaveringLoyalty.DescriptionShort>
  <Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>All prisoners are unwaveringly loyal, preventing you from recruiting them. You will need to resort to other means if you want to get more colonists.</Playwright.Components.SpecialConditions.UnwaveringLoyalty.Description>
+
+ <Playwright.Components.SpecialConditions.DisableManInBlack>Disable Man in Black</Playwright.Components.SpecialConditions.DisableManInBlack>
+ <Playwright.Components.SpecialConditions.DisableManInBlack.DescriptionShort>The Man in Black savior is disabled.</Playwright.Components.SpecialConditions.DisableManInBlack.DescriptionShort>
+ <Playwright.Components.SpecialConditions.DisableManInBlack.Description>The Man in Black will no longer appear when your last remaining colonist is downed.</Playwright.Components.SpecialConditions.DisableManInBlack.Description>
+
+ <Playwright.Components.SpecialConditions.DisableIncidents>Disable Incidents</Playwright.Components.SpecialConditions.DisableIncidents>
+ <Playwright.Components.SpecialConditions.DisableIncidents.DescriptionShort>Disable specific incidents/storyteller events.</Playwright.Components.SpecialConditions.DisableIncidents.DescriptionShort>
+ <Playwright.Components.SpecialConditions.DisableIncidents.Description>The chosen incidents/storyteller events will be disabled.</Playwright.Components.SpecialConditions.DisableIncidents.Description>
+ <Playwright.Components.SpecialConditions.DisableIncidents.Add>Add disabled incident...</Playwright.Components.SpecialConditions.DisableIncidents.Add>
 
 </LanguageData>

@@ -58,7 +58,9 @@
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Components\SpecialConditions\DeathExplosionSpecialCondition.cs" />
+    <Compile Include="Components\SpecialConditions\DisableIncidentsSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\MorePsycastersSpecialCondition.cs" />
+    <Compile Include="Components\SpecialConditions\DisableManInBlackSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\UnwaveringLoyaltySpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PursuingMechanoidsSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\PrepareHaphazardlySpecialCondition.cs" />

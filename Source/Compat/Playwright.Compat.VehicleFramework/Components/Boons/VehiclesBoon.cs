@@ -41,7 +41,7 @@ namespace Rokk.Playwright.Compat.VehicleFramework.Components.Boons
                 var options = new List<FloatMenuOption>()
                 {
                     // First option is null, null is random vehicle
-                    // NOTE: As of writing (2026-04-17), this makes the summary entries fail, this is a bug in Vehicle Framework,
+                    // NOTE: As of writing (2026-04-17), this makes the summary entries fail with an error. This is a bug in Vehicle Framework,
                     // as this also happens when adding the scenario part in the regular editor and setting it to random vehicle.
                     new FloatMenuOption("VF_RandomVehicle".Translate(), () =>
                     {
@@ -83,6 +83,7 @@ namespace Rokk.Playwright.Compat.VehicleFramework.Components.Boons
                 {
                     Vehicles.Remove(vehicleDef);
                     boonContentListing.InvalidateGroup();
+                    SoundUtils.PlayRemove();
                 }
             }
         }

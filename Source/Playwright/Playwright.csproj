@@ -135,6 +135,7 @@
     <Compile Include="UI\ScenPartDrawHelper.cs" />
     <Compile Include="Utilities\PlaywrightUtils.cs" />
     <Compile Include="Utilities\ScenPartUtility.cs" />
+    <Compile Include="Utilities\SoundUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

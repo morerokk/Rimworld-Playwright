@@ -899,9 +899,24 @@ namespace Rokk.Playwright.UI
 
         private void ResetSummaryToOriginDefaults()
         {
-            this.PlaywrightStructure.Name = this.PlaywrightStructure.Origin?.NameTranslated;
-            this.PlaywrightStructure.DescriptionShort = this.PlaywrightStructure.Origin?.DescriptionShortTranslated;
-            this.PlaywrightStructure.Description = this.PlaywrightStructure.Origin?.DescriptionTranslated;
+            // Import origin should take from the selected scenario
+            if (this.PlaywrightStructure.Origin?.Id == ImportOrigin.ComponentId)
+            {
+                var basedOnScenario = this.PlaywrightStructure.Origin.BasedOnScenario;
+                if (basedOnScenario?.scenario == null)
+                {
+                    return;
+                }
+                this.PlaywrightStructure.Name = basedOnScenario.scenario.name;
+                this.PlaywrightStructure.DescriptionShort = basedOnScenario.scenario.summary;
+                this.PlaywrightStructure.Description = basedOnScenario.scenario.description;
+            }
+            else
+            {
+                this.PlaywrightStructure.Name = this.PlaywrightStructure.Origin?.NameTranslated;
+                this.PlaywrightStructure.DescriptionShort = this.PlaywrightStructure.Origin?.DescriptionShortTranslated;
+                this.PlaywrightStructure.Description = this.PlaywrightStructure.Origin?.DescriptionTranslated;
+            }
         }
 
         private void CompileScenario()

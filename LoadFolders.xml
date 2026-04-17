@@ -2,11 +2,13 @@
 <loadFolders>
   <v1.6>
     <li>/</li>
-	<li>Common</li>
+	  <li>Common</li>
     <li>1.6</li>
-	<li IfModActive="MortStrudel.CorporationFaction,MortStrudel.CorporationFaction_steam">Compat/MortsCorporation/Common</li>
+	  <li IfModActive="MortStrudel.CorporationFaction,MortStrudel.CorporationFaction_steam">Compat/MortsCorporation/Common</li>
     <li IfModActive="MortStrudel.CorporationFaction,MortStrudel.CorporationFaction_steam">Compat/MortsCorporation/1.6</li>
-	<li IfModActive="vanillaracesexpanded.android,vanillaracesexpanded.android_steam">Compat/VREAndroids/Common</li>
-	<li IfModActive="vanillaracesexpanded.android,vanillaracesexpanded.android_steam">Compat/VREAndroids/1.6</li>
+	  <li IfModActive="vanillaracesexpanded.android,vanillaracesexpanded.android_steam">Compat/VREAndroids/Common</li>
+	  <li IfModActive="vanillaracesexpanded.android,vanillaracesexpanded.android_steam">Compat/VREAndroids/1.6</li>
+	  <li IfModActive="SmashPhil.VehicleFramework,SmashPhil.VehicleFramework_steam">Compat/VehicleFramework/Common</li>
+	  <li IfModActive="SmashPhil.VehicleFramework,SmashPhil.VehicleFramework_steam">Compat/VehicleFramework/1.6</li>
   </v1.6>
 </loadFolders>

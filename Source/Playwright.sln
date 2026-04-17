@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compat", "Compat", "{A66E85
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.VREAndroids", "Compat\Playwright.Compat.VREAndroids\Playwright.Compat.VREAndroids.csproj", "{79AD81E0-60D6-4CD4-9E9B-0D317C9A0746}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.VehicleFramework", "Compat\Playwright.Compat.VehicleFramework\Playwright.Compat.VehicleFramework.csproj", "{149C5F10-1514-44E6-BB85-309DD297BA0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{79AD81E0-60D6-4CD4-9E9B-0D317C9A0746}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79AD81E0-60D6-4CD4-9E9B-0D317C9A0746}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79AD81E0-60D6-4CD4-9E9B-0D317C9A0746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149C5F10-1514-44E6-BB85-309DD297BA0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149C5F10-1514-44E6-BB85-309DD297BA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149C5F10-1514-44E6-BB85-309DD297BA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149C5F10-1514-44E6-BB85-309DD297BA0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F6164AFC-A6F3-49AD-B309-997E47BB6F7E} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 		{79AD81E0-60D6-4CD4-9E9B-0D317C9A0746} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
+		{149C5F10-1514-44E6-BB85-309DD297BA0A} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41782E2C-45E7-48ED-A26C-E141E03E24CE}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+ <Playwright.Components.Boons.Compat_VehicleFramework_Vehicles>Vehicles</Playwright.Components.Boons.Compat_VehicleFramework_Vehicles>
+ <Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.DescriptionShort>Start with extra vehicles.</Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.DescriptionShort>
+ <Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.Description>Start with extra vehicles that use Vehicle Framework.</Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.Description>
+ <Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.Add>Add Vehicle...</Playwright.Components.Boons.Compat_VehicleFramework_Vehicles.Add>
+
+</LanguageData>

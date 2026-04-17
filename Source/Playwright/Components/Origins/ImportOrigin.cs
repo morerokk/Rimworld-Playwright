@@ -16,7 +16,8 @@ namespace Rokk.Playwright.Components.Origins
     /// </summary>
     public class ImportOrigin : OriginComponent
     {
-        public override string Id => "Origins.Import";
+        public const string ComponentId = "Origins.Import";
+        public override string Id => ComponentId;
         public override ScenarioDef BasedOnScenario => Scenario;
 
         /// <summary>

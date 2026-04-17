@@ -143,6 +143,7 @@ namespace Rokk.Playwright.ScenParts
             Scribe_Values.Look(ref Colonists, nameof(Colonists));
             Scribe_Defs.Look(ref Faction, nameof(Faction));
             Scribe_Defs.Look(ref Title, nameof(Title));
+            ColonistsBuffer = Colonists.ToString();
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Rokk.Playwright.Utilities
         /// </summary>
         /// <remarks>
         /// This does some spooky stuff to make the ideoligion editor work without needing to be in the world menu.
-        /// It's also a bit jank and insists on adding a harmless default Pasturism ideology.
+        /// It's also a bit jank and insists on adding a harmless random default ideology (which isn't saved so shouldn't get in the way).
         /// Do NOT use this while the game is ingame, and don't use this from any location in the main menu that's on or past the "New Colony" screen.
         /// This is basically only safe in the main menu landing, in options or in the playwright editor.
         /// </remarks>

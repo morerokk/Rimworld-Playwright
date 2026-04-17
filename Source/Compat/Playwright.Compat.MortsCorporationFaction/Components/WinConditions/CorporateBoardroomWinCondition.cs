@@ -54,6 +54,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
             base.ExposeData();
             Scribe_Values.Look(ref Colonists, nameof(Colonists), 10);
             Scribe_Defs.Look(ref Title, nameof(Title));
+            ColonistsBuffer = Colonists.ToString();
         }
     }
 }

@@ -85,6 +85,7 @@ namespace Rokk.Playwright.ScenParts
         {
             base.ExposeData();
             Scribe_Values.Look(ref Days, nameof(Days));
+            DaysBuffer = Days.ToString();
         }
     }
 }

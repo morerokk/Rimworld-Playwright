@@ -35,6 +35,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
         {
             base.ExposeData();
             Scribe_Values.Look(ref Amount, nameof(Amount), 5000);
+            AmountBuffer = Amount.ToString();
         }
     }
 }

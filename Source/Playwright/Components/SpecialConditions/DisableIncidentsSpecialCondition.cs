@@ -26,7 +26,6 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     && def != DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory
                     && def != DefOfs.IncidentDefOf.GiveQuest_EndGame_RoyalAscent
                     && def != DefOfs.IncidentDefOf.GiveQuest_MechanoidSignal)
-                // Disable already-selected incidents
                 .Where(def => !DisabledIncidents.Contains(def));
         }
 

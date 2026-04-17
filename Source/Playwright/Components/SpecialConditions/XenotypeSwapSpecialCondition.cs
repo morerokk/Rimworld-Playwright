@@ -270,6 +270,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
         {
             base.ExposeData();
             Scribe_Collections.Look(ref XenotypeReplacements, nameof(XenotypeReplacements), LookMode.Deep);
+            Scribe_Collections.Look(ref CustomXenotypeReplacements, nameof(CustomXenotypeReplacements), LookMode.Deep);
         }
 
         public class XenotypeReplacement : IExposable

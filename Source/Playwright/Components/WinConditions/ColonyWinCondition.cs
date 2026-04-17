@@ -33,6 +33,7 @@ namespace Rokk.Playwright.Components.WinConditions
         {
             base.ExposeData();
             Scribe_Values.Look(ref Colonists, nameof(Colonists), 30);
+            ColonistsBuffer = Colonists.ToString();
         }
     }
 }

@@ -82,6 +82,7 @@ namespace Rokk.Playwright.ScenParts
         {
             base.ExposeData();
             Scribe_Values.Look(ref Colonists, nameof(Colonists));
+            ColonistsBuffer = Colonists.ToString();
         }
     }
 }

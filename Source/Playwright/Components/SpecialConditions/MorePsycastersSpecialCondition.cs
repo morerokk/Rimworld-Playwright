@@ -19,7 +19,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
         // Levels 1-5 have the most interesting psycasts for NPC's to use.
         // 6 is too disruptive with Neuroquake and Berserk Pulse
         public IntRange PsylinkLevelRange = new IntRange(1, 5);
-        private FloatRange PsylinkLevelAsFloatRange => new FloatRange(PsylinkLevelRange.min, PsylinkLevelRange.max);
+        public FloatRange PsylinkLevelAsFloatRange => new FloatRange(PsylinkLevelRange.min, PsylinkLevelRange.max);
 
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)
         {

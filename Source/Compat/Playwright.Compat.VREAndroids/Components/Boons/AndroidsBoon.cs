@@ -129,6 +129,7 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
         {
             base.ExposeData();
             Scribe_Values.Look(ref Amount, nameof(Amount), 3);
+            AmountBuffer = Amount.ToString();
         }
     }
 }

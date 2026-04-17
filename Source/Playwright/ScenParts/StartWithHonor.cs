@@ -129,6 +129,7 @@ namespace Rokk.Playwright.ScenParts
             Scribe_Defs.Look(ref FactionToStartWithHonorFor, nameof(FactionToStartWithHonorFor));
             Scribe_Values.Look(ref StartingHonor, nameof(StartingHonor), 7, false);
             Scribe_Values.Look(ref ApplyTitles, nameof(ApplyTitles), true, false);
+            StartingHonorBuffer = StartingHonor.ToString();
         }
 
         // Scenario summary description

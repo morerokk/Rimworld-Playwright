@@ -12,8 +12,8 @@ namespace Rokk.Playwright.ScenParts
 {
     /// <summary>
     /// Wins the game when the specified amount of the specified item is sold.
-    /// This is handled in patches separately,
-    /// check <see cref="Patches.Tradeable_ResolveTradePatches"/>, <see cref="PatchCheckers.WinConditionPatchChecker"/> and <see cref="GameComponents.GameComponent_Playwright_WinConditions"/>.
+    /// Notifying this ScenPart that items have been traded with NotifyThingSoldToTrader() is handled in patches,
+    /// check <see cref="Patches.Tradeable_ResolveTradePatches"/> and <see cref="PatchCheckers.WinConditionPatchChecker"/>.
     /// </summary>
     public class WinCondition_SellItems : ScenPart_WinCondition
     {
@@ -23,9 +23,9 @@ namespace Rokk.Playwright.ScenParts
 
         public int AmountSold;
 
-        private string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";
+        protected virtual string ThingLabel => Thing != null ? Thing.LabelCap.ToString() : "-";
 
-        private IEnumerable<ThingDef> PossibleThingDefs()
+        protected virtual IEnumerable<ThingDef> PossibleThingDefs()
         {
             return DefDatabase<ThingDef>.AllDefs
                 .Where((ThingDef d) => d.category == ThingCategory.Item || d.category == ThingCategory.Pawn);
@@ -79,7 +79,7 @@ namespace Rokk.Playwright.ScenParts
         /// Lets this ScenPart know that something has been sold to a trader, so that we can trigger the win if necessary.
         /// </summary>
         /// <param name="thing">The Thing that's been sold. Should at least include the def and the stack count.</param>
-        public void NotifyThingSoldToTrader(Thing thing)
+        public virtual void NotifyThingSoldToTrader(Thing thing)
         {
             if (thing.def != this.Thing)
             {

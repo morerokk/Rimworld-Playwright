@@ -1,8 +1,8 @@
 # Playwright
 
-An improved scenario editor for the game [RimWorld](https://rimworldgame.com/).
+An improved scenario editor for the game [RimWorld](https://rimworldgame.com/), as well as a collection of loose scenario parts usable in the game's own scenario editor.
 
-This mod is currently under construction and unreleased! Things will probably be broken, but the mod is in a good enough state right now that it works.
+This mod is currently under construction and unreleased! The mod's foundation is pretty much finished and definitely production-ready, but currently content is still being added.
 
 # Installation
 

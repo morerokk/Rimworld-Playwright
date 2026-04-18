@@ -217,7 +217,9 @@ namespace Rokk.Playwright.UI
                 if (IdeoligionEditorHasErrored)
                 {
                     listing.Gap();
+                    GUI.color = Color.yellow;
                     listing.Label("Playwright.ErrorOpeningIdeoligionEditor".Translate());
+                    GUI.color = Color.white;
                 }
             }
 
@@ -848,17 +850,26 @@ namespace Rokk.Playwright.UI
                 // Have to draw this here if we want to rethrow the exception (and we DO want to rethrow it!)
                 // Since we rethrow, we don't have to set errorText, we just bail
                 ReviewErrorListing.Begin(reviewContentRect);
+                GUI.color = Color.yellow;
                 ReviewErrorListing.Label("Playwright.Tabs.ReviewAndSave.ErrorUnknownException".Translate());
+                ReviewErrorListing.Gap();
+                GUI.color = Color.red;
+                ReviewErrorListing.Label(ex.Message);
+                ReviewErrorListing.Label(ex.StackTrace);
+                GUI.color = Color.white;
                 ReviewErrorListing.End();
                 throw;
             }
 
             if (hasError)
             {
+                GUI.color = Color.yellow;
                 ReviewErrorListing.Begin(reviewContentRect);
                 ReviewErrorListing.Label("Playwright.Tabs.ReviewAndSave.ErrorBuilderException".Translate());
+                ReviewErrorListing.Gap();
                 ReviewErrorListing.Label(errorText);
                 ReviewErrorListing.End();
+                GUI.color = Color.white;
                 return;
             }
 

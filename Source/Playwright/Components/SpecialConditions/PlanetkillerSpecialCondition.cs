@@ -37,6 +37,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
         {
             base.ExposeData();
             Scribe_Values.Look(ref Days, nameof(Days));
+            DaysBuffer = Days.ToString();
         }
     }
 }

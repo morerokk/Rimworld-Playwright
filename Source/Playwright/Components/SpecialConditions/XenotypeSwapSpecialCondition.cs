@@ -137,7 +137,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var xenotypeDef in GetSelectableFromXenotypes(replacement))
                     {
-                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }));
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();
@@ -162,7 +162,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     var options = new List<FloatMenuOption>();
                     foreach (var xenotypeDef in GetSelectableToXenotypes(replacement))
                     {
-                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }));
+                        options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     ClickSound();

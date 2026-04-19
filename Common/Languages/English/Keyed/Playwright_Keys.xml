@@ -121,9 +121,9 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Origins.Custom.StartingThings>Starting items:</Playwright.Components.Origins.Custom.StartingThings>
  <Playwright.Components.Origins.Custom.ScatteredNearbyThings>Scattered nearby:</Playwright.Components.Origins.Custom.ScatteredNearbyThings>
  <Playwright.Components.Origins.Custom.ScatteredAnywhereThings>Scattered anywhere:</Playwright.Components.Origins.Custom.ScatteredAnywhereThings>
- <Playwright.Components.Origins.Custom.AddStartingThing>Add starting item...</Playwright.Components.Origins.Custom.AddStartingThing>
- <Playwright.Components.Origins.Custom.AddScatteredNearbyThing>Add scattered nearby thing...</Playwright.Components.Origins.Custom.AddScatteredNearbyThing>
- <Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>Add scattered anywhere thing...</Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>
+ <Playwright.Components.Origins.Custom.AddStartingThing>Add starting item</Playwright.Components.Origins.Custom.AddStartingThing>
+ <Playwright.Components.Origins.Custom.AddScatteredNearbyThing>Add scattered nearby thing</Playwright.Components.Origins.Custom.AddScatteredNearbyThing>
+ <Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>Add scattered anywhere thing</Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>
  <Playwright.Components.Origins.Custom.ConfigPage>Starter colonist configuration type</Playwright.Components.Origins.Custom.ConfigPage>
  <Playwright.Components.Origins.Custom.ConfigPageType>Starter colonist configuration type</Playwright.Components.Origins.Custom.ConfigPageType>
  <Playwright.Components.Origins.Custom.ConfigPageType.Default>Default</Playwright.Components.Origins.Custom.ConfigPageType.Default>
@@ -131,6 +131,7 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Origins.Custom.ConfigPageType.PawnKinds>Pawn kinds</Playwright.Components.Origins.Custom.ConfigPageType.PawnKinds>
  <Playwright.Components.Origins.Custom.ConfigPageType.Mutants>Anomalous beings</Playwright.Components.Origins.Custom.ConfigPageType.Mutants>
  <Playwright.Components.Origins.Custom.PlayerFaction>Player Faction</Playwright.Components.Origins.Custom.PlayerFaction>
+ <Playwright.Components.Origins.Custom.ArrivalMethod>Arrival Method</Playwright.Components.Origins.Custom.ArrivalMethod>
  <Playwright.Components.Origins.Custom.Choose>Choose</Playwright.Components.Origins.Custom.Choose>
  <Playwright.Components.Origins.Custom.XOutOfY>out of</Playwright.Components.Origins.Custom.XOutOfY>
  <Playwright.Components.Origins.Custom.Choices>Choices</Playwright.Components.Origins.Custom.Choices>

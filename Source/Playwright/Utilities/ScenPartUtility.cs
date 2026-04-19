@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
 using Verse;
 
 namespace Rokk.Playwright.Utilities
@@ -448,6 +447,68 @@ namespace Rokk.Playwright.Utilities
             }
 
             return result;
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawns MakeConfigureStartingPawnsPart(int pawnCount = 3, int pawnChoiceCount = 8)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns part = (ScenPart_ConfigPage_ConfigureStartingPawns)ScenarioMaker.MakeScenPart(ScenPartDefOf.ConfigPage_ConfigureStartingPawns);
+            part.pawnCount = pawnCount;
+            part.pawnChoiceCount = pawnChoiceCount;
+            return part;
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes MakeConfigureStartingPawnsXenotypesPart(List<XenotypeCount> xenotypeCounts, int pawnChoiceCount = 8)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes part = (ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ConfigurePawnsXenotypes);
+            part.pawnChoiceCount = pawnChoiceCount;
+            part.xenotypeCounts = xenotypeCounts;
+            return part;
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs MakeConfigureStartingPawnsKindDefsPart(List<PawnKindCount> pawnKindCounts, int pawnChoiceCount = 8)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs part = (ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs);
+            part.pawnChoiceCount = pawnChoiceCount;
+            part.kindCounts = pawnKindCounts;
+            return part;
+        }
+
+        public static ScenPart_ConfigPage_ConfigureStartingPawns_Mutants MakeConfigureStartingPawnsMutantsPart(List<MutantCount> mutantCounts, int pawnChoiceCount = 8)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns_Mutants part = (ScenPart_ConfigPage_ConfigureStartingPawns_Mutants)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ConfigurePawnsMutants);
+            part.pawnChoiceCount = pawnChoiceCount;
+            part.mutantCounts = mutantCounts;
+            return part;
+        }
+
+        public static ScenPart_PlayerFaction MakePlayerFactionPart(FactionDef playerFaction = null)
+        {
+            if (playerFaction == null)
+            {
+                playerFaction = FactionDefOf.PlayerColony;
+            }
+
+            ScenPart_PlayerFaction part = (ScenPart_PlayerFaction)ScenarioMaker.MakeScenPart(ScenPartDefOf.PlayerFaction);
+
+            FieldInfo factionDefInfo = AccessTools.Field(typeof(ScenPart_PlayerFaction), "factionDef");
+            factionDefInfo.SetValue(part, playerFaction);
+
+            return part;
+        }
+
+        public static ScenPart_PlayerPawnsArriveMethod MakePlayerPawnsArriveMethodPart(PlayerPawnsArriveMethod? arriveMethod)
+        {
+            if (arriveMethod == null)
+            {
+                arriveMethod = PlayerPawnsArriveMethod.DropPods;
+            }
+
+            ScenPart_PlayerPawnsArriveMethod part = (ScenPart_PlayerPawnsArriveMethod)ScenarioMaker.MakeScenPart(ScenPartDefOf.PlayerPawnsArriveMethod);
+
+            FieldInfo arrivalMethodInfo = AccessTools.Field(typeof(ScenPart_PlayerPawnsArriveMethod), "method");
+            arrivalMethodInfo.SetValue(part, arriveMethod.Value);
+
+            return part;
         }
     }
 }

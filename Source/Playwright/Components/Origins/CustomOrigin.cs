@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -19,9 +20,9 @@ namespace Rokk.Playwright.Components.Origins
         public override string Id => "Origins.Custom";
         public override string SummaryTranslated => "";
         public override ScenarioDef BasedOnScenario => DefOfs.ScenarioDefOf.Playwright_BlankScenario;
-        public override FactionDef PlayerFaction => Faction;
 
         public FactionDef Faction = FactionDefOf.PlayerColony;
+        public PlayerPawnsArriveMethod ArriveMethod = PlayerPawnsArriveMethod.DropPods;
         public string FactionLabel => Faction != null ? Faction.LabelCap.ToString() : "-";
 
         public int PawnChoiceCount = 8;
@@ -96,7 +97,10 @@ namespace Rokk.Playwright.Components.Origins
         private IEnumerable<ThingDef> PossibleThingDefs()
         {
             return DefDatabase<ThingDef>.AllDefs
-                .Where(thingDef => (thingDef.category == ThingCategory.Item && thingDef.scatterableOnMapGen && !thingDef.destroyOnDrop) || (thingDef.category == ThingCategory.Building && thingDef.Minifiable))
+                .Where(thingDef => 
+                    (thingDef.category == ThingCategory.Item && thingDef.scatterableOnMapGen && !thingDef.destroyOnDrop)
+                    || (thingDef.category == ThingCategory.Building && thingDef.Minifiable)
+                    || thingDef.defName == "ShipChunk") // Specifically ship chunks are added by the default scenarios but can't be selected
                 .OrderBy(thingDef => thingDef.label);
         }
 
@@ -109,6 +113,37 @@ namespace Rokk.Playwright.Components.Origins
         private IEnumerable<FactionDef> PossiblePlayerFactions()
         {
             return FactionUtils.GetPlayerFactions();
+        }
+
+        private IEnumerable<PawnKindDef> PossiblePlayerPawnKinds()
+        {
+            return DefDatabase<PawnKindDef>.AllDefs
+                .Where(kindDef => kindDef.RaceProps.Humanlike && kindDef.defaultFactionDef != null && kindDef.defaultFactionDef.isPlayer);
+        }
+
+        private IEnumerable<MutantDef> PossiblePlayerMutants()
+        {
+            return DefDatabase<MutantDef>.AllDefs
+                .Where(mutantDef => mutantDef.showInScenarioEditor);
+        }
+
+        private string GetMutantLabel(MutantDef mutantDef)
+        {
+            if (mutantDef == null)
+            {
+                return "None".Translate();
+            }
+            return mutantDef.LabelCap;
+        }
+
+        private string GetArrivalMethodLabel()
+        {
+            return GetArrivalMethodLabel(ArriveMethod);
+        }
+
+        private string GetArrivalMethodLabel(PlayerPawnsArriveMethod arriveMethod)
+        {
+            return ("PlayerPawnsArriveMethod_" + arriveMethod.ToString()).Translate();
         }
 
         private string GetConfigPageTypeLabel(ConfigPageType configPageType)
@@ -129,6 +164,22 @@ namespace Rokk.Playwright.Components.Origins
                     options.Add(new FloatMenuOption(playerFaction.LabelCap, () =>
                     {
                         Faction = playerFaction;
+                        originContentListing.InvalidateGroup();
+                    }));
+                }
+                PlaywrightUtils.OpenFloatMenu(options);
+                SoundUtils.PlayClick();
+            }
+
+            // Arrival method selector
+            if (originContentListing.ButtonTextLabeled("Playwright.Components.Origins.Custom.ArrivalMethod".Translate(), GetArrivalMethodLabel()))
+            {
+                var options = new List<FloatMenuOption>();
+                foreach (PlayerPawnsArriveMethod arriveMethod in Enum.GetValues(typeof(PlayerPawnsArriveMethod)))
+                {
+                    options.Add(new FloatMenuOption(GetArrivalMethodLabel(arriveMethod), () =>
+                    {
+                        ArriveMethod = arriveMethod;
                         originContentListing.InvalidateGroup();
                     }));
                 }
@@ -266,7 +317,7 @@ namespace Rokk.Playwright.Components.Origins
                         {
                             xenotypeCount.xenotype = xenotypeDef;
                             originContentListing.InvalidateGroup();
-                        }));
+                        }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
                     SoundUtils.PlayClick();
@@ -292,6 +343,55 @@ namespace Rokk.Playwright.Components.Origins
             {
                 return;
             }
+
+            float oldWidth = originContentListing.ColumnWidth;
+            originContentListing.ColumnWidth *= 0.8f;
+
+            originContentListing.TextFieldNumericLabeled("Playwright.Components.Origins.Custom.Choices".Translate(), ref PawnChoiceCount, ref PawnChoiceCountBuffer, 1);
+            if (originContentListing.ButtonText("Playwright.Components.Origins.Custom.AddPawnKindCount".Translate()))
+            {
+                PawnKindCounts.Add(new PawnKindCount()
+                {
+                    count = 1,
+                    countBuffer = "1",
+                    requiredAtStart = false,
+                    kindDef = PawnKindDefOf.Colonist
+                });
+                SoundUtils.PlayAdd();
+            }
+
+            foreach (PawnKindCount pawnKindCount in PawnKindCounts.ToList())
+            {
+                originContentListing.TextFieldNumericLabeled("Playwright.Count".Translate(), ref pawnKindCount.count, ref pawnKindCount.countBuffer, PawnChoiceCount);
+                Rect deleteButtonRect = originContentListing.GetRect(0f);
+                deleteButtonRect.height = 25f;
+                if (originContentListing.ButtonText(pawnKindCount.kindDef.LabelCap, widthPct: 0.75f))
+                {
+                    var options = new List<FloatMenuOption>();
+                    foreach (var pawnKindDef in PossiblePlayerPawnKinds())
+                    {
+                        options.Add(new FloatMenuOption(pawnKindDef.LabelCap, () =>
+                        {
+                            pawnKindCount.kindDef = pawnKindDef;
+                            originContentListing.InvalidateGroup();
+                        }));
+                    }
+                    PlaywrightUtils.OpenFloatMenu(options);
+                    SoundUtils.PlayClick();
+                }
+                originContentListing.CheckboxLabeled("Required".Translate(), ref pawnKindCount.requiredAtStart, "Playwright.Components.Origins.Custom.RequiredAtStart.Help".Translate());
+
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, TextureUtils.DeleteButtonTex, 0f, 0.4f))
+                {
+                    PawnKindCounts.Remove(pawnKindCount);
+                    originContentListing.InvalidateGroup();
+                    SoundUtils.PlayRemove();
+                }
+
+                originContentListing.GapLine();
+            }
+
+            originContentListing.ColumnWidth = oldWidth;
         }
 
         private void DoMutantsConfigPage(Listing_AutoFitVertical originContentListing)
@@ -300,6 +400,63 @@ namespace Rokk.Playwright.Components.Origins
             {
                 return;
             }
+
+            float oldWidth = originContentListing.ColumnWidth;
+            originContentListing.ColumnWidth *= 0.8f;
+
+            originContentListing.TextFieldNumericLabeled("Playwright.Components.Origins.Custom.Choices".Translate(), ref PawnChoiceCount, ref PawnChoiceCountBuffer, 1);
+            if (originContentListing.ButtonText("Playwright.Components.Origins.Custom.AddMutantCount".Translate()))
+            {
+                PawnMutantCounts.Add(new MutantCount()
+                {
+                    count = 1,
+                    countBuffer = "1",
+                    requiredAtStart = false,
+                    mutant = null
+                });
+                SoundUtils.PlayAdd();
+            }
+
+            foreach (MutantCount mutantCount in PawnMutantCounts.ToList())
+            {
+                originContentListing.TextFieldNumericLabeled("Playwright.Count".Translate(), ref mutantCount.count, ref mutantCount.countBuffer, PawnChoiceCount);
+                Rect deleteButtonRect = originContentListing.GetRect(0f);
+                deleteButtonRect.height = 25f;
+                if (originContentListing.ButtonText(GetMutantLabel(mutantCount.mutant), widthPct: 0.75f))
+                {
+                    var options = new List<FloatMenuOption>()
+                    {
+                        new FloatMenuOption("None".Translate(), () =>
+                        {
+                            mutantCount.mutant = null;
+                            originContentListing.Invalidate();
+                        })
+                    };
+
+                    foreach (var mutantDef in PossiblePlayerMutants())
+                    {
+                        options.Add(new FloatMenuOption(mutantDef.LabelCap, () =>
+                        {
+                            mutantCount.mutant = mutantDef;
+                            originContentListing.InvalidateGroup();
+                        }));
+                    }
+                    PlaywrightUtils.OpenFloatMenu(options);
+                    SoundUtils.PlayClick();
+                }
+                originContentListing.CheckboxLabeled("Required".Translate(), ref mutantCount.requiredAtStart, "Playwright.Components.Origins.Custom.RequiredAtStart.Help".Translate());
+
+                if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, TextureUtils.DeleteButtonTex, 0f, 0.4f))
+                {
+                    PawnMutantCounts.Remove(mutantCount);
+                    originContentListing.InvalidateGroup();
+                    SoundUtils.PlayRemove();
+                }
+
+                originContentListing.GapLine();
+            }
+
+            originContentListing.ColumnWidth = oldWidth;
         }
 
         private void DoItems(Listing_AutoFitVertical originContentListing, List<ExtraItemEntry> items, string addKey)
@@ -408,13 +565,55 @@ namespace Rokk.Playwright.Components.Origins
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
+            // Set config page
+            ScenPart_ConfigPage_ConfigureStartingPawnsBase configPagePart;
+            if (ConfigPage == ConfigPageType.Xenotypes)
+            {
+                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsXenotypesPart(PawnXenotypeCounts, PawnChoiceCount);
+            }
+            else if (ConfigPage == ConfigPageType.PawnKinds)
+            {
+                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsKindDefsPart(PawnKindCounts, PawnChoiceCount);
+            }
+            else if (ConfigPage == ConfigPageType.Mutants)
+            {
+                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsMutantsPart(PawnMutantCounts, PawnChoiceCount);
+            }
+            else
+            {
+                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsPart(PawnCount, PawnChoiceCount);
+            }
+            scenarioParts.Add(configPagePart);
 
+            // Player faction is an internal field, not in the list of parts
+            FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
+            playerFactionInfo.SetValue(scenario, ScenPartUtility.MakePlayerFactionPart(Faction));
+
+            // Set arrival method
+            scenarioParts.Add(ScenPartUtility.MakePlayerPawnsArriveMethodPart(ArriveMethod));
+
+            // Add starting things
+            foreach (var startingThing in StartingThings)
+            {
+                scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(startingThing.Thing, startingThing.Stuff, startingThing.Count, startingThing.Quality));
+            }
+            // Add scattered nearby things
+            foreach (var scatteredNearbyThing in ScatteredNearbyThings)
+            {
+                scenarioParts.Add(ScenPartUtility.MakeScatterThingsNearPlayerPart(scatteredNearbyThing.Thing, scatteredNearbyThing.Stuff, scatteredNearbyThing.Count, scatteredNearbyThing.Quality));
+            }
+            // Add scattered anywhere things
+            foreach (var scatteredAnywhereThing in ScatteredAnywhereThings)
+            {
+                scenarioParts.Add(ScenPartUtility.MakeScatterThingsAnywherePart(scatteredAnywhereThing.Thing, scatteredAnywhereThing.Stuff, scatteredAnywhereThing.Count, scatteredAnywhereThing.Quality));
+            }
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Defs.Look(ref Faction, nameof(Faction));
+            Scribe_Values.Look(ref ArriveMethod, nameof(ArriveMethod), PlayerPawnsArriveMethod.DropPods);
             Scribe_Values.Look(ref PawnChoiceCount, nameof(PawnChoiceCount), 8);
             Scribe_Values.Look(ref ConfigPage, nameof(ConfigPage), ConfigPageType.Default);
             Scribe_Values.Look(ref PawnCount, nameof(PawnCount), 3);

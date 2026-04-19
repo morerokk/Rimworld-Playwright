@@ -64,7 +64,7 @@ namespace Rokk.Playwright.Compat.VehicleFramework.Components.Boons
 
         private void DoVehiclesContents(Listing_AutoFitVertical boonContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (VehicleDef vehicleDef in Vehicles.ToList())
             {

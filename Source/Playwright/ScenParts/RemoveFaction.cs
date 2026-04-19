@@ -20,7 +20,7 @@ namespace Rokk.Playwright.ScenParts
 
         protected virtual IEnumerable<FactionDef> GetAllowedFactions()
         {
-            return PlaywrightUtils.GetAllNpcFactions();
+            return FactionUtils.GetAllNpcFactions();
         }
 
         public override void DoEditInterface(Listing_ScenEdit listing)

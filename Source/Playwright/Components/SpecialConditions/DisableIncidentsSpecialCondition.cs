@@ -52,7 +52,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         private void DoIncidentsContents(Listing_AutoFitVertical specialConditionContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (IncidentDef incidentDef in DisabledIncidents.ToList())
             {

@@ -46,7 +46,7 @@ namespace Rokk.Playwright.Components.Boons
         private void DoItemsContents(Listing_AutoFitVertical boonContentListing)
         {
             // Lots of stuff taken from ScenPart_ThingCount
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (ExtraItemEntry item in Items.ToList())
             {

@@ -9,6 +9,7 @@ namespace Rokk.Playwright.DefOfs
     [DefOf]
     public static class ScenarioDefOf
     {
+        public static ScenarioDef Playwright_BlankScenario;
         [MayRequireRoyalty]
         public static ScenarioDef Playwright_Empire;
 

@@ -305,17 +305,12 @@ namespace Rokk.Playwright.UI
             OriginContentListing.Gap();
             OriginContentListing.Label(selectedOrigin.DescriptionTranslated);
             OriginContentListing.Gap();
+            selectedOrigin.DoSettingsContents(OriginContentListing);
             OriginContentListing.Label(selectedOrigin.SummaryTranslated);
 
-            if (ModsConfig.IdeologyActive)
-            {
-                OriginContentListing.Gap();
-                OriginContentListing.Label("Playwright.Components.SuggestedIdeo".Translate() + " " + selectedOrigin.SuggestedIdeoTranslated);
-            }
             OriginContentListing.Gap();
 
             selectedOrigin.DoAdditionalContents(OriginContentListing);
-            selectedOrigin.DoSettingsContents(OriginContentListing);
 
             OriginContentListing.End();
 
@@ -349,9 +344,9 @@ namespace Rokk.Playwright.UI
             List<BoonComponent> allBoons = BoonComponent.GetAvailableBoons();
             List<BoonComponent> selectedBoons = PlaywrightStructure.Boons;
             List<BoonComponent> availableBoons = allBoons.Where(b => !selectedBoons.Any(sb => sb.Id == b.Id)).ToList();
-            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
-            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
+            Texture2D plusTex = TextureUtils.AddButtonTex;
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
+            Texture2D infoTex = TextureUtils.HelpButtonTex;
 
             Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.Boons.Welcome");
             nextRect.y += Margin;
@@ -550,7 +545,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawSelectedFactions(Rect contentRect, Listing_AutoFitVertical factionListing, ref Vector2 scrollPos, List<FactionComponent> selectedFactions, FactionRelationKind relationKind)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             Rect contentInnerRect = new Rect(contentRect);
             contentInnerRect.width -= Margin;
@@ -581,9 +576,9 @@ namespace Rokk.Playwright.UI
             List<WinConditionComponent> allWinConditions = WinConditionComponent.GetAvailableWinConditions();
             List<WinConditionComponent> selectedWinConditions = PlaywrightStructure.WinConditions;
             List<WinConditionComponent> availableWinConditions = allWinConditions.Where(b => !selectedWinConditions.Any(sb => sb.Id == b.Id)).ToList();
-            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
-            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
+            Texture2D plusTex = TextureUtils.AddButtonTex;
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
+            Texture2D infoTex = TextureUtils.HelpButtonTex;
 
             Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.WinConditions.Welcome");
             nextRect.y += Margin;
@@ -678,9 +673,9 @@ namespace Rokk.Playwright.UI
             List<SpecialConditionComponent> allSpecialConditions = SpecialConditionComponent.GetAvailableSpecialConditions();
             List<SpecialConditionComponent> selectedSpecialConditions = PlaywrightStructure.SpecialConditions;
             List<SpecialConditionComponent> availableSpecialConditions = allSpecialConditions.Where(b => !selectedSpecialConditions.Any(sb => sb.Id == b.Id)).ToList();
-            Texture2D plusTex = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
-            Texture2D infoTex = ContentFinder<Texture2D>.Get("UI/Buttons/InfoButton", true);
+            Texture2D plusTex = TextureUtils.AddButtonTex;
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
+            Texture2D infoTex = TextureUtils.HelpButtonTex;
 
             Rect nextRect = PlaywrightDrawHelper.NextLabelTranslated(contentRect, "Playwright.Tabs.SpecialConditions.Welcome");
             nextRect.y += Margin;

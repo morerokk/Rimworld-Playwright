@@ -24,14 +24,14 @@ namespace Rokk.Playwright.ScenParts
         {
             if (RelationKind == FactionRelationKind.Hostile)
             {
-                return PlaywrightUtils.GetDefaultEnemyFactions();
+                return FactionUtils.GetDefaultEnemyFactions();
             }
-            return PlaywrightUtils.GetDefaultNeutralFactions();
+            return FactionUtils.GetDefaultNeutralFactions();
         }
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             int rows = ExceptFactions.Count + 4;
             Rect scenPartRect = listing.GetScenPartRect(this, RowHeight * rows);

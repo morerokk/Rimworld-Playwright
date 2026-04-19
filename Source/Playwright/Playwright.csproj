@@ -45,6 +45,7 @@
     <Compile Include="Components\Factions\MechanoidHiveFaction.cs" />
     <Compile Include="Components\Factions\SpecificFaction.cs" />
     <Compile Include="Components\Factions\AllOtherFactions.cs" />
+    <Compile Include="Components\Origins\CustomOrigin.cs" />
     <Compile Include="Components\Origins\ImportOrigin.cs" />
     <Compile Include="Components\Origins\GravshipOrigin.cs" />
     <Compile Include="Components\Origins\AnomalyOrigin.cs" />
@@ -135,6 +136,8 @@
     <Compile Include="UI\PlaywrightWindow.cs" />
     <Compile Include="UI\InfoPopupWindow.cs" />
     <Compile Include="UI\ScenPartDrawHelper.cs" />
+    <Compile Include="Utilities\TextureUtils.cs" />
+    <Compile Include="Utilities\FactionUtils.cs" />
     <Compile Include="Utilities\PlaywrightUtils.cs" />
     <Compile Include="Utilities\ScenPartUtility.cs" />
     <Compile Include="Utilities\SoundUtils.cs" />

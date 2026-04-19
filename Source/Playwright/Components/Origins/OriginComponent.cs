@@ -284,7 +284,10 @@ namespace Rokk.Playwright.Components.Origins
                 }
             }
 
-            // Custom placeholder origin, selected from scenario, should always be at the bottom
+            // Custom origin
+            result.Add(new CustomOrigin());
+
+            // Placeholder origin, selected from scenario, should always be at the bottom
             result.Add(new ImportOrigin());
 
             return result;

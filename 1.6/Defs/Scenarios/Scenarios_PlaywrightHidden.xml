@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ScenarioDef Name="Playwright_Empire" ParentName="ScenarioBase" MayRequire="Ludeon.RimWorld.Royalty">
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Playwright_BlankScenario</defName>
+    <label>(internal) blank scenario</label>
+    <description>Create a custom Origin using the settings below.</description>
+    <scenario>
+      <showInUI>false</showInUI>
+      <summary>Create a custom origin.</summary>
+      <parts>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <ScenarioDef ParentName="ScenarioBase" MayRequire="Ludeon.RimWorld.Royalty">
     <defName>Playwright_Empire</defName>
     <label>Empire</label>
     <description>Five initiates that recently joined the ranks of the Empire as Novices. Sent out to do field work as a first mission.</description>
     <scenario>
-	  <showInUI>false</showInUI>
+	    <showInUI>false</showInUI>
       <summary>Imperial Novices sent out into the field.</summary>
       <parts>
         

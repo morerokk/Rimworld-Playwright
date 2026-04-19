@@ -50,6 +50,7 @@ Are you sure you want to close the window without saving?</Playwright.ConfirmClo
 Due to technical limitations, the editor is somewhat error-prone when combined with certain mods. If the editor has opened and seems to work, you can ignore this message. If the editor hasn't opened, you may need to customize your Ideoligions in the vanilla new colony menu instead.
 
 Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
+ <Playwright.Count>Count</Playwright.Count>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
@@ -113,7 +114,32 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
 
  <Playwright.Components.Origins.Empire>Imperial</Playwright.Components.Origins.Empire>
  <Playwright.Components.Origins.Empire.SuggestedIdeo>Imperial</Playwright.Components.Origins.Empire.SuggestedIdeo>
- 
+
+ <Playwright.Components.Origins.Custom>Custom</Playwright.Components.Origins.Custom>
+ <Playwright.Components.Origins.Custom.DescriptionShort>Build an Origin from scratch.</Playwright.Components.Origins.Custom.DescriptionShort>
+ <Playwright.Components.Origins.Custom.Description>Build a custom Origin from scratch.</Playwright.Components.Origins.Custom.Description>
+ <Playwright.Components.Origins.Custom.StartingThings>Starting items:</Playwright.Components.Origins.Custom.StartingThings>
+ <Playwright.Components.Origins.Custom.ScatteredNearbyThings>Scattered nearby:</Playwright.Components.Origins.Custom.ScatteredNearbyThings>
+ <Playwright.Components.Origins.Custom.ScatteredAnywhereThings>Scattered anywhere:</Playwright.Components.Origins.Custom.ScatteredAnywhereThings>
+ <Playwright.Components.Origins.Custom.AddStartingThing>Add starting item...</Playwright.Components.Origins.Custom.AddStartingThing>
+ <Playwright.Components.Origins.Custom.AddScatteredNearbyThing>Add scattered nearby thing...</Playwright.Components.Origins.Custom.AddScatteredNearbyThing>
+ <Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>Add scattered anywhere thing...</Playwright.Components.Origins.Custom.AddScatteredAnywhereThings>
+ <Playwright.Components.Origins.Custom.ConfigPage>Starter colonist configuration type</Playwright.Components.Origins.Custom.ConfigPage>
+ <Playwright.Components.Origins.Custom.ConfigPageType>Starter colonist configuration type</Playwright.Components.Origins.Custom.ConfigPageType>
+ <Playwright.Components.Origins.Custom.ConfigPageType.Default>Default</Playwright.Components.Origins.Custom.ConfigPageType.Default>
+ <Playwright.Components.Origins.Custom.ConfigPageType.Xenotypes>Xenotypes</Playwright.Components.Origins.Custom.ConfigPageType.Xenotypes>
+ <Playwright.Components.Origins.Custom.ConfigPageType.PawnKinds>Pawn kinds</Playwright.Components.Origins.Custom.ConfigPageType.PawnKinds>
+ <Playwright.Components.Origins.Custom.ConfigPageType.Mutants>Anomalous beings</Playwright.Components.Origins.Custom.ConfigPageType.Mutants>
+ <Playwright.Components.Origins.Custom.PlayerFaction>Player Faction</Playwright.Components.Origins.Custom.PlayerFaction>
+ <Playwright.Components.Origins.Custom.Choose>Choose</Playwright.Components.Origins.Custom.Choose>
+ <Playwright.Components.Origins.Custom.XOutOfY>out of</Playwright.Components.Origins.Custom.XOutOfY>
+ <Playwright.Components.Origins.Custom.Choices>Choices</Playwright.Components.Origins.Custom.Choices>
+ <Playwright.Components.Origins.Custom.Choices.Help>How many colonist choices are available during preparation. (X out of Y, where Y is this value)</Playwright.Components.Origins.Custom.Choices.Help>
+ <Playwright.Components.Origins.Custom.AddXenotypeCount>Add Xenotype</Playwright.Components.Origins.Custom.AddXenotypeCount>
+ <Playwright.Components.Origins.Custom.AddPawnKindCount>Add Pawn Kind</Playwright.Components.Origins.Custom.AddPawnKindCount>
+ <Playwright.Components.Origins.Custom.AddMutantCount>Add</Playwright.Components.Origins.Custom.AddMutantCount>
+ <Playwright.Components.Origins.Custom.RequiredAtStart.Help>If enabled, the preparation screen won't let you start without the specified amount of colonists being present. Disable this to let you deselect the required colonists.</Playwright.Components.Origins.Custom.RequiredAtStart.Help>
+
  <Playwright.Components.Origins.Import>(Import)</Playwright.Components.Origins.Import>
  <Playwright.Components.Origins.Import.DescriptionShort>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.DescriptionShort>
  <Playwright.Components.Origins.Import.Description>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.Description>

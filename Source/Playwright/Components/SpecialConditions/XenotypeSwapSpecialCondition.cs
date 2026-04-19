@@ -120,7 +120,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         private void DoXenotypesContent(Listing_AutoFitVertical specialConditionContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (XenotypeReplacement replacement in XenotypeReplacements.ToList())
             {
@@ -189,7 +189,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         private void DoCustomXenotypesContent(Listing_AutoFitVertical specialConditionContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (CustomXenotypeReplacement customReplacement in CustomXenotypeReplacements.ToList())
             {

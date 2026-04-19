@@ -76,7 +76,7 @@ namespace Rokk.Playwright.Components.Boons
 
         private void DoImplantsContents(Listing_AutoFitVertical boonContentListing)
         {
-            Texture2D deleteTex = ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true);
+            Texture2D deleteTex = TextureUtils.DeleteButtonTex;
 
             foreach (ExtraImplantEntry implant in Implants.ToList())
             {

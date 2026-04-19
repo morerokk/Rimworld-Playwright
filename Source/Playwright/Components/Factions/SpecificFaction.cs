@@ -38,9 +38,9 @@ namespace Rokk.Playwright.Components.Factions
         {
             if (relationKind == FactionRelationKind.Hostile)
             {
-                return PlaywrightUtils.GetAllNpcFactions();
+                return FactionUtils.GetAllNpcFactions();
             }
-            return PlaywrightUtils.GetNotPermanentlyHostileFactions();
+            return FactionUtils.GetNotPermanentlyHostileFactions();
         }
 
         protected string FactionLabelText => Faction != null ? Faction.LabelCap.ToString() : "Playwright.Components.Factions.Specific.Faction.Select".Translate().ToString();

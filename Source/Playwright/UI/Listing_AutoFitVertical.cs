@@ -10,6 +10,10 @@ namespace Rokk.Playwright.UI
     /// When End() is called, shrinks the rect to its contents.
     /// Use Invalidate() to let the listing recalculate its size next time it begins.
     /// </summary>
+    /// <remarks>
+    /// You can use this the same way as a Listing_Standard.
+    /// Call GetScrollViewInnerRect() to get an inner rect to use for your scrollview.
+    /// </remarks>
     public class Listing_AutoFitVertical : Listing_Standard
     {
         public const float DefaultHeight = 99999f;

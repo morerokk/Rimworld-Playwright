@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Rokk.Playwright.Components.Boons;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.Exceptions;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
@@ -21,7 +22,7 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
         public int Amount = 3;
         private string AmountBuffer = "3";
 
-        public override void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
+        protected override void DoSettingsContents(Listing_AutoFitVertical boonContentListing, OriginComponent origin)
         {
             boonContentListing.Label("Playwright.Components.Boons.Compat_VREAndroids_Androids.Amount".Translate());
             boonContentListing.IntEntry(ref Amount, ref AmountBuffer, 1, 1);

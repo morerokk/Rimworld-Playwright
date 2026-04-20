@@ -100,7 +100,7 @@ namespace Rokk.Playwright.Components.Origins
                 .Where(thingDef => 
                     (thingDef.category == ThingCategory.Item && thingDef.scatterableOnMapGen && !thingDef.destroyOnDrop)
                     || (thingDef.category == ThingCategory.Building && thingDef.Minifiable)
-                    || thingDef.defName == "ShipChunk") // Specifically ship chunks are added by the default scenarios but can't be selected
+                    || thingDef.defName == "ShipChunk") // Specifically ship chunks are added by the default scenarios but can't be selected normally
                 .OrderBy(thingDef => thingDef.label);
         }
 

@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.ScenParts;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
@@ -62,7 +63,7 @@ namespace Rokk.Playwright.Components.Boons
             return false;
         }
 
-        public override void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
+        protected override void DoSettingsContents(Listing_AutoFitVertical boonContentListing, OriginComponent origin)
         {
             if (boonContentListing.ButtonText("Playwright.Components.Boons.ExtraImplants.Add".Translate()))
             {

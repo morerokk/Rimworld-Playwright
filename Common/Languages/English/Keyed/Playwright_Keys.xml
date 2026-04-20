@@ -186,6 +186,11 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.ExtraImplants.Side.Right>Right</Playwright.Components.Boons.ExtraImplants.Side.Right>
  <Playwright.Components.Boons.ExtraImplants.Side.Both>Both</Playwright.Components.Boons.ExtraImplants.Side.Both>
  <Playwright.Components.Boons.ExtraImplants.Side.Random>Random</Playwright.Components.Boons.ExtraImplants.Side.Random>
+
+ <Playwright.Components.Boons.StartingResearch>Starting Research</Playwright.Components.Boons.StartingResearch>
+ <Playwright.Components.Boons.StartingResearch.DescriptionShort>Start with some research projects already completed.</Playwright.Components.Boons.StartingResearch.DescriptionShort>
+ <Playwright.Components.Boons.StartingResearch.Description>Start with some research projects already completed.</Playwright.Components.Boons.StartingResearch.Description>
+ <Playwright.Components.Boons.StartingResearch.Add>Add Research Project...</Playwright.Components.Boons.StartingResearch.Add>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->

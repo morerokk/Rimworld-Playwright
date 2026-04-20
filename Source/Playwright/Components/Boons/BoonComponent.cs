@@ -1,4 +1,5 @@
 ﻿using Rokk.Playwright.Addons;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,22 @@ namespace Rokk.Playwright.Components.Boons
         /// </summary>
         public virtual bool HasHelp => false;
 
-        public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing)
+        /// <summary>
+        /// Draw the boon contents. By default, this also draws its settings.
+        /// </summary>
+        /// <param name="boonContentListing">The Listing that this boon is drawn in.</param>
+        /// <param name="origin">The player's currently chosen Origin. Ideally, should ONLY be read from! Avoid writing to the Origin directly.</param>
+        public virtual void DoBoonContents(Listing_AutoFitVertical boonContentListing, OriginComponent origin)
         {
             Text.Font = GameFont.Medium;
             boonContentListing.Label(NameTranslated);
             Text.Font = GameFont.Small;
             boonContentListing.Gap();
             boonContentListing.Label(DescriptionTranslated);
-            DoSettingsContents(boonContentListing);
+            DoSettingsContents(boonContentListing, origin);
         }
 
-        public virtual void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
+        protected virtual void DoSettingsContents(Listing_AutoFitVertical boonContentListing, OriginComponent origin)
         {
 
         }
@@ -41,6 +47,7 @@ namespace Rokk.Playwright.Components.Boons
             {
                 new ExtraItemsBoon(),
                 new ExtraImplantsBoon(),
+                new StartingResearchBoon(),
                 new NovicesBoon(),
                 new ShuttleBoon()
             };

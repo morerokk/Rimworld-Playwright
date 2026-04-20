@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -31,7 +32,7 @@ namespace Rokk.Playwright.Components.Boons
                 .OrderBy(thingDef => thingDef.label);
         }
 
-        public override void DoSettingsContents(Listing_AutoFitVertical boonContentListing)
+        protected override void DoSettingsContents(Listing_AutoFitVertical boonContentListing, OriginComponent origin)
         {
             if (boonContentListing.ButtonText("Playwright.Components.Boons.ExtraItems.Add".Translate()))
             {

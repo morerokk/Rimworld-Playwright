@@ -409,7 +409,7 @@ namespace Rokk.Playwright.UI
                 Rect deleteButtonRect = SelectedBoonsListing.GetRect(0f);
                 deleteButtonRect.height = 50f;
                 deleteButtonRect = PlaywrightDrawHelper.RectWithMargin(deleteButtonRect, 5f);
-                boon.DoBoonContents(SelectedBoonsListing);
+                boon.DoBoonContents(SelectedBoonsListing, PlaywrightStructure.Origin);
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedBoons.Remove(boon);

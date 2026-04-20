@@ -46,6 +46,7 @@ namespace Rokk.Playwright.Components.Boons
             List<BoonComponent> playwrightBoons = new List<BoonComponent>()
             {
                 new ExtraItemsBoon(),
+                new ExtraAnimalsBoon(),
                 new ExtraImplantsBoon(),
                 new StartingResearchBoon(),
                 new NovicesBoon(),

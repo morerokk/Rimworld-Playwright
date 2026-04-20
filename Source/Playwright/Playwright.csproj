@@ -35,6 +35,7 @@
     <Compile Include="Addons\OriginDefaultsRegistration.cs" />
     <Compile Include="Addons\ComponentRegistration.cs" />
     <Compile Include="Addons\HookRegistration.cs" />
+    <Compile Include="Components\Boons\ExtraAnimalsBoon.cs" />
     <Compile Include="Components\Boons\StartingResearchBoon.cs" />
     <Compile Include="Components\Boons\ExtraImplantsBoon.cs" />
     <Compile Include="Components\Boons\ExtraItemsBoon.cs" />

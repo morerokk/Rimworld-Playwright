@@ -176,6 +176,12 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.ExtraItems.SelectThing>Select item...</Playwright.Components.Boons.ExtraItems.SelectThing>
  <Playwright.Components.Boons.ExtraItems.SelectStuff>Select material...</Playwright.Components.Boons.ExtraItems.SelectStuff>
 
+ <Playwright.Components.Boons.ExtraAnimals>Extra Animals</Playwright.Components.Boons.ExtraAnimals>
+ <Playwright.Components.Boons.ExtraAnimals.DescriptionShort>Start with extra animals.</Playwright.Components.Boons.ExtraAnimals.DescriptionShort>
+ <Playwright.Components.Boons.ExtraAnimals.Description>Start with the chosen extra animals.</Playwright.Components.Boons.ExtraAnimals.Description>
+ <Playwright.Components.Boons.ExtraAnimals.Add>Add Animal</Playwright.Components.Boons.ExtraAnimals.Add>
+ <Playwright.Components.Boons.ExtraAnimals.Count>Count</Playwright.Components.Boons.ExtraAnimals.Count>
+
  <Playwright.Components.Boons.ExtraImplants>Extra Implants</Playwright.Components.Boons.ExtraImplants>
  <Playwright.Components.Boons.ExtraImplants.DescriptionShort>Start with extra implants.</Playwright.Components.Boons.ExtraImplants.DescriptionShort>
  <Playwright.Components.Boons.ExtraImplants.Description>All your starting colonists have the chosen implants.</Playwright.Components.Boons.ExtraImplants.Description>

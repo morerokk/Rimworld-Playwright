@@ -204,7 +204,7 @@ namespace Rokk.Playwright.Components.Origins
                 .ExecuteFuncs()
                 .Union(DefaultEnemies)
                 .ToList();
-            if (DefaultEnemies.Count > 0)
+            if (defaultEnemies.Count > 0)
             {
                 StringBuilder sb = new StringBuilder("Playwright.DefaultEnemies".Translate());
                 foreach (FactionComponent faction in defaultEnemies)

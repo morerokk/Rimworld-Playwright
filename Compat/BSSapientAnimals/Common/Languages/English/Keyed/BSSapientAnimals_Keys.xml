@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+ <Playwright.Components.Boons.Compat_BSSapientAnimals>Sapient Animals</Playwright.Components.Boons.Compat_BSSapientAnimals>
+ <Playwright.Components.Boons.Compat_BSSapientAnimals.DescriptionShort>Start with sapient animals.</Playwright.Components.Boons.Compat_BSSapientAnimals.DescriptionShort>
+ <Playwright.Components.Boons.Compat_BSSapientAnimals.Description>Start with sapient animals from Big and Small - Sapient Animals.</Playwright.Components.Boons.Compat_BSSapientAnimals.Description>
+ <Playwright.Components.Boons.Compat_BSSapientAnimals.AddSapientAnimal>Add sapient animal</Playwright.Components.Boons.Compat_BSSapientAnimals.AddSapientAnimal>
+
+
+ <Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient>Starting animal (sapient)</Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient>
+ <Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Summary>{0} (sapient) x{1}</Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Summary>
+ <Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Help>Start with sapient animals from Big and Small - Sapient Animals.
+
+Due to technical limitations, this animal will not appear in the colonist preparation screen, it will be added when the game starts.</Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Help>
+
+</LanguageData>

@@ -12,6 +12,6 @@
  <Playwright.Components.Boons.Compat_VREAndroids_Androids.StartWithAndroidResearch.Help>If enabled, you start with the Neutroamine Logistics and Androidtech research projects already researched.</Playwright.Components.Boons.Compat_VREAndroids_Androids.StartWithAndroidResearch.Help>
  <Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>Androids boon: unable to add extra Androids to colonist preparation screen. This scenario/origin's colonist preparation screen does not support adding specific xenotypes (such as The Anomaly, due to its Ghoul requirements).
 
-Please deselect the Androids boon or select a different Origin. (Sorry!)</Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>
+Please deselect the Androids boon, or set Amount to 0 to start with just the research, or select a different Origin. (Sorry!)</Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage>
 
 </LanguageData>

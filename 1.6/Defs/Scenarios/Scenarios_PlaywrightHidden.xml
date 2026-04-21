@@ -16,7 +16,7 @@
   <ScenarioDef ParentName="ScenarioBase" MayRequire="Ludeon.RimWorld.Royalty">
     <defName>Playwright_Empire</defName>
     <label>Empire</label>
-    <description>Five initiates that recently joined the ranks of the Empire as Novices. Sent out to do field work as a first mission.</description>
+    <description>You recently joined the ranks of the Empire as Novices. For your first mission, you are sent out to do field work and establish another base of operations.</description>
     <scenario>
 	    <showInUI>false</showInUI>
       <summary>Imperial Novices sent out into the field.</summary>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Delayed spawner used to add sapient animal after spawn, will self-destruct -->
+  <ThingDef>
+    <defName>Playwright_DelayedSapientAnimalSpawner</defName>
+    <label>(internal)delayed sapient animal spawner</label>
+    <thingClass>Rokk.Playwright.Compat.BSSapientAnimals.Things.DelayedSapientAnimalSpawner</thingClass>
+
+    <!-- Should hopefully make this completely invisible and unselectable -->
+    <category>Ethereal</category>
+    <tickerType>Normal</tickerType>
+    <selectable>false</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <useHitPoints>false</useHitPoints>
+    <drawerType>None</drawerType>
+
+  </ThingDef>
+</Defs>

@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using Rokk.Playwright.Compat.BSSapientAnimals.ScenParts;
+using Rokk.Playwright.Components.Boons;
 using Rokk.Playwright.Components.Origins;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
@@ -9,11 +11,11 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace Rokk.Playwright.Components.Boons
+namespace Rokk.Playwright.Compat.BSSapientAnimals.Components.Boons
 {
-    public class ExtraAnimalsBoon : BoonComponent
+    public class SapientAnimalsBoon : BoonComponent
     {
-        public override string Id => "Boons.ExtraAnimals";
+        public override string Id => "Boons.Compat_BSSapientAnimals";
 
         public List<ExtraAnimalEntry> Animals = new List<ExtraAnimalEntry>();
 
@@ -21,7 +23,7 @@ namespace Rokk.Playwright.Components.Boons
         {
             var result = DefDatabase<PawnKindDef>.AllDefs
                 .Where(pawnKindDef => pawnKindDef.RaceProps.Animal);
-            if (Core.Settings.HideDryadsInAnimals)
+            if (Playwright.Core.Settings.HideDryadsInAnimals)
             {
                 result = result.Where(pawnKindDef => !pawnKindDef.RaceProps.Dryad);
             }
@@ -95,7 +97,7 @@ namespace Rokk.Playwright.Components.Boons
         {
             foreach (ExtraAnimalEntry animal in Animals)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingAnimalPart(animal.Animal, animal.Count, 1f));
+                scenarioParts.Add(StartingAnimalSapient.MakeStartingAnimalPart(animal.Animal, animal.Count));
             }
         }
 

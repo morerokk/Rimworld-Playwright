@@ -11,5 +11,7 @@
 	  <li IfModActive="OskarPotocki.VFE.Empire,OskarPotocki.VFE.Empire_steam">Compat/VFEEmpire/1.6</li>
 	  <li IfModActive="SmashPhil.VehicleFramework,SmashPhil.VehicleFramework_steam">Compat/VehicleFramework/Common</li>
 	  <li IfModActive="SmashPhil.VehicleFramework,SmashPhil.VehicleFramework_steam">Compat/VehicleFramework/1.6</li>
+	  <li IfModActive="RedMattis.SapientAnimals,RedMattis.SapientAnimals_steam">Compat/BSSapientAnimals/Common</li>
+	  <li IfModActive="RedMattis.SapientAnimals,RedMattis.SapientAnimals_steam">Compat/BSSapientAnimals/1.6</li>
   </v1.6>
 </loadFolders>

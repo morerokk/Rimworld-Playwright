@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ScenPartDef>
+    <defName>Playwright_StartingAnimalSapient</defName>
+    <label>start with animal(s) (sapient)</label>
+    <scenPartClass>Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient</scenPartClass>
+    <category>StartingImportant</category>
+    <selectionWeight>0.1</selectionWeight>
+    <summaryPriority>305</summaryPriority>
+  </ScenPartDef>
+</Defs>

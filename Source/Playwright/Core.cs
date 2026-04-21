@@ -29,9 +29,11 @@ namespace Rokk.Playwright
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
 
-            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButton".Translate(), ref Settings.EnablePlaywrightButton);
+            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButton".Translate(), ref Settings.EnablePlaywrightButton, "Playwright.Settings.EnablePlaywrightButton.Help".Translate());
             listingStandard.Gap();
-            listingStandard.CheckboxLabeled("Playwright.Settings.HideReplacedFactions".Translate(), ref Settings.HideReplacedFactions);
+            listingStandard.CheckboxLabeled("Playwright.Settings.HideReplacedFactions".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideReplacedFactions.Help".Translate());
+            listingStandard.Gap();
+            listingStandard.CheckboxLabeled("Playwright.Settings.HideDryadsInAnimals".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideDryadsInAnimals.Help".Translate());
 
             if (listingStandard.ButtonText("Playwright.Reset".Translate(), null, 0.25f))
             {

@@ -82,30 +82,6 @@ namespace Rokk.Playwright.Compat.BSSapientAnimals.ScenParts
             return enumerable;
         }
 
-        /*
-        public override IEnumerable<Thing> PlayerStartingThings()
-        {
-            for (int i = 0; i < this.Count; i++)
-            {
-                PawnKindDef pawnKindDef;
-                if (this.AnimalKind != null)
-                {
-                    pawnKindDef = this.AnimalKind;
-                }
-                else
-                {
-                    pawnKindDef = this.RandomPets().RandomElement();
-                }
-                Pawn animal = PawnGenerator.GeneratePawn(pawnKindDef, Faction.OfPlayer, null);
-                if (animal.Name == null || animal.Name.Numerical)
-                {
-                    animal.Name = PawnBioAndNameGenerator.GeneratePawnName(animal, NameStyle.Full, null, false, null);
-                }
-                MakeAnimalSentient(animal);
-                yield return animal;
-            }
-        }
-        */
         public override void GenerateIntoMap(Map map)
         {
             // Only spawn on the first map
@@ -131,6 +107,8 @@ namespace Rokk.Playwright.Compat.BSSapientAnimals.ScenParts
 
         protected virtual void SpawnDelayedSpawner(Map map, PawnKindDef animalDef)
         {
+            // We have to spawn an invisible ethereal thing that does nothing except spawn the animal and then make it sapient on a slight delay.
+            // We can't do it during generation or during tick 0 because the game will panic at a starting animal being deleted and replaced
             ThingDef spawnerDef = DefOfs.ThingDefOf.Playwright_DelayedSapientAnimalSpawner;
             var spawner = (DelayedSapientAnimalSpawner)ThingMaker.MakeThing(spawnerDef);
             spawner.AnimalKind = animalDef;

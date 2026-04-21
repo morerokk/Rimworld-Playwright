@@ -26,7 +26,7 @@ namespace Rokk.Playwright.Components.Boons
             // The origin's player faction determines the research projects the player starts with,
             // don't show any projects that would already be researched anyway
             FactionDef playerFactionDef;
-            if (origin is CustomOrigin) // Custom origin was maybe a mistake
+            if (origin is CustomOrigin) // Custom origin was maybe a mistake, but if this is the only "weird" one it's fine
             {
                 var customOrigin = origin as CustomOrigin;
                 playerFactionDef = customOrigin.Faction;

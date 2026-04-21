@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Rokk.Playwright.ScenParts;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace Rokk.Playwright.Patches
             if (removeFactionParts.Count > 0)
             {
                 ___initialFactions = ___initialFactions
-                    .Where(f => !removeFactionParts.Any(part => part.Faction == f))
+                    .Where(f => !removeFactionParts.Any(part => part.Faction == f) || FactionUnremovable(f))
                     .ToList();
                 ___factions = ___factions
-                    .Where(f => !removeFactionParts.Any(part => part.Faction == f))
+                    .Where(f => !removeFactionParts.Any(part => part.Faction == f) || FactionUnremovable(f))
                     .ToList();
             }
 
@@ -59,20 +60,20 @@ namespace Rokk.Playwright.Patches
             if (neutralsToKeep != null)
             {
                 ___initialFactions = ___initialFactions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden)
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden || FactionUnremovable(f))
                     .ToList();
                 ___factions = ___factions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden)
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Neutral || neutralsToKeep.ExceptFactions.Contains(f) || f.hidden || FactionUnremovable(f))
                     .ToList();
             }
 
             if (hostilesToKeep != null)
             {
                 ___initialFactions = ___initialFactions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden)
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden || FactionUnremovable(f))
                     .ToList();
                 ___factions = ___factions
-                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden)
+                    .Where(f => GetFactionRelationWithPlayer(f) != FactionRelationKind.Hostile || hostilesToKeep.ExceptFactions.Contains(f) || f.hidden || FactionUnremovable(f))
                     .ToList();
             }
         }
@@ -90,7 +91,30 @@ namespace Rokk.Playwright.Patches
                 return FactionRelationKind.Hostile;
             }
 
+            if (factionDef.permanentEnemyToEveryoneExcept != null && !factionDef.permanentEnemyToEveryoneExcept.Any(f => f.isPlayer))
+            {
+                return FactionRelationKind.Hostile;
+            }
+
             return FactionRelationKind.Neutral;
+        }
+
+        /// <summary>
+        /// Uses hardcoded exceptions to determine if a faction is unremovable and should be skipped by these ScenParts.
+        /// </summary>
+        /// <remarks>
+        /// I'd like to read out Vanilla Expanded Framework's modextensions for this to prevent hardcoding for their mods, but they might be subject to change,
+        /// and the license doesn't allow it anyway (stop using CC licenses for software).
+        /// </remarks>
+        public static bool FactionUnremovable(FactionDef factionDef)
+        {
+            // VFEE_Deserters is only present with VFE Empire installed, but becomes mandatory with VFE Deserters
+            if (factionDef.defName == "VFEE_Deserters" && PlaywrightUtils.IsModActive("OskarPotocki.VFE.Deserters"))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

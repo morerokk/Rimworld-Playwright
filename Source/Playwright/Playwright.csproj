@@ -88,6 +88,7 @@
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Exceptions\PlaywrightBuilderException.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="PatchCheckers\FactionPatchChecker.cs" />
     <Compile Include="PatchCheckers\WinConditionPatchChecker.cs" />
     <Compile Include="Patches\StartingPawnUtilityPatches.cs" />

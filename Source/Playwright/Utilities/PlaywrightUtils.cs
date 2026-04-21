@@ -106,5 +106,10 @@ namespace Rokk.Playwright.Utilities
             page.prev = null;
             Find.WindowStack.Add(page);
         }
+
+        public static bool IsModActive(string modIdentifier)
+        {
+            return ModLister.GetActiveModWithIdentifier(modIdentifier, true)?.Active == true;
+        }
     }
 }

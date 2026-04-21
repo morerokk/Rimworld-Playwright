@@ -3,7 +3,7 @@
 
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Playwright_BlankScenario</defName>
-    <label>(internal) blank scenario</label>
+    <label>(internal) pw blank scenario</label>
     <description>Create a custom Origin using the settings below.</description>
     <scenario>
       <showInUI>false</showInUI>

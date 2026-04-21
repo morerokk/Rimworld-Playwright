@@ -6,6 +6,7 @@ using Rokk.Playwright.Components.Factions;
 using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
+using Rokk.Playwright.Extensions;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -157,7 +158,8 @@ namespace Rokk.Playwright.Components.Origins
         {
             originContentListing.Label("Playwright.TechLevel".Translate() + " " + ("TechLevel_" + this.TechLevel.ToString()).Translate().CapitalizeFirst());
 
-            List<BoonComponent> defaultBoons = OriginDefaultsRegistration.GetDefaultBoons(Id)
+            var defaultBoons = OriginDefaultsRegistration.GetDefaultBoons(Id)
+                .ExecuteFuncs()
                 .Union(DefaultBoons)
                 .ToList();
             if (defaultBoons.Count > 0)
@@ -171,6 +173,7 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             List<FactionComponent> defaultAllies = OriginDefaultsRegistration.GetDefaultAllies(Id)
+                .ExecuteFuncs()
                 .Union(DefaultAllies)
                 .ToList();
             if (defaultAllies.Count > 0)
@@ -184,6 +187,7 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             List<FactionComponent> defaultNeutrals = OriginDefaultsRegistration.GetDefaultNeutrals(Id)
+                .ExecuteFuncs()
                 .Union(DefaultNeutrals)
                 .ToList();
             if (defaultNeutrals.Count > 0)
@@ -197,6 +201,7 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             List<FactionComponent> defaultEnemies = OriginDefaultsRegistration.GetDefaultEnemies(Id)
+                .ExecuteFuncs()
                 .Union(DefaultEnemies)
                 .ToList();
             if (DefaultEnemies.Count > 0)
@@ -210,6 +215,7 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             List<WinConditionComponent> defaultWinConditions = OriginDefaultsRegistration.GetDefaultWinConditions(Id)
+                .ExecuteFuncs()
                 .Union(DefaultWinConditions)
                 .ToList();
             if (defaultWinConditions.Count > 0)
@@ -223,6 +229,7 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             List<SpecialConditionComponent> defaultSpecialConditions = OriginDefaultsRegistration.GetDefaultSpecialConditions(Id)
+                .ExecuteFuncs()
                 .Union(DefaultSpecialConditions)
                 .ToList();
             if (defaultSpecialConditions.Count > 0)

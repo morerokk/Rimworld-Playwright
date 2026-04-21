@@ -7,6 +7,7 @@ using Rokk.Playwright.Components.SpecialConditions;
 using Rokk.Playwright.Components.WinConditions;
 using Rokk.Playwright.Composer;
 using Rokk.Playwright.Exceptions;
+using Rokk.Playwright.Extensions;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
@@ -323,12 +324,12 @@ namespace Rokk.Playwright.UI
             this.PlaywrightStructure.Origin = origin;
 
             // Set defaults
-            this.PlaywrightStructure.Boons.AddRange(origin.DefaultBoons.Union(OriginDefaultsRegistration.GetDefaultBoons(origin.Id)));
-            this.PlaywrightStructure.AllyFactions.AddRange(origin.DefaultAllies.Union(OriginDefaultsRegistration.GetDefaultAllies(origin.Id)));
-            this.PlaywrightStructure.NeutralFactions.AddRange(origin.DefaultNeutrals.Union(OriginDefaultsRegistration.GetDefaultNeutrals(origin.Id)));
-            this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies.Union(OriginDefaultsRegistration.GetDefaultEnemies(origin.Id)));
-            this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions.Union(OriginDefaultsRegistration.GetDefaultWinConditions(origin.Id)));
-            this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions.Union(OriginDefaultsRegistration.GetDefaultSpecialConditions(origin.Id)));
+            this.PlaywrightStructure.Boons.AddRange(origin.DefaultBoons.Union(OriginDefaultsRegistration.GetDefaultBoons(origin.Id).ExecuteFuncs()));
+            this.PlaywrightStructure.AllyFactions.AddRange(origin.DefaultAllies.Union(OriginDefaultsRegistration.GetDefaultAllies(origin.Id).ExecuteFuncs()));
+            this.PlaywrightStructure.NeutralFactions.AddRange(origin.DefaultNeutrals.Union(OriginDefaultsRegistration.GetDefaultNeutrals(origin.Id).ExecuteFuncs()));
+            this.PlaywrightStructure.EnemyFactions.AddRange(origin.DefaultEnemies.Union(OriginDefaultsRegistration.GetDefaultEnemies(origin.Id).ExecuteFuncs()));
+            this.PlaywrightStructure.WinConditions.AddRange(origin.DefaultWinConditions.Union(OriginDefaultsRegistration.GetDefaultWinConditions(origin.Id).ExecuteFuncs()));
+            this.PlaywrightStructure.SpecialConditions.AddRange(origin.DefaultSpecialConditions.Union(OriginDefaultsRegistration.GetDefaultSpecialConditions(origin.Id).ExecuteFuncs()));
 
             // Set name, description and summary
             ResetSummaryToOriginDefaults();

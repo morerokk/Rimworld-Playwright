@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
+ <Playwright.Components.Origins.Compat_BSSapientAnimals>Failed Experiment</Playwright.Components.Origins.Compat_BSSapientAnimals>
+
  <Playwright.Components.Boons.Compat_BSSapientAnimals>Sapient Animals</Playwright.Components.Boons.Compat_BSSapientAnimals>
  <Playwright.Components.Boons.Compat_BSSapientAnimals.DescriptionShort>Start with sapient animals.</Playwright.Components.Boons.Compat_BSSapientAnimals.DescriptionShort>
  <Playwright.Components.Boons.Compat_BSSapientAnimals.Description>Start with sapient animals from Big and Small - Sapient Animals.</Playwright.Components.Boons.Compat_BSSapientAnimals.Description>
@@ -12,5 +14,8 @@
  <Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Help>Start with sapient animals from Big and Small - Sapient Animals.
 
 Due to technical limitations, this animal will not appear in the colonist preparation screen, it will be added when the game starts.</Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient.Help>
+
+ <Playwright.Compat.BSSapientAnimals.Scenarios.FailedExperiment>Failed Experiment</Playwright.Compat.BSSapientAnimals.Scenarios.FailedExperiment>
+ <Playwright.Compat.BSSapientAnimals.Scenarios.FailedExperiment.GameStartDialog>While the experiment worked, the results failed to gather any more meaningful data. You have been dumped onto a nearby rimworld along with your subjects. \n\nA researcher out of their depth, 4 sapient animals with no tools and limited opposable thumbs, but all of you share a strong will to live. Can you make it on such a hostile planet?</Playwright.Compat.BSSapientAnimals.Scenarios.FailedExperiment.GameStartDialog>
 
 </LanguageData>

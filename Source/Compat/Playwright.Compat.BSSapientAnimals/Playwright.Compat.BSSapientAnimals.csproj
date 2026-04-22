@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Boons\SapientAnimalsBoon.cs" />
+    <Compile Include="Components\Origins\FailedExperimentOrigin.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefOfs\ScenarioDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="ScenParts\StartingAnimalSapient.cs" />

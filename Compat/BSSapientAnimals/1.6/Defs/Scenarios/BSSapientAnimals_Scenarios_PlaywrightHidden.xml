@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Playwright_BSSapientAnimals_FailedExperiment</defName>
+    <label>Failed Experiment</label>
+    <description>While the experiment worked, the results failed to gather any more meaningful data. You have been dumped onto a nearby rimworld along with your subjects. \n\nA researcher out of their depth, a small number of sapient animals with no tools and limited opposable thumbs, but all sharing a strong will to live. Can you make it on such a hostile planet?\n\nNote: this is a difficult scenario, with limited starting supplies. You will not be able to see the stats of the sapient animals in the preparation screen. Plan ahead.</description>
+    <scenario>
+      <summary>A researcher and sapient animal subjects, dumped after a failed experiment.</summary>
+      <parts>
+        
+        <!-- Config pages -->
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>1</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>DropPods</method>
+          <visible>false</visible>
+        </li>
+
+        <!-- Player pawns modifiers -->
+        <li Class="ScenPart_ForcedTrait">
+          <def>ForcedTrait</def>
+          <chance>1</chance>
+          <context>PlayerStarter</context>
+          <trait>TooSmart</trait>
+        </li>
+        
+        <!-- Player starting things -->
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>5</count>
+        </li>
+        <li Class="Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient">
+          <def>Playwright_StartingAnimalSapient</def>
+          <Count>1</Count>
+          <AnimalKind>Monkey</AnimalKind>
+        </li>
+        <li Class="Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient">
+          <def>Playwright_StartingAnimalSapient</def>
+          <Count>2</Count>
+          <AnimalKind>Rat</AnimalKind>
+        </li>
+        <li Class="Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient">
+          <def>Playwright_StartingAnimalSapient</def>
+          <Count>1</Count>
+          <AnimalKind>LabradorRetriever</AnimalKind>
+        </li>
+        <!-- Gotta respect the alligator meme if odyssey is installed -->
+        <li Class="Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient" MayRequire="Ludeon.RimWorld.Odyssey">
+          <def>Playwright_StartingAnimalSapient</def>
+          <Count>1</Count>
+          <AnimalKind>Alligator</AnimalKind>
+        </li>
+        <li Class="Rokk.Playwright.Compat.BSSapientAnimals.ScenParts.StartingAnimalSapient">
+          <def>Playwright_StartingAnimalSapient</def>
+          <Count>1</Count>
+          <AnimalKind>Wolf_Timber</AnimalKind>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Pemmican</thingDef>
+          <count>400</count>
+        </li>
+
+        <!-- Scatter some things anywhere -->
+        <li Class="ScenPart_ScatterThingsAnywhere">
+          <def>ScatterThingsAnywhere</def>
+          <thingDef>WoodLog</thingDef>
+          <count>100</count>
+        </li>
+        
+        <!-- Game start dialog -->
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <textKey>Playwright.Compat.BSSapientAnimals.Scenarios.FailedExperiment.GameStartDialog</textKey>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+        
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+</Defs>

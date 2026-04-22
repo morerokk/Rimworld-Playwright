@@ -4,7 +4,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Playwright_BSSapientAnimals_FailedExperiment</defName>
     <label>Failed Experiment</label>
-    <description>While the experiment worked, the results failed to gather any more meaningful data. You have been dumped onto a nearby rimworld along with your subjects. \n\nA researcher out of their depth, a small number of sapient animals with no tools and limited opposable thumbs, but all sharing a strong will to live. Can you make it on such a hostile planet?\n\nNote: this is a difficult scenario, with limited starting supplies. You will not be able to see the stats of the sapient animals in the preparation screen. Plan ahead.</description>
+    <description>While the experiment worked, the results failed to gather any more meaningful data. You have been dumped onto a distant rimworld along with your subjects. \n\nA researcher out of their depth, a small number of sapient animals with no tools and limited opposable thumbs, but all sharing a strong will to live. Can you make it on such a hostile planet?\n\nNote: this is a difficult scenario, with limited starting supplies. You will not be able to see the stats of the sapient animals in the preparation screen. Plan ahead.</description>
     <scenario>
       <summary>A researcher and sapient animal subjects, dumped after a failed experiment.</summary>
       <parts>

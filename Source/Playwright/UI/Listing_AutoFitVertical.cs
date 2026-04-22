@@ -1,4 +1,9 @@
-﻿using System;
+﻿// This particular file (Listing_AutoFitVertical.cs) and all of its contents are released to the public domain, to the extent permitted by the RimWorld EULA.
+// 
+// If a jurisdiction does not recognize the public domain,
+// this file (Listing_AutoFitVertical.cs) and all of its contents will be considered as licensed under the Creative Commons CC0 License instead, to the extent permitted by the RimWorld EULA.
+
+using System;
 using UnityEngine;
 using Verse;
 

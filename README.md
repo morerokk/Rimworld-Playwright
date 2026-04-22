@@ -23,3 +23,11 @@ You should be able to Build/Rebuild the entire solution, and it will compile the
 If you want to add new content to Playwright from another mod, [check the documentation for the Addon API.](https://github.com/morerokk/Rimworld-Playwright/wiki/Addon-API)
 
 If you want to resolve a mod incompatibility between Playwright and another mod, [check the page for resolving incompatibilities.](https://github.com/morerokk/Rimworld-Playwright/wiki/Resolving-mod-incompatibilities)
+
+# License
+
+[Playwright is licensed under the MIT License.](https://github.com/morerokk/Rimworld-Playwright/blob/master/LICENSE.txt) That means you can freely use the code for any purpose, but you must include the unmodified license text if you redistribute or intend to redistribute the code, or if you incorporate code directly from Playwright into your own mod.
+
+For posterity: if you make an addon for Playwright, you are not required to include this license file. Usage of the addon API in your own mod does not constitute a "copy or substantial portion of the Software".
+
+However, the [Listing_AutoFitVertical](https://github.com/morerokk/Rimworld-Playwright/blob/master/Source/Playwright/UI/Listing_AutoFitVertical.cs) class, while it is my own work, is not licensed under MIT, as I don't feel like it pertains to this mod specifically. Instead, this particular file and its contents are released to the public domain, provided that it is used for a RimWorld mod of any kind, to the same extent allowed by the RimWorld EULA. This has been done in the hope that this class saves someone else the same headaches that it has saved me.

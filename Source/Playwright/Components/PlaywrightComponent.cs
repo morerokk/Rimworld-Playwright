@@ -10,10 +10,11 @@ namespace Rokk.Playwright.Components
     /// <summary>
     /// The base class for any Playwright component.
     /// When extending this, ensure the constructor is safe, as a new instance must be created for <see cref="IsAvailable"/> to be callable.
-    /// 
-    /// Some components may be constructed on game startup, when <see cref="DefOf"/> are not yet loaded.
-    /// If you need a default def value for a setting, consider using null as sentinel value and set the intended default in the settings contents method.
     /// </summary>
+    /// <remarks>
+    /// Some components may be constructed on game startup, when <see cref="DefOf"/> are not yet loaded.
+    /// If you need a default def value for a setting, consider using null as sentinel value and set the intended default in the settings contents method, or in a pre-draw hook.
+    /// </remarks>
     public abstract class PlaywrightComponent : IExposable
     {
         /// <summary>

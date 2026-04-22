@@ -14,5 +14,6 @@ namespace Rokk.Playwright.Components.WinConditions
     {
         public const string ComponentId = "WinConditions.Ship";
         public override string Id => ComponentId;
+        public override bool HasHelp => true;
     }
 }

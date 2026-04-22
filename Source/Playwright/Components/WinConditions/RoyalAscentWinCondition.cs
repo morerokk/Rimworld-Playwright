@@ -14,5 +14,6 @@ namespace Rokk.Playwright.Components.WinConditions
         public const string ComponentId = "WinConditions.RoyalAscent";
         public override string Id => ComponentId;
         public override bool IsAvailable => ModsConfig.RoyaltyActive;
+        public override bool HasHelp => true;
     }
 }

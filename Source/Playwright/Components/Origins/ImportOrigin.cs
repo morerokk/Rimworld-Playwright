@@ -47,6 +47,17 @@ namespace Rokk.Playwright.Components.Origins
             "TheGravship"
         };
 
+        protected virtual IEnumerable<ScenarioDef> GetAvailableScenarios(IEnumerable<string> defNamesToSkip = null)
+        {
+            var result = DefDatabase<ScenarioDef>.AllDefsListForReading
+                    .Where(def => def.scenario.showInUI);
+            if (defNamesToSkip != null)
+            {
+                result = result.Where(def => !defNamesToSkip.Contains(def.defName));
+            }
+            return result;
+        }
+
         public override void DoPreContents(Listing_AutoFitVertical originContentListing)
         {
             if (originContentListing.ButtonTextLabeled("Playwright.Components.Origins.Import.Scenario".Translate(), ScenarioLabel))
@@ -61,21 +72,18 @@ namespace Rokk.Playwright.Components.Origins
                     }
                 }
 
-                List<ScenarioDef> availableScenarios = DefDatabase<ScenarioDef>.AllDefsListForReading
-                    .Where(def => !defsToSkip.Contains(def.defName) && def.scenario.showInUI)
-                    .ToList();
-
                 var options = new List<FloatMenuOption>();
-                foreach (ScenarioDef scenario in availableScenarios)
+                foreach (var scenarioDef in GetAvailableScenarios())
                 {
-                    options.Add(new FloatMenuOption(scenario.LabelCap, () =>
+                    options.Add(new FloatMenuOption(scenarioDef.LabelCap, () =>
                     {
-                        this.Scenario = scenario;
+                        this.Scenario = scenarioDef;
                         originContentListing.InvalidateGroup();
                     }));
                 }
 
                 PlaywrightUtils.OpenFloatMenu(options);
+                SoundUtils.PlayClick();
             }
         }
 

@@ -143,6 +143,7 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Origins.Custom.AddPawnKindCount>Add Pawn Kind</Playwright.Components.Origins.Custom.AddPawnKindCount>
  <Playwright.Components.Origins.Custom.AddMutantCount>Add</Playwright.Components.Origins.Custom.AddMutantCount>
  <Playwright.Components.Origins.Custom.RequiredAtStart.Help>If enabled, the preparation screen won't let you start without the specified amount of colonists being present. Disable this to let you deselect the required colonists.</Playwright.Components.Origins.Custom.RequiredAtStart.Help>
+ <Playwright.Components.Origins.Custom.ImportFromScenario>Import from scenario...</Playwright.Components.Origins.Custom.ImportFromScenario>
 
  <Playwright.Components.Origins.Import>(Import)</Playwright.Components.Origins.Import>
  <Playwright.Components.Origins.Import.DescriptionShort>Choose an existing scenario as a starting point.</Playwright.Components.Origins.Import.DescriptionShort>
@@ -232,21 +233,18 @@ Consider these long-term goals to strive for during your playthrough.</Playwrigh
  
  <Playwright.Components.WinConditions.Ship>Ship to the Stars</Playwright.Components.WinConditions.Ship>
  <Playwright.Components.WinConditions.Ship.DescriptionShort>Escape the planet on a ship to the stars.</Playwright.Components.WinConditions.Ship.DescriptionShort>
- <Playwright.Components.WinConditions.Ship.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or perhaps you can procure a way out from the locals. You win when at least 1 colonist escapes the planet on a built starship. The default experience.
-
-Removing this will disable the Journey Offer, and you will not be able to start the Ship Reactor. You can still build the ship.</Playwright.Components.WinConditions.Ship.Description>
+ <Playwright.Components.WinConditions.Ship.Description>Escape the planet on a ship to the stars. This could be a ship you build yourself, or perhaps you can procure a way out from the locals. You win when at least 1 colonist escapes the planet on a built starship. The default experience.</Playwright.Components.WinConditions.Ship.Description>
+ <Playwright.Components.WinConditions.Ship.Help>Removing this will disable the Journey Offer, and you will not be able to start the Ship Reactor. You can still build the ship.</Playwright.Components.WinConditions.Ship.Help>
  
  <Playwright.Components.WinConditions.RoyalAscent>Royal Ascent</Playwright.Components.WinConditions.RoyalAscent>
  <Playwright.Components.WinConditions.RoyalAscent.DescriptionShort>Escape the planet on an Empire Shuttle.</Playwright.Components.WinConditions.RoyalAscent.DescriptionShort>
- <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Empire Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.
-
-Removing this will disable the Royal Ascent quest.</Playwright.Components.WinConditions.RoyalAscent.Description>
+ <Playwright.Components.WinConditions.RoyalAscent.Description>Escape the planet on an Empire Shuttle. This will require appeasing one of the Empire's most prestigious individuals, that being the High Stellarch. You win when at least 1 colonist escapes the planet on an Imperial Shuttle. The default Royalty experience.</Playwright.Components.WinConditions.RoyalAscent.Description>
+ <Playwright.Components.WinConditions.RoyalAscent.Help>Removing this will disable the Royal Ascent quest offer.</Playwright.Components.WinConditions.RoyalAscent.Help>
  
  <Playwright.Components.WinConditions.Archonexus>Archonexus</Playwright.Components.WinConditions.Archonexus>
  <Playwright.Components.WinConditions.Archonexus.DescriptionShort>Awaken the Archonexus Core.</Playwright.Components.WinConditions.Archonexus.DescriptionShort>
- <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.
-
-Removing this will disable the Archonexus quests.</Playwright.Components.WinConditions.Archonexus.Description>
+ <Playwright.Components.WinConditions.Archonexus.Description>Awaken the Archonexus Core by acquiring all 3 map pieces and then awakening the core. You win when the Archonexus Core is awakened. The default Ideology experience.</Playwright.Components.WinConditions.Archonexus.Description>
+ <Playwright.Components.WinConditions.Archonexus.Help>Removing this will disable the Archonexus quest offers.</Playwright.Components.WinConditions.Archonexus.Help>
  
  <Playwright.Components.WinConditions.Conquest>Conquest</Playwright.Components.WinConditions.Conquest>
  <Playwright.Components.WinConditions.Conquest.DescriptionShort>Defeat all your enemies.</Playwright.Components.WinConditions.Conquest.DescriptionShort>

@@ -102,10 +102,9 @@ namespace Rokk.Playwright.Patches
         /// <summary>
         /// Uses hardcoded exceptions to determine if a faction is unremovable and should be skipped by these ScenParts.
         /// </summary>
-        /// <remarks>
         /// I'd like to read out Vanilla Expanded Framework's modextensions for this to prevent hardcoding for their mods, but they might be subject to change,
-        /// and the license doesn't allow it anyway (stop using CC licenses for software).
-        /// </remarks>
+        /// and the license doesn't allow it anyway.
+        /// (Stop using CC licenses for software, it doesn't work and stifles compatibility, CC themselves tell you not to use it for software!)
         public static bool FactionUnremovable(FactionDef factionDef)
         {
             // VFEE_Deserters is only present with VFE Empire installed, but becomes mandatory with VFE Deserters

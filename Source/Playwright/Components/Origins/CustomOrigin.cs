@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.DefOfs;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -21,7 +22,7 @@ namespace Rokk.Playwright.Components.Origins
         public override string SummaryTranslated => "";
         public override ScenarioDef BasedOnScenario => DefOfs.ScenarioDefOf.Playwright_BlankScenario;
 
-        public FactionDef Faction = FactionDefOf.PlayerColony;
+        public FactionDef Faction = RimWorld.FactionDefOf.PlayerColony;
         public PlayerPawnsArriveMethod ArriveMethod = PlayerPawnsArriveMethod.DropPods;
         public string FactionLabel => Faction != null ? Faction.LabelCap.ToString() : "-";
 
@@ -154,6 +155,23 @@ namespace Rokk.Playwright.Components.Origins
         public override void DoSettingsContents(Listing_AutoFitVertical originContentListing)
         {
             base.DoSettingsContents(originContentListing);
+
+            // Import from existing scenario button,
+            // to make it easier to quickly set up an origin without filling in like 20 starting items manually
+            if (originContentListing.ButtonText("Playwright.Components.Origins.Custom.ImportFromScenario".Translate(), widthPct: 0.25f))
+            {
+                var options = new List<FloatMenuOption>();
+                foreach (var scenarioDef in GetImportableScenarios())
+                {
+                    options.Add(new FloatMenuOption(scenarioDef.LabelCap, () =>
+                    {
+                        ImportFromScenario(scenarioDef);
+                        originContentListing.InvalidateGroup();
+                    }));
+                }
+                PlaywrightUtils.OpenFloatMenu(options);
+                SoundUtils.PlayClick();
+            }
 
             // Player faction selector
             if (originContentListing.ButtonTextLabeled("Playwright.Components.Origins.Custom.PlayerFaction".Translate(), FactionLabel))
@@ -606,6 +624,147 @@ namespace Rokk.Playwright.Components.Origins
             foreach (var scatteredAnywhereThing in ScatteredAnywhereThings)
             {
                 scenarioParts.Add(ScenPartUtility.MakeScatterThingsAnywherePart(scatteredAnywhereThing.Thing, scatteredAnywhereThing.Stuff, scatteredAnywhereThing.Count, scatteredAnywhereThing.Quality));
+            }
+        }
+
+        protected virtual IEnumerable<ScenarioDef> GetImportableScenarios()
+        {
+            return DefDatabase<ScenarioDef>.AllDefsListForReading
+                    .Where(def => def.scenario.showInUI);
+        }
+
+        protected virtual void ImportFromScenario(ScenarioDef scenarioDef)
+        {
+            // Configpage
+            ScenPart_ConfigPage_ConfigureStartingPawnsBase configPage = ScenPartUtility.GetConfigureStartingPawnsPart(scenarioDef.scenario);
+            if (configPage != null)
+            {
+                PawnChoiceCount = configPage.pawnChoiceCount;
+                PawnChoiceCountBuffer = PawnChoiceCount.ToString();
+                if (configPage is ScenPart_ConfigPage_ConfigureStartingPawns)
+                {
+                    var configPagePawns = configPage as ScenPart_ConfigPage_ConfigureStartingPawns;
+                    ConfigPage = ConfigPageType.Default;
+                    PawnCount = configPagePawns.pawnCount;
+                    PawnCountBuffer = PawnCount.ToString();
+                }
+                else if (configPage is ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes)
+                {
+                    var configPageXenotypes = configPage as ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes;
+                    ConfigPage = ConfigPageType.Xenotypes;
+                    PawnXenotypeCounts = configPageXenotypes.xenotypeCounts;
+                }
+                else if (configPage is ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs)
+                {
+                    var configPageKindDefs = configPage as ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs;
+                    ConfigPage = ConfigPageType.PawnKinds;
+                    PawnKindCounts = configPageKindDefs.kindCounts;
+                }
+                else if (configPage is ScenPart_ConfigPage_ConfigureStartingPawns_Mutants)
+                {
+                    var configPageMutants = configPage as ScenPart_ConfigPage_ConfigureStartingPawns_Mutants;
+                    ConfigPage = ConfigPageType.Mutants;
+                    PawnMutantCounts = configPageMutants.mutantCounts;
+                }
+            }
+
+            // Player faction
+            // Is an internal field, not in the list of parts
+            FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
+            ScenPart_PlayerFaction playerFaction = playerFactionInfo.GetValue(scenarioDef.scenario) as ScenPart_PlayerFaction;
+            if (playerFaction != null)
+            {
+                FieldInfo factionDefInfo = AccessTools.Field(typeof(ScenPart_PlayerFaction), "factionDef");
+                this.Faction = (FactionDef)factionDefInfo.GetValue(playerFaction);
+            }
+
+            // Arrival method
+            ScenPart_PlayerPawnsArriveMethod arriveMethod = scenarioDef.scenario.AllParts
+                .Where(part => part.def == RimWorld.ScenPartDefOf.PlayerPawnsArriveMethod)
+                .Cast<ScenPart_PlayerPawnsArriveMethod>()
+                .FirstOrDefault();
+            if (arriveMethod != null)
+            {
+                FieldInfo arrivalMethodInfo = AccessTools.Field(typeof(ScenPart_PlayerPawnsArriveMethod), "method");
+                this.ArriveMethod = (PlayerPawnsArriveMethod)arrivalMethodInfo.GetValue(arriveMethod);
+            }
+
+            // Starting things
+            FieldInfo thingDefInfo = AccessTools.Field(typeof(ScenPart_StartingThing_Defined), "thingDef");
+            FieldInfo stuffInfo = AccessTools.Field(typeof(ScenPart_StartingThing_Defined), "stuff");
+            FieldInfo qualityInfo = AccessTools.Field(typeof(ScenPart_StartingThing_Defined), "quality");
+            FieldInfo countInfo = AccessTools.Field(typeof(ScenPart_StartingThing_Defined), "count");
+            List<ScenPart_StartingThing_Defined> startingThings = scenarioDef.scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.StartingThing_Defined)
+                .Cast<ScenPart_StartingThing_Defined>()
+                .ToList();
+            this.StartingThings.Clear();
+            foreach (var part in startingThings)
+            {
+                ThingDef thingDef = (ThingDef)thingDefInfo.GetValue(part);
+                ThingDef stuff = (ThingDef)stuffInfo.GetValue(part);
+                QualityCategory? quality = (QualityCategory?)qualityInfo.GetValue(part);
+                int count = (int)countInfo.GetValue(part);
+                this.StartingThings.Add(new ExtraItemEntry()
+                {
+                    Count = count,
+                    CountBuffer = count.ToString(),
+                    Thing = thingDef,
+                    Stuff = stuff,
+                    Quality = quality
+                });
+            }
+
+            // Scattered nearby things
+            thingDefInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsNearPlayerStart), "thingDef");
+            stuffInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsNearPlayerStart), "stuff");
+            qualityInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsNearPlayerStart), "quality");
+            countInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsNearPlayerStart), "count");
+            List<ScenPart_ScatterThingsNearPlayerStart> scatteredThingsNearby = scenarioDef.scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.ScatterThingsNearPlayerStart)
+                .Cast<ScenPart_ScatterThingsNearPlayerStart>()
+                .ToList();
+            this.ScatteredNearbyThings.Clear();
+            foreach (var part in scatteredThingsNearby)
+            {
+                ThingDef thingDef = (ThingDef)thingDefInfo.GetValue(part);
+                ThingDef stuff = (ThingDef)stuffInfo.GetValue(part);
+                QualityCategory? quality = (QualityCategory?)qualityInfo.GetValue(part);
+                int count = (int)countInfo.GetValue(part);
+                this.ScatteredNearbyThings.Add(new ExtraItemEntry()
+                {
+                    Count = count,
+                    CountBuffer = count.ToString(),
+                    Thing = thingDef,
+                    Stuff = stuff,
+                    Quality = quality
+                });
+            }
+
+            // Scattered anywhere things
+            thingDefInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsAnywhere), "thingDef");
+            stuffInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsAnywhere), "stuff");
+            qualityInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsAnywhere), "quality");
+            countInfo = AccessTools.Field(typeof(ScenPart_ScatterThingsAnywhere), "count");
+            List<ScenPart_ScatterThingsAnywhere> scatteredThingsAnywhere = scenarioDef.scenario.AllParts
+                .Where(part => part.def == DefOfs.ScenPartDefOf.ScatterThingsAnywhere)
+                .Cast<ScenPart_ScatterThingsAnywhere>()
+                .ToList();
+            this.ScatteredAnywhereThings.Clear();
+            foreach (var part in scatteredThingsAnywhere)
+            {
+                ThingDef thingDef = (ThingDef)thingDefInfo.GetValue(part);
+                ThingDef stuff = (ThingDef)stuffInfo.GetValue(part);
+                QualityCategory? quality = (QualityCategory?)qualityInfo.GetValue(part);
+                int count = (int)countInfo.GetValue(part);
+                this.ScatteredAnywhereThings.Add(new ExtraItemEntry()
+                {
+                    Count = count,
+                    CountBuffer = count.ToString(),
+                    Thing = thingDef,
+                    Stuff = stuff,
+                    Quality = quality
+                });
             }
         }
 

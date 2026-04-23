@@ -3,6 +3,7 @@
 	<packageId>rokk.playwright</packageId>
 	<name>Playwright</name>
 	<author>Rokk</author>
+	<modVersion>0.9.0</modVersion>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
@@ -22,13 +23,5 @@
 	<loadAfter>
 	</loadAfter>
 
-	<description>
-		An easy-to-use way to set up a themed playthrough!
-		
-		Why are you here? What is your goal? What are you up against? What can you use? Who can you rely on for help? These are all things that you can manually tweak in the scenario editor to your liking, but this editor is frankly cumbersome to use and confusing, especially with large modlists. It's also quite limited, with the vanilla game not offering much in terms of scenario components.
-		
-		That's why Playwright lets you choose from a large variety of preset components to customize your playthrough, and it handles all of the dirty work for you, letting you get into the game faster. This mod compiles your selections to a scenario automatically, letting you tweak the scenario to your liking before you send off. While this mod aims to use the vanilla scenario features whenever possible, there are exclusive scenario components added by this mod for features that the base game's editor does not support. These are usable separately if you want, letting you just use the base game's scenario editor instead if you want to.
-		
-		Automatically includes optional support for expansions and many different mods, letting you enhance this mod's capabilities and adding more selectable components to your scenarios.
-	</description>
+	<description>Alternative scenario editor for Rimworld. Comes with an easier to use custom scenario designer, a bunch of loose scenario parts that can be used in the vanilla scenario editor, and more ways to win the game.</description>
 </ModMetaData>

@@ -201,6 +201,11 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.StartingResearch.DescriptionShort>Start with some research projects already completed.</Playwright.Components.Boons.StartingResearch.DescriptionShort>
  <Playwright.Components.Boons.StartingResearch.Description>Start with some research projects already completed.</Playwright.Components.Boons.StartingResearch.Description>
  <Playwright.Components.Boons.StartingResearch.Add>Add Research Project...</Playwright.Components.Boons.StartingResearch.Add>
+
+ <Playwright.Components.Boons.AgeLimit>Age Limit</Playwright.Components.Boons.AgeLimit>
+ <Playwright.Components.Boons.AgeLimit.DescriptionShort>Limit the age of your starting colonists.</Playwright.Components.Boons.AgeLimit.DescriptionShort>
+ <Playwright.Components.Boons.AgeLimit.Description>The age of your starting colonists is limited between the specified minimum/maximum.</Playwright.Components.Boons.AgeLimit.Description>
+ <Playwright.Components.Boons.AgeLimit.AllowedAgeRange>Allowed Age Range (years)</Playwright.Components.Boons.AgeLimit.AllowedAgeRange>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->
@@ -338,5 +343,14 @@ These raids will not start until you land a Gravship for the first time, and wil
  <Playwright.Components.SpecialConditions.DisableIncidents.DescriptionShort>Disable specific incidents/storyteller events.</Playwright.Components.SpecialConditions.DisableIncidents.DescriptionShort>
  <Playwright.Components.SpecialConditions.DisableIncidents.Description>The chosen incidents/storyteller events will be disabled.</Playwright.Components.SpecialConditions.DisableIncidents.Description>
  <Playwright.Components.SpecialConditions.DisableIncidents.Add>Add disabled incident...</Playwright.Components.SpecialConditions.DisableIncidents.Add>
+
+ <Playwright.Components.SpecialConditions.ForcedTraits>Forced Traits</Playwright.Components.SpecialConditions.ForcedTraits>
+ <Playwright.Components.SpecialConditions.ForcedTraits.DescriptionShort>Force pawns to have certain traits.</Playwright.Components.SpecialConditions.ForcedTraits.DescriptionShort>
+ <Playwright.Components.SpecialConditions.ForcedTraits.Description>Force pawns to have certain traits.</Playwright.Components.SpecialConditions.ForcedTraits.Description>
+ <Playwright.Components.SpecialConditions.ForcedTraits.Add>Add Trait</Playwright.Components.SpecialConditions.ForcedTraits.Add>
+ <Playwright.Components.SpecialConditions.ForcedTraits.Choose>Choose Trait...</Playwright.Components.SpecialConditions.ForcedTraits.Choose>
+ <Playwright.Components.SpecialConditions.ForcedTraits.Chance>Chance</Playwright.Components.SpecialConditions.ForcedTraits.Chance>
+ <Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage>Chance ({0}%)</Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage>
+ <Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help>The chance for the chosen pawns to actually have the trait.</Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help>
 
 </LanguageData>

@@ -529,5 +529,12 @@ namespace Rokk.Playwright.Utilities
 
             return part;
         }
+
+        public static ScenPart_PawnFilter_Age MakePawnFilterAgePart(IntRange allowedAgeRange)
+        {
+            ScenPart_PawnFilter_Age part = (ScenPart_PawnFilter_Age)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.PawnFilter_Age);
+            part.allowedAgeRange = allowedAgeRange;
+            return part;
+        }
     }
 }

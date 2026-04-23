@@ -9,6 +9,12 @@
       <showInUI>false</showInUI>
       <summary>Create a custom origin.</summary>
       <parts>
+        <!-- Without DLC enabled, the game complains that this scenario has no parts, so we choose GameStartDialog which is the least impactful one, and gets replaced anyway. -->
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <textKey>GameStartDialog</textKey>
+          <closeSound>GameStartSting</closeSound>
+        </li>
       </parts>
     </scenario>
   </ScenarioDef>

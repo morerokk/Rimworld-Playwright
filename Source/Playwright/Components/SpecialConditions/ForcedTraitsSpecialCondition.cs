@@ -96,7 +96,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 }
 
                 // Finally, draw a chance slider on a new line
-                trait.Chance = specialConditionContentListing.SliderLabeled("Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage".Translate(trait.Chance * 100f), trait.Chance, 0f, 1f, 0.5f, "Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help".Translate());
+                trait.Chance = specialConditionContentListing.SliderLabeled("Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage".Translate(trait.Chance * 100f), trait.Chance, 0f, 1f, 0.25f, "Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help".Translate());
                 trait.Chance = MathF.Round(trait.Chance, 2);
             }
 

@@ -24,7 +24,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)
         {
             base.DoSettingsContents(specialConditionContentListing);
-            Chance = specialConditionContentListing.SliderLabeled("Playwright.Components.SpecialConditions.MorePsycasters.ChancePercentage".Translate(Chance * 100f), Chance, 0f, 1f, 0.5f, "Playwright.Components.SpecialConditions.MorePsycasters.Chance.Help".Translate());
+            Chance = specialConditionContentListing.SliderLabeled("Playwright.Components.SpecialConditions.MorePsycasters.ChancePercentage".Translate(Chance * 100f), Chance, 0f, 1f, 0.25f, "Playwright.Components.SpecialConditions.MorePsycasters.Chance.Help".Translate());
             Chance = MathF.Round(Chance, 2);
 
             Rect levelTooltipRect = specialConditionContentListing.Label("Playwright.Components.SpecialConditions.MorePsycasters.PsylinkLevel".Translate());

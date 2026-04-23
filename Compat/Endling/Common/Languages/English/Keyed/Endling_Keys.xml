@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+ <Playwright.Components.Boons.Compat_Endling>Endlings</Playwright.Components.Boons.Compat_Endling>
+ <Playwright.Components.Boons.Compat_Endling.DescriptionShort>Starter colonists won't have random family relations.</Playwright.Components.Boons.Compat_Endling.DescriptionShort>
+ <Playwright.Components.Boons.Compat_Endling.Description>All starting colonists will have the Endling trait from the Endling (Last Of Their Kind) mod, meaning they won't get randomly generated family relations.</Playwright.Components.Boons.Compat_Endling.Description>
+
+</LanguageData>

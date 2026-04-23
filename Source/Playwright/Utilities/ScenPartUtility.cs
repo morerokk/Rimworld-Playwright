@@ -269,6 +269,25 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        public static ScenPart_ForcedTrait MakeForcedTraitPart(TraitDef traitDef, int degree, PawnGenerationContext pawnGenerationContext, float chance)
+        {
+            ScenPart_ForcedTrait part = (ScenPart_ForcedTrait)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ForcedTrait);
+
+            FieldInfo contextInfo = AccessTools.Field(typeof(ScenPart_ForcedTrait), "context");
+            contextInfo.SetValue(part, pawnGenerationContext);
+
+            FieldInfo chanceInfo = AccessTools.Field(typeof(ScenPart_ForcedTrait), "chance");
+            chanceInfo.SetValue(part, chance);
+
+            FieldInfo traitInfo = AccessTools.Field(typeof(ScenPart_ForcedTrait), "trait");
+            traitInfo.SetValue(part, traitDef);
+
+            FieldInfo degreeInfo = AccessTools.Field(typeof(ScenPart_ForcedTrait), "degree");
+            degreeInfo.SetValue(part, degree);
+
+            return part;
+        }
+
         public static DisableShipStartup MakeDisableShipStartupPart()
         {
             DisableShipStartup part = (DisableShipStartup)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.Playwright_DisableShipStartup);

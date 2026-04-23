@@ -13,5 +13,7 @@
 	  <li IfModActive="SmashPhil.VehicleFramework,SmashPhil.VehicleFramework_steam">Compat/VehicleFramework/1.6</li>
 	  <li IfModActive="RedMattis.SapientAnimals,RedMattis.SapientAnimals_steam">Compat/BSSapientAnimals/Common</li>
 	  <li IfModActive="RedMattis.SapientAnimals,RedMattis.SapientAnimals_steam">Compat/BSSapientAnimals/1.6</li>
+	  <li IfModActive="Aelanna.Endling,Aelanna.Endling_steam">Compat/Endling/Common</li>
+	  <li IfModActive="Aelanna.Endling,Aelanna.Endling_steam">Compat/Endling/1.6</li>
   </v1.6>
 </loadFolders>

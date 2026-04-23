@@ -42,6 +42,7 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef Naked;
         public static ScenPartDef NoPossessions;
         public static ScenPartDef ForcedHediff;
+        public static ScenPartDef ForcedTrait;
         public static ScenPartDef StartingThing_Defined;
         public static ScenPartDef StartingAnimal;
         public static ScenPartDef ScatterThingsNearPlayerStart;

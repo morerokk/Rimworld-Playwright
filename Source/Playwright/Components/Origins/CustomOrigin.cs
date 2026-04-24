@@ -53,7 +53,7 @@ namespace Rokk.Playwright.Components.Origins
         {
             new PawnKindCount()
             {
-                kindDef = PawnKindDefOf.Colonist,
+                kindDef = RimWorld.PawnKindDefOf.Colonist,
                 count = 3,
                 countBuffer = "3",
                 requiredAtStart = false
@@ -373,7 +373,7 @@ namespace Rokk.Playwright.Components.Origins
                     count = 1,
                     countBuffer = "1",
                     requiredAtStart = false,
-                    kindDef = PawnKindDefOf.Colonist
+                    kindDef = RimWorld.PawnKindDefOf.Colonist
                 });
                 SoundUtils.PlayAdd();
             }

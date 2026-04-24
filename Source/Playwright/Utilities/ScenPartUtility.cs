@@ -437,6 +437,26 @@ namespace Rokk.Playwright.Utilities
             return part;
         }
 
+        /// <summary>
+        /// Converts an existing <see cref="ScenPart_ConfigPage_ConfigureStartingPawns"/> part into a <see cref="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs"/> part.
+        /// The new part has no specific demands for pawn kinds and has the same choice counts as the original.
+        /// You can add new entries to kindCounts at will.
+        /// Requires Biotech, will throw an error otherwise.
+        /// </summary>
+        public static ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs ConvertConfigureStartingPawnsToKindDefs(ScenPart_ConfigPage_ConfigureStartingPawns originalPart)
+        {
+            ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs part = (ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs);
+            part.pawnChoiceCount = originalPart.pawnChoiceCount;
+            part.kindCounts.Add(new PawnKindCount()
+            {
+                count = originalPart.pawnCount,
+                countBuffer = originalPart.pawnCount.ToString(),
+                kindDef = PawnKindDefOf.Colonist
+            });
+
+            return part;
+        }
+
         public static ScenPart_ConfigPage_ConfigureStartingPawnsBase GetConfigureStartingPawnsPart(Scenario scenario)
         {
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
@@ -534,6 +554,19 @@ namespace Rokk.Playwright.Utilities
         {
             ScenPart_PawnFilter_Age part = (ScenPart_PawnFilter_Age)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.PawnFilter_Age);
             part.allowedAgeRange = allowedAgeRange;
+            return part;
+        }
+
+        public static ScenPart_StartingMech MakeStartingMechPart(PawnKindDef mechKind, float overseenByPlayerPawnChance = 1f)
+        {
+            ScenPart_StartingMech part = (ScenPart_StartingMech)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.StartingMech);
+
+            FieldInfo mechKindInfo = AccessTools.Field(typeof(ScenPart_StartingMech), "mechKind");
+            mechKindInfo.SetValue(part, mechKind);
+
+            FieldInfo overseenByPlayerPawnChanceInfo = AccessTools.Field(typeof(ScenPart_StartingMech), "overseenByPlayerPawnChance");
+            overseenByPlayerPawnChanceInfo.SetValue(part, overseenByPlayerPawnChance);
+
             return part;
         }
     }

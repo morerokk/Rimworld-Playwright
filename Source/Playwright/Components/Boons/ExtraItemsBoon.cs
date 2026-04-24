@@ -38,7 +38,7 @@ namespace Rokk.Playwright.Components.Boons
             {
                 Items.Add(new ExtraItemEntry());
                 boonContentListing.InvalidateGroup();
-                AddSound();
+                SoundUtils.PlayAdd();
             }
 
             DoItemsContents(boonContentListing);
@@ -71,7 +71,7 @@ namespace Rokk.Playwright.Components.Boons
                     {
                         options.Add(new FloatMenuOption(thingDef.LabelCap, () => item.Thing = thingDef, thingDef.uiIcon, thingDef.uiIconColor));
                     }
-                    ClickSound();
+                    SoundUtils.PlayClick();
                     PlaywrightUtils.OpenFloatMenu(options);
                 }
 
@@ -88,7 +88,7 @@ namespace Rokk.Playwright.Components.Boons
                         {
                             options.Add(new FloatMenuOption(stuffThingDef.LabelCap, () => item.Stuff = stuffThingDef, stuffThingDef.uiIcon, stuffThingDef.uiIconColor));
                         }
-                        ClickSound();
+                        SoundUtils.PlayClick();
                         PlaywrightUtils.OpenFloatMenu(options);
                     }
                 }
@@ -113,7 +113,7 @@ namespace Rokk.Playwright.Components.Boons
                         {
                             options.Add(new FloatMenuOption(qualityCategory.GetLabel().CapitalizeFirst(), () => item.Quality = qualityCategory));
                         }
-                        ClickSound();
+                        SoundUtils.PlayClick();
                         PlaywrightUtils.OpenFloatMenu(options);
                     }
                 }
@@ -131,25 +131,10 @@ namespace Rokk.Playwright.Components.Boons
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0f, 0.4f))
                 {
                     Items.Remove(item);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     boonContentListing.InvalidateGroup();
                 }
             }
-        }
-
-        private void ClickSound()
-        {
-            SoundDefOf.Click.PlayOneShotOnCamera();
-        }
-
-        private void AddSound()
-        {
-            SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
-        }
-
-        private void RemoveSound()
-        {
-            SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
         }
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)

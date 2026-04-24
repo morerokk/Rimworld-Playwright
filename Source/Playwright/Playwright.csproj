@@ -37,6 +37,7 @@
     <Compile Include="Addons\HookRegistration.cs" />
     <Compile Include="Components\Boons\AgeLimitBoon.cs" />
     <Compile Include="Components\Boons\ExtraAnimalsBoon.cs" />
+    <Compile Include="Components\Boons\MechanoidsBoon.cs" />
     <Compile Include="Components\Boons\StartingResearchBoon.cs" />
     <Compile Include="Components\Boons\ExtraImplantsBoon.cs" />
     <Compile Include="Components\Boons\ExtraItemsBoon.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Components\WinConditions\WinConditionComponent.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\GameConditionDefOf.cs" />
+    <Compile Include="DefOfs\PawnKindDefOf.cs" />
     <Compile Include="DefOfs\IncidentDefOf.cs" />
     <Compile Include="DefOfs\HediffDefOf.cs" />
     <Compile Include="DefOfs\ScenarioDefOf.cs" />

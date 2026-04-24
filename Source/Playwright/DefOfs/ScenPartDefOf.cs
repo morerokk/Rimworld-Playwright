@@ -56,6 +56,8 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef ConfigurePawnsXenotypes;
         [MayRequireBiotech]
         public static ScenPartDef ConfigurePawnsKindDefs;
+        [MayRequireBiotech]
+        public static ScenPartDef StartingMech;
         [MayRequireAnomaly]
         public static ScenPartDef ConfigurePawnsMutants;
         public static ScenPartDef OnPawnDeathExplode;

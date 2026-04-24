@@ -206,6 +206,13 @@ When you're happy with your scenario, click "Create Scenario" to save it as a sc
  <Playwright.Components.Boons.AgeLimit.DescriptionShort>Limit the age of your starting colonists.</Playwright.Components.Boons.AgeLimit.DescriptionShort>
  <Playwright.Components.Boons.AgeLimit.Description>The age of your starting colonists is limited between the specified minimum/maximum.</Playwright.Components.Boons.AgeLimit.Description>
  <Playwright.Components.Boons.AgeLimit.AllowedAgeRange>Allowed Age Range (years)</Playwright.Components.Boons.AgeLimit.AllowedAgeRange>
+
+ <Playwright.Components.Boons.Mechanoids>Mechanoids</Playwright.Components.Boons.Mechanoids>
+ <Playwright.Components.Boons.Mechanoids.DescriptionShort>One of your starting colonists is a Mechanitor.</Playwright.Components.Boons.Mechanoids.DescriptionShort>
+ <Playwright.Components.Boons.Mechanoids.Description>One of your starting colonists is a Mechanitor with their own Lifter and Constructoid mechanoids. You also start with Basic Mechtech researched.</Playwright.Components.Boons.Mechanoids.Description>
+ <Playwright.Components.Boons.Mechanoids.ErrorUnsupportedConfigPage>Mechanoids boon: unable to add Mechanitor to colonist preparation screen. This scenario/origin's colonist preparation screen does not support adding specific pawn kinds (such as The Sanguophage or The Anomaly, due to their Xenotype/Ghoul requirements).
+
+Please deselect the Mechanoids boon, or select a different Origin. (Sorry!)</Playwright.Components.Boons.Mechanoids.ErrorUnsupportedConfigPage>
  
  <Playwright.Tabs.Factions.Welcome>Set up the factions that exist in the world, and how they feel about you.</Playwright.Tabs.Factions.Welcome>
  <!-- Factions -->

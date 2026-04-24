@@ -50,6 +50,7 @@ namespace Rokk.Playwright.Components.Boons
                 new ExtraImplantsBoon(),
                 new StartingResearchBoon(),
                 new NovicesBoon(),
+                new MechanoidsBoon(),
                 new ShuttleBoon(),
                 new AgeLimitBoon()
             };

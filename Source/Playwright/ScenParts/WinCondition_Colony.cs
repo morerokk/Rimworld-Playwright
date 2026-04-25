@@ -80,6 +80,7 @@ namespace Rokk.Playwright.ScenParts
 
         public override void ExposeData()
         {
+            // Always run base.ExposeData()! This handles saving the "Won" flag.
             base.ExposeData();
             Scribe_Values.Look(ref Colonists, nameof(Colonists));
             ColonistsBuffer = Colonists.ToString();

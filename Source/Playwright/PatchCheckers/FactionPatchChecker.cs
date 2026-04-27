@@ -38,7 +38,7 @@ namespace Rokk.Playwright.PatchCheckers
             Scenario scenario = Find.Scenario;
             if (scenario == null)
             {
-                Log.Error("[Playwright] Scenario was null while re-evaluating if faction goodwill patches have to be run. Faction goodwill-related scenario parts have been disabled.");
+                Log.Warning("[Playwright] Scenario was null while re-evaluating if faction goodwill patches have to be run. Faction goodwill-related scenario parts have been disabled.");
                 return;
             }
 

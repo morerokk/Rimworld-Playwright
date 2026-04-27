@@ -11,11 +11,11 @@ using Verse;
 namespace Rokk.Playwright.Patches
 {
     // Override the initial relations for a generated faction, if any "Set faction natural/forced goodwill" scenpart is detected.
-    // This patch exists to deal with factions that are added mid-game.
+    // This patch exists to deal with factions that are added mid-game,
+    // as the scenparts themselves should have already taken care of factions present during worldgen.
     // 
-    // This method is called once, but when it's done, both factions have mutual relations with each other
-    // (vanilla method adds the relation in this instance, and in the other instance)
-    // Setup initial relations for forced/natural goodwill scenario parts
+    // Note: this method is called once, but when it's done, both factions have mutual relations with each other
+    // (vanilla method adds the relation in this instance, and in the other instance, so both sides are available in postfixes)
     [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryMakeInitialRelationsWith))]
     public class Faction_TryMakeInitialRelationsWithPatches
@@ -45,6 +45,7 @@ namespace Rokk.Playwright.Patches
                 return;
             }
 
+            // Natural goodwill slider can go between -200 and +200, but any "actual" goodwill values should be between -100 and +100
             initialGoodwill = Math.Clamp(factionGoodwillPart.Goodwill, -100, 100);
 
             FactionRelationKind relationKind = FactionRelationKind.Neutral;
@@ -103,7 +104,7 @@ namespace Rokk.Playwright.Patches
     }
 
     // If forced by a "Set faction forced goodwill" scenpart, let the game know that any goodwill changes here are going to be categorically rejected.
-    // (Makes the UI look slightly nicer)
+    // (Makes the UI look slightly nicer, does things like showing that transport pod items will be lost and will not change goodwill)
     [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.CanChangeGoodwillFor))]
     public class Faction_CanChangeGoodwillForPatches

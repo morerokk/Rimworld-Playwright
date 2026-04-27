@@ -12,17 +12,13 @@ namespace Rokk.Playwright
 {
     public class Core : Mod
     {
-        public static Settings Settings;
-        public static PlaywrightBuilder Builder;
-
         internal static Harmony Harmony;
+        internal static Core Current;
+        public static Settings Settings;
 
         public Core(ModContentPack content) : base(content)
         {
-            Settings = GetSettings<Settings>();
-            Builder = new PlaywrightBuilder();
             Harmony = new Harmony("rokk.playwright");
-            Harmony.PatchAllUncategorized(Assembly.GetExecutingAssembly());            
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
@@ -37,7 +33,7 @@ namespace Rokk.Playwright
             listingStandard.CheckboxLabeled("Playwright.Settings.HideDryadsInAnimals".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideDryadsInAnimals.Help".Translate());
             listingStandard.Gap();
 
-            // Make editor always accessible from options menu, in case the main menu button is disabled or if some other mod completely redoes the main menu
+            // Make editor always accessible from options menu, in case the main menu playwright button is disabled or if some other mod completely redoes the main menu
             if (listingStandard.ButtonText("Playwright.Settings.OpenPlaywrightButton".Translate(), "Playwright.Settings.OpenPlaywrightButton.Help", 0.25f))
             {
                 PlaywrightUtils.OpenPlaywrightWindow(false);

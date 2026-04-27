@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Rokk.Playwright.UI;
+using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace Rokk.Playwright.Patches
 
             optList.Insert(0, new ListableOption("Playwright.OpenPlaywrightButton".Translate(), () =>
             {
-                Find.WindowStack.Add(new PlaywrightWindow());
+                PlaywrightUtils.OpenPlaywrightWindow(true);
             }));
         }
     }

@@ -16,6 +16,10 @@ namespace Rokk.Playwright.ScenParts
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
+            // Initialize the draw helper for scenpart editors.
+            // The "3" here is the number of rows that the editor should have.
+            // helper.NextRect() gets a rect for the next row.
+            // helper.Skip(1) leaves a 1-row gap.
             var scenPartRect = listing.GetScenPartRect(this, RowHeight * 3);
             var helper = new ScenPartDrawHelper(scenPartRect, RowHeight, 3);
 

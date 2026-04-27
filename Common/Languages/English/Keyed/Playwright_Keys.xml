@@ -15,6 +15,8 @@
  <Playwright.Settings.HideReplacedFactions.Help>If enabled, factions that are replaced by other factions are hidden in most faction-related selection menus (such as Neanderthal Tribe replacing Fierce Tribe). Only affects the Playwright editor and Playwright's scenario parts. Default: enabled.</Playwright.Settings.HideReplacedFactions.Help>
  <Playwright.Settings.HideDryadsInAnimals>Hide Dryads in animal selectors</Playwright.Settings.HideDryadsInAnimals>
  <Playwright.Settings.HideDryadsInAnimals.Help>If enabled, any type of Dryad is hidden in animal selection menus. Only affects the Playwright editor. Default: enabled.</Playwright.Settings.HideDryadsInAnimals.Help>
+ <Playwright.Settings.OpenPlaywrightButton>Open Playwright</Playwright.Settings.OpenPlaywrightButton>
+ <Playwright.Settings.OpenPlaywrightButton.Help>Opens the Playwright designer from here, the mod options menu. Useful if you have disabled the main menu playwright button, or another mod is causing the button to not show up.</Playwright.Settings.OpenPlaywrightButton.Help>
 
  <!-- Main Menu -->
  <Playwright.OpenPlaywrightButton>Playwright</Playwright.OpenPlaywrightButton>

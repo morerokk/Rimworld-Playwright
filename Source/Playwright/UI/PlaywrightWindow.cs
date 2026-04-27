@@ -32,6 +32,8 @@ namespace Rokk.Playwright.UI
         /// </summary>
         public bool IdeoligionEditorHasErrored { get; private set; } = false;
 
+        public bool CanGoToNewColonyScreenAfterwards { get; private set; } = false;
+
         private int PanelOutlineWidth => 1;
         private Color PanelOutlineColor => Widgets.SeparatorLineColor;
         private Color PanelBGColor => Widgets.MenuSectionBGFillColor;
@@ -81,7 +83,11 @@ namespace Rokk.Playwright.UI
         private Vector2 ReviewContentScrollPos = Vector2.zero;
         private Listing_Standard ReviewErrorListing = new Listing_Standard();
 
-        public PlaywrightWindow() : base()
+        /// <param name="canGoToNewColonyScreenAfterwards">
+        /// Whether the player should be asked if they want to go to the new colony screen after creating their scenario.
+        /// Should be false if you're opening the designer from another window (such as Mod Options). Should probably only be true if opened directly from the main menu landing screen.
+        /// </param>
+        public PlaywrightWindow(bool canGoToNewColonyScreenAfterwards = false) : base()
         {
             this.closeOnClickedOutside = false;
             this.resizeable = false;
@@ -100,6 +106,8 @@ namespace Rokk.Playwright.UI
             this.AvailableSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.SelectedSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.ReviewContentListing = new Listing_AutoFitVertical(InvalidateAutoListings);
+
+            this.CanGoToNewColonyScreenAfterwards = canGoToNewColonyScreenAfterwards;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -954,6 +962,11 @@ namespace Rokk.Playwright.UI
                 Find.WindowStack.Add(new Dialog_ScenarioList_Save(scenario, () =>
                 {
                     FormDirty = false;
+                    if (!CanGoToNewColonyScreenAfterwards)
+                    {
+                        return;
+                    }
+
                     Find.WindowStack.Add(new ScenarioSavedPopupWindow((bool shouldGoToNewGame) =>
                     {
                         if (shouldGoToNewGame)

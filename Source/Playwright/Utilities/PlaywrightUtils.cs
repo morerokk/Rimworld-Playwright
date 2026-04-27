@@ -107,6 +107,21 @@ namespace Rokk.Playwright.Utilities
             Find.WindowStack.Add(page);
         }
 
+        /// <summary>
+        /// Open and returns a new Playwright designer window.
+        /// </summary>
+        /// <param name="canGoToNewColonyScreenAfterwards">
+        /// Whether the player should be asked if they want to go to the new colony screen after creating their scenario.
+        /// Should be false if you're opening the designer from another window (such as Mod Options). Should probably only be true if opened directly from the main menu landing screen.
+        /// </param>
+        /// <returns>The opened window.</returns>
+        public static PlaywrightWindow OpenPlaywrightWindow(bool canGoToNewColonyScreenAfterwards = false)
+        {
+            var window = new PlaywrightWindow(canGoToNewColonyScreenAfterwards);
+            Find.WindowStack.Add(window);
+            return window;
+        }
+
         public static bool IsModActive(string modIdentifier)
         {
             return ModLister.GetActiveModWithIdentifier(modIdentifier, true)?.Active == true;

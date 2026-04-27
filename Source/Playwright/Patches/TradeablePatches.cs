@@ -6,11 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    // When an item is sold to a trader, if there are any "Win condition: sell items" parts, notify those scenparts of the trade occurring.
+    // TODO: This only handles items, because pawns (prisoners, slaves) have their own implementation of ResolveTrade instead.
+    // Do we also have to handle prisoners/slaves? Could be fun tbh
     [HarmonyPatchCategory(WinConditionPatchChecker.TradeCategory)]
     [HarmonyPatch(typeof(Tradeable), nameof(Tradeable.ResolveTrade))]
     public static class Tradeable_ResolveTradePatches
@@ -18,7 +20,6 @@ namespace Rokk.Playwright.Patches
         [HarmonyPostfix]
         static void Postfix(Tradeable __instance)
         {
-            // When the player sells an item, notify each ScenPart_SellItems
             if (__instance.ActionToDo != TradeAction.PlayerSells)
             {
                 return;

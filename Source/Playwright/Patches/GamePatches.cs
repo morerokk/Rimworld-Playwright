@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Verse;
 
 namespace Rokk.Playwright.Patches
@@ -16,9 +15,8 @@ namespace Rokk.Playwright.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            // Most patches start un-applied.
-            // On new game/game load, un-apply them if necessary and check if they should be re-applied.
-            // This way, we run as little of our code as possible, only enough to make the player's current ScenParts work.
+            // Most patches start un-applied thanks to Harmony patch categories.
+            // On game start/load, we un-apply all patches, then only re-apply them if we found a relevant ScenPart that would necessitate the patch.
             FactionPatchChecker.CheckPatchFactionGoodwill();
             WinConditionPatchChecker.CheckPatchShipStartup();
             WinConditionPatchChecker.CheckPatchWinConditions();

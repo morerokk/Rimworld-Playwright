@@ -12,14 +12,15 @@ using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    // In the pre world generate screen, deselect some factions by default if a "no factions except" or a "deselect faction" scenpart is detected.
+    // They can still be re-added manually.
+    // Unremovable factions are kept (like Deserters, if both VFE Empire and VFE Deserters are installed).
     [HarmonyPatch(typeof(Page_CreateWorldParams), "ResetFactionCounts")]
     public class Page_CreateWorldParams_ResetFactionCountsPatches
     {
         [HarmonyPostfix]
         static void Postfix(ref List<FactionDef> ___factions, ref List<FactionDef> ___initialFactions)
         {
-            // On initial setup of the factions or on reset button click, filter out any factions that are removed by default.
-            // They can still be re-added manually, but with this patch, they will be removed on entering this page or when clicking reset
             Scenario scenario = Find.Scenario;
             if (scenario == null)
             {
@@ -91,6 +92,11 @@ namespace Rokk.Playwright.Patches
                 return FactionRelationKind.Hostile;
             }
 
+            // If a faction is hostile to everyone except X factions,
+            // and at least one X faction is a player faction,
+            // assume that this faction is normally supposed to always be neutral towards the player (like Cyberpunks, from Mort's Factions: The Corporation).
+            // This is a weird edge case if the mod author intended to make a faction neutral to player tribals but hostile to player crashlanders,
+            // but this is acceptable because this whole patch file is purely a convenience feature.
             if (factionDef.permanentEnemyToEveryoneExcept != null && !factionDef.permanentEnemyToEveryoneExcept.Any(f => f.isPlayer))
             {
                 return FactionRelationKind.Hostile;

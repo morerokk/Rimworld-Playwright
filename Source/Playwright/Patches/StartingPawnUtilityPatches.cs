@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.PatchCheckers;
-using Rokk.Playwright.ScenParts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +8,7 @@ using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    // Make the Randomize button a no-op in the colonist preparation screen if the "No Colonist Rerolls" ScenPart is detected
     [HarmonyPatch(typeof(StartingPawnUtility), nameof(StartingPawnUtility.RandomizePawn))]
     public class StartingPawnUtility_RandomizePawnPatches
     {

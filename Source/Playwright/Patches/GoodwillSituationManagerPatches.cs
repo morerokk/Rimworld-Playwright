@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.DefOfs;
 using Rokk.Playwright.PatchCheckers;
 using Rokk.Playwright.ScenParts;
 using System;
@@ -8,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    // Override the natural goodwill of a faction if any "Set faction natural/forced goodwill" scenpart is detected
     [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(GoodwillSituationManager), nameof(GoodwillSituationManager.GetNaturalGoodwill))]
     public class GoodwillSituationManager_GetNaturalGoodwillPatches

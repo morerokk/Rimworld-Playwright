@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Patches
 {
+    // Override the initial relations for a generated faction, if any "Set faction natural/forced goodwill" scenpart is detected.
+    // This patch exists to deal with factions that are added mid-game.
+    // 
     // This method is called once, but when it's done, both factions have mutual relations with each other
     // (vanilla method adds the relation in this instance, and in the other instance)
     // Setup initial relations for forced/natural goodwill scenario parts
@@ -65,7 +66,8 @@ namespace Rokk.Playwright.Patches
         }
     }
 
-    // Since the relations have already been set up above, completely reject ALL attempts to change it if forced by the scenario
+    // Since the relations have already been set up above, completely reject ALL attempts to change it,
+    // if forced by a "Set faction forced goodwill" scenpart.
     [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryAffectGoodwillWith))]
     public class Faction_TryAffectGoodwillWithPatches
@@ -100,6 +102,8 @@ namespace Rokk.Playwright.Patches
         }
     }
 
+    // If forced by a "Set faction forced goodwill" scenpart, let the game know that any goodwill changes here are going to be categorically rejected.
+    // (Makes the UI look slightly nicer)
     [HarmonyPatchCategory(FactionPatchChecker.GoodwillCategory)]
     [HarmonyPatch(typeof(Faction), nameof(Faction.CanChangeGoodwillFor))]
     public class Faction_CanChangeGoodwillForPatches

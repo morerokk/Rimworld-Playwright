@@ -976,8 +976,9 @@ namespace Rokk.Playwright.UI
                             Find.WindowStack.Add(new Page_SelectScenario());
                             // I have attempted to pre-select the scenario that was just saved,
                             // but no matter what I do, I can't get the selection to work properly.
-                            // It seems to pre-select a different copy of the just saved scenario instead, even if I first reload the scenario from the lister,
-                            // and even if the lister is marked dirty. I give up.
+                            // It seems to pre-select a stale copy of the just saved scenario instead, even if I first reload the scenario from the lister,
+                            // and even if the lister is marked dirty. I give up, it's not worth the potential breakage for a slight convenience feature.
+                            // (Sorry!)
                         }
                     }));
                 }));

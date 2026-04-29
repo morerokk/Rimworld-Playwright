@@ -1,10 +1,8 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.Composer;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -34,9 +32,13 @@ namespace Rokk.Playwright
             listingStandard.Gap();
 
             // Make editor always accessible from options menu, in case the main menu playwright button is disabled or if some other mod completely redoes the main menu
-            if (listingStandard.ButtonText("Playwright.Settings.OpenPlaywrightButton".Translate(), "Playwright.Settings.OpenPlaywrightButton.Help", 0.25f))
+            // Should ABSOLUTELY NOT be accessible from ingame mind you, there's an ideology editor in there that generates a new world
+            if (Verse.Current.ProgramState == ProgramState.Entry)
             {
-                PlaywrightUtils.OpenPlaywrightWindow(false);
+                if (listingStandard.ButtonText("Playwright.Settings.OpenPlaywrightButton".Translate(), "Playwright.Settings.OpenPlaywrightButton.Help", 0.25f))
+                {
+                    PlaywrightUtils.OpenPlaywrightWindow(false);
+                }
             }
 
             listingStandard.Gap(48f);

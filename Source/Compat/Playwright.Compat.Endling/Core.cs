@@ -1,7 +1,4 @@
-﻿using HarmonyLib;
-using Rokk.Playwright.Addons;
-using Rokk.Playwright.Compat.Endling.Components.Boons;
-using System;
+﻿using System;
 using Verse;
 
 namespace Rokk.Playwright.Compat.Endling
@@ -10,7 +7,7 @@ namespace Rokk.Playwright.Compat.Endling
     {
         public Core(ModContentPack content) : base(content)
         {
-            ComponentRegistration.RegisterBoon(new EndlingsBoon());
+            
         }
     }
 }

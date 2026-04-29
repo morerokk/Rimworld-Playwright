@@ -1,6 +1,4 @@
-﻿using Rokk.Playwright.Addons;
-using Rokk.Playwright.Compat.VehicleFramework.Components.Boons;
-using System;
+﻿using System;
 using Verse;
 
 namespace Rokk.Playwright.Compat.VehicleFramework
@@ -9,7 +7,7 @@ namespace Rokk.Playwright.Compat.VehicleFramework
     {
         public Core(ModContentPack content) : base(content)
         {
-            ComponentRegistration.RegisterBoon(new VehiclesBoon());
+            
         }
     }
 }

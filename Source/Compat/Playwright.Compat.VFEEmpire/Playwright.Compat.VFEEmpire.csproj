@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

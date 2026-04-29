@@ -43,6 +43,7 @@
     <Compile Include="Components\Boons\EndlingsBoon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\TraitDefOf.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

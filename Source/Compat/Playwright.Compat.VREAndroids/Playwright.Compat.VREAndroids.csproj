@@ -47,6 +47,7 @@
     <Compile Include="DefOfs\PawnKindDefOf.cs" />
     <Compile Include="DefOfs\XenotypeDefOf.cs" />
     <Compile Include="DefOfs\ScenarioDefOf.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

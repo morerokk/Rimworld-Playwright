@@ -43,6 +43,7 @@
     <Compile Include="Components\Boons\VehiclesBoon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

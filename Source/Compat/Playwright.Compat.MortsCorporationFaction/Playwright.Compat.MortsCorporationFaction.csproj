@@ -54,6 +54,7 @@
     <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="DefOfs\RoyalTitleDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

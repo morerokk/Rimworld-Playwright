@@ -189,17 +189,17 @@ namespace Rokk.Playwright.Components.Boons
                 switch (implant.Side)
                 {
                     case ExtraImplantEntry.ImplantSide.Left:
-                        scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Left));
+                        scenarioParts.Add(ScenPartUtils.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Left));
                         break;
                     case ExtraImplantEntry.ImplantSide.Right:
-                        scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Right));
+                        scenarioParts.Add(ScenPartUtils.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Right));
                         break;
                     case ExtraImplantEntry.ImplantSide.Random:
-                        scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Random));
+                        scenarioParts.Add(ScenPartUtils.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Random));
                         break;
                     case ExtraImplantEntry.ImplantSide.Both:
-                        scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Left));
-                        scenarioParts.Add(ScenPartUtility.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Right));
+                        scenarioParts.Add(ScenPartUtils.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Left));
+                        scenarioParts.Add(ScenPartUtils.MakeForcedImplantPart(implant.Hediff, 1f, PawnGenerationContext.PlayerStarter, implant.BodyPart, ForcedImplant.ImplantSide.Right));
                         break;
                 }
             }

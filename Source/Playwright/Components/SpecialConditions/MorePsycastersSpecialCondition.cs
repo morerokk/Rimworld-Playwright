@@ -37,7 +37,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeForcedPsylinkLevelPart(PsylinkLevelAsFloatRange, Chance, PawnGenerationContext.NonPlayer));
+            scenarioParts.Add(ScenPartUtils.MakeForcedPsylinkLevelPart(PsylinkLevelAsFloatRange, Chance, PawnGenerationContext.NonPlayer));
         }
 
         public override void ExposeData()

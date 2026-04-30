@@ -24,7 +24,7 @@ namespace Rokk.Playwright.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakePawnFilterAgePart(AllowedAgeRange));
+            scenarioParts.Add(ScenPartUtils.MakePawnFilterAgePart(AllowedAgeRange));
         }
 
         public override void ExposeData()

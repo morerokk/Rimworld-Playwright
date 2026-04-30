@@ -111,7 +111,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 {
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeForcedTraitPart(traitEntry.Trait, traitEntry.Degree, traitEntry.Context, traitEntry.Chance));
+                scenarioParts.Add(ScenPartUtils.MakeForcedTraitPart(traitEntry.Trait, traitEntry.Degree, traitEntry.Context, traitEntry.Chance));
             }
         }
 

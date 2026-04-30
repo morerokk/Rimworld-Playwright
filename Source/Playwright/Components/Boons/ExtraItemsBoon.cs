@@ -146,7 +146,7 @@ namespace Rokk.Playwright.Components.Boons
                     Log.WarningOnce("[Playwright] Extra items boon: item thing was null", 595001);
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(item.Thing, item.Stuff, item.Count, item.Quality));
+                scenarioParts.Add(ScenPartUtils.MakeStartingThingDefinedPart(item.Thing, item.Stuff, item.Count, item.Quality));
             }
         }
 

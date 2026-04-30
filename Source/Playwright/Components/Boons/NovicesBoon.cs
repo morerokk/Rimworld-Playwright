@@ -17,8 +17,8 @@ namespace Rokk.Playwright.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(FactionDefOf.Empire, 7, 1f, PawnGenerationContext.PlayerStarter, true));
-            scenarioParts.Add(ScenPartUtility.MakeForcedPsylinkLevelPart(new FloatRange(1f, 1f), 1f, PawnGenerationContext.PlayerStarter));
+            scenarioParts.Add(ScenPartUtils.MakeStartWithHonorPart(FactionDefOf.Empire, 7, 1f, PawnGenerationContext.PlayerStarter, true));
+            scenarioParts.Add(ScenPartUtils.MakeForcedPsylinkLevelPart(new FloatRange(1f, 1f), 1f, PawnGenerationContext.PlayerStarter));
         }
     }
 }

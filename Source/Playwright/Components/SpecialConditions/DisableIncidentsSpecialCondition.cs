@@ -81,7 +81,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 {
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeDisableIncidentPart(incidentDef));
+                scenarioParts.Add(ScenPartUtils.MakeDisableIncidentPart(incidentDef));
             }
         }
 

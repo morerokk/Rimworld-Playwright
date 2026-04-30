@@ -587,43 +587,43 @@ namespace Rokk.Playwright.Components.Origins
             ScenPart_ConfigPage_ConfigureStartingPawnsBase configPagePart;
             if (ConfigPage == ConfigPageType.Xenotypes)
             {
-                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsXenotypesPart(PawnXenotypeCounts, PawnChoiceCount);
+                configPagePart = ScenPartUtils.MakeConfigureStartingPawnsXenotypesPart(PawnXenotypeCounts, PawnChoiceCount);
             }
             else if (ConfigPage == ConfigPageType.PawnKinds)
             {
-                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsKindDefsPart(PawnKindCounts, PawnChoiceCount);
+                configPagePart = ScenPartUtils.MakeConfigureStartingPawnsKindDefsPart(PawnKindCounts, PawnChoiceCount);
             }
             else if (ConfigPage == ConfigPageType.Mutants)
             {
-                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsMutantsPart(PawnMutantCounts, PawnChoiceCount);
+                configPagePart = ScenPartUtils.MakeConfigureStartingPawnsMutantsPart(PawnMutantCounts, PawnChoiceCount);
             }
             else
             {
-                configPagePart = ScenPartUtility.MakeConfigureStartingPawnsPart(PawnCount, PawnChoiceCount);
+                configPagePart = ScenPartUtils.MakeConfigureStartingPawnsPart(PawnCount, PawnChoiceCount);
             }
             scenarioParts.Add(configPagePart);
 
             // Player faction is an internal field, not in the list of parts
             FieldInfo playerFactionInfo = AccessTools.Field(typeof(Scenario), "playerFaction");
-            playerFactionInfo.SetValue(scenario, ScenPartUtility.MakePlayerFactionPart(Faction));
+            playerFactionInfo.SetValue(scenario, ScenPartUtils.MakePlayerFactionPart(Faction));
 
             // Set arrival method
-            scenarioParts.Add(ScenPartUtility.MakePlayerPawnsArriveMethodPart(ArriveMethod));
+            scenarioParts.Add(ScenPartUtils.MakePlayerPawnsArriveMethodPart(ArriveMethod));
 
             // Add starting things
             foreach (var startingThing in StartingThings)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingThingDefinedPart(startingThing.Thing, startingThing.Stuff, startingThing.Count, startingThing.Quality));
+                scenarioParts.Add(ScenPartUtils.MakeStartingThingDefinedPart(startingThing.Thing, startingThing.Stuff, startingThing.Count, startingThing.Quality));
             }
             // Add scattered nearby things
             foreach (var scatteredNearbyThing in ScatteredNearbyThings)
             {
-                scenarioParts.Add(ScenPartUtility.MakeScatterThingsNearPlayerPart(scatteredNearbyThing.Thing, scatteredNearbyThing.Stuff, scatteredNearbyThing.Count, scatteredNearbyThing.Quality));
+                scenarioParts.Add(ScenPartUtils.MakeScatterThingsNearPlayerPart(scatteredNearbyThing.Thing, scatteredNearbyThing.Stuff, scatteredNearbyThing.Count, scatteredNearbyThing.Quality));
             }
             // Add scattered anywhere things
             foreach (var scatteredAnywhereThing in ScatteredAnywhereThings)
             {
-                scenarioParts.Add(ScenPartUtility.MakeScatterThingsAnywherePart(scatteredAnywhereThing.Thing, scatteredAnywhereThing.Stuff, scatteredAnywhereThing.Count, scatteredAnywhereThing.Quality));
+                scenarioParts.Add(ScenPartUtils.MakeScatterThingsAnywherePart(scatteredAnywhereThing.Thing, scatteredAnywhereThing.Stuff, scatteredAnywhereThing.Count, scatteredAnywhereThing.Quality));
             }
         }
 
@@ -636,7 +636,7 @@ namespace Rokk.Playwright.Components.Origins
         protected virtual void ImportFromScenario(ScenarioDef scenarioDef)
         {
             // Configpage
-            ScenPart_ConfigPage_ConfigureStartingPawnsBase configPage = ScenPartUtility.GetConfigureStartingPawnsPart(scenarioDef.scenario);
+            ScenPart_ConfigPage_ConfigureStartingPawnsBase configPage = ScenPartUtils.GetConfigureStartingPawnsPart(scenarioDef.scenario);
             if (configPage != null)
             {
                 PawnChoiceCount = configPage.pawnChoiceCount;

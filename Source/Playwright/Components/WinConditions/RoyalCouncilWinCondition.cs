@@ -43,7 +43,7 @@ namespace Rokk.Playwright.Components.WinConditions
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionRoyalTitlesPart(Colonists, FactionDefOf.Empire, Title));
+            scenarioParts.Add(ScenPartUtils.MakeWinConditionRoyalTitlesPart(Colonists, FactionDefOf.Empire, Title));
         }
 
         public override void ExposeData()

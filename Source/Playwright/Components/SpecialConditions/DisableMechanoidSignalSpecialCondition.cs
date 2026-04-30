@@ -17,7 +17,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_MechanoidSignal));
+            scenarioParts.Add(ScenPartUtils.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_MechanoidSignal));
         }
     }
 }

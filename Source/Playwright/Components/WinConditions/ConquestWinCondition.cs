@@ -25,7 +25,7 @@ namespace Rokk.Playwright.Components.WinConditions
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionConquestPart(AllowAllies));
+            scenarioParts.Add(ScenPartUtils.MakeWinConditionConquestPart(AllowAllies));
         }
 
         public override void ExposeData()

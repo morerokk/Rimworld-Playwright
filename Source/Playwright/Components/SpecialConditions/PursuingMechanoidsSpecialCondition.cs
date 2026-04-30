@@ -18,7 +18,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakePursuingMechanoidsPart());
+            scenarioParts.Add(ScenPartUtils.MakePursuingMechanoidsPart());
         }
     }
 }

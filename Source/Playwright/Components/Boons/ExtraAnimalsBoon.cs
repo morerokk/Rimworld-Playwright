@@ -95,7 +95,7 @@ namespace Rokk.Playwright.Components.Boons
         {
             foreach (ExtraAnimalEntry animal in Animals)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingAnimalPart(animal.Animal, animal.Count, 1f));
+                scenarioParts.Add(ScenPartUtils.MakeStartingAnimalPart(animal.Animal, animal.Count, 1f));
             }
         }
 

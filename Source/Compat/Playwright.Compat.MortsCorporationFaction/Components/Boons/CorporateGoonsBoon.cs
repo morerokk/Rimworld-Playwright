@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeStartWithHonorPart(DefOfs.FactionDefOf.MF_Corporation, 7, 1f, PawnGenerationContext.PlayerStarter, true));
+            scenarioParts.Add(ScenPartUtils.MakeStartWithHonorPart(DefOfs.FactionDefOf.MF_Corporation, 7, 1f, PawnGenerationContext.PlayerStarter, true));
         }
     }
 }

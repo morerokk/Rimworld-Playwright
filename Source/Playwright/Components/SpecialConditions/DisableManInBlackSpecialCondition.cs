@@ -16,7 +16,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.StrangerInBlackJoin));
+            scenarioParts.Add(ScenPartUtils.MakeDisableIncidentPart(DefOfs.IncidentDefOf.StrangerInBlackJoin));
         }
     }
 }

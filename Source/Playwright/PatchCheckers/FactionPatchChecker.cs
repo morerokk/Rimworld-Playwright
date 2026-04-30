@@ -61,7 +61,7 @@ namespace Rokk.Playwright.PatchCheckers
                 return;
             }
 
-            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), GoodwillCategory);
+            Core.Harmony.PatchCategory(GoodwillCategory);
 
             FactionGoodwillPatched = true;
         }
@@ -73,7 +73,7 @@ namespace Rokk.Playwright.PatchCheckers
                 return;
             }
 
-            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), GoodwillCategory);
+            Core.Harmony.UnpatchCategory(GoodwillCategory);
 
             FactionGoodwillPatched = false;
         }

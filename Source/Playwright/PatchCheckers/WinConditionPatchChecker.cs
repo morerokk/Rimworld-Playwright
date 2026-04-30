@@ -41,7 +41,7 @@ namespace Rokk.Playwright.PatchCheckers
             {
                 return;
             }
-            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), ShipStartupCategory);
+            Core.Harmony.PatchCategory(ShipStartupCategory);
             ShipStartupPatched = true;
         }
 
@@ -51,7 +51,7 @@ namespace Rokk.Playwright.PatchCheckers
             {
                 return;
             }
-            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), ShipStartupCategory);
+            Core.Harmony.UnpatchCategory(ShipStartupCategory);
             ShipStartupPatched = false;
         }
 
@@ -85,7 +85,7 @@ namespace Rokk.Playwright.PatchCheckers
             {
                 return;
             }
-            Core.Harmony.PatchCategory(Assembly.GetExecutingAssembly(), TradeCategory);
+            Core.Harmony.PatchCategory(TradeCategory);
             TradePatched = true;
         }
 
@@ -95,7 +95,7 @@ namespace Rokk.Playwright.PatchCheckers
             {
                 return;
             }
-            Core.Harmony.UnpatchCategory(Assembly.GetExecutingAssembly(), TradeCategory);
+            Core.Harmony.UnpatchCategory(TradeCategory);
             TradePatched = false;
         }
     }

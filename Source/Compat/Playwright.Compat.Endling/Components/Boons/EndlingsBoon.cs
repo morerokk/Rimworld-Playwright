@@ -14,7 +14,7 @@ namespace Rokk.Playwright.Compat.Endling.Components.Boons
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeForcedTraitPart(DefOfs.TraitDefOf.Aelanna_Endling, 0, PawnGenerationContext.PlayerStarter, 1f));
+            scenarioParts.Add(ScenPartUtils.MakeForcedTraitPart(DefOfs.TraitDefOf.Aelanna_Endling, 0, PawnGenerationContext.PlayerStarter, 1f));
         }
     }
 }

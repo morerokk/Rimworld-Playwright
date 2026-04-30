@@ -49,7 +49,7 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                 // (Holy shit this is ass. At least the mechanitor start is supported now, so we support everything except "The Anomaly" start.)
                 if (regularConfigurePart != null)
                 {
-                    xenotypeConfigurePart = ScenPartUtility.ConvertConfigureStartingPawnsToXenotypes(regularConfigurePart);
+                    xenotypeConfigurePart = ScenPartUtils.ConvertConfigureStartingPawnsToXenotypes(regularConfigurePart);
                     scenarioParts.Remove(regularConfigurePart);
                     scenarioParts.Add(xenotypeConfigurePart);
                 }
@@ -125,11 +125,11 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
 
                 if (!neutroamineFound)
                 {
-                    scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(DefOfs.ResearchProjectDefOf.VREA_NeutroamineLogistics));
+                    scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(DefOfs.ResearchProjectDefOf.VREA_NeutroamineLogistics));
                 }
                 if (!androidtechFound)
                 {
-                    scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(DefOfs.ResearchProjectDefOf.VREA_AndroidTech));
+                    scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(DefOfs.ResearchProjectDefOf.VREA_AndroidTech));
                 }
             }
         }

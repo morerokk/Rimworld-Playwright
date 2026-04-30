@@ -13,7 +13,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeAdditionalUnwaveringChancePart(1f));
+            scenarioParts.Add(ScenPartUtils.MakeAdditionalUnwaveringChancePart(1f));
         }
     }
 }

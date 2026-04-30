@@ -19,7 +19,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeGameConditionPlanetkillerPart(Days));
+            scenarioParts.Add(ScenPartUtils.MakeGameConditionPlanetkillerPart(Days));
         }
 
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)

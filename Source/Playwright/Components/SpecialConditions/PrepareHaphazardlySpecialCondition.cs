@@ -17,14 +17,14 @@ namespace Rokk.Playwright.Components.SpecialConditions
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             // Add twice as many colonist choices
-            var configurePart = ScenPartUtility.GetConfigureStartingPawnsPart(scenarioParts);
+            var configurePart = ScenPartUtils.GetConfigureStartingPawnsPart(scenarioParts);
             if (configurePart == null)
             {
                 throw new PlaywrightBuilderException("Playwright.Components.SpecialConditions.PrepareHaphazardly.ErrorUnsupportedConfigPage".Translate());
             }
             configurePart.pawnChoiceCount *= 2;
             // Disable rerolls
-            scenarioParts.Add(ScenPartUtility.MakeNoColonistRerollsPart());
+            scenarioParts.Add(ScenPartUtils.MakeNoColonistRerollsPart());
         }
     }
 }

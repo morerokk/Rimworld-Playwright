@@ -147,7 +147,7 @@
     <Compile Include="Utilities\TextureUtils.cs" />
     <Compile Include="Utilities\FactionUtils.cs" />
     <Compile Include="Utilities\PlaywrightUtils.cs" />
-    <Compile Include="Utilities\ScenPartUtility.cs" />
+    <Compile Include="Utilities\ScenPartUtils.cs" />
     <Compile Include="Utilities\SoundUtils.cs" />
   </ItemGroup>
   <ItemGroup>

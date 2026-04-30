@@ -49,7 +49,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
-            scenarioParts.Add(ScenPartUtility.MakeOnPawnDeathExplodePart(Damage, Radius));
+            scenarioParts.Add(ScenPartUtils.MakeOnPawnDeathExplodePart(Damage, Radius));
         }
 
         public override void ExposeData()

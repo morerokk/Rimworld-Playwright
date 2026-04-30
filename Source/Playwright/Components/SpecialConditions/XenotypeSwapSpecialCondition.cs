@@ -83,7 +83,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     Log.Warning("[Playwright] XenotypeReplacement had a null From/To entry, skipping");
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeReplaceXenotypePart(replacement.From, replacement.To, 1f, PawnGenerationContext.All));
+                scenarioParts.Add(ScenPartUtils.MakeReplaceXenotypePart(replacement.From, replacement.To, 1f, PawnGenerationContext.All));
             }
 
             foreach (CustomXenotypeReplacement customReplacement in CustomXenotypeReplacements)
@@ -93,7 +93,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     Log.Warning("[Playwright] CustomXenotypeReplacement had a null From/ToCustom entry, skipping");
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeReplaceXenotypeWithCustomPart(customReplacement.From, customReplacement.ToCustom, 1f, PawnGenerationContext.All));
+                scenarioParts.Add(ScenPartUtils.MakeReplaceXenotypeWithCustomPart(customReplacement.From, customReplacement.ToCustom, 1f, PawnGenerationContext.All));
             }
         }
 

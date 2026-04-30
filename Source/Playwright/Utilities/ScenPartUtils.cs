@@ -13,7 +13,7 @@ namespace Rokk.Playwright.Utilities
     /// <summary>
     /// Utility class for making and configuring specific scenario parts, as many of them involve a lot of reflection boilerplate.
     /// </summary>
-    public static class ScenPartUtility
+    public static class ScenPartUtils
     {
         public static ScenPart_ForcedHediff MakeForcedHediffPart(HediffDef hediffDef, PawnGenerationContext pawnGenerationContext, float chance, FloatRange severityRange)
         {

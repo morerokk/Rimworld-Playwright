@@ -124,7 +124,7 @@ namespace Rokk.Playwright.Components.Boons
                     Log.WarningOnce("[Playwright] Starting research boon: research project def was null, skipping", 595004);
                     continue;
                 }
-                scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(researchProject));
+                scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(researchProject));
             }
         }
 

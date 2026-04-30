@@ -31,7 +31,7 @@ namespace Rokk.Playwright.Components.WinConditions
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionTimePart(Days));
+            scenarioParts.Add(ScenPartUtils.MakeWinConditionTimePart(Days));
         }
 
         public override void ExposeData()

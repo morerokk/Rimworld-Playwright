@@ -82,30 +82,30 @@ namespace Rokk.Playwright.Composer
                 var factionsToKeep = FactionUtils.GetDefaultNeutralFactions()
                     .Where(factionDef => playwright.IsFactionSelectedAnywhere(factionDef))
                     .ToList();
-                parts.Add(ScenPartUtility.MakeNoNeutralFactionsExceptPart(factionsToKeep));
+                parts.Add(ScenPartUtils.MakeNoNeutralFactionsExceptPart(factionsToKeep));
             }
             if (!playwright.EnemyFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
             {
                 var factionsToKeep = FactionUtils.GetDefaultEnemyFactions()
                     .Where(factionDef => playwright.IsFactionSelectedAnywhere(factionDef))
                     .ToList();
-                parts.Add(ScenPartUtility.MakeNoHostileFactionsExceptPart(factionsToKeep));
+                parts.Add(ScenPartUtils.MakeNoHostileFactionsExceptPart(factionsToKeep));
             }
 
             // If mechanoids/insectoids weren't chosen, add parts for that
             if (!playwright.EnemyFactions.Any(f => f.Id == InsectoidHiveFaction.ComponentId))
             {
-                parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Insect));
-                parts.Add(ScenPartUtility.MakeDisableIncidentPart(IncidentDefOf.Infestation));
+                parts.Add(ScenPartUtils.MakeRemoveFactionPart(FactionDefOf.Insect));
+                parts.Add(ScenPartUtils.MakeDisableIncidentPart(IncidentDefOf.Infestation));
                 // There's an ideology-only incident called IncidentDefOf.Infestation_Jelly. Can someone let me know what this is? Ritual reward?
                 // Either way, doesn't matter if we don't add it
             }
             if (!playwright.EnemyFactions.Any(f => f.Id == MechanoidHiveFaction.ComponentId))
             {
-                parts.Add(ScenPartUtility.MakeRemoveFactionPart(FactionDefOf.Mechanoid));
+                parts.Add(ScenPartUtils.MakeRemoveFactionPart(FactionDefOf.Mechanoid));
                 if (ModsConfig.RoyaltyActive)
                 {
-                    parts.Add(ScenPartUtility.MakeDisableIncidentPart(IncidentDefOf.MechCluster));
+                    parts.Add(ScenPartUtils.MakeDisableIncidentPart(IncidentDefOf.MechCluster));
                 }
             }
 
@@ -121,11 +121,11 @@ namespace Rokk.Playwright.Composer
             {
                 if (allyFaction.AllowForcedDisposition && allyFaction.ForceDisposition)
                 {
-                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(allyFaction.FactionDef, 100));
+                    parts.Add(ScenPartUtils.MakeFactionForcedGoodwillPart(allyFaction.FactionDef, 100));
                 }
                 else
                 {
-                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(allyFaction.FactionDef, 80));
+                    parts.Add(ScenPartUtils.MakeFactionNaturalGoodwillPart(allyFaction.FactionDef, 80));
                 }
                 allyFaction.MutateScenario(scenario, parts);
             }
@@ -140,11 +140,11 @@ namespace Rokk.Playwright.Composer
             {
                 if (neutralFaction.AllowForcedDisposition && neutralFaction.ForceDisposition)
                 {
-                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(neutralFaction.FactionDef, 0));
+                    parts.Add(ScenPartUtils.MakeFactionForcedGoodwillPart(neutralFaction.FactionDef, 0));
                 }
                 else
                 {
-                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(neutralFaction.FactionDef, 0));
+                    parts.Add(ScenPartUtils.MakeFactionNaturalGoodwillPart(neutralFaction.FactionDef, 0));
                 }
                 neutralFaction.MutateScenario(scenario, parts);
             }
@@ -159,11 +159,11 @@ namespace Rokk.Playwright.Composer
             {
                 if (enemyFaction.AllowForcedDisposition && enemyFaction.ForceDisposition)
                 {
-                    parts.Add(ScenPartUtility.MakeFactionForcedGoodwillPart(enemyFaction.FactionDef, -100));
+                    parts.Add(ScenPartUtils.MakeFactionForcedGoodwillPart(enemyFaction.FactionDef, -100));
                 }
                 else
                 {
-                    parts.Add(ScenPartUtility.MakeFactionNaturalGoodwillPart(enemyFaction.FactionDef, -80));
+                    parts.Add(ScenPartUtils.MakeFactionNaturalGoodwillPart(enemyFaction.FactionDef, -80));
                 }
                 enemyFaction.MutateScenario(scenario, parts);
             }
@@ -177,21 +177,21 @@ namespace Rokk.Playwright.Composer
             if (!playwright.WinConditions.Any(wc => wc.Id == ShipWinCondition.ComponentId))
             {
                 // Disable journey offer quest-giver incident
-                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ShipEscape));
+                parts.Add(ScenPartUtils.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ShipEscape));
                 // Disable the ship startup sequence (handled in patches separately)
-                parts.Add(ScenPartUtility.MakeDisableShipStartupPart());
+                parts.Add(ScenPartUtils.MakeDisableShipStartupPart());
             }
 
             // If Royal Ascent wasn't chosen, disable the quest-giver incident
             if (ModsConfig.RoyaltyActive && !playwright.WinConditions.Any(wc => wc.Id == RoyalAscentWinCondition.ComponentId))
             {
-                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_RoyalAscent));
+                parts.Add(ScenPartUtils.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_RoyalAscent));
             }
 
             // If Archonexus wasn't chosen, disable the quest-giver incident
             if (ModsConfig.IdeologyActive && !playwright.WinConditions.Any(wc => wc.Id == ArchonexusWinCondition.ComponentId))
             {
-                parts.Add(ScenPartUtility.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));
+                parts.Add(ScenPartUtils.MakeDisableIncidentPart(DefOfs.IncidentDefOf.GiveQuest_EndGame_ArchonexusVictory));
             }
 
             // Process all other win conditions
@@ -267,7 +267,7 @@ namespace Rokk.Playwright.Composer
 
                 if (dialogPart == null)
                 {
-                    dialogPart = ScenPartUtility.MakeGameStartDialogPart(playwright.GameStartDialogText, null, SoundDefOf.GameStartSting);
+                    dialogPart = ScenPartUtils.MakeGameStartDialogPart(playwright.GameStartDialogText, null, SoundDefOf.GameStartSting);
                     parts.Add(dialogPart);
                 }
                 else

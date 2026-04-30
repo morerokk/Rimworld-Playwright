@@ -46,7 +46,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionRoyalTitlesPart(Colonists, DefOfs.FactionDefOf.MF_Corporation, Title));
+            scenarioParts.Add(ScenPartUtils.MakeWinConditionRoyalTitlesPart(Colonists, DefOfs.FactionDefOf.MF_Corporation, Title));
         }
 
         public override void ExposeData()

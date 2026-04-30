@@ -28,7 +28,7 @@ namespace Rokk.Playwright.Compat.MortsCorporationFaction.Components.WinCondition
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)
         {
             base.MutateScenario(scenario, scenarioParts);
-            scenarioParts.Add(ScenPartUtility.MakeWinConditionSellItemsPart(DefOfs.ThingDefOf.MF_CorporateCompletedPaperwork, Amount));
+            scenarioParts.Add(ScenPartUtils.MakeWinConditionSellItemsPart(DefOfs.ThingDefOf.MF_CorporateCompletedPaperwork, Amount));
         }
 
         public override void ExposeData()

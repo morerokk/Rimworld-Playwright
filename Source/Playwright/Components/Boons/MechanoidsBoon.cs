@@ -31,7 +31,7 @@ namespace Rokk.Playwright.Components.Boons
             // Other types are not supported and will throw an error.
             if (regularConfigurePart != null)
             {
-                kindsConfigurePart = ScenPartUtility.ConvertConfigureStartingPawnsToKindDefs(regularConfigurePart);
+                kindsConfigurePart = ScenPartUtils.ConvertConfigureStartingPawnsToKindDefs(regularConfigurePart);
                 scenarioParts.Remove(regularConfigurePart);
                 scenarioParts.Add(kindsConfigurePart);
             }
@@ -79,8 +79,8 @@ namespace Rokk.Playwright.Components.Boons
             }
 
             // Add Lifter and Constructoid
-            scenarioParts.Add(ScenPartUtility.MakeStartingMechPart(DefOfs.PawnKindDefOf.Mech_Lifter, 1));
-            scenarioParts.Add(ScenPartUtility.MakeStartingMechPart(DefOfs.PawnKindDefOf.Mech_Constructoid, 1));
+            scenarioParts.Add(ScenPartUtils.MakeStartingMechPart(DefOfs.PawnKindDefOf.Mech_Lifter, 1));
+            scenarioParts.Add(ScenPartUtils.MakeStartingMechPart(DefOfs.PawnKindDefOf.Mech_Constructoid, 1));
 
             // Add starting research for microelectronics, batteries and basic mechtech if the scenario doesn't explicitly have it already.
             var existingResearchParts = scenarioParts
@@ -111,15 +111,15 @@ namespace Rokk.Playwright.Components.Boons
 
             if (!microelectronicsFound)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(ResearchProjectDefOf.MicroelectronicsBasics));
+                scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(ResearchProjectDefOf.MicroelectronicsBasics));
             }
             if (!batteriesFound)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(ResearchProjectDefOf.Batteries));
+                scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(ResearchProjectDefOf.Batteries));
             }
             if (!basicMechtechFound)
             {
-                scenarioParts.Add(ScenPartUtility.MakeStartingResearchPart(ResearchProjectDefOf.BasicMechtech));
+                scenarioParts.Add(ScenPartUtils.MakeStartingResearchPart(ResearchProjectDefOf.BasicMechtech));
             }
         }
     }

@@ -40,7 +40,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="Initializer.cs" />
   </ItemGroup>

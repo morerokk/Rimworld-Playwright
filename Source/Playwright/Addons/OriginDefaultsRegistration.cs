@@ -16,8 +16,8 @@ namespace Rokk.Playwright.Addons
     /// The origin can be a built-in Playwright origin, but it could also be an Origin added by another mod.
     /// </summary>
     /// <remarks>
-    /// These methods expect you to register functions and not the component directly, because these can often run before defs are bound.
-    /// This way, the function is not actually called until the playwright window is opened and all defs are bound.
+    /// These methods expect you to register functions that return the components, rather than returning the component directly.
+    /// This means the function is not actually called until the playwright window is opened.
     /// </remarks>
     public static class OriginDefaultsRegistration
     {

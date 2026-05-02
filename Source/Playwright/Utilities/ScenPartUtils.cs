@@ -194,7 +194,7 @@ namespace Rokk.Playwright.Utilities
             damageInfo.SetValue(part, damageDef);
 
             FieldInfo radiusInfo = AccessTools.Field(typeof(ScenPart_OnPawnDeathExplode), "radius");
-            damageInfo.SetValue(part, radius);
+            radiusInfo.SetValue(part, radius);
 
             return part;
         }

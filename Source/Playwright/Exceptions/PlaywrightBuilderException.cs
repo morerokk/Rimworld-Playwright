@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Rokk.Playwright.Exceptions
 {
+    /// <summary>
+    /// Used for known conflicts that should be shown to the user, but not spammed in the log as errors.
+    /// </summary>
     public class PlaywrightBuilderException : Exception
     {
         public PlaywrightStructure Playwright { get; private set; }

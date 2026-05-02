@@ -40,7 +40,8 @@ namespace Rokk.Playwright.Addons
         /// </summary>
         /// <param name="hook">
         /// Your function to register.
-        /// The bool parameter is dryRun, if true, we're not actually generating a scenario yet, just making a throwaway one for preview.</param>
+        /// The bool parameter is dryRun, if true, we're not actually generating a scenario yet, just making a throwaway one for preview.
+        /// </param>
         public static void RegisterScenarioPreMutated(Action<PlaywrightStructure, Scenario, List<ScenPart>, bool> hook)
         {
             ScenarioPreMutatedHooks.Add(hook);

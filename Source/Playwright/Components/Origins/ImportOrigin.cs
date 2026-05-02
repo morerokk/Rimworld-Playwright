@@ -75,6 +75,10 @@ namespace Rokk.Playwright.Components.Origins
                 var options = new List<FloatMenuOption>();
                 foreach (var scenarioDef in GetAvailableScenarios())
                 {
+                    if (defsToSkip.Contains(scenarioDef.defName))
+                    {
+                        continue;
+                    }
                     options.Add(new FloatMenuOption(scenarioDef.LabelCap, () =>
                     {
                         this.Scenario = scenarioDef;

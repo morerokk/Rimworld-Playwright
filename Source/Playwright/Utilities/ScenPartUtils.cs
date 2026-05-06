@@ -13,6 +13,8 @@ namespace Rokk.Playwright.Utilities
     /// <summary>
     /// Utility class for making and configuring specific scenario parts, as many of them involve a lot of reflection boilerplate.
     /// </summary>
+    /// Publicizer is nice, but I've opted not to use it. Most of the reflection stuff is quarantined in this class, PlaywrightBuilder and patches.
+    /// Game updates are at risk of invalidating some of these, but I find it somewhat unlikely.
     public static class ScenPartUtils
     {
         public static ScenPart_ForcedHediff MakeForcedHediffPart(HediffDef hediffDef, PawnGenerationContext pawnGenerationContext, float chance, FloatRange severityRange)

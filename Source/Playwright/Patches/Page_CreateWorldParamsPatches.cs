@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Rokk.Playwright.Addons;
 using Rokk.Playwright.ScenParts;
 using Rokk.Playwright.Utilities;
 using System;
@@ -120,7 +121,8 @@ namespace Rokk.Playwright.Patches
                 return true;
             }
 
-            return false;
+            // Check if some other mod has marked this as unremovable
+            return CompatibilityRegistration.UnremovableFactionDefNames.Contains(factionDef.defName);
         }
     }
 }

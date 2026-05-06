@@ -12,12 +12,12 @@ namespace Rokk.Playwright.UI
     /// <summary>
     /// Helper class used for scrollable listings. Intended for use with scrollviews.
     /// Makes an absurdly big Rect when Begin() is called.
-    /// When End() is called, shrinks the rect to its contents.
+    /// When End() is called, saves the currently used height to reuse next time instead, letting the rect fit to its contents.
     /// Use Invalidate() to let the listing recalculate its size next time it begins.
     /// </summary>
     /// <remarks>
     /// You can use this the same way as a Listing_Standard.
-    /// Call GetScrollViewInnerRect() to get an inner rect to use for your scrollview.
+    /// Call <see cref="GetScrollViewInnerRect(Rect)"/> to get an inner rect to use for your scrollview.
     /// </remarks>
     public class Listing_AutoFitVertical : Listing_Standard
     {
@@ -86,8 +86,8 @@ namespace Rokk.Playwright.UI
         /// <summary>
         /// If this instance was constructed with a hook, calls the hook.
         /// If not constructed with a hook, just calls <see cref="Invalidate"/>.
-        /// Useful for when every auto-listing has to be invalidated.
-        /// (For instance, <seealso cref="Components.Boons.ExtraItemsBoon"/> may add content to the scenario's summary, which requires the summary to expand)
+        /// Useful for when multiple auto-listings have to be invalidated when something happens.
+        /// (For instance, ExtraItemsBoon may add content to the scenario's summary elsewhere, which requires the summary to expand)
         /// </summary>
         public virtual void InvalidateGroup()
         {
@@ -101,6 +101,11 @@ namespace Rokk.Playwright.UI
             }
         }
 
+        /// <summary>
+        /// Get an inner rect for use with a scrollview.
+        /// </summary>
+        /// <param name="rect">The initial scrollview inner rect to use.</param>
+        /// <returns>The rect parameter but with a very large height if this is the first draw, otherwise returns the rect fitted to its contents.</returns>
         public virtual Rect GetScrollViewInnerRect(Rect rect)
         {
             if (FittedRect == null)

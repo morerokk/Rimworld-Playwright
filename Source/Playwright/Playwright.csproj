@@ -64,6 +64,7 @@
     <Compile Include="Components\Origins\OriginComponent.cs" />
     <Compile Include="Components\PlaywrightComponent.cs" />
     <Compile Include="Components\SpecialConditions\DeathExplosionSpecialCondition.cs" />
+    <Compile Include="Components\SpecialConditions\StatMultiplierSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\ForcedTraitsSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\DisableIncidentsSpecialCondition.cs" />
     <Compile Include="Components\SpecialConditions\MorePsycastersSpecialCondition.cs" />

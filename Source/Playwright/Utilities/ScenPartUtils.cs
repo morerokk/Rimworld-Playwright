@@ -571,5 +571,18 @@ namespace Rokk.Playwright.Utilities
 
             return part;
         }
+
+        public static ScenPart_StatFactor MakeStatFactorPart(StatDef stat, float factor)
+        {
+            ScenPart_StatFactor part = (ScenPart_StatFactor)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.StatFactor);
+
+            FieldInfo statInfo = AccessTools.Field(typeof(ScenPart_StatFactor), "stat");
+            statInfo.SetValue(part, stat);
+
+            FieldInfo factorInfo = AccessTools.Field(typeof(ScenPart_StatFactor), "factor");
+            factorInfo.SetValue(part, factor);
+
+            return part;
+        }
     }
 }

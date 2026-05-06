@@ -52,7 +52,7 @@ namespace Rokk.Playwright.Components.Origins
         {
             new PawnKindCount()
             {
-                kindDef = RimWorld.PawnKindDefOf.Colonist,
+                kindDef = PawnKindDefOf.Colonist,
                 count = 3,
                 countBuffer = "3",
                 requiredAtStart = false

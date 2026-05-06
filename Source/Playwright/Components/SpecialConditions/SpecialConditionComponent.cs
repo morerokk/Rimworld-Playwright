@@ -43,6 +43,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 new ForcedTraitsSpecialCondition(),
                 new DeathExplosionSpecialCondition(),
                 new PrepareHaphazardlySpecialCondition(),
+                new StatMultiplierSpecialCondition(),
                 new MorePsycastersSpecialCondition(),
                 new XenotypeSwapSpecialCondition(),
                 new DisableMechanoidSignalSpecialCondition(),

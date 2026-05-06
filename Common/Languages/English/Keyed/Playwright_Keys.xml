@@ -362,4 +362,10 @@ These raids will not start until you land a Gravship for the first time, and wil
  <Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage>Chance ({0}%)</Playwright.Components.SpecialConditions.ForcedTraits.ChancePercentage>
  <Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help>The chance for the chosen pawns to actually have the trait.</Playwright.Components.SpecialConditions.ForcedTraits.Chance.Help>
 
+ <Playwright.Components.SpecialConditions.StatMultiplier>Stat Multiplier</Playwright.Components.SpecialConditions.StatMultiplier>
+ <Playwright.Components.SpecialConditions.StatMultiplier.DescriptionShort>Set a global multiplier for certain stats.</Playwright.Components.SpecialConditions.StatMultiplier.DescriptionShort>
+ <Playwright.Components.SpecialConditions.StatMultiplier.Description>Set a global multiplier for certain stats.</Playwright.Components.SpecialConditions.StatMultiplier.Description>
+ <Playwright.Components.SpecialConditions.StatMultiplier.Add>Add Stat</Playwright.Components.SpecialConditions.StatMultiplier.Add>
+ <Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>Multiplier</Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>
+
 </LanguageData>

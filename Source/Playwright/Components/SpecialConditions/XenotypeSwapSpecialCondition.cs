@@ -103,7 +103,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             {
                 XenotypeReplacements.Add(new XenotypeReplacement());
                 specialConditionContentListing.InvalidateGroup();
-                AddSound();
+                SoundUtils.PlayAdd();
             }
 
             DoXenotypesContent(specialConditionContentListing);
@@ -112,7 +112,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             {
                 CustomXenotypeReplacements.Add(new CustomXenotypeReplacement());
                 specialConditionContentListing.InvalidateGroup();
-                AddSound();
+                SoundUtils.PlayAdd();
             }
 
             DoCustomXenotypesContent(specialConditionContentListing);
@@ -140,7 +140,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 // Replacement text
                 Rect replacesRect = new Rect(rect)
@@ -165,7 +165,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { replacement.To = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 // Delete button
                 Rect deleteButtonRect = new Rect(rect)
@@ -176,7 +176,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0f, 0.4f))
                 {
                     XenotypeReplacements.Remove(replacement);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     specialConditionContentListing.InvalidateGroup();
                 }
 
@@ -209,7 +209,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                         options.Add(new FloatMenuOption(xenotypeDef.LabelCap, () => { customReplacement.From = xenotypeDef; specialConditionContentListing.InvalidateGroup(); }, xenotypeDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 // Replacement text
                 Rect replacesRect = new Rect(rect)
@@ -234,7 +234,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
                         options.Add(new FloatMenuOption(customXenotype.name, () => { customReplacement.ToCustom = customXenotype; specialConditionContentListing.InvalidateGroup(); }, customXenotype.IconDef.Icon, Color.white));
                     }
                     PlaywrightUtils.OpenFloatMenu(options);
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 // Delete button
                 Rect deleteButtonRect = new Rect(rect)
@@ -245,25 +245,10 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0f, 0.4f))
                 {
                     CustomXenotypeReplacements.Remove(customReplacement);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     specialConditionContentListing.InvalidateGroup();
                 }
             }
-        }
-
-        private void ClickSound()
-        {
-            SoundDefOf.Click.PlayOneShotOnCamera();
-        }
-
-        private void AddSound()
-        {
-            SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
-        }
-
-        private void RemoveSound()
-        {
-            SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
         }
 
         public override void ExposeData()

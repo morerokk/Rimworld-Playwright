@@ -181,7 +181,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(buttonRect))
                 {
                     ActiveTab = value;
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 buttonRect = PlaywrightDrawHelper.RectWithMargin(buttonRect, OptionContentMargin);
                 Widgets.Label(buttonRect, ("Playwright.Tabs." + value.ToString()).Translate());
@@ -271,7 +271,7 @@ namespace Rokk.Playwright.UI
                     {
                         ChangeOrigin(origin);
                     });
-                    ClickSound();
+                    SoundUtils.PlayClick();
                 }
                 OriginsListing.Gap(4f);
             }
@@ -388,7 +388,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(boonRect))
                 {
                     selectedBoons.Add(boon);
-                    this.AddSound();
+                    SoundUtils.PlayAdd();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -422,7 +422,7 @@ namespace Rokk.Playwright.UI
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedBoons.Remove(boon);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -476,7 +476,7 @@ namespace Rokk.Playwright.UI
             if (Widgets.ButtonText(alliesHeaderRect, "Playwright.Tabs.Factions.AddAlly".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedAllies, FactionRelationKind.Ally);
-                ClickSound();
+                SoundUtils.PlayClick();
             }
 
 
@@ -484,14 +484,14 @@ namespace Rokk.Playwright.UI
             if (Widgets.ButtonText(neutralsHeaderRect, "Playwright.Tabs.Factions.AddNeutral".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedNeutrals, FactionRelationKind.Neutral);
-                ClickSound();
+                SoundUtils.PlayClick();
             }
 
             enemiesHeaderRect = PlaywrightDrawHelper.NextLabelTranslated(enemiesHeaderRect, "Playwright.Tabs.Factions.Enemies");
             if (Widgets.ButtonText(enemiesHeaderRect, "Playwright.Tabs.Factions.AddEnemy".Translate()))
             {
                 DoFactionFloatMenu(availableFactions, selectedEnemies, FactionRelationKind.Hostile);
-                ClickSound();
+                SoundUtils.PlayClick();
             }
 
             Rect factionContentRect = new Rect(nextRect);
@@ -570,7 +570,7 @@ namespace Rokk.Playwright.UI
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0, 0.4f))
                 {
                     selectedFactions.Remove(faction);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -620,7 +620,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(winConditionRect))
                 {
                     selectedWinConditions.Add(winCondition);
-                    this.AddSound();
+                    SoundUtils.PlayAdd();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -654,7 +654,7 @@ namespace Rokk.Playwright.UI
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedWinConditions.Remove(winCondition);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -717,7 +717,7 @@ namespace Rokk.Playwright.UI
                 if (Widgets.ButtonInvisible(specialConditionRect))
                 {
                     selectedSpecialConditions.Add(specialCondition);
-                    this.AddSound();
+                    SoundUtils.PlayAdd();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -751,7 +751,7 @@ namespace Rokk.Playwright.UI
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 2f, 0.4f))
                 {
                     selectedSpecialConditions.Remove(specialCondition);
-                    RemoveSound();
+                    SoundUtils.PlayRemove();
                     InvalidateAutoListings();
                     FormDirty = true;
                 }
@@ -793,7 +793,7 @@ namespace Rokk.Playwright.UI
 
             if (SummaryContentListing.ButtonText("Playwright.RandomizeName".Translate(), widthPct: 0.25f))
             {
-                ClickSound();
+                SoundUtils.PlayClick();
                 this.PlaywrightStructure.Name = NameGenerator.GenerateName(RulePackDefOf.NamerScenario, null, false, null, null, null);
             }
 
@@ -998,21 +998,6 @@ namespace Rokk.Playwright.UI
             }
         }
 
-        private void ClickSound()
-        {
-            SoundDefOf.Click.PlayOneShotOnCamera();
-        }
-
-        private void AddSound()
-        {
-            SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
-        }
-
-        private void RemoveSound()
-        {
-            SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
-        }
-
         /// <summary>
         /// Runs <paramref name="onConfirmed"/>, but asks with a confirm reset popup first if the form is dirty.
         /// Also sets <see cref="FormDirty"/> back to false if reset was confirmed.
@@ -1034,8 +1019,11 @@ namespace Rokk.Playwright.UI
         }
 
         /// <summary>
-        /// Recalculate the height of all AutoFit listings in the UI, for when the playwright structure is changed externally
-        /// (such as when a saved playwright is loaded, or the origin is changed)
+        /// Recalculate the height of all AutoFit listings in the UI.
+        /// This could be when the playwright structure is changed externally (such as when a saved playwright is loaded, or the origin is changed).
+        /// Could also be if a component has requested it. Normally only the component's listing should have to be recalculated,
+        /// but changing a component also tends to affect the scenario summary text, so now that has to be recalculated too.
+        /// These recalculations happen quite often but it's not a major issue, as it only happens on user interaction and is fairly cheap.
         /// </summary>
         public void InvalidateAutoListings()
         {

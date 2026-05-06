@@ -85,7 +85,6 @@ namespace Rokk.Playwright.UI
         // Are filled on window open, to ensure components aren't needlessly constructed statically and so their settings can be remembered
         private List<OriginComponent> AvailableOriginComponents;
         private List<BoonComponent> AvailableBoonComponents;
-        private List<FactionComponent> AvailableFactionComponents;
         private List<WinConditionComponent> AvailableWinConditionComponents;
         private List<SpecialConditionComponent> AvailableSpecialConditionComponents;
 
@@ -115,7 +114,6 @@ namespace Rokk.Playwright.UI
 
             this.AvailableOriginComponents = OriginComponent.GetAvailableOrigins();
             this.AvailableBoonComponents = BoonComponent.GetAvailableBoons();
-            this.AvailableFactionComponents = FactionComponent.GetAvailableFactions();
             this.AvailableWinConditionComponents = WinConditionComponent.GetAvailableWinConditions();
             this.AvailableSpecialConditionComponents = SpecialConditionComponent.GetAvailableSpecialConditions();
 
@@ -459,7 +457,8 @@ namespace Rokk.Playwright.UI
 
         private void DrawFactionsTab(Rect contentRect)
         {
-            List<FactionComponent> availableFactions = this.AvailableFactionComponents;
+            // Unfortunately we still have to get these again every frame, because faction components can have duplicates, unlike any other component in Playwright.
+            List<FactionComponent> availableFactions = FactionComponent.GetAvailableFactions();
             List<FactionComponent> selectedAllies = PlaywrightStructure.AllyFactions;
             List<FactionComponent> selectedNeutrals = PlaywrightStructure.NeutralFactions;
             List<FactionComponent> selectedEnemies = PlaywrightStructure.EnemyFactions;

@@ -2,7 +2,9 @@
 
 An improved scenario editor for the game [RimWorld](https://rimworldgame.com/), as well as a collection of loose scenario parts usable in the game's own scenario editor.
 
-This mod is currently under construction and unreleased! The mod's foundation is pretty much finished and definitely production-ready, but currently content is still being added.
+This mod is currently under construction! The mod's foundation is pretty much finished and definitely production-ready, but currently content is still being added.
+
+While some things are subject to change, I can guarantee that all scenarios and savegames made with Playwright right now, will remain functional throughout the lifetime of RimWorld 1.6. It is possible (though very unlikely) that some scenario parts will become deprecated, but I guarantee they will never be removed or game-breakingly altered until the RimWorld 1.7 version of this mod (at which point you can simply remain on RimWorld 1.6, or accept the risk and try moving to 1.7).
 
 # Installation
 

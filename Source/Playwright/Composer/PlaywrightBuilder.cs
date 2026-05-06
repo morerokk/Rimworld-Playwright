@@ -23,7 +23,7 @@ namespace Rokk.Playwright.Composer
     /// </summary>
     public class PlaywrightBuilder
     {
-        public Scenario MakeScenario(PlaywrightStructure playwright, bool dryRun = false)
+        public virtual Scenario MakeScenario(PlaywrightStructure playwright, bool dryRun = false)
         {
             if (playwright == null)
             {
@@ -66,7 +66,7 @@ namespace Rokk.Playwright.Composer
             return scenario;
         }
 
-        private void ProcessBoons(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        protected virtual void ProcessBoons(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
             foreach (BoonComponent boon in playwright.Boons)
             {
@@ -74,7 +74,7 @@ namespace Rokk.Playwright.Composer
             }
         }
 
-        private void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        protected virtual void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
             // Separate processing for the absence of the "(All Others)" faction, strip out all factions that weren't explicitly chosen
             if (!playwright.NeutralFactions.Any(fc => fc.Id == AllOtherFactions.ComponentId))
@@ -169,7 +169,7 @@ namespace Rokk.Playwright.Composer
             }
         }
 
-        private void ProcessWinConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        protected virtual void ProcessWinConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
             // If ship wasn't chosen, disable the journey offer quest.
             // Not being allowed to start the ship is a separate patch,
@@ -201,7 +201,7 @@ namespace Rokk.Playwright.Composer
             }
         }
 
-        private void ProcessSpecialConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
+        protected virtual void ProcessSpecialConditions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
             foreach (SpecialConditionComponent specialCondition in playwright.SpecialConditions)
             {
@@ -209,13 +209,13 @@ namespace Rokk.Playwright.Composer
             }
         }
 
-        private Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
+        protected virtual Scenario GenerateDefaultScenario(PlaywrightStructure playwright)
         {
             Scenario scenario = null;
             OriginComponent origin = playwright.Origin;
             if (origin.BasedOnScenario != null)
             {
-                scenario = origin.BasedOnScenario.scenario.CopyForEditing();
+                scenario = origin.BasedOnScenario.scenario?.CopyForEditing();
             }
             else
             {
@@ -255,7 +255,7 @@ namespace Rokk.Playwright.Composer
             }
 
             FieldInfo partsInfo = AccessTools.Field(typeof(Scenario), "parts");
-            List<ScenPart> parts = partsInfo.GetValue(scenario) as List<ScenPart>;
+            List<ScenPart> parts = (List<ScenPart>)partsInfo.GetValue(scenario);
 
             // Change the game start dialog IF it has been provided, otherwise we'll just leave it as-is
             if (!string.IsNullOrWhiteSpace(playwright.GameStartDialogText))

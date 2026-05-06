@@ -16,7 +16,6 @@ using System.Text;
 
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace Rokk.Playwright.UI
 {
@@ -84,11 +83,11 @@ namespace Rokk.Playwright.UI
         private Listing_Standard ReviewErrorListing = new Listing_Standard();
 
         // Are filled on window open, to ensure components aren't needlessly constructed statically and so their settings can be remembered
-        private List<OriginComponent> AvailableOrigins;
-        private List<BoonComponent> AvailableBoons;
-        private List<FactionComponent> AvailableFactions;
-        private List<WinConditionComponent> AvailableWinConditions;
-        private List<SpecialConditionComponent> AvailableSpecialConditions;
+        private List<OriginComponent> AvailableOriginComponents;
+        private List<BoonComponent> AvailableBoonComponents;
+        private List<FactionComponent> AvailableFactionComponents;
+        private List<WinConditionComponent> AvailableWinConditionComponents;
+        private List<SpecialConditionComponent> AvailableSpecialConditionComponents;
 
         /// <param name="canGoToNewColonyScreenAfterwards">
         /// Whether the player should be asked if they want to go to the new colony screen after creating their scenario.
@@ -114,11 +113,11 @@ namespace Rokk.Playwright.UI
             this.SelectedSpecialConditionsListing = new Listing_AutoFitVertical(InvalidateAutoListings);
             this.ReviewContentListing = new Listing_AutoFitVertical(InvalidateAutoListings);
 
-            this.AvailableOrigins = OriginComponent.GetAvailableOrigins();
-            this.AvailableBoons = BoonComponent.GetAvailableBoons();
-            this.AvailableFactions = FactionComponent.GetAvailableFactions();
-            this.AvailableWinConditions = WinConditionComponent.GetAvailableWinConditions();
-            this.AvailableSpecialConditions = SpecialConditionComponent.GetAvailableSpecialConditions();
+            this.AvailableOriginComponents = OriginComponent.GetAvailableOrigins();
+            this.AvailableBoonComponents = BoonComponent.GetAvailableBoons();
+            this.AvailableFactionComponents = FactionComponent.GetAvailableFactions();
+            this.AvailableWinConditionComponents = WinConditionComponent.GetAvailableWinConditions();
+            this.AvailableSpecialConditionComponents = SpecialConditionComponent.GetAvailableSpecialConditions();
 
             this.CanGoToNewColonyScreenAfterwards = canGoToNewColonyScreenAfterwards;
         }
@@ -166,7 +165,7 @@ namespace Rokk.Playwright.UI
                     DrawSummaryTab(tabContentRect);
                     // We can't easily detect changes in a text input, just assume that someone visiting the Summary tab may change something
                     FormDirty = true;
-                    InvalidateAutoListings();
+                    InvalidateAutoListings(); // Called every frame, this only works because the sidebar and the summary tab don't use any autofit listings
                     break;
                 case Tabs.ReviewAndSave:
                     DrawReviewAndSaveTab(tabContentRect);
@@ -250,7 +249,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawOriginTab(Rect contentRect)
         {
-            List<OriginComponent> origins = this.AvailableOrigins;
+            List<OriginComponent> origins = this.AvailableOriginComponents;
 
             Rect welcomeRect = new Rect(contentRect);
             Rect currentWelcomeRect = PlaywrightDrawHelper.NextLabelTranslated(welcomeRect, "Playwright.Tabs.Origin.Welcome");
@@ -363,7 +362,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawBoonsTab(Rect contentRect)
         {
-            List<BoonComponent> allBoons = this.AvailableBoons;
+            List<BoonComponent> allBoons = this.AvailableBoonComponents;
             List<BoonComponent> selectedBoons = PlaywrightStructure.Boons;
             List<BoonComponent> availableBoons = allBoons.Where(b => !selectedBoons.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = TextureUtils.AddButtonTex;
@@ -460,7 +459,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawFactionsTab(Rect contentRect)
         {
-            List<FactionComponent> availableFactions = this.AvailableFactions;
+            List<FactionComponent> availableFactions = this.AvailableFactionComponents;
             List<FactionComponent> selectedAllies = PlaywrightStructure.AllyFactions;
             List<FactionComponent> selectedNeutrals = PlaywrightStructure.NeutralFactions;
             List<FactionComponent> selectedEnemies = PlaywrightStructure.EnemyFactions;
@@ -595,7 +594,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawWinConditionsTab(Rect contentRect)
         {
-            List<WinConditionComponent> allWinConditions = this.AvailableWinConditions;
+            List<WinConditionComponent> allWinConditions = this.AvailableWinConditionComponents;
             List<WinConditionComponent> selectedWinConditions = PlaywrightStructure.WinConditions;
             List<WinConditionComponent> availableWinConditions = allWinConditions.Where(b => !selectedWinConditions.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = TextureUtils.AddButtonTex;
@@ -692,7 +691,7 @@ namespace Rokk.Playwright.UI
 
         private void DrawSpecialConditionsTab(Rect contentRect)
         {
-            List<SpecialConditionComponent> allSpecialConditions = this.AvailableSpecialConditions;
+            List<SpecialConditionComponent> allSpecialConditions = this.AvailableSpecialConditionComponents;
             List<SpecialConditionComponent> selectedSpecialConditions = PlaywrightStructure.SpecialConditions;
             List<SpecialConditionComponent> availableSpecialConditions = allSpecialConditions.Where(b => !selectedSpecialConditions.Any(sb => sb.Id == b.Id)).ToList();
             Texture2D plusTex = TextureUtils.AddButtonTex;

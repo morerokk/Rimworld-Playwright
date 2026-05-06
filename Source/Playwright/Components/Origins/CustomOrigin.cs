@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Rokk.Playwright.DefOfs;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
@@ -163,6 +162,12 @@ namespace Rokk.Playwright.Components.Origins
                 var options = new List<FloatMenuOption>();
                 foreach (var scenarioDef in GetImportableScenarios())
                 {
+                    // TODO: temporary, will remove when Anomaly scenario has fixed a small XML error
+                    if (scenarioDef.defName == "TheAnomaly")
+                    {
+                        options.Add(new FloatMenuOption(scenarioDef.LabelCap + " (temp. disabled due to a bug)", null));
+                        continue;
+                    }
                     options.Add(new FloatMenuOption(scenarioDef.LabelCap, () =>
                     {
                         ImportFromScenario(scenarioDef);

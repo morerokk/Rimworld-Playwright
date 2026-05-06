@@ -80,6 +80,14 @@ namespace Rokk.Playwright.Composer
         /// </summary>
         public string GameStartDialogText;
 
+        public IEnumerable<FactionComponent> AllFactions
+        {
+            get
+            {
+                return AllyFactions.Union(NeutralFactions).Union(EnemyFactions);
+            }
+        }
+
         public static PlaywrightStructure CreateDefault()
         {
             var structure = new PlaywrightStructure()

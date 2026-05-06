@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Rokk.Playwright.Addons;
+using Rokk.Playwright.Composer;
 using Rokk.Playwright.UI;
 using System;
 using System.Collections.Generic;
@@ -55,11 +56,11 @@ namespace Rokk.Playwright.Components.Factions
         /// </summary>
         public virtual int SortOrder => 0;
 
-        public virtual void DoFactionContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind)
+        public virtual void DoFactionContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind, PlaywrightStructure playwright)
         {
             factionContentListing.Label(NameTranslated);
             factionContentListing.Gap(5f);
-            DoSettingsContents(factionContentListing, relationKind);
+            DoSettingsContents(factionContentListing, relationKind, playwright);
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Rokk.Playwright.Components.Factions
         /// The <see cref="FactionRelationKind"/> that the player is currently configuring.
         /// Can be used to disallow certain factions outside of the Enemies list, for instance.
         /// </param>
-        public virtual void DoSettingsContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind)
+        public virtual void DoSettingsContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind, PlaywrightStructure playwright)
         {
             if (AllowForcedDisposition)
             {

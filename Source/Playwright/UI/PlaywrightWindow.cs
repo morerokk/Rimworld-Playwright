@@ -577,7 +577,7 @@ namespace Rokk.Playwright.UI
             {
                 Rect deleteButtonRect = factionListing.GetRect(0f);
                 deleteButtonRect.height = 50f;
-                faction.DoFactionContents(factionListing, relationKind);
+                faction.DoFactionContents(factionListing, relationKind, this.PlaywrightStructure);
                 if (PlaywrightDrawHelper.DrawButtonInTopRight(deleteButtonRect, deleteTex, 0, 0.4f))
                 {
                     selectedFactions.Remove(faction);

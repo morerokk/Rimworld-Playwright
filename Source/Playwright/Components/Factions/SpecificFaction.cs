@@ -34,23 +34,37 @@ namespace Rokk.Playwright.Components.Factions
         public override int MaxTotal => int.MaxValue;
 
         // Settings
-        protected virtual IEnumerable<FactionDef> GetAllowedFactions(FactionRelationKind? relationKind = null)
+        protected virtual IEnumerable<FactionDef> GetAllowedFactions(PlaywrightStructure playwright = null, FactionRelationKind? relationKind = null)
         {
+            // Disallow choosing permanently hostile factions in the ally/neutral sections
+            IEnumerable<FactionDef> factions;
             if (relationKind == FactionRelationKind.Hostile)
             {
-                return FactionUtils.GetAllNpcFactions();
+                factions = FactionUtils.GetAllNpcFactions();
             }
-            return FactionUtils.GetNotPermanentlyHostileFactions();
+            else
+            {
+                factions = FactionUtils.GetNotPermanentlyHostileFactions();
+            }
+
+            if (playwright != null)
+            {
+                // Filter out factions that were already chosen
+                factions = factions
+                    .Where(factionDef => !playwright.AllFactions.Any(factionComponent => factionComponent.FactionDef == factionDef));
+            }
+
+            return factions;
         }
 
         protected string FactionLabelText => Faction != null ? Faction.LabelCap.ToString() : "Playwright.Components.Factions.Specific.Faction.Select".Translate().ToString();
 
-        public override void DoSettingsContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind)
+        public override void DoSettingsContents(Listing_AutoFitVertical factionContentListing, FactionRelationKind relationKind, PlaywrightStructure playwright)
         {
             if (factionContentListing.ButtonText(FactionLabelText))
             {
                 var options = new List<FloatMenuOption>();
-                var allowedFactions = GetAllowedFactions(relationKind);
+                var allowedFactions = GetAllowedFactions(playwright, relationKind);
                 foreach (FactionDef factionDef in allowedFactions)
                 {
                     options.Add(new FloatMenuOption(factionDef.LabelCap, () => Faction = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
@@ -59,7 +73,7 @@ namespace Rokk.Playwright.Components.Factions
             }
             factionContentListing.Gap(5f);
 
-            base.DoSettingsContents(factionContentListing, relationKind);
+            base.DoSettingsContents(factionContentListing, relationKind, playwright);
         }
 
         public override void ExposeData()

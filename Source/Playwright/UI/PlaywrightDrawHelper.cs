@@ -75,5 +75,15 @@ namespace Rokk.Playwright.UI
             float verticalMargin = (inRect.height - textSize.y) * 0.5f;
             return new Rect(inRect.x + horizontalMargin, inRect.y + verticalMargin, inRect.width - horizontalMargin * 2f, inRect.height - verticalMargin * 2f);
         }
+
+        public static Rect GetVerticallyCenteredLabelRect(Rect inRect, string text)
+        {
+            float textHeight = Text.CalcHeight(text, inRect.width);
+            float verticalMargin = (inRect.height - textHeight) * 0.5f;
+            Rect result = new Rect(inRect);
+            result.y += verticalMargin;
+            result.height -= verticalMargin;
+            return result;
+        }
     }
 }

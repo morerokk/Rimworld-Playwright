@@ -66,16 +66,6 @@ namespace Rokk.Playwright.Components.SpecialConditions
                     SoundUtils.PlayClick();
                 }
 
-                // multiplier
-                /*
-                Rect multiplierLabelRect = new Rect(rowRect);
-                multiplierLabelRect.width *= 0.2f;
-                multiplierLabelRect.x += statButtonRect.width;
-                string multiplierText = "Playwright.Components.SpecialConditions.StatMultiplier.Multiplier".Translate();
-                Rect multiplierLabelRectCentered = PlaywrightDrawHelper.GetCenteredLabelRect(multiplierLabelRect, multiplierText);
-                Widgets.Label(multiplierLabelRectCentered, multiplierText);
-                */
-
                 // (input multiplier)
                 Rect multiplierRect = new Rect(rowRect);
                 multiplierRect.width *= 0.4f;
@@ -86,7 +76,9 @@ namespace Rokk.Playwright.Components.SpecialConditions
                 Rect percentageRect = new Rect(rowRect);
                 percentageRect.width *= 0.1f;
                 percentageRect.x += statButtonRect.width + multiplierRect.width;
-                Widgets.Label(percentageRect, "%");
+                float textHeight = Text.CalcHeight("%", percentageRect.width);
+                Rect percentageRectVerticalCentered = PlaywrightDrawHelper.GetVerticallyCenteredLabelRect(percentageRect, "%");
+                Widgets.Label(percentageRectVerticalCentered, "%");
 
                 // Delete button
                 Rect deleteButtonRect = new Rect(rowRect);

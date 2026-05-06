@@ -252,29 +252,39 @@ namespace Rokk.Playwright.Components.Origins
 
         }
 
+        // Keep origins in a premade list to avoid them being remade each frame (and therefore settings lost if you select a different one)
+        // This is a bit of a hack though, we should save these elsewhere like in the playwright window
+        private static List<OriginComponent> PlaywrightOrigins;
+        private static OriginComponent CustomOrigin;
+        private static OriginComponent ImportOrigin;
         public static List<OriginComponent> GetAvailableOrigins()
         {
             var result = new List<OriginComponent>();
 
-            var playwrightOrigins = new List<OriginComponent>()
+            if (PlaywrightOrigins == null)
             {
-                // Base game
-                new CrashlandedOrigin(),
-                new TribalOrigin(),
-                new RichExplorerOrigin(),
-                new NakedBrutalityOrigin(),
+                PlaywrightOrigins = new List<OriginComponent>()
+                {
+                    // Base game
+                    new CrashlandedOrigin(),
+                    new TribalOrigin(),
+                    new RichExplorerOrigin(),
+                    new NakedBrutalityOrigin(),
 
-                // DLC
-                new MechanitorOrigin(),
-                new SanguophageOrigin(),
-                new AnomalyOrigin(),
-                new GravshipOrigin(),
+                    // DLC
+                    new MechanitorOrigin(),
+                    new SanguophageOrigin(),
+                    new AnomalyOrigin(),
+                    new GravshipOrigin(),
 
-                // Playwright
-                new EmpireOrigin()
-            };
+                    // Playwright
+                    new EmpireOrigin()
+                };
+                CustomOrigin = new CustomOrigin();
+                ImportOrigin = new ImportOrigin();
+            }
 
-            foreach (OriginComponent origin in playwrightOrigins)
+            foreach (OriginComponent origin in PlaywrightOrigins)
             {
                 if (origin.IsAvailable)
                 {
@@ -292,10 +302,10 @@ namespace Rokk.Playwright.Components.Origins
             }
 
             // Custom origin
-            result.Add(new CustomOrigin());
+            result.Add(CustomOrigin);
 
             // Placeholder origin, selected from scenario, should always be at the bottom
-            result.Add(new ImportOrigin());
+            result.Add(ImportOrigin);
 
             return result;
         }

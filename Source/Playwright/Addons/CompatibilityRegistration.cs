@@ -29,18 +29,5 @@ namespace Rokk.Playwright.Addons
         {
             UnremovableFactionDefs.Add(factionDefName);
         }
-        /// <summary>
-        /// Register a faction as being "unremovable", meaning that they cannot be deselected by the player and therefore also not by Playwright's scenparts.
-        /// </summary>
-        /// <remarks>
-        /// This doesn't make the faction actually non-deselectable in the faction screen, this just notifies Playwright that a faction is non-deselectable.
-        /// Primarily used by some factions that use Vanilla Expanded Framework,
-        /// like VFE Empire's Deserters, which are unremovable if you have VFE Deserters installed.
-        /// </remarks>
-        /// <param name="factionDef">The faction def to mark unremovable.</param>
-        public static void RegisterUnremovableFaction(FactionDef factionDef)
-        {
-            RegisterUnremovableFaction(factionDef.defName);
-        }
     }
 }

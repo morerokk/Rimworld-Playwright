@@ -47,9 +47,9 @@ namespace Rokk.Playwright.Components.Factions
                 factions = FactionUtils.GetNotPermanentlyHostileFactions();
             }
 
+            // Filter out factions that were already chosen
             if (playwright != null)
             {
-                // Filter out factions that were already chosen
                 factions = factions
                     .Where(factionDef => !playwright.AllFactions.Any(factionComponent => factionComponent.FactionDef == factionDef));
             }

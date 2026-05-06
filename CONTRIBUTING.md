@@ -11,10 +11,10 @@ If you need something to be added to Playwright's addon API to properly create y
 
 ## AI Slop
 
-Code changes or additions that are unchanged raw output of LLM's (especially "agents") will likely be rejected. LLM-written code is usually not up to this project's quality standards. LLM assistance during coding is okay, but if people can tell it's AI, you have likely taken the LLM output at face value too much.
+Code changes that are unchanged raw output of LLM's (especially "agents") will likely be rejected. LLM-written code is usually not up to this project's quality standards. LLM assistance during coding is okay, but if people can tell it's AI, you have likely taken the LLM output at face value too much.
 
-Similarly, if your PR description is mostly AI-written, it will likely get rejected if it isn't immediately obvious from the code what it does and whether there are any caveats. If you don't know what your changes do, or if you didn't feel like writing out what you changed, you should not expect others to feel like reading or considering it, either.
+Similarly, if your PR description is mostly AI-written, it will likely get rejected if it isn't immediately obvious from the code what it does, and whether there might be any caveats. If you don't know what your changes do, or if you didn't feel like writing out what you changed, you should not expect others to feel like reading or considering it, either.
 
 Machine translation is okay.
 
-This section only applies to PR's or contributions to this mod (Playwright) directly. Obviously, you are free to do whatever you want in your own addon mods.
+This document (and therefore this section) only applies to PR's or contributions to Playwright directly. Obviously, you are free to do whatever you want in your own addon mods.

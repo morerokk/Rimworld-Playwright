@@ -9,9 +9,9 @@ using Rokk.Playwright.Composer;
 namespace Rokk.Playwright.Components.Factions
 {
     /// <summary>
-    /// This is a placeholder that represents other factions that this mod did not account for.
-    /// If you leave this OUT of the <see cref="PlaywrightStructure.OtherFactions"/> list for instance,
-    /// all factions that aren't allies or enemies will be wiped off the map.
+    /// This is a placeholder that represents all other factions that weren't selected.
+    /// If you leave this OUT of the <see cref="PlaywrightStructure.NeutralFactions"/> list for instance,
+    /// all factions that are neutral will be wiped off the map.
     /// By default, this is left inside all lists, and if left alone, it will simply leave the other factions alone.
     /// </summary>
     public class AllOtherFactions : FactionComponent

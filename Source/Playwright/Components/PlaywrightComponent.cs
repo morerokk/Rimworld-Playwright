@@ -9,11 +9,9 @@ namespace Rokk.Playwright.Components
 {
     /// <summary>
     /// The base class for any Playwright component.
-    /// When extending this, ensure the constructor is safe, as a new instance must be created for <see cref="IsAvailable"/> to be callable.
     /// </summary>
     /// <remarks>
-    /// Some components may be constructed on game startup, when <see cref="DefOf"/> are not yet loaded.
-    /// If you need a default def value for a setting, consider using null as sentinel value and set the intended default in the settings contents method, or in a pre-draw hook.
+    /// When extending this, ensure the constructor is safe, as a new instance must be created for <see cref="IsAvailable"/> to be callable.
     /// </remarks>
     public abstract class PlaywrightComponent : IExposable
     {
@@ -54,7 +52,7 @@ namespace Rokk.Playwright.Components
         /// <summary>
         /// <see cref="IExposable"/>, needed to serialize the Playwright structure with Scribe.
         /// If your component doesn't have any extra settings, you don't have to override this.
-        /// If your component has settings, ensure you call <see cref="Scribe_Values"/> etc. on them.
+        /// If your component has settings, ensure you call <see cref="Scribe_Values.Look{T}(ref T, string, T, bool)"/> etc. on them.
         /// </summary>
         public virtual void ExposeData()
         {

@@ -1,12 +1,9 @@
 ﻿using RimWorld;
-using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using Verse;
 
 namespace Rokk.Playwright.Components.SpecialConditions
 {

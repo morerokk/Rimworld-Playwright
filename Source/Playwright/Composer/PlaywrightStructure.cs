@@ -16,14 +16,14 @@ using Verse;
 namespace Rokk.Playwright.Composer
 {
     /// <summary>
-    /// Structure that holds all of the player's choices.
+    /// Structure that holds all of the player's choices and all component settings.
     /// Can be saved/loaded by Scribe.
     /// </summary>
     public class PlaywrightStructure : IExposable
     {
         /// <summary>
-        /// The Origin of the player, which defines the starting point.
-        /// During compilation of the scenario, this cannot be null.
+        /// The Origin that every other component builds on top of. An origin is usually a scenario.
+        /// During compilation of the scenario, the origin may not be null.
         /// May be null temporarily in other cases, such as when loading a playwright with missing content.
         /// </summary>
         public OriginComponent Origin;
@@ -75,19 +75,23 @@ namespace Rokk.Playwright.Composer
         /// </summary>
         public string Description;
         /// <summary>
-        /// Description that's shown on initial new game start.
+        /// Text that's shown on initial new game start.
         /// This is usually the same as Description, minus the "Note: this is a difficult scenario(...)" etc.
         /// </summary>
         public string GameStartDialogText;
 
-        public IEnumerable<FactionComponent> AllFactions
-        {
-            get
-            {
-                return AllyFactions.Union(NeutralFactions).Union(EnemyFactions);
-            }
-        }
+        /// <summary>
+        /// Every selected faction component, across allies/neutrals/enemies
+        /// </summary>
+        public virtual IEnumerable<FactionComponent> AllFactions => AllyFactions.Union(NeutralFactions).Union(EnemyFactions);
 
+        /// <summary>
+        /// Create a default Playwright (equivalent to Crashlanded scenario).
+        /// Usually happens when the player opens the Playwright editor, or changes the Origin.
+        /// </summary>
+        /// <remarks>
+        /// This can be hooked into with <see cref="HookRegistration.RegisterPlaywrightDefaultStructure(Action{PlaywrightStructure})"/>.
+        /// </remarks>
         public static PlaywrightStructure CreateDefault()
         {
             var structure = new PlaywrightStructure()
@@ -124,7 +128,7 @@ namespace Rokk.Playwright.Composer
                 structure.WinConditions.Add(archonexusWinCondition);
             }
 
-            // NOTE: I have opted to not include the Anomaly monolith in the selectable win conditions at all.
+            // The Anomaly monolith is not included in the selectable win conditions at all.
             // Anomaly is a bit of an oddball. In my opinion, if you're not going to go for the monolith,
             // you should just turn on Ambient Horror (or turn off the Anomaly stuff entirely).
             // If the player wants it as a win condition, they can just go for it anyway.
@@ -144,7 +148,7 @@ namespace Rokk.Playwright.Composer
         /// <summary>
         /// Get a list of unavailable components, useful for validation after loading a saved Playwright.
         /// </summary>
-        public List<PlaywrightComponent> GetUnavailableComponents()
+        public virtual List<PlaywrightComponent> GetUnavailableComponents()
         {
             List<PlaywrightComponent> unavailableComponents = new List<PlaywrightComponent>();
             if (!Origin.IsAvailable)
@@ -165,7 +169,7 @@ namespace Rokk.Playwright.Composer
         /// <summary>
         /// Clear out any currently unavailable components.
         /// </summary>
-        public void ClearUnavailableComponents()
+        public virtual void ClearUnavailableComponents()
         {
             if (!Origin.IsAvailable)
             {
@@ -180,18 +184,14 @@ namespace Rokk.Playwright.Composer
             SpecialConditions.RemoveAll(s => !s.IsAvailable);
         }
 
-        public bool IsFactionSelectedAnywhere(FactionDef factionDef)
+        public virtual bool IsFactionSelectedAnywhere(FactionDef factionDef)
         {
-            var selectedAllies = AllyFactions.Select(f => f.FactionDef);
-            var selectedNeutrals = NeutralFactions.Select(f => f.FactionDef);
-            var selectedEnemies = EnemyFactions.Select(f => f.FactionDef);
-            return selectedAllies
-                .Union(selectedNeutrals)
-                .Union(selectedEnemies)
+            return AllFactions
+                .Select(fc => fc.FactionDef)
                 .Contains(factionDef);
         }
 
-        public void ExposeData()
+        public virtual void ExposeData()
         {
             Scribe_Deep.Look(ref Origin, nameof(Origin));
             Scribe_Collections.Look(ref Boons, nameof(Boons), LookMode.Deep);

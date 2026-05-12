@@ -4,9 +4,7 @@ using Rokk.Playwright.Components.Factions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-
 using Verse;
 
 namespace Rokk.Playwright.Components.Origins

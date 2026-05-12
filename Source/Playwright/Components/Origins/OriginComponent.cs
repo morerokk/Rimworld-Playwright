@@ -14,8 +14,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
-using UnityEngine;
 using Verse;
 
 namespace Rokk.Playwright.Components.Origins
@@ -150,7 +148,7 @@ namespace Rokk.Playwright.Components.Origins
         }
 
         /// <summary>
-        /// Additional content for the origin, like flavor text.
+        /// Additional content for the origin that come after the origin content, like flavor text.
         /// By default, this lists out the origin's tech level, and its extra default-selected boons/factions/etc.
         /// </summary>
         /// <param name="originContentListing">The listing that the origin contents are drawing in.</param>
@@ -252,6 +250,7 @@ namespace Rokk.Playwright.Components.Origins
 
         }
 
+        // These static getter methods are kind of beans
         public static List<OriginComponent> GetAvailableOrigins()
         {
             var result = new List<OriginComponent>();

@@ -90,7 +90,6 @@
     <Compile Include="DefOfs\IncidentDefOf.cs" />
     <Compile Include="DefOfs\HediffDefOf.cs" />
     <Compile Include="DefOfs\ScenarioDefOf.cs" />
-    <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="Exceptions\PlaywrightBuilderException.cs" />

@@ -20,6 +20,9 @@ namespace Rokk.Playwright.Components.Boons
         {
             boonContentListing.Label("Playwright.Components.Boons.AgeLimit.AllowedAgeRange".Translate());
             boonContentListing.IntRange(ref AllowedAgeRange, 15, 120);
+            // Vanilla UI limited to 15-120 years.
+            // While some modded races have completely different lifespans and the scenpart supports more than that too,
+            // we follow vanilla limits to avoid UI issues if the scenario is edited later
         }
 
         public override void MutateScenario(Scenario scenario, List<ScenPart> scenarioParts)

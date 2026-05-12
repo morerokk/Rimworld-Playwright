@@ -74,6 +74,7 @@ namespace Rokk.Playwright.Composer
             }
         }
 
+        // The way factions are handled is kinda ass. Should we even keep doing this?
         protected virtual void ProcessFactions(PlaywrightStructure playwright, Scenario scenario, List<ScenPart> parts)
         {
             // Separate processing for the absence of the "(All Others)" faction, strip out all factions that weren't explicitly chosen

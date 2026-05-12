@@ -41,6 +41,10 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                     .Cast<ScenPart_ConfigPage_ConfigureStartingPawns>()
                     .FirstOrDefault();
 
+                // TODO: Convert a default configpage to pawnkinds instead of xenotypes.
+                // This is because it's quite likely that the player wants to combine the Mechanoids and Androids boons, and this one works either way.
+                // Or maybe this calls for a scenario mutation hook
+
                 // We need either a ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes or a ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs to add androids specifically.
                 // If we have a regular ScenPart_ConfigPage_ConfigureStartingPawns, convert it to the xenotype variant.
                 // When we have the xenotype variant, add the androids xenotype to it as requirement.

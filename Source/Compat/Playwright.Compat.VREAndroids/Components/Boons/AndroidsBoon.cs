@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
 using Verse;
 
 namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
@@ -34,71 +33,78 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
         {
             if (Amount > 0)
             {
-                ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes xenotypeConfigurePart = null;
+                ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs kindsConfigurePart = null;
 
                 ScenPart_ConfigPage_ConfigureStartingPawns regularConfigurePart = scenarioParts
                     .Where(part => part.def == ScenPartDefOf.ConfigPage_ConfigureStartingPawns)
                     .Cast<ScenPart_ConfigPage_ConfigureStartingPawns>()
                     .FirstOrDefault();
 
-                // TODO: Convert a default configpage to pawnkinds instead of xenotypes.
-                // This is because it's quite likely that the player wants to combine the Mechanoids and Androids boons, and this one works either way.
-                // Or maybe this calls for a scenario mutation hook
-
                 // We need either a ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes or a ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs to add androids specifically.
-                // If we have a regular ScenPart_ConfigPage_ConfigureStartingPawns, convert it to the xenotype variant.
-                // When we have the xenotype variant, add the androids xenotype to it as requirement.
-                // If we have a kind variant, add the androids kind to it as requirement.
+                // If we have a regular ScenPart_ConfigPage_ConfigureStartingPawns, convert it to the pawnkinds variant.
+                // When we have the pawnkinds variant, add the androids kind to it as requirement.
+                // If we have a xenotype variant, add the basic android xenotype to it as requirement.
                 // Anything else is not supported.
+
+                // We choose to convert it to pawnkinds and not xenotypes, because pawnkinds is used by more stuff,
+                // especially The Mechanitor scenario/origin and Mechanoids boon, which are likely to be used together with this.
+
                 // (Holy shit this is ass. At least the mechanitor start is supported now, so we support everything except "The Anomaly" start.)
+
                 if (regularConfigurePart != null)
                 {
-                    xenotypeConfigurePart = ScenPartUtils.ConvertConfigureStartingPawnsToXenotypes(regularConfigurePart);
+                    // Configpage is default, convert to kind defs
+                    kindsConfigurePart = ScenPartUtils.ConvertConfigureStartingPawnsToKindDefs(regularConfigurePart);
                     scenarioParts.Remove(regularConfigurePart);
-                    scenarioParts.Add(xenotypeConfigurePart);
+                    scenarioParts.Add(kindsConfigurePart);
                 }
                 else
                 {
-                    xenotypeConfigurePart = scenarioParts
-                        .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.ConfigurePawnsXenotypes)
-                        .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes>()
+                    // Try to find existing kind defs config page
+                    kindsConfigurePart = scenarioParts
+                        .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs)
+                        .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs>()
                         .FirstOrDefault();
                 }
 
-                if (xenotypeConfigurePart != null)
+                if (kindsConfigurePart != null)
                 {
-                    xenotypeConfigurePart.pawnChoiceCount += Amount;
-                    xenotypeConfigurePart.xenotypeCounts.Add(new XenotypeCount()
+                    // We have a kind defs config page, add android pawnkind and done
+                    kindsConfigurePart.pawnChoiceCount += Amount;
+                    kindsConfigurePart.kindCounts.Add(new PawnKindCount()
+                    {
+                        count = Amount,
+                        countBuffer = Amount.ToString(),
+                        requiredAtStart = true,
+                        kindDef = DefOfs.PawnKindDefOf.VREA_AndroidBasic
+                    });
+                }
+                else
+                {
+                    // We might have a xenotype config page, check
+                    // If we do, add android xenotype and done
+                    // If we don't, error
+                    ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes xenotypesConfigurePart = scenarioParts
+                        .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.ConfigurePawnsXenotypes)
+                        .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes>()
+                        .FirstOrDefault();
+                    if (xenotypesConfigurePart == null)
+                    {
+                        throw new PlaywrightBuilderException("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate());
+                    }
+
+                    xenotypesConfigurePart.pawnChoiceCount += Amount;
+                    xenotypesConfigurePart.xenotypeCounts.Add(new XenotypeCount()
                     {
                         count = Amount,
                         countBuffer = Amount.ToString(),
                         requiredAtStart = true,
                         xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic
                     });
-                    xenotypeConfigurePart.overrideKinds.Add(new XenotypePawnKind()
+                    xenotypesConfigurePart.overrideKinds.Add(new XenotypePawnKind()
                     {
                         xenotype = DefOfs.XenotypeDefOf.VREA_AndroidBasic,
                         pawnKind = DefOfs.PawnKindDefOf.VREA_AndroidBasic
-                    });
-                }
-                else
-                {
-                    ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs kindConfigurePart = scenarioParts
-                        .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.ConfigurePawnsKindDefs)
-                        .Cast<ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs>()
-                        .FirstOrDefault();
-                    if (kindConfigurePart == null)
-                    {
-                        throw new PlaywrightBuilderException("Playwright.Components.Boons.Compat_VREAndroids_Androids.ErrorUnsupportedConfigPage".Translate());
-                    }
-
-                    kindConfigurePart.pawnChoiceCount += Amount;
-                    kindConfigurePart.kindCounts.Add(new PawnKindCount()
-                    {
-                        count = Amount,
-                        countBuffer = Amount.ToString(),
-                        requiredAtStart = true,
-                        kindDef = DefOfs.PawnKindDefOf.VREA_AndroidBasic
                     });
                 }
             }
@@ -110,7 +116,8 @@ namespace Rokk.Playwright.Compat.VREAndroids.Components.Boons
                     .Where(part => part.def == Playwright.DefOfs.ScenPartDefOf.StartingResearch)
                     .Cast<ScenPart_StartingResearch>()
                     .ToList();
-                // Fucking private access modifiers. Should we reconsider the part where we respect access modifiers?
+
+                // The private access modifier circus
                 bool neutroamineFound = false;
                 bool androidtechFound = false;
                 FieldInfo projectInfo = AccessTools.Field(typeof(ScenPart_StartingResearch), "project");

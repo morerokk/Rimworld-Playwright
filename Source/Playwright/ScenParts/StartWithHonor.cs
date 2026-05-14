@@ -45,6 +45,7 @@ namespace Rokk.Playwright.ScenParts
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => FactionToStartWithHonorFor = factionDef, factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
+                SoundUtils.PlayClick();
             }
 
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.StartWithHonor.Honor".Translate());
@@ -151,7 +152,7 @@ namespace Rokk.Playwright.ScenParts
 
         public override bool HasNullDefs()
         {
-            return base.HasNullDefs() || this.FactionToStartWithHonorFor == null;
+            return this.FactionToStartWithHonorFor == null;
         }
     }
 }

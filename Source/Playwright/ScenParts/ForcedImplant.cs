@@ -1,11 +1,9 @@
-﻿using HarmonyLib;
-using RimWorld;
+﻿using RimWorld;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 using UnityEngine;
@@ -230,6 +228,24 @@ namespace Rokk.Playwright.ScenParts
         {
             ForcedImplant part = other as ForcedImplant;
             return part == null || this.Hediff != part.Hediff || this.BodyPart != part.BodyPart || this.Side != part.Side || this.context != part.context;
+        }
+
+        public override bool HasNullDefs()
+        {
+            if (this.Hediff == null)
+            {
+                return true;
+            }
+
+            var validBodyParts = this.BodyPartsThisCanApplyTo;
+            if (validBodyParts.Count > 0 && this.BodyPart == null)
+            {
+                // I don't think any hediffs exist that can apply to either the whole body OR a bodypart.
+                // Assume that if the bodypart is null, it's invalid
+                return true;
+            }
+
+            return false;
         }
 
         public enum ImplantSide

@@ -1,16 +1,12 @@
-﻿using BigAndSmall;
-using HarmonyLib;
-using RimWorld;
+﻿using RimWorld;
 using Rokk.Playwright.Compat.BSSapientAnimals.Things;
 using Rokk.Playwright.UI;
 using Rokk.Playwright.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Verse;
-using Verse.Noise;
 
 namespace Rokk.Playwright.Compat.BSSapientAnimals.ScenParts
 {
@@ -134,6 +130,11 @@ namespace Rokk.Playwright.Compat.BSSapientAnimals.ScenParts
         {
             StartingAnimalSapient part = other as StartingAnimalSapient;
             return part == null || this.AnimalKind != part.AnimalKind;
+        }
+
+        public override bool HasNullDefs()
+        {
+            return this.AnimalKind == null;
         }
 
         public override void ExposeData()

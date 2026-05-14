@@ -66,5 +66,10 @@ namespace Rokk.Playwright.ScenParts
                 yield return Faction.LabelCap.CapitalizeFirst();
             }
         }
+
+        public override bool HasNullDefs()
+        {
+            return this.Faction == null;
+        }
     }
 }

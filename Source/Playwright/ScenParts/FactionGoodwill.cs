@@ -80,6 +80,11 @@ namespace Rokk.Playwright.ScenParts
             Scribe_Values.Look(ref Goodwill, nameof(Goodwill), 0, false);
         }
 
+        public override bool HasNullDefs()
+        {
+            return FactionToAffect == null;
+        }
+
         public abstract override string Summary(Scenario scen);
         protected abstract void DoHelpButton();
     }

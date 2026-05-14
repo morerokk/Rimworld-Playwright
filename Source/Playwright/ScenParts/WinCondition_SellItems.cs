@@ -111,5 +111,10 @@ namespace Rokk.Playwright.ScenParts
             Scribe_Values.Look(ref Amount, nameof(Amount));
             Scribe_Values.Look(ref AmountSold, nameof(AmountSold));
         }
+
+        public override bool HasNullDefs()
+        {
+            return this.Thing == null;
+        }
     }
 }

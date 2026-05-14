@@ -145,5 +145,10 @@ namespace Rokk.Playwright.ScenParts
             Scribe_Defs.Look(ref Title, nameof(Title));
             ColonistsBuffer = Colonists.ToString();
         }
+
+        public override bool HasNullDefs()
+        {
+            return this.Faction == null || this.Title == null;
+        }
     }
 }

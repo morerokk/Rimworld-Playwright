@@ -100,9 +100,9 @@ namespace Rokk.Playwright.ScenParts
             }
 
             // Set pawn xenotype back to baseliner and then re-apply the new one, because paranoia and it can't hurt.
-            // Thankfully we don't need to support custom xenotypes here (surely :) ).
+            // Thankfully we don't need to support custom xenotypes here.
             // If players want to use a custom xenotype here, recommend using a mod/tool that exports a custom xenotype to a new mod,
-            // so that it's no longer a second-class citizen (which you *can* do)
+            // so that it's no longer a second-class citizen (which you *can* do), or just use ReplaceXenotypeWithCustom instead
             geneTracker.SetXenotype(XenotypeDefOf.Baseliner);
             geneTracker.SetXenotype(ToXenotype);
         }

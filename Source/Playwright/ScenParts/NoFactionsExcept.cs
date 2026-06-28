@@ -47,6 +47,7 @@ namespace Rokk.Playwright.ScenParts
                     floatMenuOptions.Add(new FloatMenuOption(factionDef.LabelCap, () => ExceptFactions.Add(factionDef), factionDef.FactionIcon, factionDef.DefaultColor));
                 }
                 PlaywrightUtils.OpenFloatMenu(floatMenuOptions);
+                SoundUtils.PlayClick();
             }
 
             Widgets.Label(helper.NextRect(), "Playwright.ScenParts.NoFactionsExcept.Factions".Translate());

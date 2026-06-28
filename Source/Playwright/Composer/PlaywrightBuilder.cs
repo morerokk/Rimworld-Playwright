@@ -323,7 +323,7 @@ namespace Rokk.Playwright.Composer
         /// Generate a barebones "default-ish" Scenario.
         /// This scenario is based on Naked Brutality, but without the naked or no possessions parts.
         /// </summary>
-        public static Scenario GenerateDefaultishScenario()
+        public virtual Scenario GenerateDefaultishScenario()
         {
             Scenario scenario = DefOfs.ScenarioDefOf.NakedBrutality.scenario.CopyForEditing();
 

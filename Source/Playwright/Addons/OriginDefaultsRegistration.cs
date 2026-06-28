@@ -17,7 +17,7 @@ namespace Rokk.Playwright.Addons
     /// </summary>
     /// <remarks>
     /// These methods expect you to register functions that return the components, rather than returning the component directly.
-    /// This means the function is not actually called until the playwright window is opened.
+    /// This means the function is not actually called until the playwright window is opened and the given origin is selected.
     /// </remarks>
     public static class OriginDefaultsRegistration
     {

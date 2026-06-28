@@ -97,6 +97,8 @@
     <Compile Include="Initializer.cs" />
     <Compile Include="PatchCheckers\FactionPatchChecker.cs" />
     <Compile Include="PatchCheckers\WinConditionPatchChecker.cs" />
+    <Compile Include="Patches\Page_ScenarioEditorPatches.cs" />
+    <Compile Include="Patches\Page_SelectScenarioPatches.cs" />
     <Compile Include="Patches\StartingPawnUtilityPatches.cs" />
     <Compile Include="Patches\FactionPatches.cs" />
     <Compile Include="Patches\GamePatches.cs" />

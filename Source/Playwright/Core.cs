@@ -24,7 +24,9 @@ namespace Rokk.Playwright
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
 
-            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButton".Translate(), ref Settings.EnablePlaywrightButton, "Playwright.Settings.EnablePlaywrightButton.Help".Translate());
+            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButtonInMainMenu".Translate(), ref Settings.EnablePlaywrightButtonInMainMenu, "Playwright.Settings.EnablePlaywrightButtonInMainMenu.Help".Translate());
+            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButtonInScenarioSelect".Translate(), ref Settings.EnablePlaywrightButtonInScenarioSelect, "Playwright.Settings.EnablePlaywrightButtonInScenarioSelect.Help".Translate());
+            listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButtonInScenarioEditor".Translate(), ref Settings.EnablePlaywrightButtonInScenarioEditor, "Playwright.Settings.EnablePlaywrightButtonInScenarioEditor.Help".Translate());
             listingStandard.Gap();
             listingStandard.CheckboxLabeled("Playwright.Settings.HideReplacedFactions".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideReplacedFactions.Help".Translate());
             listingStandard.Gap();

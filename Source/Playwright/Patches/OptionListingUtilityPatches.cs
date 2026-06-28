@@ -21,7 +21,7 @@ namespace Rokk.Playwright.Patches
                 return;
             }
 
-            if (!Core.Settings.EnablePlaywrightButton)
+            if (!Core.Settings.EnablePlaywrightButtonInMainMenu)
             {
                 return;
             }

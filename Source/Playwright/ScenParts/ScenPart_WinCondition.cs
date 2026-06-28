@@ -8,6 +8,9 @@ using Verse;
 
 namespace Rokk.Playwright.ScenParts
 {
+    /// <summary>
+    /// Base class for scenario parts that add win conditions.
+    /// </summary>
     public abstract class ScenPart_WinCondition : ScenPart
     {
         /// <summary>

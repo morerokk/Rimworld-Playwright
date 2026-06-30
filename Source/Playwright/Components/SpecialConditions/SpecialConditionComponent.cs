@@ -40,6 +40,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             {
                 new DisableIncidentsSpecialCondition(),
                 new PermanentGameConditionsSpecialCondition(),
+                new ScheduledIncidentsSpecialCondition(),
                 new PlanetkillerSpecialCondition(),
                 new ForcedTraitsSpecialCondition(),
                 new DeathExplosionSpecialCondition(),

@@ -64,6 +64,8 @@ Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
 
 {0}</Playwright.WarningComponentsUnavailable>
  <Playwright.CategoryAll>(All)</Playwright.CategoryAll>
+ <Playwright.PleaseSelectFromFloatMenu>Select...</Playwright.PleaseSelectFromFloatMenu>
+ <Playwright.days>days</Playwright.days>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>
@@ -376,9 +378,16 @@ These raids will not start until you land a Gravship for the first time, and wil
  <Playwright.Components.SpecialConditions.StatMultiplier.Add>Add Stat</Playwright.Components.SpecialConditions.StatMultiplier.Add>
  <Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>Multiplier</Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>
 
- <Playwright.Components.SpecialConditions.PermanentGameConditions>Permanent game conditions</Playwright.Components.SpecialConditions.PermanentGameConditions>
+ <Playwright.Components.SpecialConditions.PermanentGameConditions>Permanent Conditions</Playwright.Components.SpecialConditions.PermanentGameConditions>
  <Playwright.Components.SpecialConditions.PermanentGameConditions.DescriptionShort>Force permanent game conditions or natural disasters.</Playwright.Components.SpecialConditions.PermanentGameConditions.DescriptionShort>
  <Playwright.Components.SpecialConditions.PermanentGameConditions.Description>Force permanent game conditions or natural disasters to always be active.</Playwright.Components.SpecialConditions.PermanentGameConditions.Description>
  <Playwright.Components.SpecialConditions.PermanentGameConditions.Add>Add Permanent Condition...</Playwright.Components.SpecialConditions.PermanentGameConditions.Add>
+
+ <Playwright.Components.SpecialConditions.ScheduledIncidents>Scheduled Incidents</Playwright.Components.SpecialConditions.ScheduledIncidents>
+ <Playwright.Components.SpecialConditions.ScheduledIncidents.DescriptionShort>Force incidents to happen.</Playwright.Components.SpecialConditions.ScheduledIncidents.DescriptionShort>
+ <Playwright.Components.SpecialConditions.ScheduledIncidents.Description>Force incidents to happen on a schedule.</Playwright.Components.SpecialConditions.ScheduledIncidents.Description>
+ <Playwright.Components.SpecialConditions.ScheduledIncidents.Add>Add Scheduled Incident</Playwright.Components.SpecialConditions.ScheduledIncidents.Add>
+ <Playwright.Components.SpecialConditions.ScheduledIncidents.Summary>{0} happens {1}-{2} day(s) after starting the game</Playwright.Components.SpecialConditions.ScheduledIncidents.Summary>
+ <Playwright.Components.SpecialConditions.ScheduledIncidents.SummaryRepeat>{0} happens every {1}-{2} day(s)</Playwright.Components.SpecialConditions.ScheduledIncidents.SummaryRepeat>
 
 </LanguageData>

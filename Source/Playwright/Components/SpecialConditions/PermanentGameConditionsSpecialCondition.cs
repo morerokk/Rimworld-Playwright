@@ -19,7 +19,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
         private IEnumerable<GameConditionDef> GetAllowedGameConditions()
         {
             return DefDatabase<GameConditionDef>.AllDefs
-                .Where(def => def != DefOfs.GameConditionDefOf.Planetkiller); // Planetkiller does nothing if permanent, it just ends the game when it ends
+                .Where(def => def.canBePermanent);
         }
 
         public override void DoSettingsContents(Listing_AutoFitVertical specialConditionContentListing)

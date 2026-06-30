@@ -584,5 +584,37 @@ namespace Rokk.Playwright.Utilities
 
             return part;
         }
+
+        public static ScenPart_PermaGameCondition MakePermaGameConditionPart(GameConditionDef gameCondition)
+        {
+            ScenPart_PermaGameCondition part = (ScenPart_PermaGameCondition)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.PermanentGameCondition);
+
+            FieldInfo gameConditionInfo = AccessTools.Field(typeof(ScenPart_PermaGameCondition), "gameCondition");
+            gameConditionInfo.SetValue(part, gameCondition);
+
+            return part;
+        }
+
+        /// <summary>
+        /// ScenPart_CreateIncident is internal (why), so this returns the base type instead
+        /// </summary>
+        public static ScenPart_IncidentBase MakeCreateIncidentPart(IncidentDef incident, float minDays, float maxDays, bool repeat = false)
+        {
+            ScenPart_IncidentBase part = (ScenPart_IncidentBase)ScenarioMaker.MakeScenPart(DefOfs.ScenPartDefOf.CreateIncident);
+
+            FieldInfo incidentInfo = AccessTools.Field("RimWorld.ScenPart_CreateIncident:incident");
+            incidentInfo.SetValue(part, incident);
+
+            FieldInfo minDaysInfo = AccessTools.Field("RimWorld.ScenPart_CreateIncident:minDays");
+            minDaysInfo.SetValue(part, minDays);
+
+            FieldInfo maxDaysInfo = AccessTools.Field("RimWorld.ScenPart_CreateIncident:maxDays");
+            maxDaysInfo.SetValue(part, maxDays);
+
+            FieldInfo repeatInfo = AccessTools.Field("RimWorld.ScenPart_CreateIncident:repeat");
+            repeatInfo.SetValue(part, repeat);
+
+            return part;
+        }
     }
 }

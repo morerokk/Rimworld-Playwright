@@ -54,6 +54,8 @@ namespace Rokk.Playwright.DefOfs
         public static ScenPartDef DisableIncident;
         public static ScenPartDef PawnFilter_Age;
         public static ScenPartDef StatFactor;
+        public static ScenPartDef PermanentGameCondition;
+        public static ScenPartDef CreateIncident;
         [MayRequireBiotech]
         public static ScenPartDef ConfigurePawnsXenotypes;
         [MayRequireBiotech]

@@ -376,4 +376,9 @@ These raids will not start until you land a Gravship for the first time, and wil
  <Playwright.Components.SpecialConditions.StatMultiplier.Add>Add Stat</Playwright.Components.SpecialConditions.StatMultiplier.Add>
  <Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>Multiplier</Playwright.Components.SpecialConditions.StatMultiplier.Multiplier>
 
+ <Playwright.Components.SpecialConditions.PermanentGameConditions>Permanent game conditions</Playwright.Components.SpecialConditions.PermanentGameConditions>
+ <Playwright.Components.SpecialConditions.PermanentGameConditions.DescriptionShort>Force permanent game conditions or natural disasters.</Playwright.Components.SpecialConditions.PermanentGameConditions.DescriptionShort>
+ <Playwright.Components.SpecialConditions.PermanentGameConditions.Description>Force permanent game conditions or natural disasters to always be active.</Playwright.Components.SpecialConditions.PermanentGameConditions.Description>
+ <Playwright.Components.SpecialConditions.PermanentGameConditions.Add>Add Permanent Condition...</Playwright.Components.SpecialConditions.PermanentGameConditions.Add>
+
 </LanguageData>

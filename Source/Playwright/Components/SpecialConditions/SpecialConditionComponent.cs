@@ -39,6 +39,7 @@ namespace Rokk.Playwright.Components.SpecialConditions
             var playwrightSpecialConditions = new List<SpecialConditionComponent>()
             {
                 new DisableIncidentsSpecialCondition(),
+                new PermanentGameConditionsSpecialCondition(),
                 new PlanetkillerSpecialCondition(),
                 new ForcedTraitsSpecialCondition(),
                 new DeathExplosionSpecialCondition(),

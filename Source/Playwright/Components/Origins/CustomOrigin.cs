@@ -510,13 +510,22 @@ namespace Rokk.Playwright.Components.Origins
                 thingRect.x += colWidth;
                 if (Widgets.ButtonText(thingRect, item.ThingLabel))
                 {
-                    var options = new List<FloatMenuOption>();
-                    foreach (ThingDef thingDef in PossibleThingDefs())
+                    if (Core.Settings.CategorizeItemSelectors)
                     {
-                        options.Add(new FloatMenuOption(thingDef.LabelCap, () => item.Thing = thingDef, thingDef.uiIcon, thingDef.uiIconColor));
+                        List<FloatMenuOption> options = CategorizedThingUtils.GetItemCategoryOptions((thingDef) => item.Thing = thingDef);
+                        SoundUtils.PlayClick();
+                        PlaywrightUtils.OpenFloatMenu(options);
                     }
-                    SoundUtils.PlayClick();
-                    PlaywrightUtils.OpenFloatMenu(options);
+                    else
+                    {
+                        var options = new List<FloatMenuOption>();
+                        foreach (ThingDef thingDef in PossibleThingDefs())
+                        {
+                            options.Add(new FloatMenuOption(thingDef.LabelCap, () => item.Thing = thingDef, thingDef.uiIcon, thingDef.uiIconColor));
+                        }
+                        SoundUtils.PlayClick();
+                        PlaywrightUtils.OpenFloatMenu(options);
+                    }
                 }
 
                 // Stuff (only if the Thing supports it)

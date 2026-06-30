@@ -147,6 +147,7 @@
     <Compile Include="UI\PlaywrightWindow.cs" />
     <Compile Include="UI\InfoPopupWindow.cs" />
     <Compile Include="UI\ScenPartDrawHelper.cs" />
+    <Compile Include="Utilities\CategorizedThingUtils.cs" />
     <Compile Include="Utilities\TextureUtils.cs" />
     <Compile Include="Utilities\FactionUtils.cs" />
     <Compile Include="Utilities\PlaywrightUtils.cs" />

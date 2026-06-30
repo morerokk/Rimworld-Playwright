@@ -69,6 +69,9 @@ namespace Rokk.Playwright.UI
                     string unavailableSummary = string.Join(',', unavailableComponents.Select(c => c.Id));
                     Log.Warning($"[Playwright] One or more components are currently unavailable after loading saved Playwright {filePath} and have been removed: {unavailableSummary}");
                     Playwright.ClearUnavailableComponents();
+
+                    string unavailableSummaryReadable = string.Join("\r\n", unavailableComponents.Select(c => $"{c.NameTranslated} ({c.Id})"));
+                    Find.WindowStack.Add(new InfoPopupWindow("Playwright.WarningComponentsUnavailable".Translate(unavailableSummaryReadable)));
                 }
             }
 

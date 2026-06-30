@@ -28,6 +28,8 @@ namespace Rokk.Playwright
             listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButtonInScenarioSelect".Translate(), ref Settings.EnablePlaywrightButtonInScenarioSelect, "Playwright.Settings.EnablePlaywrightButtonInScenarioSelect.Help".Translate());
             listingStandard.CheckboxLabeled("Playwright.Settings.EnablePlaywrightButtonInScenarioEditor".Translate(), ref Settings.EnablePlaywrightButtonInScenarioEditor, "Playwright.Settings.EnablePlaywrightButtonInScenarioEditor.Help".Translate());
             listingStandard.Gap();
+            listingStandard.CheckboxLabeled("Playwright.Settings.CategorizeItemSelectors".Translate(), ref Settings.CategorizeItemSelectors, "Playwright.Settings.CategorizeItemSelectors.Help".Translate());
+            listingStandard.Gap();
             listingStandard.CheckboxLabeled("Playwright.Settings.HideReplacedFactions".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideReplacedFactions.Help".Translate());
             listingStandard.Gap();
             listingStandard.CheckboxLabeled("Playwright.Settings.HideDryadsInAnimals".Translate(), ref Settings.HideReplacedFactions, "Playwright.Settings.HideDryadsInAnimals.Help".Translate());

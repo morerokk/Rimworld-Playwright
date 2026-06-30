@@ -13,6 +13,8 @@
  <Playwright.Settings.EnablePlaywrightButtonInScenarioSelect.Help>If enabled, the Playwright button is shown in the scenario select screen. You can disable this if you only want to use the scenario parts. Default: enabled.</Playwright.Settings.EnablePlaywrightButtonInScenarioSelect.Help>
  <Playwright.Settings.EnablePlaywrightButtonInScenarioEditor>Enable Playwright button in scenario editor</Playwright.Settings.EnablePlaywrightButtonInScenarioEditor>
  <Playwright.Settings.EnablePlaywrightButtonInScenarioEditor.Help>If enabled, the Playwright button is shown in the scenario edit screen. You can disable this if you only want to use the scenario parts. Default: disabled.</Playwright.Settings.EnablePlaywrightButtonInScenarioEditor.Help>
+ <Playwright.Settings.CategorizeItemSelectors>Categorize item selection menus</Playwright.Settings.CategorizeItemSelectors>
+ <Playwright.Settings.CategorizeItemSelectors.Help>If enabled, item selection menus in Playwright are categorized. If disabled, you will instead see the usual huge list of every item at once. Default: enabled.</Playwright.Settings.CategorizeItemSelectors.Help>
  <Playwright.Settings.HideReplacedFactions>Hide replaced factions in faction selectors</Playwright.Settings.HideReplacedFactions>
  <Playwright.Settings.HideReplacedFactions.Help>If enabled, factions that are replaced by other factions are hidden in most faction-related selection menus (such as Neanderthal Tribe replacing Fierce Tribe). Only affects the Playwright editor and Playwright's scenario parts. Default: enabled.</Playwright.Settings.HideReplacedFactions.Help>
  <Playwright.Settings.HideDryadsInAnimals>Hide Dryads in animal selectors</Playwright.Settings.HideDryadsInAnimals>
@@ -58,6 +60,10 @@ Due to technical limitations, the editor is somewhat error-prone when combined w
 
 Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
  <Playwright.Count>Count</Playwright.Count>
+ <Playwright.WarningComponentsUnavailable>One or more components are currently unavailable after loading the saved Playwright and have been removed:
+
+{0}</Playwright.WarningComponentsUnavailable>
+ <Playwright.CategoryAll>(All)</Playwright.CategoryAll>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>

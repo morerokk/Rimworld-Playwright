@@ -1,5 +1,6 @@
 ﻿using Rokk.Playwright.Addons;
 using Rokk.Playwright.Compat.ScenarioPawnsAndCorpses.Components.Boons;
+using Rokk.Playwright.Compat.ScenarioPawnsAndCorpses.Components.SpecialConditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Rokk.Playwright.Compat.ScenarioPawnsAndCorpses
         static Initializer()
         {
             ComponentRegistration.RegisterBoon(new CorpsesBoon());
+            ComponentRegistration.RegisterSpecialCondition(new ForcedBackstoriesSpecialCondition());
         }
     }
 }

@@ -60,6 +60,7 @@ Due to technical limitations, the editor is somewhat error-prone when combined w
 
 Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
  <Playwright.Count>Count</Playwright.Count>
+ <Playwright.ChancePercentage>Chance ({0}%)</Playwright.ChancePercentage>
  <Playwright.WarningComponentsUnavailable>One or more components are currently unavailable after loading the saved Playwright and have been removed:
 
 {0}</Playwright.WarningComponentsUnavailable>

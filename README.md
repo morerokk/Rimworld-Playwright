@@ -8,7 +8,7 @@ While some things are subject to change, I can guarantee that all scenarios and 
 
 # Installation
 
-You can download this mod off the Steam workshop (URL pending).
+[You can download this mod off the Steam workshop.](https://steamcommunity.com/sharedfiles/filedetails/?id=3753005413)
 
 For non-Steam versions of the game (or if you prefer not using the workshop), [download the repository as zip file](https://github.com/morerokk/Rimworld-Playwright/archive/refs/heads/master.zip), and extract the zip file into your `Rimworld/Mods` folder.
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+ <Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses>Corpses</Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses>
+ <Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.DescriptionShort>Start with extra corpses.</Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.DescriptionShort>
+ <Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.Description>Start with extra corpses (or scatter them around the map).</Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.Description>
+ <Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.Add>Add Corpse</Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.Add>
+ <Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.SelectKind>Select Corpse...</Playwright.Components.Boons.Compat_ScenarioPawnsAndCorpses_Corpses.SelectKind>
+
+</LanguageData>

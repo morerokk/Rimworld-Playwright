@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.BSSapient
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.Endling", "Compat\Playwright.Compat.Endling\Playwright.Compat.Endling.csproj", "{47E3CE4E-3A17-4CAC-995E-936CE19203F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Compat.ScenarioPawnsAndCorpses", "Compat\Playwright.Compat.ScenarioPawnsAndCorpses\Playwright.Compat.ScenarioPawnsAndCorpses.csproj", "{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{47E3CE4E-3A17-4CAC-995E-936CE19203F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47E3CE4E-3A17-4CAC-995E-936CE19203F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47E3CE4E-3A17-4CAC-995E-936CE19203F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{CBE8BFDD-D7FA-4288-9F0F-75376E4B6C05} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 		{9D9C258A-15A2-492F-84D4-A5F5B44208A6} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 		{47E3CE4E-3A17-4CAC-995E-936CE19203F1} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
+		{EF3D4EFD-3B60-46E6-B9A5-2875C7C44D5F} = {A66E855C-F7EE-495C-BE54-37C609F0FCA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41782E2C-45E7-48ED-A26C-E141E03E24CE}

@@ -66,6 +66,11 @@ Check the log for more details.</Playwright.ErrorOpeningIdeoligionEditor>
  <Playwright.CategoryAll>(All)</Playwright.CategoryAll>
  <Playwright.PleaseSelectFromFloatMenu>Select...</Playwright.PleaseSelectFromFloatMenu>
  <Playwright.days>days</Playwright.days>
+
+ <Playwright.ScatterType>Starting Type</Playwright.ScatterType>
+ <Playwright.ScatterType.Start>Start with</Playwright.ScatterType.Start>
+ <Playwright.ScatterType.NearStart>Scatter near start</Playwright.ScatterType.NearStart>
+ <Playwright.ScatterType.Anywhere>Scatter anywhere</Playwright.ScatterType.Anywhere>
  
  <Playwright.Tabs.Intro>Intro</Playwright.Tabs.Intro>
  <Playwright.Tabs.Intro.Welcome>Welcome to Playwright!</Playwright.Tabs.Intro.Welcome>

@@ -117,7 +117,7 @@ namespace Rokk.Playwright.ScenParts
                 winEndingKey.Translate(),
                 spotlightBuilder.ToString(),
                 winColonistsKey, pawns);
-            GameVictoryUtility.ShowCredits(credits, SongDefOf.EndCreditsSong, false, 5f);
+            GameVictoryUtility.ShowCredits(credits, creditsSong, false, 5f);
         }
 
         public override void ExposeData()

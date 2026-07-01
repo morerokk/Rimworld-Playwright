@@ -43,6 +43,7 @@
     <Compile Include="Components\Boons\CorpsesBoon.cs" />
     <Compile Include="Components\SpecialConditions\ForcedBackstoriesSpecialCondition.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">

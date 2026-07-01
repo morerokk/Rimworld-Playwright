@@ -46,6 +46,7 @@
     <Compile Include="DefOfs\ScenPartDefOf.cs" />
     <Compile Include="DefOfs\ThingDefOf.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenParts\StartingAnimalSapient.cs" />
     <Compile Include="Things\DelayedSapientAnimalSpawner.cs" />
   </ItemGroup>

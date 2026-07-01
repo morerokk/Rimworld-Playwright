@@ -54,6 +54,7 @@
     <Compile Include="DefOfs\RoyalTitleDefOf.cs" />
     <Compile Include="DefOfs\FactionDefOf.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playwright\Playwright.csproj">
